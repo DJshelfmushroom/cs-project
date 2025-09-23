@@ -1,4 +1,4 @@
-## defuse her
+## defuser
 
 
-hell oca lass to day we will be making defusher which is like that defusal roblox game
+We will be making defuser, which is similar to the defusal roblox game
