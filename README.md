@@ -1,4 +1,4 @@
-## Defuser
+## RedWire
 
 
-We will be making defuser, which is similar to the defusal roblox game
+We will be making redwire, which is similar to the defusal roblox game
