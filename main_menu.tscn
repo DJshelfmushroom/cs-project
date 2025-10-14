@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://tnxumru84hbs"]
+
+[ext_resource type="Script" uid="uid://hksu4anhif8j" path="res://main_menu.gd" id="1_7vrkn"]
+[ext_resource type="Script" uid="uid://dtpmom8vqlstr" path="res://play_button.gd" id="2_fu7sn"]
+[ext_resource type="Script" uid="uid://iam2xd2n6lfe" path="res://tutorials_button.gd" id="3_fu7sn"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7vrkn")
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.040000003
+anchor_top = 0.1
+anchor_right = -0.040000003
+anchor_bottom = 0.1
+offset_left = 763.8
+offset_top = 663.0
+offset_right = 1163.8
+offset_bottom = 763.0
+theme_override_font_sizes/font_size = 48
+text = "PLAY"
+script = ExtResource("2_fu7sn")
+
+[node name="TutorialsButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.040000003
+anchor_top = 0.1
+anchor_right = -0.040000003
+anchor_bottom = 0.1
+offset_left = 817.8
+offset_top = 808.0
+offset_right = 1117.8
+offset_bottom = 888.0
+theme_override_font_sizes/font_size = 30
+text = "TUTORIALS"
+script = ExtResource("3_fu7sn")
+
+[connection signal="button_up" from="PlayButton" to="." method="_on_play_button_up"]
+[connection signal="button_up" from="TutorialsButton" to="." method="_on_tutorials_button_up"]
