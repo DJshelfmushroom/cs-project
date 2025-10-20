@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bsx4bws50sqdx"]
 
-[ext_resource type="Script" uid="uid://cegaq2p1u1qo2" path="res://game_selection.gd" id="1_crpe7"]
-[ext_resource type="Script" uid="uid://bqcs1lb7m1rcs" path="res://label.gd" id="2_1w7qe"]
-[ext_resource type="Script" uid="uid://c76igupjvkh5n" path="res://back_button.gd" id="3_crpe7"]
+[ext_resource type="Script" uid="uid://cegaq2p1u1qo2" path="res://ui/game_selection.gd" id="1_crpe7"]
+[ext_resource type="Script" uid="uid://bqcs1lb7m1rcs" path="res://ui/label.gd" id="2_1w7qe"]
+[ext_resource type="Script" uid="uid://c76igupjvkh5n" path="res://ui/back_button.gd" id="3_crpe7"]
 
 [node name="GameSelection" type="Control"]
 layout_mode = 3
