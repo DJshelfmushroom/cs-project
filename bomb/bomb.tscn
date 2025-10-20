@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3aqjmj7grawb"]
+
+[ext_resource type="PackedScene" uid="uid://b5lb0ykdugkxc" path="res://bomb/bomb.blend" id="1_en0bh"]
+[ext_resource type="Script" uid="uid://bpwsomjmulr57" path="res://bomb/bomb.gd" id="2_f3ig0"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4fn8o"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4fn8o"]
+size = Vector3(2.0002747, 1.9956055, 5.0012817)
+
+[node name="Bomb" type="Node3D"]
+
+[node name="bomb_instance" parent="." instance=ExtResource("1_en0bh")]
+script = ExtResource("2_f3ig0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="bomb_instance"]
+physics_material_override = SubResource("PhysicsMaterial_4fn8o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bomb_instance/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0019378662, 0.0021972656, -0.013702393)
+shape = SubResource("BoxShape3D_4fn8o")
+
+[node name="PlugLocs" type="Node3D" parent="."]
+
+[node name="Node3D" type="Node3D" parent="PlugLocs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.013037, 0)
+
+[node name="Node3D2" type="Node3D" parent="PlugLocs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0551159, 0, 0)
+
+[node name="Node3D3" type="Node3D" parent="PlugLocs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.24792093, -2.5739994)

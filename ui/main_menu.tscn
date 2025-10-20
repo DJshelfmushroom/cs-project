@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://tnxumru84hbs"]
 
-[ext_resource type="Script" uid="uid://hksu4anhif8j" path="res://main_menu.gd" id="1_7vrkn"]
-[ext_resource type="Script" uid="uid://dtpmom8vqlstr" path="res://play_button.gd" id="2_fu7sn"]
-[ext_resource type="Script" uid="uid://iam2xd2n6lfe" path="res://tutorials_button.gd" id="3_fu7sn"]
+[ext_resource type="Script" uid="uid://hksu4anhif8j" path="res://ui/main_menu.gd" id="1_7vrkn"]
+[ext_resource type="Script" uid="uid://dtpmom8vqlstr" path="res://ui/play_button.gd" id="2_fu7sn"]
+[ext_resource type="Script" uid="uid://iam2xd2n6lfe" path="res://ui/tutorials_button.gd" id="3_fu7sn"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
