@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cyr7hlvaocst6"]
 
-[ext_resource type="Script" uid="uid://datsnhggicye" path="res://ui/tutorials.gd" id="1_lvri0"]
-[ext_resource type="Script" uid="uid://bdof0sdrdbiau" path="res://ui/label2.gd" id="2_p1xkb"]
-[ext_resource type="Script" uid="uid://c76igupjvkh5n" path="res://ui/back_button.gd" id="3_hig4w"]
+[ext_resource type="Script" uid="uid://datsnhggicye" path="res://tutorials.gd" id="1_lvri0"]
+[ext_resource type="Script" uid="uid://bdof0sdrdbiau" path="res://label2.gd" id="2_p1xkb"]
+[ext_resource type="Script" uid="uid://c76igupjvkh5n" path="res://back_button.gd" id="3_hig4w"]
 
 [node name="Tutorials" type="Control"]
 layout_mode = 3
