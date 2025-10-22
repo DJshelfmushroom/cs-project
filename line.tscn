@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://behfpa8pwo0lh"]
+
+[ext_resource type="Script" uid="uid://gvuptdcqq2mf" path="res://bomb/line.gd" id="1_pngm5"]
+
+[node name="line" type="Node3D"]
+script = ExtResource("1_pngm5")
+metadata/path = NodePath("")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+polygon = PackedVector2Array()
+mode = 2
+path_node = NodePath("")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
