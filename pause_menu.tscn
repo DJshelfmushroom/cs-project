@@ -1,12 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3tlqx3wcoyt6"]
+[gd_scene load_steps=2 format=3 uid="uid://d3tlqx3wcoyt6"]
 
 [ext_resource type="Script" uid="uid://1wvig8f44qja" path="res://container.gd" id="1_nwcfo"]
-[ext_resource type="FontFile" uid="uid://d3y7shqhxu6sv" path="res://Urban Shadow Sans Serif.otf" id="2_05uyy"]
-
-[sub_resource type="Theme" id="Theme_p81d2"]
-resource_name = "Main_Button"
-default_font = ExtResource("2_05uyy")
-default_font_size = 48
 
 [node name="Container" type="Control"]
 layout_mode = 3
@@ -14,11 +8,4 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_nwcfo")
-
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_right = 245.0
-offset_bottom = 72.0
-theme = SubResource("Theme_p81d2")
-text = "Main Menu"
-language = "en"
+margin_y = 100.0
