@@ -4,28 +4,18 @@
 [ext_resource type="FontFile" uid="uid://d3y7shqhxu6sv" path="res://Urban Shadow Sans Serif.otf" id="2_05uyy"]
 
 [sub_resource type="Theme" id="Theme_p81d2"]
+resource_name = "Main_Button"
 default_font = ExtResource("2_05uyy")
 default_font_size = 48
 
-[node name="pause_menu" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="SubViewport" type="SubViewport" parent="."]
-size = Vector2i(1920, 1080)
-
-[node name="Container" type="Control" parent="SubViewport"]
+[node name="Container" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_nwcfo")
 
-[node name="Button" type="Button" parent="SubViewport/Container"]
+[node name="Button" type="Button" parent="."]
 layout_mode = 0
 offset_right = 245.0
 offset_bottom = 72.0
