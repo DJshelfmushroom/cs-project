@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://b3aqjmj7grawb"]
+
+[ext_resource type="PackedScene" uid="uid://b5lb0ykdugkxc" path="res://bomb/bomb.blend" id="1_en0bh"]
+[ext_resource type="Script" uid="uid://bpwsomjmulr57" path="res://bomb/bomb.gd" id="2_f3ig0"]
+[ext_resource type="PackedScene" uid="uid://behfpa8pwo0lh" path="res://bomb/line.tscn" id="3_f3ig0"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4fn8o"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4fn8o"]
+size = Vector3(2.0002747, 1.9956055, 5.0012817)
+
+[sub_resource type="Curve3D" id="Curve3D_f3ig0"]
+_data = {
+"points": PackedVector3Array(-0.8259721, 2.4347272, 2.7926896, 0.8259721, -2.4347272, -2.7926896, -1.3236971, 3.6136656, 2.1113162, 0.25662994, -0.54677844, 0.85354376, -0.25662994, 0.54677844, -0.85354376, -1.420002, 3.2216356, -3.1125832, 0, 0, 0, 0, 0, 0, -0.7732816, 1.3440162, -5.064106),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[node name="Bomb" type="Node3D"]
+
+[node name="bomb_instance" parent="." instance=ExtResource("1_en0bh")]
+script = ExtResource("2_f3ig0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="bomb_instance"]
+physics_material_override = SubResource("PhysicsMaterial_4fn8o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bomb_instance/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0019378662, 0.0021972656, -0.013702393)
+shape = SubResource("BoxShape3D_4fn8o")
+
+[node name="PlugLocs" type="Node3D" parent="."]
+
+[node name="Node3D" type="Node3D" parent="PlugLocs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.013037, 0)
+
+[node name="Node3D2" type="Node3D" parent="PlugLocs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0551159, 0, 0)
+
+[node name="Node3D3" type="Node3D" parent="PlugLocs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.24792093, -2.5739994)
+
+[node name="Path3D" type="Path3D" parent="PlugLocs"]
+curve = SubResource("Curve3D_f3ig0")
+
+[node name="line" parent="PlugLocs/Path3D" instance=ExtResource("3_f3ig0")]
+line_resoultion = 180
+metadata/path = NodePath("..")
+
+[node name="SoftBody3D" type="SoftBody3D" parent="PlugLocs/Path3D"]
