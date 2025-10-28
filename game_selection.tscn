@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cegaq2p1u1qo2" path="res://game_selection.gd" id="1_crpe7"]
 [ext_resource type="Script" uid="uid://c76igupjvkh5n" path="res://back_button.gd" id="3_crpe7"]
-[ext_resource type="Script" uid="uid://cb5fs7o0nls3" path="res://label_2.gd" id="3_ej0sb"]
-[ext_resource type="PackedScene" uid="uid://u0uswry712ai" path="res://puzzle_1.tscn" id="4_bd0xv"]
-[ext_resource type="PackedScene" uid="uid://d4aqd6eakis0f" path="res://timerrr.tscn" id="5_ej0sb"]
+[ext_resource type="Script" path="res://label_2.gd" id="3_ej0sb"]
+[ext_resource type="PackedScene" path="res://puzzle_1.tscn" id="4_bd0xv"]
+[ext_resource type="PackedScene" path="res://timerrr.tscn" id="5_ej0sb"]
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -41,6 +41,7 @@ offset_left = 12.879999
 offset_top = -76.52002
 offset_right = 11.359985
 offset_bottom = -75.640015
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 30
 text = "BACK"
 script = ExtResource("3_crpe7")
