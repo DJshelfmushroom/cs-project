@@ -1,15 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bsx4bws50sqdx"]
+[gd_scene load_steps=7 format=3 uid="uid://ct7mm4n0cfqte"]
 
-[ext_resource type="Script" uid="uid://cegaq2p1u1qo2" path="res://game_selection.gd" id="1_crpe7"]
-[ext_resource type="Script" path="res://back_button.gd" id="3_crpe7"]
-[ext_resource type="Script" path="res://label_2.gd" id="3_ej0sb"]
-[ext_resource type="PackedScene" uid="uid://u0uswry712ai" path="res://puzzle_1.tscn" id="4_bd0xv"]
-[ext_resource type="PackedScene" uid="uid://d4aqd6eakis0f" path="res://timerrr.tscn" id="5_ej0sb"]
-[ext_resource type="PackedScene" uid="uid://dg31pwxba0x3b" path="res://puzzle_2.tscn" id="5_x4twu"]
-[ext_resource type="Script" uid="uid://c76igupjvkh5n" path="res://back_button.gd" id="3_crpe7"]
-[ext_resource type="Script" path="res://label_2.gd" id="3_ej0sb"]
-[ext_resource type="PackedScene" path="res://puzzle_1.tscn" id="4_bd0xv"]
-[ext_resource type="PackedScene" path="res://timerrr.tscn" id="5_ej0sb"]
+[ext_resource type="Script" uid="uid://cegaq2p1u1qo2" path="res://game_selection.gd" id="1_ryrav"]
+[ext_resource type="Script" path="res://label_2.gd" id="2_eow3j"]
+[ext_resource type="Script" path="res://back_button.gd" id="3_j5wjh"]
+[ext_resource type="PackedScene" uid="uid://u0uswry712ai" path="res://puzzle_1.tscn" id="4_vef74"]
+[ext_resource type="PackedScene" uid="uid://d4aqd6eakis0f" path="res://timerrr.tscn" id="5_hve3p"]
+[ext_resource type="PackedScene" uid="uid://dg31pwxba0x3b" path="res://puzzle_2.tscn" id="6_mfdv2"]
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -22,7 +18,7 @@ offset_right = -2.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_crpe7")
+script = ExtResource("1_ryrav")
 
 [node name="StrikesLabel" type="Label" parent="."]
 layout_mode = 0
@@ -33,7 +29,7 @@ theme_override_font_sizes/font_size = 60
 text = "strikes: "
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("3_ej0sb")
+script = ExtResource("2_eow3j")
 
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 1
@@ -46,12 +42,11 @@ offset_left = 12.879999
 offset_top = -76.52002
 offset_right = 11.359985
 offset_bottom = -75.640015
-mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 30
 text = "BACK"
-script = ExtResource("3_crpe7")
+script = ExtResource("3_j5wjh")
 
-[node name="Puzzle1" parent="." instance=ExtResource("4_bd0xv")]
+[node name="Puzzle1" parent="." instance=ExtResource("4_vef74")]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.104
@@ -62,14 +57,14 @@ offset_right = 1722.32
 offset_bottom = 942.26
 scale = Vector2(0.7, 0.7)
 
-[node name="TimerNode" parent="." instance=ExtResource("5_ej0sb")]
+[node name="TimerNode" parent="." instance=ExtResource("5_hve3p")]
 layout_mode = 1
 offset_left = 93.0
 offset_top = 1494.0
 offset_right = 1324.6399
 offset_bottom = 2297.3599
 
-[node name="Puzzle2" parent="." instance=ExtResource("5_x4twu")]
+[node name="Puzzle2" parent="." instance=ExtResource("6_mfdv2")]
 layout_mode = 1
 offset_left = 295.0
 offset_top = 317.0
