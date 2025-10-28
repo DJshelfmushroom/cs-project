@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://u0uswry712ai"]
+
+[ext_resource type="Script" uid="uid://c4nop1b61iov6" path="res://puzzle_1.gd" id="1_whbnc"]
+[ext_resource type="Script" uid="uid://3knb1fw6yoda" path="res://equation_label.gd" id="2_msayb"]
+[ext_resource type="Script" uid="uid://ddge1t5212cm6" path="res://text_edit.gd" id="2_whbnc"]
+[ext_resource type="Script" uid="uid://dap0dwxfla04c" path="res://text_edit_2.gd" id="4_qffyh"]
+
+[node name="Puzzle1" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1056.0
+offset_bottom = 204.0
+script = ExtResource("1_whbnc")
+
+[node name="EquationLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 276.0
+offset_right = 1440.0
+offset_bottom = 480.0
+theme_override_font_sizes/font_size = 200
+text = "x^2 + _x + _ = 0"
+horizontal_alignment = 1
+script = ExtResource("2_msayb")
+
+[node name="AnswerLabel" type="Label" parent="EquationLabel"]
+layout_mode = 0
+offset_left = 198.0
+offset_top = 269.0
+offset_right = 817.0
+offset_bottom = 473.0
+theme_override_font_sizes/font_size = 200
+text = "x = _ or _"
+horizontal_alignment = 1
+
+[node name="TextEdit1" type="TextEdit" parent="EquationLabel/AnswerLabel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 219.0
+offset_top = 8.0
+offset_right = -376.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 170
+script = ExtResource("2_whbnc")
+
+[node name="TextEdit2" type="TextEdit" parent="EquationLabel/AnswerLabel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 585.0
+offset_top = 8.0
+offset_right = -10.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 170
+script = ExtResource("4_qffyh")
