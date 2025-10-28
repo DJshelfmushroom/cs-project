@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://deup103j8wan6"]
 
-[ext_resource type="Script" uid="uid://bjis8c0tumk3q" path="res://timer.gd" id="1_ye2uk"]
+[ext_resource type="Script" path="res://timer.gd" id="1_ye2uk"]
 [ext_resource type="Script" uid="uid://4euxyp0rwx2b" path="res://time_label.gd" id="2_o6fnk"]
 
 [node name="Timer" type="Control"]
