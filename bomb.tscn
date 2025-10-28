@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3aqjmj7grawb"]
+[gd_scene load_steps=5 format=3 uid="uid://b3aqjmj7grawb"]
 
 [ext_resource type="PackedScene" uid="uid://b5lb0ykdugkxc" path="res://bom.blend" id="1_en0bh"]
+[ext_resource type="Script" uid="uid://cd13ygh6uu8dn" path="res://plug_wire.cs" id="2_nfxiy"]
 [ext_resource type="PackedScene" uid="uid://behfpa8pwo0lh" path="res://line.tscn" id="3_f3ig0"]
 
 [sub_resource type="Curve3D" id="Curve3D_4fn8o"]
@@ -25,6 +26,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0551159, 0, 0)
 
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_4fn8o")
+script = ExtResource("2_nfxiy")
+
+[node name="RayCast3D" type="RayCast3D" parent="Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6384538, -0.7823271)
 
 [node name="line" parent="." instance=ExtResource("3_f3ig0")]
 line_resolution = 256
