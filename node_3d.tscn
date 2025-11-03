@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://jxwyxrkjandd"]
 
-[ext_resource type="PackedScene" uid="uid://b5lb0ykdugkxc" path="res://bom.blend" id="1_a202f"]
+[ext_resource type="PackedScene" uid="uid://b5lb0ykdugkxc" path="res://bomb/bom.blend" id="1_a202f"]
 
 [node name="Node3D" type="Node3D"]
 

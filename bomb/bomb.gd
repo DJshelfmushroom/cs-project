@@ -1,6 +1,6 @@
 extends Node3D
 
-var plug_scene = preload("res://plug.tscn")
+var plug_scene = preload("res://bomb/plug.tscn")
 var locs:Array[Transform3D] = []
 var rays:Array[Vector3] = []
 var meshes:Array[Node3D] = []
