@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cegaq2p1u1qo2" path="res://game_selection.gd" id="1_ryrav"]
 [ext_resource type="Script" path="res://label_2.gd" id="2_eow3j"]
-[ext_resource type="Script" path="res://back_button.gd" id="3_j5wjh"]
+[ext_resource type="Script" uid="uid://c76igupjvkh5n" path="res://back_button.gd" id="3_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://u0uswry712ai" path="res://puzzle_1.tscn" id="4_vef74"]
 [ext_resource type="PackedScene" uid="uid://d4aqd6eakis0f" path="res://timerrr.tscn" id="5_hve3p"]
 [ext_resource type="PackedScene" uid="uid://dg31pwxba0x3b" path="res://puzzle_2.tscn" id="6_mfdv2"]
@@ -31,19 +31,20 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("2_eow3j")
 
-[node name="BackButton" type="Button" parent="."]
+[node name="RedWireButton" type="Button" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.011000001
 anchor_top = 0.919
 anchor_right = 0.142
 anchor_bottom = 0.98300004
-offset_left = 12.879999
-offset_top = -76.52002
-offset_right = 11.359985
-offset_bottom = -75.640015
+offset_left = 790.88
+offset_top = -942.52
+offset_right = 939.36
+offset_bottom = -941.64
 theme_override_font_sizes/font_size = 30
-text = "BACK"
+text = "CUT THE RED WIRE"
 script = ExtResource("3_j5wjh")
 
 [node name="Puzzle1" parent="." instance=ExtResource("4_vef74")]
@@ -72,4 +73,4 @@ offset_right = -373.0
 offset_bottom = 173.0
 scale = Vector2(0.5, 0.5)
 
-[connection signal="button_up" from="BackButton" to="." method="_on_back_button_up"]
+[connection signal="button_up" from="RedWireButton" to="." method="_on_back_button_up"]
