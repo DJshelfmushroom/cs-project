@@ -31,8 +31,7 @@ func createChildren() -> void :
 		children.append(child)
 
 func _ready() -> void:
-	print(SceneManager.call("ChangeScene", "res://main_menu.tscn"))
-	print(get_tree().current_scene.scene_file_path)
+	#SceneManager.ChangeScene(self, "res://main_menu.tscn")
 	createChildren()
 	margin_y += BUTTON_HEIGHT/2.0
 	SCREEN_HEIGHT = get_viewport_rect().size.y
@@ -43,18 +42,14 @@ func _ready() -> void:
 		child.position.y = (( abs_max_height / len(children) * (i+0) ) +  margin_y)
 		child.position -= child.size / 2
 		child.pressed.connect(menu_press.bind(child.name))
-			
+
 func menu_press(but: StringName) -> void:
-	print(but)
+	#print(but)
 	var butIsVal = func (val : butValTypes) -> bool:
 		return but == butVals.get(val)
-	
-	var tree = get_tree()
-	
-	
-	
 	if butIsVal.call(butValTypes.MENU):
-		tree.change_scene_to_file("res://main_menu.tscn")
+		SceneManager.ChangeScene(self, "res://main_menu.tscn")
 	elif butIsVal.call(butValTypes.RETURN):
-		tree.change_scene_to_file("res://game.tscn")
-		
+		SceneManager.ReturnToScene(self)
+	elif butIsVal.call(butValTypes.SETTINGS):
+		SceneManager.ChangeScene(self, "res://pause_menu.tscn")

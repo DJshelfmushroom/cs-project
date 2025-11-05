@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://tnxumru84hbs"]
+[gd_scene load_steps=5 format=3 uid="uid://tnxumru84hbs"]
 
 [ext_resource type="Script" uid="uid://hksu4anhif8j" path="res://main_menu.gd" id="1_7vrkn"]
 [ext_resource type="Script" uid="uid://dtpmom8vqlstr" path="res://play_button.gd" id="2_fu7sn"]
 [ext_resource type="Script" uid="uid://iam2xd2n6lfe" path="res://tutorials_button.gd" id="3_fu7sn"]
+[ext_resource type="Script" uid="uid://btr8ieoyjyw1f" path="res://Button.cs" id="4_jix8l"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -48,6 +49,16 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 30
 text = "TUTORIALS"
 script = ExtResource("3_fu7sn")
+
+[node name="Settings" type="Button" parent="."]
+layout_mode = 0
+offset_left = 771.0
+offset_top = 544.0
+offset_right = 940.0
+offset_bottom = 600.0
+theme_override_font_sizes/font_size = 48
+text = "Settings"
+script = ExtResource("4_jix8l")
 
 [connection signal="button_up" from="PlayButton" to="." method="_on_play_button_up"]
 [connection signal="button_up" from="TutorialsButton" to="." method="_on_tutorials_button_up"]
