@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4tsynamyvqpi"]
+
+[ext_resource type="Script" uid="uid://bi3aq5xqsv7e3" path="res://pack_open.gd" id="1_7d8ol"]
+[ext_resource type="Texture2D" uid="uid://80seg8eif4lj" path="res://icon.svg" id="2_nojcb"]
+[ext_resource type="Script" uid="uid://blcyjnfae4wxt" path="res://pack_item_sprite.gd" id="3_5yqta"]
+[ext_resource type="Script" uid="uid://derotmt18jqm5" path="res://return_button.gd" id="4_nojcb"]
+
+[node name="PackOpen" type="Node2D"]
+script = ExtResource("1_7d8ol")
+
+[node name="PackSprite" type="Sprite2D" parent="."]
+position = Vector2(929, 540)
+scale = Vector2(5, 5)
+texture = ExtResource("2_nojcb")
+script = ExtResource("3_5yqta")
+
+[node name="ItemLabel" type="Label" parent="."]
+offset_left = 710.0
+offset_top = -320.0
+offset_right = 1210.0
+offset_bottom = -220.0
+theme_override_font_sizes/font_size = 80
+text = "ITEM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = -0.040000003
+anchor_top = 0.1
+anchor_right = -0.040000003
+anchor_bottom = 0.1
+offset_left = 102.8
+offset_top = 895.0
+offset_right = 352.8
+offset_bottom = 965.0
+theme_override_font_sizes/font_size = 30
+text = "RETURN"
+script = ExtResource("4_nojcb")
+
+[connection signal="button_up" from="BackButton" to="." method="_on_back_button_button_up"]

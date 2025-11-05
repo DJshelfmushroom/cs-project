@@ -6,7 +6,7 @@ var strikeable = true
 func _ready() -> void:
 	completed = false
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if (($EquationLabel/AnswerLabel/TextEdit1.text == str($EquationLabel.get_rand1()) && $EquationLabel/AnswerLabel/TextEdit2.text == str($EquationLabel.get_rand2())) \
 	or ($EquationLabel/AnswerLabel/TextEdit1.text == str($EquationLabel.get_rand2()) && $EquationLabel/AnswerLabel/TextEdit2.text == str($EquationLabel.get_rand1()))):
 		completed = true

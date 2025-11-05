@@ -7,7 +7,7 @@ var allcompleted = false
 func _ready() -> void:
 	strikes = 0
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if ($Puzzle1.completed == true && $Puzzle2.completed == true):
 		$TimerNode.stop_timer()
 		$TimerNode/Timer/TimeLabel.add_theme_color_override("font_color", "green")
