@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3aqjmj7grawb"]
+[gd_scene load_steps=6 format=3 uid="uid://b3aqjmj7grawb"]
 
 [ext_resource type="PackedScene" uid="uid://b5lb0ykdugkxc" path="res://bomb/bom.blend" id="1_f3ig0"]
 [ext_resource type="Script" uid="uid://cd13ygh6uu8dn" path="res://bomb/plug_wire.cs" id="2_1h7gg"]
+[ext_resource type="Script" uid="uid://ds6n1ew1wvesq" path="res://bomb/bomb.cs" id="2_f3gsr"]
 [ext_resource type="PackedScene" uid="uid://behfpa8pwo0lh" path="res://line.tscn" id="3_f3gsr"]
 
 [sub_resource type="Curve3D" id="Curve3D_4fn8o"]
@@ -10,6 +11,7 @@ bake_interval = 0.01
 [node name="Bomb" type="Node3D"]
 
 [node name="bomb_instance" parent="." instance=ExtResource("1_f3ig0")]
+script = ExtResource("2_f3gsr")
 
 [node name="PlugLocs" type="Node3D" parent="."]
 

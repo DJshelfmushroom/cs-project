@@ -28,7 +28,7 @@ func _ready() -> void:
 		button.num = nums[rand]
 		nums.remove_at(rand)
 		
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var win = true
 	for button in buttons:
 		if (button.text == ""):

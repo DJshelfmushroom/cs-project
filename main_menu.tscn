@@ -55,3 +55,4 @@ script = ExtResource("4_jix8l")
 
 [connection signal="button_up" from="PlayButton" to="." method="_on_play_button_up"]
 [connection signal="button_up" from="TutorialsButton" to="." method="_on_tutorials_button_up"]
+[connection signal="button_up" from="PacksButton" to="." method="_on_packs_button_button_up"]

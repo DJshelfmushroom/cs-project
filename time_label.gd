@@ -4,7 +4,7 @@ func _ready() -> void:
 	position = Vector2(0,0)
 	
 	
-func _process(delta) -> void: 
+func _process(_delta) -> void: 
 	var timer = $".."
 	if (get_parent().get_parent().get_parent().allcompleted == false && get_parent().get_parent().get_parent().failed == false):
 		var seconds = int(timer.get_time_left())
