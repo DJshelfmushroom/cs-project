@@ -33,3 +33,12 @@ script = ExtResource("2_1h7gg")
 metadata/path = NodePath("../Path3D")
 metadata/resolution = 256
 metadata/path_follow = 0.025
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1.271507e-07, -0.32726738, 0.9449318, -2.2214532e-09, 0.9449318, 0.32726738, -1, -4.3711395e-08, 1.1942173e-07, 1.8606071, 0.8944851, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.8660254, -2.1855694e-08, 0.5, -0.5, -3.7855173e-08, 0.8660254, 0, -1, -4.371139e-08, 8.520605, 13.767857, 0)
+light_energy = 1.66
+light_indirect_energy = 2.967
+light_angular_distance = 6.3

@@ -13,6 +13,7 @@ public partial class bomb : Node3D
 		make_plugs();
 	}
 
+	// makes plugs at the plug locations
 	private void make_plugs()
 	{
 		for (int i = 0; i < GetNode<Node>("../PlugLocs").GetChildCount(); i++)

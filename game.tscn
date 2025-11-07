@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://ct7mm4n0cfqte"]
 
 [ext_resource type="Script" uid="uid://cegaq2p1u1qo2" path="res://game_selection.gd" id="1_ryrav"]
-[ext_resource type="Script" path="res://label_2.gd" id="2_eow3j"]
-[ext_resource type="Script" uid="uid://c76igupjvkh5n" path="res://back_button.gd" id="3_j5wjh"]
+[ext_resource type="Script" uid="uid://cb5fs7o0nls3" path="res://label_2.gd" id="2_eow3j"]
+[ext_resource type="Script" uid="uid://c12ur810twi0b" path="res://button_pos.gd" id="3_eow3j"]
 [ext_resource type="PackedScene" uid="uid://u0uswry712ai" path="res://puzzle_1.tscn" id="4_vef74"]
-[ext_resource type="PackedScene" path="res://timerrr.tscn" id="5_hve3p"]
+[ext_resource type="PackedScene" uid="uid://d4aqd6eakis0f" path="res://timerrr.tscn" id="5_hve3p"]
 [ext_resource type="PackedScene" uid="uid://dg31pwxba0x3b" path="res://puzzle_2.tscn" id="6_mfdv2"]
 [ext_resource type="PackedScene" uid="uid://dbrcu3txgat10" path="res://simon_says.tscn" id="7_eow3j"]
 
@@ -46,7 +46,8 @@ offset_right = 939.36
 offset_bottom = -941.64
 theme_override_font_sizes/font_size = 30
 text = "CUT THE RED WIRE"
-script = ExtResource("3_j5wjh")
+script = ExtResource("3_eow3j")
+metadata/pos = Vector2(760, 50)
 
 [node name="Puzzle1" parent="." instance=ExtResource("4_vef74")]
 layout_mode = 1
