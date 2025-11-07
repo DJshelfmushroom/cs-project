@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://tnxumru84hbs"]
 
 [ext_resource type="Script" uid="uid://hksu4anhif8j" path="res://main_menu.gd" id="1_7vrkn"]
-[ext_resource type="Script" path="res://play_button.gd" id="2_fu7sn"]
-[ext_resource type="Script" path="res://tutorials_button.gd" id="3_fu7sn"]
-[ext_resource type="Script" uid="uid://dqvifm26kqbq4" path="res://packs_button.gd" id="4_jix8l"]
+[ext_resource type="Script" uid="uid://dtpmom8vqlstr" path="res://play_button.gd" id="2_fu7sn"]
+[ext_resource type="Script" uid="uid://iam2xd2n6lfe" path="res://tutorials_button.gd" id="3_fu7sn"]
+[ext_resource type="Script" uid="uid://by3ib5fqp6nbv" path="res://Custom Cursor Stuff/custom_cursor.gd" id="4_jix8l"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -50,21 +50,7 @@ theme_override_font_sizes/font_size = 30
 text = "TUTORIALS"
 script = ExtResource("3_fu7sn")
 
-[node name="PacksButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.040000003
-anchor_top = 0.1
-anchor_right = -0.040000003
-anchor_bottom = 0.1
-offset_left = 126.8
-offset_top = 492.0
-offset_right = 426.8
-offset_bottom = 572.0
-mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 40
-text = "PACKS
-"
+[node name="Custom Cursor" type="Node2D" parent="."]
 script = ExtResource("4_jix8l")
 
 [connection signal="button_up" from="PlayButton" to="." method="_on_play_button_up"]
