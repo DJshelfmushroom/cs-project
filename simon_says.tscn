@@ -89,6 +89,7 @@ offset_left = 776.0
 offset_top = 420.0
 offset_right = 1044.0
 offset_bottom = 533.0
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Start Game"
 

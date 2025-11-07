@@ -7,6 +7,7 @@ var texture
 var num
 
 func _ready() -> void:
+	SaveManager.save()
 	rand = gen.randi_range(1,100)
 	if (rand > 85):
 		texture = load("res://packitems/purple.png")
