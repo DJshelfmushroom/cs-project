@@ -1,4 +1,4 @@
 extends Label
 
 func _ready() -> void:
-	position = Vector2(660,490)
+	position = Vector2(630,40)
