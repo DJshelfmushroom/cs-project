@@ -9,12 +9,13 @@ var abs_max_height : float
 
 var children : Array[Button]
 
-enum butValTypes { MENU, SETTINGS, RETURN }
+enum butValTypes { MENU, SETTINGS, RETURN, QUIT }
 
 const butVals : Dictionary = {
 	butValTypes.MENU: "Main Menu",
 	butValTypes.SETTINGS: "Settings",
-	butValTypes.RETURN: "Return to Game"
+	butValTypes.RETURN: "Return",
+	butValTypes.QUIT: "Save and Quit"
 }
 
 func createChildren() -> void :
@@ -44,12 +45,12 @@ func _ready() -> void:
 		child.pressed.connect(menu_press.bind(child.name))
 
 func menu_press(but: StringName) -> void:
-	#print(but)
+	print(but)
 	var butIsVal = func (val : butValTypes) -> bool:
 		return but == butVals.get(val)
 	if butIsVal.call(butValTypes.MENU):
-		SceneManager.ChangeScene(self, "res://main_menu.tscn")
+		SceneManager.ChangeScene("res://main_menu.tscn")
 	elif butIsVal.call(butValTypes.RETURN):
 		SceneManager.ReturnToScene(self)
 	elif butIsVal.call(butValTypes.SETTINGS):
-		SceneManager.ChangeScene(self, "res://pause_menu.tscn")
+		SceneManager.ChangeScene("res://pause_menu.tscn")

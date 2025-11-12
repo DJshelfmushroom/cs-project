@@ -1,34 +1,58 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
 public partial class SceneManager : Node
 {
-	private static List<Node> SceneHistory = new List<Node>();
-	private SceneTree _tree;
-	private Node _currentNode;
+	private static List<string> SceneHistory = new List<string>();
+	private static SceneTree _tree;
+	private static Node _currentNode;
 
 	
-	public void ChangeScene(Node self, string sceneTo)
+	public static void ChangeScene(string sceneTo)
 	{
-		_tree = self.GetTree();
+		GD.Print("Changing scene:");
+		_tree = Engine.GetMainLoop() as SceneTree;
+		if (_tree == null) {return;}
 		_currentNode = _tree.CurrentScene;
-		SceneHistory.Add(_currentNode);
+		SceneHistory.Add(_currentNode.SceneFilePath);
 		_tree.ChangeSceneToFile(sceneTo);
-		GD.Print(SceneHistory.ToString());
+		foreach (string scenePath in SceneHistory)
+		{
+			GD.PrintRaw(scenePath + ',');
+		}
+		GD.Print();
 	}
 
 	public void ReturnToScene(Node self)
 	{
+		GD.Print("returning:");
 		GD.Print(SceneHistory.ToString());
-		// ßSceneHistory.Remove(self);
+		SceneHistory.Remove(self.SceneFilePath);
 		GD.Print(SceneHistory.ToString());
 		_tree = self.GetTree();
 		_currentNode = _tree.CurrentScene;
-		Node goTo = SceneHistory.First();
+		string goTo = SceneHistory.First();
 		GD.Print($"sceneFilePath: {goTo}");
-		_tree.ChangeSceneToFile(goTo.SceneFilePath);
+		_tree.ChangeSceneToFile(goTo);
 	}
+}
 
 
+public partial class Pause : Node
+{
+	public override void _UnhandledInput(InputEvent @event)
+	{
+		if (@event is InputEventAction action)
+		{
+			if (Input.IsActionJustPressed("pause"))
+			{
+				SceneTree tree = Engine.GetMainLoop() as SceneTree;
+				if (tree == null) {return;}
+				tree.Paused = true;
+				tree.ChangeSceneToFile("res://pause_menu.tscn");
+			}
+		}
+	}
 }
