@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dbrcu3txgat10"]
+[gd_scene load_steps=11 format=3 uid="uid://dbrcu3txgat10"]
 
 [ext_resource type="Script" uid="uid://doi7txwxpofw" path="res://simon_says.gd" id="1_kfw04"]
 
@@ -27,9 +27,6 @@ bg_color = Color(1, 1, 0.5019608, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_04man"]
 bg_color = Color(1, 1, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_kfw04"]
-font_size = 50
 
 [node name="Simon Says" type="Node2D"]
 script = ExtResource("1_kfw04")
@@ -73,16 +70,6 @@ mouse_default_cursor_shape = 2
 theme_override_styles/pressed = SubResource("StyleBoxFlat_6cpmq")
 theme_override_styles/hover = SubResource("StyleBoxFlat_04man")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_w47fg")
-
-[node name="Label" type="Label" parent="."]
-offset_left = 786.0
-offset_top = 401.0
-offset_right = 1052.0
-offset_bottom = 552.0
-text = "Game Over"
-label_settings = SubResource("LabelSettings_kfw04")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="StartGameButton" type="Button" parent="."]
 offset_left = 776.0

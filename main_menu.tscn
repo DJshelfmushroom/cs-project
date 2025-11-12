@@ -51,8 +51,24 @@ text = "TUTORIALS"
 script = ExtResource("2_jix8l")
 metadata/pos = Vector2(810, 900)
 
+[node name="PacksButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.040000003
+anchor_top = 0.1
+anchor_right = -0.040000003
+anchor_bottom = 0.1
+offset_left = 126.8
+offset_top = 492.0
+offset_right = 426.8
+offset_bottom = 572.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 30
+text = "PACKS"
+
 [node name="Custom Cursor" type="Node2D" parent="."]
 script = ExtResource("4_jix8l")
 
 [connection signal="button_up" from="PlayButton" to="." method="_on_play_button_up"]
 [connection signal="button_up" from="TutorialsButton" to="." method="_on_tutorials_button_up"]
+[connection signal="button_up" from="PacksButton" to="." method="_on_packs_button_button_up"]

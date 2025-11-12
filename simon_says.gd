@@ -13,6 +13,7 @@ var AwaitingInputs = false
 var ButtonsPressed = []
 var GameStart = true
 var GameStart2 = false
+var Completed = false
 #var FirstTime = 1
 
 func _ready():
@@ -23,20 +24,26 @@ func _ready():
 	
 	_Buttons_Off()
 	_Buttons_Position()
-	$Label.hide()
 	if GameStart2 == true:
 		await _Game_Over_Check()
 		_Buttons_Dark()
 		if GameOver == false:
 			Level = Level + 1
-			for x in range(0, Level + 3):
-				Pattern.append(Colors.pick_random())
+			if (Level < 3):
+				for x in range(0, Level + 3):
+					Pattern.append(Colors.pick_random())
+					
+				await get_tree().create_timer(1).timeout
 				
-			await get_tree().create_timer(1).timeout
-			print(Pattern)
-			await _play_Pattern()
-			GameStart = false	
-			_Player_Input()
+				await _play_Pattern()
+				GameStart = false	
+				_Player_Input()
+			else:
+				$Button.modulate = Color.GREEN
+				$Button2.modulate = Color.GREEN
+				$Button3.modulate = Color.GREEN
+				$Button4.modulate = Color.GREEN
+				Completed = true
 	
 func _Button1():
 	var Button1_color = $Button.get_theme_stylebox("normal").duplicate()
@@ -67,7 +74,6 @@ func _Buttons_Position():
 	$Button2.position = Vector2(400,400)
 	$Button3.position = Vector2(800,50)
 	$Button4.position = Vector2(800,750)
-	$Label.position = Vector2(810, 450)
 	$StartGameButton.position = Vector2(810, 460)
 	
 func _play_Pattern():
@@ -122,48 +128,26 @@ func _Player_Input():
 	if PatternPlaying == false:
 		AwaitingInputs = true
 			
-		print(ButtonsPressed)
-			
 	
 func _Game_Over():
 	_Buttons_Off()
 	await _Game_Over_Animation()
-	print("Game Over")
+
 	
 func _Game_Over_Check():
 	if GameOver == true:
 		await _Game_Over()	
 	
 func _Game_Over_Animation():
-	_Button1().bg_color = Color.WHITE
-	_Button2().bg_color = Color.WHITE
-	_Button3().bg_color = Color.WHITE
-	_Button4().bg_color = Color.WHITE
-	$Label.show()
-	await get_tree().create_timer(0.4).timeout
-	_Button1().bg_color = Color.DIM_GRAY
-	_Button2().bg_color = Color.DIM_GRAY
-	_Button3().bg_color = Color.DIM_GRAY
-	_Button4().bg_color = Color.DIM_GRAY
-	$Label.hide()
-	await get_tree().create_timer(0.4).timeout
-	_Button1().bg_color = Color.WHITE
-	_Button2().bg_color = Color.WHITE
-	_Button3().bg_color = Color.WHITE
-	_Button4().bg_color = Color.WHITE
-	$Label.show()
-	await get_tree().create_timer(0.4).timeout
-	_Button1().bg_color = Color.DIM_GRAY
-	_Button2().bg_color = Color.DIM_GRAY
-	_Button3().bg_color = Color.DIM_GRAY
-	_Button4().bg_color = Color.DIM_GRAY
-	
+	$Button.modulate = Color.RED
+	$Button2.modulate = Color.RED
+	$Button3.modulate = Color.RED
+	$Button4.modulate = Color.RED
 	
 
 func _on_button_pressed() -> void:
 	if AwaitingInputs == true:
 		ButtonsPressed.append(0)
-	print(ButtonsPressed)
 	_Button1().bg_color = Color.WEB_GRAY
 	if ButtonsPressed.size() == Pattern.size():
 		_Buttons_Off()
@@ -178,7 +162,6 @@ func _on_button_pressed() -> void:
 func _on_button_1_pressed() -> void:
 	if AwaitingInputs == true:
 		ButtonsPressed.append(1)
-	print(ButtonsPressed)
 	_Button2().bg_color = Color.WEB_GRAY
 	if ButtonsPressed.size() == Pattern.size():
 		_Buttons_Off()
@@ -193,7 +176,6 @@ func _on_button_1_pressed() -> void:
 func _on_button_2_pressed() -> void:
 	if AwaitingInputs == true:
 		ButtonsPressed.append(2)
-	print(ButtonsPressed)
 	_Button3().bg_color = Color.WEB_GRAY
 	if ButtonsPressed.size() == Pattern.size():
 		_Buttons_Off()
@@ -208,7 +190,6 @@ func _on_button_2_pressed() -> void:
 func _on_button_3_pressed() -> void:
 	if AwaitingInputs == true:
 		ButtonsPressed.append(3)
-	print(ButtonsPressed)
 	_Button4().bg_color = Color.WEB_GRAY
 	if ButtonsPressed.size() == Pattern.size():
 		_Buttons_Off()
