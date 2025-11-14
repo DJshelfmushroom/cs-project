@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var original_minigame = preload("res://simon_says.tscn")
 var Level = 0
 var Color1 = 0
 var Color2 = 1
@@ -14,16 +15,18 @@ var ButtonsPressed = []
 var GameStart = true
 var GameStart2 = false
 var Completed = false
+
 #var FirstTime = 1
 
 func _ready():
+	$"..".fix = false
 	#if FirstTime == 1:
 	#	await _Start_Game()
 	#	FirstTime = 0
 	#	$StartGameButton.hide()
-	
+	scale = Vector2(0.5,0.5)
+	position = Vector2(720,25)
 	_Buttons_Off()
-	_Buttons_Position()
 	if GameStart2 == true:
 		await _Game_Over_Check()
 		_Buttons_Dark()
@@ -68,13 +71,6 @@ func _Button4():
 
 #func _Start_Game():
 #	await GameStart2 == true
-	
-func _Buttons_Position():
-	$Button.position = Vector2(1200,400)
-	$Button2.position = Vector2(400,400)
-	$Button3.position = Vector2(800,50)
-	$Button4.position = Vector2(800,750)
-	$StartGameButton.position = Vector2(810, 460)
 	
 func _play_Pattern():
 	PatternPlaying = true
@@ -143,7 +139,13 @@ func _Game_Over_Animation():
 	$Button2.modulate = Color.RED
 	$Button3.modulate = Color.RED
 	$Button4.modulate = Color.RED
-	
+	$"..".strikes += 1
+	await get_tree().create_timer(1.0).timeout
+	$"..".fix = true
+	var parent = get_parent()
+	var new_minigame = original_minigame.instantiate()
+	parent.add_child(new_minigame)
+	queue_free()
 
 func _on_button_pressed() -> void:
 	if AwaitingInputs == true:
@@ -205,5 +207,4 @@ func _on_button_3_pressed() -> void:
 func _on_start_game_button_up() -> void:
 	GameStart2 = true
 	$StartGameButton.disabled = true
-	$StartGameButton.hide()
 	_ready()
