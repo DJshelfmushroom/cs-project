@@ -1,4 +1,4 @@
 extends Button
 
 func _ready() -> void:
-	position = Vector2(50,580)
+	position = Vector2(700,440)

@@ -39,10 +39,7 @@ func _ready():
 				GameStart = false	
 				_Player_Input()
 			else:
-				$Button.modulate = Color.GREEN
-				$Button2.modulate = Color.GREEN
-				$Button3.modulate = Color.GREEN
-				$Button4.modulate = Color.GREEN
+				await _Win_Animation()
 				Completed = true
 	
 func _Button1():
@@ -70,11 +67,16 @@ func _Button4():
 #	await GameStart2 == true
 	
 func _Buttons_Position():
+	$Button.size = Vector2(300,290)
+	$Button2.size = Vector2(300,290)
+	$Button3.size = Vector2(300,290)
+	$Button4.size = Vector2(300,290)
 	$Button.position = Vector2(1200,400)
 	$Button2.position = Vector2(400,400)
 	$Button3.position = Vector2(800,50)
 	$Button4.position = Vector2(800,750)
-	$StartGameButton.position = Vector2(810, 460)
+	$StartGameButton.position = Vector2(815, 460)
+	
 	
 func _play_Pattern():
 	PatternPlaying = true
@@ -139,11 +141,39 @@ func _Game_Over_Check():
 		await _Game_Over()	
 	
 func _Game_Over_Animation():
-	$Button.modulate = Color.RED
-	$Button2.modulate = Color.RED
-	$Button3.modulate = Color.RED
-	$Button4.modulate = Color.RED
-	
+	_Button1().bg_color = Color.RED
+	_Button2().bg_color = Color.RED
+	_Button3().bg_color = Color.RED
+	_Button4().bg_color = Color.RED
+	await get_tree().create_timer(0.4).timeout
+	_Button1().bg_color = Color.WEB_GRAY
+	_Button2().bg_color = Color.WEB_GRAY
+	_Button3().bg_color = Color.WEB_GRAY
+	_Button4().bg_color = Color.WEB_GRAY
+	await get_tree().create_timer(0.4).timeout
+	_Button1().bg_color = Color.RED
+	_Button2().bg_color = Color.RED
+	_Button3().bg_color = Color.RED
+	_Button4().bg_color = Color.RED
+	await get_tree().create_timer(0.4).timeout
+	_Buttons_Dark()
+
+func _Win_Animation():
+	_Button1().bg_color = Color.GREEN
+	_Button2().bg_color = Color.GREEN
+	_Button3().bg_color = Color.GREEN
+	_Button4().bg_color = Color.GREEN
+	await get_tree().create_timer(0.4).timeout
+	_Button1().bg_color = Color.WEB_GRAY
+	_Button2().bg_color = Color.WEB_GRAY
+	_Button3().bg_color = Color.WEB_GRAY
+	_Button4().bg_color = Color.WEB_GRAY
+	await get_tree().create_timer(0.4).timeout
+	_Button1().bg_color = Color.GREEN
+	_Button2().bg_color = Color.GREEN
+	_Button3().bg_color = Color.GREEN
+	_Button4().bg_color = Color.GREEN
+
 
 func _on_button_pressed() -> void:
 	if AwaitingInputs == true:

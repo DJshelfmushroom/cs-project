@@ -1,12 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyr7hlvaocst6"]
+[gd_scene load_steps=7 format=3 uid="uid://cyr7hlvaocst6"]
 
-[ext_resource type="Script" uid="uid://datsnhggicye" path="res://tutorials.gd" id="1_lvri0"]
+[ext_resource type="Script" uid="uid://datsnhggicye" path="res://Tutorial Stuff/tutorials.gd" id="1_lvri0"]
 [ext_resource type="Script" uid="uid://bdof0sdrdbiau" path="res://label2.gd" id="2_p1xkb"]
 [ext_resource type="Script" uid="uid://b1k6e2aubujyc" path="res://back_button2.gd" id="3_lvri0"]
-[ext_resource type="Script" uid="uid://5olgsnpn6o5" path="res://puzzle_1_tutorial_button.gd" id="3_p1xkb"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_lvri0"]
-font_size = 46
+[ext_resource type="Script" uid="uid://5olgsnpn6o5" path="res://Tutorial Stuff/puzzle_1_tutorial_button.gd" id="3_p1xkb"]
+[ext_resource type="Script" uid="uid://ccws585muy8sw" path="res://Tutorial Stuff/puzzle_2_tutorial_button.gd" id="4_hig4w"]
+[ext_resource type="Script" uid="uid://bq122ii812r7n" path="res://Tutorial Stuff/puzzle_3_tutorial_button.gd" id="5_u8ofm"]
 
 [node name="Tutorials" type="Control"]
 layout_mode = 3
@@ -40,32 +39,27 @@ theme_override_font_sizes/font_size = 40
 text = "Equation Puzzle Tutorial"
 script = ExtResource("3_p1xkb")
 
-[node name="Puzzle2Tutorial" type="Label" parent="."]
+[node name="Puzzle2TutorialButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 25.0
-offset_top = 430.0
-offset_right = 1628.0
-offset_bottom = 627.0
-theme_override_font_sizes/font_size = 60
-text = "Memory Puzzle:
-To solve this puzzle, you need to remember where specific cards are, and click on two cards
-with the same number to leave them face up.
-When all the cards are face up, you will complete the puzzle."
-label_settings = SubResource("LabelSettings_lvri0")
+offset_left = 700.0
+offset_top = 440.0
+offset_right = 1164.0
+offset_bottom = 657.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Memory Puzzle Tutorial"
+script = ExtResource("4_hig4w")
 
-[node name="Puzzle3Tutorial" type="Label" parent="."]
+[node name="Puzzle3TutorialButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 25.0
-offset_top = 646.0
-offset_right = 1628.0
-offset_bottom = 843.0
-theme_override_font_sizes/font_size = 60
-text = "Simon Puzzle:
-When you start the puzzle, a random sequence of numbers will flash, the amount of which
-increases each time you progress. To complete the puzzle, you need to complete (X) rounds.
-Each round, the sequence of numbers will change. You need to click the buttons in order that 
-they flash, and if you make a mistake, you will be notified of your loss at the end of the round."
-label_settings = SubResource("LabelSettings_lvri0")
+offset_left = 700.0
+offset_top = 700.0
+offset_right = 1169.0
+offset_bottom = 915.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Simon Puzzle Tutorial"
+script = ExtResource("5_u8ofm")
 
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 1
@@ -84,4 +78,6 @@ text = "BACK"
 script = ExtResource("3_lvri0")
 
 [connection signal="button_up" from="Puzzle1TutorialButton" to="." method="_on_puzzle_1_tutorial_button_up"]
+[connection signal="button_up" from="Puzzle2TutorialButton" to="." method="_on_puzzle_2_tutorial_button_up"]
+[connection signal="button_up" from="Puzzle3TutorialButton" to="." method="_on_puzzle_3_tutorial_button_up"]
 [connection signal="button_up" from="BackButton" to="." method="_on_back_button_up"]
