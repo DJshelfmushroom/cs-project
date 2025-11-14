@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyr7hlvaocst6"]
+[gd_scene load_steps=5 format=3 uid="uid://cyr7hlvaocst6"]
 
-[ext_resource type="Script" uid="uid://datsnhggicye" path="res://tutorials.gd" id="1_lvri0"]
+[ext_resource type="Script" path="res://tutorials.gd" id="1_lvri0"]
 [ext_resource type="Script" uid="uid://bdof0sdrdbiau" path="res://label2.gd" id="2_p1xkb"]
 [ext_resource type="Script" uid="uid://b1k6e2aubujyc" path="res://back_button2.gd" id="3_lvri0"]
-[ext_resource type="Script" uid="uid://5olgsnpn6o5" path="res://puzzle_1_tutorial_button.gd" id="3_p1xkb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lvri0"]
 font_size = 46
@@ -38,7 +37,6 @@ offset_bottom = 385.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Equation Puzzle Tutorial"
-script = ExtResource("3_p1xkb")
 
 [node name="Puzzle2Tutorial" type="Label" parent="."]
 layout_mode = 0
