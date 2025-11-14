@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://datsnhggicye" path="res://Tutorial Stuff/tutorials.gd" id="1_lvri0"]
 [ext_resource type="Script" uid="uid://bdof0sdrdbiau" path="res://label2.gd" id="2_p1xkb"]
 [ext_resource type="Script" uid="uid://b1k6e2aubujyc" path="res://back_button2.gd" id="3_lvri0"]
-[ext_resource type="Script" uid="uid://5olgsnpn6o5" path="res://Tutorial Stuff/puzzle_1_tutorial_button.gd" id="3_p1xkb"]
 [ext_resource type="Script" uid="uid://ccws585muy8sw" path="res://Tutorial Stuff/puzzle_2_tutorial_button.gd" id="4_hig4w"]
+[ext_resource type="Script" uid="uid://5olgsnpn6o5" path="res://Tutorial Stuff/puzzle_1_tutorial_button.gd" id="3_p1xkb"]
 [ext_resource type="Script" uid="uid://bq122ii812r7n" path="res://Tutorial Stuff/puzzle_3_tutorial_button.gd" id="5_u8ofm"]
 
 [node name="Tutorials" type="Control"]
@@ -37,7 +37,6 @@ offset_bottom = 385.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Equation Puzzle Tutorial"
-script = ExtResource("3_p1xkb")
 
 [node name="Puzzle2TutorialButton" type="Button" parent="."]
 layout_mode = 0
