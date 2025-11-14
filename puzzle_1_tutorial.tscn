@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ctddbvibesp31"]
 
-[ext_resource type="Script" path="res://puzzle_1_tutorial.gd" id="1_yd5k4"]
-[ext_resource type="Script" uid="uid://bbi5g3r8nkyow" path="res://back_button_tutorial.gd" id="2_728il"]
+[ext_resource type="Script" uid="uid://byhb4ivqov6s3" path="res://Tutorial Stuff/puzzle_1_tutorial.gd" id="1_yd5k4"]
+[ext_resource type="Script" uid="uid://bbi5g3r8nkyow" path="res://Tutorial Stuff/back_button_tutorial1.gd" id="2_728il"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gl41s"]
 font_size = 46
