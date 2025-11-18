@@ -59,7 +59,7 @@ func _Button3():
 	var Button3_color = $Button3.get_theme_stylebox("normal").duplicate()
 	$Button3.add_theme_stylebox_override("normal", Button3_color)
 	return Button3_color
-
+ 
 func _Button4():
 	var Button4_color = $Button4.get_theme_stylebox("normal").duplicate()
 	$Button4.add_theme_stylebox_override("normal", Button4_color)
@@ -135,17 +135,17 @@ func _Game_Over_Animation():
 	_Button1().bg_color = Color.RED
 	_Button2().bg_color = Color.RED
 	_Button3().bg_color = Color.RED
-	await get_tree().create_timer(0.4).timeout
 	_Button4().bg_color = Color.RED
+	await get_tree().create_timer(0.4).timeout
 	_Button1().bg_color = Color.WEB_GRAY
 	_Button2().bg_color = Color.WEB_GRAY
-	_Button4().bg_color = Color.WEB_GRAY
 	_Button3().bg_color = Color.WEB_GRAY
+	_Button4().bg_color = Color.WEB_GRAY
 	await get_tree().create_timer(0.4).timeout
 	_Button1().bg_color = Color.RED
 	_Button2().bg_color = Color.RED
-	_Button4().bg_color = Color.RED
 	_Button3().bg_color = Color.RED
+	_Button4().bg_color = Color.RED
 	await get_tree().create_timer(0.4).timeout
 	_Buttons_Dark()
 	$"..".strikes += 1

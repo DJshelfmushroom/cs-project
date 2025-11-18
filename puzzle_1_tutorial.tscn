@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ctddbvibesp31"]
 
-[ext_resource type="Script" uid="uid://byhb4ivqov6s3" path="res://Tutorial Stuff/puzzle_1_tutorial.gd" id="1_yd5k4"]
-[ext_resource type="Script" uid="uid://bbi5g3r8nkyow" path="res://Tutorial Stuff/back_button_tutorial1.gd" id="2_728il"]
+[ext_resource type="Script" uid="uid://byhb4ivqov6s3" path="res://Tutorial Scripts/puzzle_1_tutorial.gd" id="1_yd5k4"]
+[ext_resource type="Script" uid="uid://bbi5g3r8nkyow" path="res://Tutorial Scripts/back_button_tutorial1.gd" id="2_728il"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gl41s"]
 font_size = 46
@@ -15,8 +15,8 @@ theme_override_font_sizes/font_size = 60
 text = "Equation Puzzle:
 This puzzle shows two equations: X + Y = ?, and X * Y = ?. To complete the puzzle, you will have 
 to find the values for X and Y.
-To go about this, consider the multiplication equation. The value has a limited number of factors,
-a pair of which will need to add up to the value for the addition equation. 
+To go about this, consider the multiplication equation. The unknown value has a limited number 
+of factors, a pair of which will need to add up to the value for the addition equation. 
 That set of values are your X and Y answers."
 label_settings = SubResource("LabelSettings_gl41s")
 script = ExtResource("1_yd5k4")
