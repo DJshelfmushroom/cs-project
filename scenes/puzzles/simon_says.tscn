@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://dbrcu3txgat10"]
+
+[ext_resource type="Script" uid="uid://doi7txwxpofw" path="res://scripts/minigames/simon_says.gd" id="1_kfw04"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tssl7"]
+bg_color = Color(1, 0.34901962, 0.34901962, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_76v6r"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w47fg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kfw04"]
+bg_color = Color(0.3019608, 0.3019608, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w47fg"]
+bg_color = Color(0, 0, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_amv67"]
+bg_color = Color(0.18039216, 0.6, 0.18039216, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_povj6"]
+bg_color = Color(0, 0.5019608, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6cpmq"]
+bg_color = Color(1, 1, 0.5019608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_04man"]
+bg_color = Color(1, 1, 0, 1)
+
+[node name="Simon Says" type="Node2D"]
+script = ExtResource("1_kfw04")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 1090.0
+offset_top = 335.0
+offset_right = 1360.0
+offset_bottom = 605.0
+mouse_default_cursor_shape = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tssl7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_76v6r")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w47fg")
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 480.0
+offset_top = 335.0
+offset_right = 750.0
+offset_bottom = 605.0
+mouse_default_cursor_shape = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kfw04")
+theme_override_styles/hover = SubResource("StyleBoxFlat_w47fg")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w47fg")
+
+[node name="Button3" type="Button" parent="."]
+offset_left = 785.0
+offset_top = 30.0
+offset_right = 1055.0
+offset_bottom = 300.0
+mouse_default_cursor_shape = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_amv67")
+theme_override_styles/hover = SubResource("StyleBoxFlat_povj6")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w47fg")
+
+[node name="Button4" type="Button" parent="."]
+offset_left = 785.0
+offset_top = 640.0
+offset_right = 1055.0
+offset_bottom = 910.0
+mouse_default_cursor_shape = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6cpmq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_04man")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w47fg")
+
+[node name="StartGameButton" type="Button" parent="."]
+offset_left = 800.0
+offset_top = 350.0
+offset_right = 1040.0
+offset_bottom = 590.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "START"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button4" to="." method="_on_button_3_pressed"]
+[connection signal="button_up" from="StartGameButton" to="." method="_on_start_game_button_up"]
