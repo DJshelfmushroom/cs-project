@@ -14,18 +14,17 @@ var AwaitingInputs = false
 var ButtonsPressed = []
 var GameStart = true
 var GameStart2 = false
-var Completed = false
+var completed = false
 
 #var FirstTime = 1
 
 func _ready():
-	$"..".fix = false
 	#if FirstTime == 1:
 	#	await _Start_Game()
 	#	FirstTime = 0
 	#	$StartGameButton.hide()
 	scale = Vector2(0.5,0.5)
-	position = Vector2(720,25)
+	position = Vector2(840,25)
 	_Buttons_Off()
 	if GameStart2 == true:
 		await _Game_Over_Check()
@@ -43,7 +42,7 @@ func _ready():
 				_Player_Input()
 			else:
 				await _Win_Animation()
-				Completed = true
+				completed = true
 	
 func _Button1():
 	var Button1_color = $Button.get_theme_stylebox("normal").duplicate()
@@ -135,6 +134,7 @@ func _Game_Over_Animation():
 	_Button1().bg_color = Color.RED
 	_Button2().bg_color = Color.RED
 	_Button3().bg_color = Color.RED
+	_Button4().bg_color = Color.RED
 	await get_tree().create_timer(0.4).timeout
 	_Button4().bg_color = Color.RED
 	_Button1().bg_color = Color.WEB_GRAY
@@ -153,6 +153,8 @@ func _Game_Over_Animation():
 	$"..".fix = true
 	var parent = get_parent()
 	var new_minigame = original_minigame.instantiate()
+	name = "Simon"
+	new_minigame.name = "Simon Says"
 	parent.add_child(new_minigame)
 	queue_free()
 
