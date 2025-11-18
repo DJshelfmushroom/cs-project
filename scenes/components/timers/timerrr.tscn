@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4aqd6eakis0f"]
+
+[ext_resource type="Script" uid="uid://bjis8c0tumk3q" path="res://scripts/components/timers/timer.gd" id="1_nchxg"]
+[ext_resource type="Script" uid="uid://b40d1jbhwy033" path="res://scripts/components/timers/timerrr.gd" id="1_ngj5j"]
+[ext_resource type="Script" uid="uid://4euxyp0rwx2b" path="res://scripts/ui/labels/time_label.gd" id="2_ngj5j"]
+
+[node name="TimerNode" type="Control"]
+layout_mode = 3
+anchor_right = 0.358
+anchor_bottom = 0.25800002
+offset_top = 2.0
+offset_right = 1231.6399
+offset_bottom = 805.36
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ngj5j")
+
+[node name="Timer" type="Timer" parent="."]
+script = ExtResource("1_nchxg")
+
+[node name="TimeLabel" type="Label" parent="Timer"]
+anchors_preset = -1
+anchor_right = 0.36400002
+anchor_bottom = 0.33
+offset_right = -498.88007
+offset_bottom = -236.40002
+theme_override_font_sizes/font_size = 100
+text = "0:00"
+horizontal_alignment = 1
+vertical_alignment = 2
+script = ExtResource("2_ngj5j")
+
+[connection signal="timeout" from="Timer" to="Timer/TimeLabel" method="_on_timer_timeout"]
