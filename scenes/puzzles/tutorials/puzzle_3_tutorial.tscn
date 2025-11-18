@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbjn2svjl8uwc"]
+
+[ext_resource type="Script" uid="uid://b0kfocx6ebcxk" path="res://scripts/puzzles/tutorials/puzzle_3_tutorial.gd" id="1_3vyhl"]
+[ext_resource type="Script" uid="uid://ifmjg7e1hgh2" path="res://scripts/puzzles/tutorials/back_button_tutorial3.gd" id="2_3vyhl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3vyhl"]
+font_size = 46
+
+[node name="Puzzle3Tutorial" type="Label"]
+offset_left = 110.0
+offset_top = 360.0
+offset_right = 1743.0
+offset_bottom = 607.0
+theme_override_font_sizes/font_size = 60
+text = "Simon Puzzle:
+When you start the puzzle, a random sequence of numbers will flash, the amount of which
+increases each time you progress. To complete the puzzle, you need to complete (X) rounds.
+Each round, the sequence of numbers will change. You need to click the buttons in order that 
+they flash, and if you make a mistake, you will be notified of your loss at the end of the round."
+label_settings = SubResource("LabelSettings_3vyhl")
+script = ExtResource("1_3vyhl")
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.040000003
+anchor_top = 0.1
+anchor_right = -0.040000003
+anchor_bottom = 0.1
+offset_left = 115.8
+offset_top = 506.0
+offset_right = 365.8
+offset_bottom = 576.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 30
+text = "BACK TO TUTORIALS"
+script = ExtResource("2_3vyhl")
+
+[connection signal="button_up" from="BackButton" to="." method="_on_back_button_up"]
