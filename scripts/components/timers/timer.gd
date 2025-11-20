@@ -8,4 +8,3 @@ func _ready() -> void:
 	stopped = false
 	start()
 	
-
