@@ -1,0 +1,121 @@
+[gd_scene load_steps=8 format=3 uid="uid://ct7mm4n0cfqte"]
+
+[ext_resource type="Script" uid="uid://cegaq2p1u1qo2" path="res://scripts/menus/game_selection.gd" id="1_ryrav"]
+[ext_resource type="Script" uid="uid://cb5fs7o0nls3" path="res://scripts/ui/labels/label_2.gd" id="2_eow3j"]
+[ext_resource type="Script" uid="uid://c12ur810twi0b" path="res://scripts/ui/layout/button_pos.gd" id="3_eow3j"]
+[ext_resource type="PackedScene" uid="uid://u0uswry712ai" path="res://scenes/puzzles/puzzle_1.tscn" id="4_vef74"]
+[ext_resource type="PackedScene" uid="uid://d4aqd6eakis0f" path="res://scenes/components/timers/timerrr.tscn" id="5_hve3p"]
+[ext_resource type="PackedScene" uid="uid://dg31pwxba0x3b" path="res://scenes/puzzles/puzzle_2.tscn" id="6_mfdv2"]
+[ext_resource type="PackedScene" uid="uid://dbrcu3txgat10" path="res://scenes/puzzles/simon_says.tscn" id="7_eow3j"]
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = 1.0
+offset_right = -2.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ryrav")
+
+[node name="StrikesLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1550.0
+offset_right = 1950.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 60
+text = "strikes: "
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_eow3j")
+
+[node name="RedWireButton" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.011000001
+anchor_top = 0.919
+anchor_right = 0.142
+anchor_bottom = 0.98300004
+offset_left = 790.88
+offset_top = -942.52
+offset_right = 939.36
+offset_bottom = -941.64
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 30
+text = "CUT THE RED WIRE"
+script = ExtResource("3_eow3j")
+metadata/pos = Vector2(760, 50)
+
+[node name="ReturnButton" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.011000001
+anchor_top = 0.919
+anchor_right = 0.142
+anchor_bottom = 0.98300004
+offset_left = 28.88
+offset_top = -32.52002
+offset_right = -22.640015
+offset_bottom = -31.640015
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 30
+text = "RETURN TO MENU"
+script = ExtResource("3_eow3j")
+metadata/pos = Vector2(50, 960)
+
+[node name="GameOverLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.011000001
+anchor_top = 0.919
+anchor_right = 0.142
+anchor_bottom = 0.98300004
+offset_left = 738.88
+offset_top = -942.52
+offset_right = 887.36
+offset_bottom = -911.64
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/pos = Vector2(760, 50)
+
+[node name="Puzzle1" parent="." instance=ExtResource("4_vef74")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.104
+anchor_bottom = 0.078
+offset_left = 1154.0
+offset_top = 498.0
+offset_right = 1909.32
+offset_bottom = 1151.26
+scale = Vector2(0.7, 0.7)
+
+[node name="TimerNode" parent="." instance=ExtResource("5_hve3p")]
+layout_mode = 1
+offset_left = 93.0
+offset_top = 1494.0
+offset_right = 1324.6399
+offset_bottom = 2297.3599
+
+[node name="Puzzle2" parent="." instance=ExtResource("6_mfdv2")]
+layout_mode = 1
+offset_left = 295.0
+offset_top = 317.0
+offset_right = -373.0
+offset_bottom = 173.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Simon Says" parent="." instance=ExtResource("7_eow3j")]
+position = Vector2(1000, 30)
+scale = Vector2(0.5, 0.5)
+
+[connection signal="button_up" from="RedWireButton" to="." method="_on_back_button_up"]
+[connection signal="button_up" from="ReturnButton" to="." method="_on_back_button_up"]

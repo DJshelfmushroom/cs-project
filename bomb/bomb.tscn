@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b5lb0ykdugkxc" path="res://bomb/bom.blend" id="1_f3ig0"]
 [ext_resource type="Script" uid="uid://cd13ygh6uu8dn" path="res://bomb/plug_wire.cs" id="2_1h7gg"]
 [ext_resource type="Script" uid="uid://ds6n1ew1wvesq" path="res://bomb/bomb.cs" id="2_f3gsr"]
-[ext_resource type="PackedScene" uid="uid://behfpa8pwo0lh" path="res://line.tscn" id="3_f3gsr"]
+[ext_resource type="PackedScene" uid="uid://behfpa8pwo0lh" path="res://scenes/components/line.tscn" id="3_f3gsr"]
 
 [sub_resource type="Curve3D" id="Curve3D_4fn8o"]
 bake_interval = 0.01
