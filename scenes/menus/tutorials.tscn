@@ -1,11 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyr7hlvaocst6"]
+[gd_scene load_steps=2 format=3 uid="uid://cyr7hlvaocst6"]
 
 [ext_resource type="Script" uid="uid://datsnhggicye" path="res://scripts/puzzles/tutorials/tutorials.gd" id="1_lvri0"]
-[ext_resource type="Script" uid="uid://bdof0sdrdbiau" path="res://scripts/ui/labels/label2.gd" id="2_p1xkb"]
-[ext_resource type="Script" uid="uid://b1k6e2aubujyc" path="res://scripts/ui/buttons/back_button2.gd" id="3_lvri0"]
-[ext_resource type="Script" uid="uid://ccws585muy8sw" path="res://scripts/puzzles/tutorials/puzzle_2_tutorial_button.gd" id="4_hig4w"]
-[ext_resource type="Script" uid="uid://5olgsnpn6o5" path="res://scripts/puzzles/tutorials/puzzle_1_tutorial_button.gd" id="3_p1xkb"]
-[ext_resource type="Script" uid="uid://bq122ii812r7n" path="res://scripts/puzzles/tutorials/puzzle_3_tutorial_button.gd" id="5_u8ofm"]
 
 [node name="Tutorials" type="Control"]
 layout_mode = 3
@@ -26,7 +21,6 @@ theme_override_font_sizes/font_size = 60
 text = "TUTORIALS:"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("2_p1xkb")
 
 [node name="Puzzle1TutorialButton" type="Button" parent="."]
 layout_mode = 0
@@ -47,7 +41,6 @@ offset_bottom = 657.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Memory Puzzle Tutorial"
-script = ExtResource("4_hig4w")
 
 [node name="Puzzle3TutorialButton" type="Button" parent="."]
 layout_mode = 0
@@ -58,7 +51,6 @@ offset_bottom = 915.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Simon Puzzle Tutorial"
-script = ExtResource("5_u8ofm")
 
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 1
@@ -67,14 +59,13 @@ anchor_left = -0.040000003
 anchor_top = 0.1
 anchor_right = -0.040000003
 anchor_bottom = 0.1
-offset_left = 102.8
-offset_top = 895.0
-offset_right = 352.8
-offset_bottom = 965.0
+offset_left = 126.8
+offset_top = 872.0
+offset_right = 376.8
+offset_bottom = 942.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 30
 text = "BACK"
-script = ExtResource("3_lvri0")
 
 [connection signal="button_up" from="Puzzle1TutorialButton" to="." method="_on_puzzle_1_tutorial_button_up"]
 [connection signal="button_up" from="Puzzle2TutorialButton" to="." method="_on_puzzle_2_tutorial_button_up"]
