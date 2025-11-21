@@ -9,7 +9,7 @@ var abs_max_height : float
 
 var children : Array[Button]
 
-enum butValTypes { MENU, SETTINGS, RETURN, QUIT }
+enum butValTypes { MENU, SETTINGS, RETURN, QUIT}
 
 const butVals : Dictionary = {
 	butValTypes.MENU: "Main Menu",
@@ -32,7 +32,6 @@ func createChildren() -> void :
 		children.append(child)
 
 func _ready() -> void:
-	#SceneManager.ChangeScene(self, "res://main_menu.tscn")
 	createChildren()
 	margin_y += BUTTON_HEIGHT/2.0
 	SCREEN_HEIGHT = get_viewport_rect().size.y
@@ -53,4 +52,4 @@ func menu_press(but: StringName) -> void:
 	elif butIsVal.call(butValTypes.RETURN):
 		SceneManager.ReturnToScene(self)
 	elif butIsVal.call(butValTypes.SETTINGS):
-		SceneManager.ChangeScene("res://pause_menu.tscn")
+		SceneManager.ChangeScene("res://menus/settings.tscn")

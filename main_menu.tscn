@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dtpmom8vqlstr" path="res://play_button.gd" id="2_fu7sn"]
 [ext_resource type="Script" uid="uid://iam2xd2n6lfe" path="res://tutorials_button.gd" id="3_fu7sn"]
 [ext_resource type="Script" uid="uid://by3ib5fqp6nbv" path="res://Custom Cursor Stuff/custom_cursor.gd" id="4_jix8l"]
-[ext_resource type="Script" uid="uid://btr8ieoyjyw1f" path="res://Button.cs" id="5_glbon"]
+[ext_resource type="Script" uid="uid://btr8ieoyjyw1f" path="res://menus/Button.cs" id="5_glbon"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3

@@ -8,7 +8,6 @@ public partial class SceneManager : Node
 	private static List<string> SceneHistory = new List<string>();
 	private static SceneTree _tree;
 	private static Node _currentNode;
-
 	
 	public static void ChangeScene(string sceneTo)
 	{
@@ -42,8 +41,15 @@ public partial class SceneManager : Node
 
 public partial class Pause : Node
 {
+	// public override void _Ready()
+	// {
+	// 	// base._Ready();
+	// 	GD.Print("PAUSE");
+	// }
+
 	public override void _UnhandledInput(InputEvent @event)
 	{
+		GD.Print(@event);
 		if (@event is InputEventAction action)
 		{
 			if (Input.IsActionJustPressed("pause"))
@@ -51,7 +57,7 @@ public partial class Pause : Node
 				SceneTree tree = Engine.GetMainLoop() as SceneTree;
 				if (tree == null) {return;}
 				tree.Paused = true;
-				tree.ChangeSceneToFile("res://pause_menu.tscn");
+				tree.ChangeSceneToFile("res://menus/pause.tscn");
 			}
 		}
 	}
