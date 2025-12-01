@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dbrcu3txgat10"]
 
-[ext_resource type="Script" uid="uid://doi7txwxpofw" path="res://scripts/minigames/simon_says.gd" id="1_kfw04"]
+[ext_resource type="Script" uid="uid://doi7txwxpofw" path="res://scripts/puzzles/simon_says.gd" id="1_kfw04"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tssl7"]
 bg_color = Color(1, 0.34901962, 0.34901962, 1)
