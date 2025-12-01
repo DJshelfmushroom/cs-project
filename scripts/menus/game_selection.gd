@@ -31,5 +31,8 @@ func _process(_delta: float) -> void:
 func _on_back_button_up() -> void:
 	if (allcompleted):
 		SaveManager.pack1owned += 1
+		SaveManager.totalxp += 15
+	else:
+		SaveManager.totalxp += 5
 	SaveManager.save()
 	get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
