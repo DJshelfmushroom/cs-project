@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2kynr3vsiw34"]
+
+[ext_resource type="Script" uid="uid://boec2lyvhf5tt" path="res://scripts/puzzles/mario_kart_countdown_boost.gd" id="1_eiura"]
+
+[node name="Mario Kart Countdown Boost" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eiura")
+
+[node name="MarioKartWii" type="Button" parent="."]
+layout_mode = 0
+offset_left = 255.0
+offset_top = 255.0
+offset_right = 609.0
+offset_bottom = 405.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Mario Kart Wii"
+
+[node name="MarioKart8Deluxe" type="Button" parent="."]
+layout_mode = 0
+offset_left = 820.0
+offset_top = 255.0
+offset_right = 1174.0
+offset_bottom = 405.0
+theme_override_font_sizes/font_size = 40
+text = "Mario Kart 8 Deluxe"
+
+[connection signal="pressed" from="MarioKartWii" to="." method="_on_mario_kart_wii_pressed"]
+[connection signal="pressed" from="MarioKart8Deluxe" to="." method="_on_mario_kart_8_deluxe_pressed"]
