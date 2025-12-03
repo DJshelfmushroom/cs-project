@@ -1,0 +1,67 @@
+[gd_scene load_steps=2 format=3 uid="uid://x74d10muhxn1"]
+
+[ext_resource type="Script" uid="uid://lf2df5egbido" path="res://scripts/puzzles/reflex_test.gd" id="1_x3fbl"]
+
+[node name="Reflex Test" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x3fbl")
+
+[node name="Up" type="Label" parent="."]
+layout_mode = 0
+offset_left = 842.0
+offset_top = 416.0
+offset_right = 1056.0
+offset_bottom = 558.0
+theme_override_font_sizes/font_size = 55
+text = "Up!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Down" type="Label" parent="."]
+layout_mode = 0
+offset_left = 824.0
+offset_top = 388.0
+offset_right = 1071.0
+offset_bottom = 578.0
+theme_override_font_sizes/font_size = 55
+text = "Down!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Left" type="Label" parent="."]
+layout_mode = 0
+offset_left = 826.0
+offset_top = 383.0
+offset_right = 1072.0
+offset_bottom = 587.0
+theme_override_font_sizes/font_size = 55
+text = "Left!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Right" type="Label" parent="."]
+layout_mode = 0
+offset_left = 818.0
+offset_top = 393.0
+offset_right = 1074.0
+offset_bottom = 585.0
+theme_override_font_sizes/font_size = 55
+text = "Right!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 775.0
+offset_top = 370.0
+offset_right = 1150.0
+offset_bottom = 631.0
+theme_override_font_sizes/font_size = 55
+text = "Start Test"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
