@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dg31pwxba0x3b"]
+[gd_scene load_steps=4 format=3 uid="uid://dg31pwxba0x3b"]
 
 [ext_resource type="Script" uid="uid://bl8306xynkj5m" path="res://scripts/puzzles/puzzle_2.gd" id="1_c3s3e"]
+[ext_resource type="Script" uid="uid://c12ur810twi0b" path="res://scripts/ui/layout/button_pos.gd" id="3_louul"]
 [ext_resource type="PackedScene" uid="uid://dapcsubx585u6" path="res://scenes/components/puzzles/but_1.tscn" id="13_fo8jw"]
 
 [node name="Puzzle2" type="Control"]
@@ -8,10 +9,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 2.0
-offset_top = 1.0
-offset_right = -668.0
-offset_bottom = -129.0
+offset_left = 385.0
+offset_top = 115.0
+offset_right = -285.0
+offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_c3s3e")
@@ -20,3 +21,31 @@ script = ExtResource("1_c3s3e")
 visible = false
 layout_mode = 0
 anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 250.0
+offset_bottom = 250.00002
+
+[node name="RedWireButton" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.011000001
+anchor_top = 0.919
+anchor_right = 0.142
+anchor_bottom = 0.98300004
+offset_left = 456.25
+offset_top = -853.05005
+offset_right = 604.73
+offset_bottom = -852.17004
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 30
+text = "CUT THE RED WIRE"
+script = ExtResource("3_louul")
+metadata/pos = Vector2(420, -90)
+
+[connection signal="pressed" from="RedWireButton" to="." method="_on_red_wire_button_pressed"]

@@ -15,16 +15,19 @@ var ButtonsPressed = []
 var GameStart = true
 var GameStart2 = false
 var completed = false
+var practice = true
 
 #var FirstTime = 1
+
+func _process(_delta: float) -> void:
+	if (completed && practice):
+		$RedWireButton.visible = true
 
 func _ready():
 	#if FirstTime == 1:
 	#	await _Start_Game()
 	#	FirstTime = 0
 	#	$StartGameButton.hide()
-	scale = Vector2(0.5,0.5)
-	position = Vector2(840,25)
 	_Buttons_Off()
 	if GameStart2 == true:
 		await _Game_Over_Check()
@@ -237,3 +240,7 @@ func _on_start_game_button_up() -> void:
 	GameStart2 = true
 	$StartGameButton.disabled = true
 	_ready()
+
+
+func _on_red_wire_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/menus/practice_menu.tscn")

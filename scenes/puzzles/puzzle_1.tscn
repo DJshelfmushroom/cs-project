@@ -1,17 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://u0uswry712ai"]
+[gd_scene load_steps=6 format=3 uid="uid://u0uswry712ai"]
 
 [ext_resource type="Script" uid="uid://c4nop1b61iov6" path="res://scripts/puzzles/puzzle_1.gd" id="1_whbnc"]
 [ext_resource type="Script" uid="uid://3knb1fw6yoda" path="res://scripts/puzzles/components/equation_label.gd" id="2_msayb"]
 [ext_resource type="Script" uid="uid://ddge1t5212cm6" path="res://scripts/puzzles/components/text_edit.gd" id="2_whbnc"]
 [ext_resource type="Script" uid="uid://dap0dwxfla04c" path="res://scripts/puzzles/components/text_edit_2.gd" id="4_qffyh"]
+[ext_resource type="Script" uid="uid://c12ur810twi0b" path="res://scripts/ui/layout/button_pos.gd" id="5_ruqye"]
 
 [node name="Puzzle1" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 191.0
-offset_top = 158.0
-offset_right = 1208.0
-offset_bottom = 833.0
+offset_left = 460.0
+offset_top = 190.0
+offset_right = 1460.0
+offset_bottom = 890.0
 script = ExtResource("1_whbnc")
 
 [node name="EquationLabel" type="Label" parent="."]
@@ -64,3 +65,23 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 170
 script = ExtResource("4_qffyh")
+
+[node name="RedWireButton" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.011000001
+anchor_top = 0.919
+anchor_right = 0.142
+anchor_bottom = 0.98300004
+offset_left = 343.0
+offset_top = -743.30005
+offset_right = 491.47998
+offset_bottom = -742.42004
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 30
+text = "CUT THE RED WIRE"
+script = ExtResource("5_ruqye")
+metadata/pos = Vector2(354, -100)
+
+[connection signal="pressed" from="RedWireButton" to="." method="_on_red_wire_button_pressed"]

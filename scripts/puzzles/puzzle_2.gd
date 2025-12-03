@@ -7,6 +7,8 @@ var button_scene = preload("res://scenes/components/puzzles/but_1.tscn")
 var gen = RandomNumberGenerator.new()
 var b1 = null
 var b2 = null
+var thisfailed = false
+var practice = true
 	
 func _ready() -> void:
 	completed = false
@@ -37,9 +39,11 @@ func _process(_delta: float) -> void:
 		completed = true
 		for button in buttons:
 			button.add_theme_color_override("font_disabled_color","green")
+	if (completed && practice):
+		$RedWireButton.visible = true
 
 func _on_but_pressed(b : int) -> void:
-	if (get_parent().failed == false):
+	if (thisfailed == false):
 		if (b1 == null):
 			b1 = buttons[b]
 			b1.on()
@@ -57,3 +61,7 @@ func _on_but_pressed(b : int) -> void:
 						button.disabled = false
 			b1 = null
 			b2 = null
+
+
+func _on_red_wire_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/menus/practice_menu.tscn")

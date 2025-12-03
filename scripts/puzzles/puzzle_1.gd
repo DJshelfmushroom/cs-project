@@ -4,6 +4,7 @@ var completed
 var strikeable = true
 @onready var TextEdit1 = $EquationLabel/AnswerLabel/TextEdit1
 @onready var TextEdit2 = $EquationLabel/AnswerLabel/TextEdit2
+var practice = true
 
 func _ready() -> void:
 	completed = false
@@ -27,3 +28,9 @@ func _process(_delta: float) -> void:
 		TextEdit2.editable = true
 		TextEdit2.add_theme_color_override("font_readonly_color", "green")
 		strikeable = true
+	if (completed && practice):
+		$RedWireButton.visible = true
+
+
+func _on_red_wire_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/menus/practice_menu.tscn")

@@ -8,6 +8,7 @@ var totalxp : int = 0
 
 func _ready() -> void:
 	load_data()
+	
 
 func save():
 	var file = FileAccess.open(save_path, FileAccess.WRITE)

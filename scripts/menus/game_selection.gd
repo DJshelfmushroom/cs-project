@@ -7,6 +7,9 @@ var fix = false
 
 func _ready() -> void:
 	strikes = 0
+	$Puzzle1.practice = false
+	$Puzzle2.practice = false
+	$"Simon Says".practice = false
 
 func _process(_delta: float) -> void:
 	if (fix == false):
@@ -25,6 +28,7 @@ func _process(_delta: float) -> void:
 		$StrikesLabel.add_theme_color_override("font_color", "red")
 		$TimerNode/Timer/TimeLabel.add_theme_color_override("font_color", "red")
 		failed = true
+		$Puzzle2.thisfailed = true
 		$GameOverLabel.visible = true
 		$ReturnButton.visible = true
 
