@@ -1,6 +1,6 @@
 extends Control
 
-func ready():
+func _ready():
 	$MarioKartWii.position = Vector2(255, 255)
 	$MarioKart8Deluxe.position = Vector2(820, 255)
 

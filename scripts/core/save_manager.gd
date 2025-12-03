@@ -19,8 +19,8 @@ func load_data():
 	if FileAccess.file_exists(save_path):
 		var file = FileAccess.open(save_path, FileAccess.READ)
 		pack1owned = file.get_var(pack1owned)
-		level = file.get_var(level)
-		totalxp = file.get_var(totalxp)
+		#level = file.get_var(level)
+		#totalxp = file.get_var(totalxp)
 	else:
 		pack1owned = 0
 		level = 0
