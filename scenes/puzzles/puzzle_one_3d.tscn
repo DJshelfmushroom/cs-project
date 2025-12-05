@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://f6op8gdxrkeu"]
+
+[ext_resource type="Script" uid="uid://dlqbdivpd4v21" path="res://scripts/puzzles/puzzle_one_3d.gd" id="1_hw881"]
+[ext_resource type="Script" uid="uid://3knb1fw6yoda" path="res://scripts/puzzles/components/equation_label.gd" id="2_gc58s"]
+[ext_resource type="PackedScene" uid="uid://c5qcow1k7wb3c" path="res://scenes/components/text_edit_3d.tscn" id="4_hw881"]
+[ext_resource type="Script" uid="uid://dap0dwxfla04c" path="res://scripts/puzzles/components/text_edit_2.gd" id="4_rjrl6"]
+
+[node name="PuzzleOne3D" type="Node3D"]
+script = ExtResource("1_hw881")
+
+[node name="EquationLabel" type="Label3D" parent="."]
+text = "x + y = _
+x * y = _
+"
+script = ExtResource("2_gc58s")
+
+[node name="AnswerLabel" type="Label3D" parent="EquationLabel"]
+text = "x = _ , y = _"
+
+[node name="TextEdit2" type="TextEdit" parent="EquationLabel/AnswerLabel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 638.0
+offset_top = 8.0
+offset_right = -7.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 170
+script = ExtResource("4_rjrl6")
+
+[node name="TextEdit3D" parent="EquationLabel/AnswerLabel" instance=ExtResource("4_hw881")]
+
+[node name="TextEdit3D2" parent="EquationLabel/AnswerLabel" instance=ExtResource("4_hw881")]

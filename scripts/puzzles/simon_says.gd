@@ -159,6 +159,10 @@ func _Game_Over_Animation():
 	var new_minigame = original_minigame.instantiate()
 	name = "Simon"
 	new_minigame.name = "Simon Says"
+	new_minigame.scale.x = 0.5
+	new_minigame.scale.y = 0.5
+	new_minigame.position = Vector2(820,0)
+	new_minigame.practice = false
 	parent.add_child(new_minigame)
 	queue_free()
 
