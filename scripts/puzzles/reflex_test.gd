@@ -2,6 +2,7 @@ extends Control
 
 var GameStart = false
 @onready var Labels = [$Up, $Down, $Left, $Right]
+var label = null
 var processinstruction = null
 var checkKeys = false
 var awaitingInputs = false
@@ -10,73 +11,80 @@ var keyPressed = null
 func _ready():
 	$StartButton.show()
 	hideLabels()
+	reset_labels()
+	place_labels()
 		
 func _process(_delta: float):
 	if awaitingInputs == true:
 		if processinstruction == 0:
 			_move_Up()
-		if processinstruction == 1:
+			
+		elif processinstruction == 1:
 			_move_Down()
-		if processinstruction == 2:
+			
+		elif processinstruction == 2:
 			_move_Left()
-		if processinstruction == 3:
+			
+		elif processinstruction == 3:
 			_move_Right()
-	
+			
+		
 func _move_Up():
-	while ($Up.position.y > -96):
-		$Up.position.y -= 2
+	while (label.position.y > -120):
+		label.position.y -= 2
 		await get_tree().create_timer(0.1).timeout
 	awaitingInputs = false
+	_startGame()
 	
 func _move_Down():
-	while ($Down.position.y < 1040):
-		$Down.position.y += 2
+	while (label.position.y < 1040):
+		label.position.y += 2
 		await get_tree().create_timer(0.1).timeout
 	awaitingInputs = false
+	_startGame()
 				
 func _move_Left():
-	while ($Left.position.x > -214):
-		$Left.position.x -= 2
+	while (label.position.x > -214):
+		label.position.x -= 2
 		await get_tree().create_timer(0.1).timeout
 	awaitingInputs = false
+	_startGame()
 				
 func _move_Right():
-	while ($Right.position.x < 1930):
-		$Right.position.x += 2
+	while (label.position.x < 1930):
+		label.position.x += 2
 		await get_tree().create_timer(0.1).timeout
 	awaitingInputs = false
+	_startGame()
 				
 func _process_instruction(key):
 	processinstruction = key
 
+func place_labels():
+	for x in Labels:
+		x.position = Vector2(842,424)
+
+func reset_labels():
+	for x in Labels:
+		x.add_theme_color_override("font_color", Color.WHITE)
+
+func begin():
+	label = null
+	processinstruction = null
+	checkKeys = false
+	awaitingInputs = false
+	keyPressed = null
+	hideLabels()
+	
 func _startGame():
+	reset_labels()
+	place_labels()
+	begin()
 	if (GameStart == true):
-		var label = Labels.pick_random()
+		label = Labels.pick_random()
 		label.show()
 		checkKeys = true
-		#var key = _input()
-		_process_instruction(keyPressed)
-		awaitingInputs = true
 		
-#func read_keys():
-#	if Input.is_key_pressed(KEY_UP):
-#		if checkKeys == true:
-#			keyPressed = 0
-#			checkKeys = false
-#	if Input.is_key_pressed(KEY_DOWN):
-#		if checkKeys == true:
-#			keyPressed = 1
-#			checkKeys = false
-#	if Input.is_key_pressed(KEY_LEFT):
-#		if checkKeys == true:
-#			keyPressed = 2
-#			checkKeys = false
-#	if Input.is_key_pressed(KEY_RIGHT):
-#		if checkKeys == true:
-#			keyPressed = 3
-#			checkKeys = false
-#	return keyPressed
-
 func _input(event):
 	if checkKeys == false:
 		return
@@ -84,18 +92,31 @@ func _input(event):
 	if event.is_action_pressed("ui_up"):
 		keyPressed = 0
 		checkKeys = false
+		_process_instruction(keyPressed)
+		awaitingInputs = true
+		flash_colors(Labels.find(label), keyPressed)
 
 	elif event.is_action_pressed("ui_down"):
 		keyPressed = 1
 		checkKeys = false
+		_process_instruction(keyPressed)
+		awaitingInputs = true
+		flash_colors(Labels.find(label), keyPressed)
 
 	elif event.is_action_pressed("ui_left"):
 		keyPressed = 2
 		checkKeys = false
-
+		_process_instruction(keyPressed)
+		awaitingInputs = true
+		flash_colors(Labels.find(label), keyPressed)
+	
 	elif event.is_action_pressed("ui_right"):
 		keyPressed = 3
 		checkKeys = false
+		_process_instruction(keyPressed)
+		awaitingInputs = true
+		flash_colors(Labels.find(label), keyPressed)
+
 
 func check_keys(keyShown, keyClicked):
 	if keyShown == keyClicked:
@@ -103,10 +124,12 @@ func check_keys(keyShown, keyClicked):
 	else:
 		return false
 			
-#func flash_colors(keyShown, keyClicked):
-	#var check = check_Keys(keyShown, keyClicked)
-	#if check == true:
-	#	print("yes")	
+func flash_colors(keyShown, keyClicked):
+	var check = check_keys(keyShown, keyClicked)
+	if check == true:
+		label.add_theme_color_override("font_color", Color.GREEN)
+	else:
+		label.add_theme_color_override("font_color", Color.RED)
 	
 func hideLabels():
 	$Up.hide()
