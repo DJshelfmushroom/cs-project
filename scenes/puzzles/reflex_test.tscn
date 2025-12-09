@@ -14,9 +14,9 @@ script = ExtResource("1_x3fbl")
 [node name="Up" type="Label" parent="."]
 layout_mode = 0
 offset_left = 842.0
-offset_top = 416.0
+offset_top = 424.0
 offset_right = 1056.0
-offset_bottom = 558.0
+offset_bottom = 566.0
 theme_override_font_sizes/font_size = 55
 text = "Up!"
 horizontal_alignment = 1
