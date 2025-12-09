@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3 uid="uid://cgngh0jl8ww28"]
+
+[ext_resource type="Shader" uid="uid://bly6fvj33tv7c" path="res://bomb/Button/Button3D.gdshader" id="1_rm1ok"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_geh2h"]
+depth_test = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b6rje"]
+render_priority = 0
+shader = ExtResource("1_rm1ok")
+
+[sub_resource type="BoxMesh" id="BoxMesh_dlip2"]
+material = SubResource("ShaderMaterial_b6rje")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y48ba"]
+render_priority = 0
+shader = ExtResource("1_rm1ok")
+
+[sub_resource type="BoxMesh" id="BoxMesh_p2owm"]
+
+[sub_resource type="MeshTexture" id="MeshTexture_r42rc"]
+mesh = SubResource("BoxMesh_p2owm")
+image_size = Vector2(75, 165)
+
+[node name="Button3d" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_overlay = SubResource("StandardMaterial3D_geh2h")
+mesh = SubResource("BoxMesh_dlip2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_y48ba")
+texture = SubResource("MeshTexture_r42rc")
