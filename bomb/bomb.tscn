@@ -1,12 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3aqjmj7grawb"]
+[gd_scene load_steps=4 format=3 uid="uid://b3aqjmj7grawb"]
 
 [ext_resource type="PackedScene" uid="uid://b5lb0ykdugkxc" path="res://bomb/bom.blend" id="1_f3ig0"]
 [ext_resource type="Script" uid="uid://cd13ygh6uu8dn" path="res://bomb/plug_wire.cs" id="2_1h7gg"]
 [ext_resource type="Script" uid="uid://ds6n1ew1wvesq" path="res://bomb/bomb.cs" id="2_f3gsr"]
-[ext_resource type="PackedScene" uid="uid://behfpa8pwo0lh" path="res://scenes/components/line.tscn" id="3_f3gsr"]
-
-[sub_resource type="Curve3D" id="Curve3D_4fn8o"]
-bake_interval = 0.01
 
 [node name="Bomb" type="Node3D"]
 
@@ -17,22 +13,14 @@ script = ExtResource("2_f3gsr")
 
 [node name="Node3D" type="Node3D" parent="PlugLocs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.013037, 0)
+script = ExtResource("2_1h7gg")
+metadata/link = NodePath("../Node3D2")
 
 [node name="Node3D2" type="Node3D" parent="PlugLocs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0551159, 0, 0)
 
-[node name="Path3D" type="Path3D" parent="."]
-curve = SubResource("Curve3D_4fn8o")
-script = ExtResource("2_1h7gg")
-
-[node name="RayCast3D" type="RayCast3D" parent="Path3D"]
+[node name="RayCast3D" type="RayCast3D" parent="PlugLocs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6384538, -0.7823271)
-
-[node name="line" parent="." instance=ExtResource("3_f3gsr")]
-script = ExtResource("2_1h7gg")
-metadata/path = NodePath("../Path3D")
-metadata/resolution = 256
-metadata/path_follow = 0.025
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1.271507e-07, -0.32726738, 0.9449318, -2.2214532e-09, 0.9449318, 0.32726738, -1, -4.3711395e-08, 1.1942173e-07, 1.8606071, 0.8944851, 0)
