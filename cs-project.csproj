@@ -5,4 +5,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>csproject</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="scripts\puzzles\" />
+  </ItemGroup>
 </Project>
