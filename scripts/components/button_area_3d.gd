@@ -8,9 +8,12 @@ func _ready():
 
 
 func _on_input_event(camera, event, position, normal, shape_idx):
-	if event is InputEventMouseButton and event.pressed:
+	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			_on_button_pressed()
+			if event.pressed:
+				_on_button_pressed()
+			elif !event.pressed:
+				_on_button_released()
 			
 			
 func _on_hover():
@@ -22,6 +25,8 @@ func _on_unhover():
 	if (input_event.get_object() == $"."):
 		$"..".mesh.material.albedo_color = Color(0.3,0.3,0.3)
 
-
 func _on_button_pressed():
-	pass
+	$"..".transform = $"..".transform.scaled(Vector3(1,1,-1))#.rotated_local(Vector3.LEFT, PI)
+
+func _on_button_released():
+	$"..".transform = $"..".transform.scaled(Vector3(1,1,-1))#.rotated_local(Vector3.LEFT, PI)

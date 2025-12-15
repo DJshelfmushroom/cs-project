@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://caapg5wn513l5"]
+[gd_scene load_steps=5 format=3 uid="uid://caapg5wn513l5"]
 
 [ext_resource type="Script" uid="uid://btb4jjfuhw1lh" path="res://scripts/puzzles/components/button_3d.gd" id="1_f1uqr"]
 [ext_resource type="Script" uid="uid://bimje6eg4suja" path="res://scripts/components/button_area_3d.gd" id="1_g6g5h"]
 [ext_resource type="FontFile" uid="uid://d3y7shqhxu6sv" path="res://assets/fonts/Urban Shadow Sans Serif.otf" id="3_8xisv"]
+[ext_resource type="PackedScene" uid="uid://okm8q0m3g8ry" path="res://scenes/components/button.blend" id="2_8xisv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f1uqr"]
 albedo_color = Color(0.30692267, 0.3069227, 0.30692264, 1)
@@ -27,6 +28,35 @@ shape = SubResource("BoxShape3D_sdqrk")
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.013, 0.016)
 pixel_size = 0.0005
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport"]
+offset_right = 512.0
+offset_bottom = 512.0
+color = Color(0.4006977, 0.40069774, 0.40069756, 1)
+
+[node name="Label" type="Label" parent="SubViewport/ColorRect"]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 512.0
+theme_override_font_sizes/font_size = 300
 text = "1"
 font = ExtResource("3_8xisv")
 font_size = 300
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31769732)
+
+[node name="button" parent="." instance=ExtResource("2_8xisv")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="button"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+script = ExtResource("1_g6g5h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="button/Area3D"]
+shape = SubResource("BoxShape3D_sdqrk")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9596827, 0.2810855, 0, -0.2810855, 0.9596827, 0, 0.080523014, 2.0131342)
+shadow_enabled = true

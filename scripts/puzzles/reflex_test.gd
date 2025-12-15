@@ -7,62 +7,72 @@ var processinstruction = null
 var checkKeys = false
 var awaitingInputs = false
 var keyPressed = null
+const keys : Dictionary = {
+	"up": 0,
+	"down": 1,
+	"left": 2,
+	"right": 3
+}
+var score = null
 
 func _ready():
 	$StartButton.show()
 	hideLabels()
 	reset_labels()
+	set_label_Size()
 	place_labels()
-		
-func _process(_delta: float):
-	if awaitingInputs == true:
-		if processinstruction == 0:
-			_move_Up()
-			
-		elif processinstruction == 1:
-			_move_Down()
-			
-		elif processinstruction == 2:
-			_move_Left()
-			
-		elif processinstruction == 3:
-			_move_Right()
-			
-		
-func _move_Up():
-	while (label.position.y > -120):
-		label.position.y -= 2
-		await get_tree().create_timer(0.1).timeout
-	awaitingInputs = false
-	_startGame()
+	score = 0
 	
-func _move_Down():
-	while (label.position.y < 1040):
-		label.position.y += 2
-		await get_tree().create_timer(0.1).timeout
-	awaitingInputs = false
-	_startGame()
+	
+func set_label_Size():
+	for x in Labels:
+		x.size = Vector2(300, 260)
+	
+func _process(_delta: float):
+	if awaitingInputs:
+		if processinstruction == keys.up:
+			
+			if (label.position.y > -120):
+				label.position.y -= 8
+			else:
+				processinstruction = null
+				awaitingInputs = false
+				_startGame()
+			
+		elif processinstruction == keys.down:
+			
+			if (label.position.y < 1040):
+				label.position.y += 8
+			else:
+				processinstruction = null
+				awaitingInputs = false
+				_startGame()
+
+		elif processinstruction == keys.left:
+			
+			if (label.position.x > -214):
+				label.position.x -= 10
+			else:
+				processinstruction = null
+				awaitingInputs = false
+				_startGame()			
 				
-func _move_Left():
-	while (label.position.x > -214):
-		label.position.x -= 2
-		await get_tree().create_timer(0.1).timeout
-	awaitingInputs = false
-	_startGame()
-				
-func _move_Right():
-	while (label.position.x < 1930):
-		label.position.x += 2
-		await get_tree().create_timer(0.1).timeout
-	awaitingInputs = false
-	_startGame()
+		elif processinstruction == keys.right:
+			
+			if (label.position.x < 1930):
+				label.position.x += 10
+			else:
+				processinstruction = null
+				awaitingInputs = false
+				_startGame()
+						
 				
 func _process_instruction(key):
 	processinstruction = key
 
 func place_labels():
 	for x in Labels:
-		x.position = Vector2(842,424)
+		x.position = Vector2(800,380)
 
 func reset_labels():
 	for x in Labels:
@@ -74,44 +84,46 @@ func begin():
 	checkKeys = false
 	awaitingInputs = false
 	keyPressed = null
-	hideLabels()
 	
 func _startGame():
+	hideLabels()
 	reset_labels()
 	place_labels()
 	begin()
-	if (GameStart == true):
+	if (GameStart == true && score < 16):
 		label = Labels.pick_random()
 		label.show()
 		checkKeys = true
+	if (score >= 16):
+		win()
 		
-func _input(event):
+func _unhandled_input(event):
 	if checkKeys == false:
 		return
 
 	if event.is_action_pressed("ui_up"):
-		keyPressed = 0
+		keyPressed = keys.up
 		checkKeys = false
 		_process_instruction(keyPressed)
 		awaitingInputs = true
 		flash_colors(Labels.find(label), keyPressed)
 
 	elif event.is_action_pressed("ui_down"):
-		keyPressed = 1
+		keyPressed = keys.down
 		checkKeys = false
 		_process_instruction(keyPressed)
 		awaitingInputs = true
 		flash_colors(Labels.find(label), keyPressed)
 
 	elif event.is_action_pressed("ui_left"):
-		keyPressed = 2
+		keyPressed = keys.left
 		checkKeys = false
 		_process_instruction(keyPressed)
 		awaitingInputs = true
 		flash_colors(Labels.find(label), keyPressed)
 	
 	elif event.is_action_pressed("ui_right"):
-		keyPressed = 3
+		keyPressed = keys.right
 		checkKeys = false
 		_process_instruction(keyPressed)
 		awaitingInputs = true
@@ -128,8 +140,11 @@ func flash_colors(keyShown, keyClicked):
 	var check = check_keys(keyShown, keyClicked)
 	if check == true:
 		label.add_theme_color_override("font_color", Color.GREEN)
+		score += 2
 	else:
 		label.add_theme_color_override("font_color", Color.RED)
+		score -= 1
+	print(score)
 	
 func hideLabels():
 	$Up.hide()
@@ -142,3 +157,6 @@ func _on_start_button_pressed() -> void:
 	$StartButton.disabled = true
 	GameStart = true
 	_startGame()
+
+func win():
+	print("You Won!")

@@ -12,6 +12,7 @@ grow_vertical = 2
 script = ExtResource("1_x3fbl")
 
 [node name="Up" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 842.0
 offset_top = 424.0
@@ -23,6 +24,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Down" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 824.0
 offset_top = 388.0
@@ -34,6 +36,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Left" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 826.0
 offset_top = 383.0
@@ -45,6 +48,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Right" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 818.0
 offset_top = 393.0
@@ -63,5 +67,7 @@ offset_right = 1150.0
 offset_bottom = 631.0
 theme_override_font_sizes/font_size = 55
 text = "Start Test"
+
+[node name="Timer" type="Timer" parent="."]
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
