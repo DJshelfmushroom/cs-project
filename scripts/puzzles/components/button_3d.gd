@@ -1,7 +1,8 @@
 extends MeshInstance3D
 
-var text = "1"
+var text = ""
 var disabled = false
 
-func _ready() -> void:
-	$SubViewport/ColorRect/Label.text = text
+func set_text(new_text : String):
+	text = new_text
+	$Label3D.text = new_text

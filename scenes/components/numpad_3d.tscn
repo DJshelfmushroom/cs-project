@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1r0aghq7lunl"]
+
+[ext_resource type="Script" uid="uid://c5h2or0kexjue" path="res://scripts/components/numpad_3d.gd" id="1_duex4"]
+[ext_resource type="PackedScene" uid="uid://caapg5wn513l5" path="res://scenes/components/button_3d.tscn" id="2_umw5m"]
+
+[node name="Numpad3D" type="Node3D"]
+script = ExtResource("1_duex4")
+
+[node name="Button3D" parent="." instance=ExtResource("2_umw5m")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28110725, -0.16190182, 0.7366735)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.1566173)

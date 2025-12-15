@@ -2,24 +2,20 @@
 
 [ext_resource type="Script" uid="uid://btb4jjfuhw1lh" path="res://scripts/puzzles/components/button_3d.gd" id="1_f1uqr"]
 [ext_resource type="Script" uid="uid://bimje6eg4suja" path="res://scripts/components/button_area_3d.gd" id="1_g6g5h"]
+[ext_resource type="FontFile" uid="uid://d3y7shqhxu6sv" path="res://assets/fonts/Urban Shadow Sans Serif.otf" id="3_8xisv"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_86gmj"]
-size = Vector2(0.2, 0.2)
-orientation = 2
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f1uqr"]
+albedo_color = Color(0.30692267, 0.3069227, 0.30692264, 1)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_r7136"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdqrk"]
-resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_r7136")
+[sub_resource type="BoxMesh" id="BoxMesh_8xisv"]
+material = SubResource("StandardMaterial3D_f1uqr")
+size = Vector3(0.2, 0.2, 0.03)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sdqrk"]
 size = Vector3(0.2, 0.2, 0.03)
 
 [node name="Button3D" type="MeshInstance3D"]
-mesh = SubResource("PlaneMesh_86gmj")
-surface_material_override/0 = SubResource("StandardMaterial3D_sdqrk")
+mesh = SubResource("BoxMesh_8xisv")
 script = ExtResource("1_f1uqr")
 
 [node name="Area3D" type="Area3D" parent="."]
@@ -28,21 +24,9 @@ script = ExtResource("1_g6g5h")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_sdqrk")
 
-[node name="SubViewport" type="SubViewport" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="SubViewport"]
-offset_right = 512.0
-offset_bottom = 512.0
-color = Color(0.4006977, 0.40069774, 0.40069756, 1)
-
-[node name="Label" type="Label" parent="SubViewport/ColorRect"]
-layout_mode = 0
-offset_right = 512.0
-offset_bottom = 512.0
-theme_override_font_sizes/font_size = 300
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.013, 0.016)
+pixel_size = 0.0005
 text = "1"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31769732)
+font = ExtResource("3_8xisv")
+font_size = 300

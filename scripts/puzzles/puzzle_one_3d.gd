@@ -6,8 +6,10 @@ var strikeable = true
 @onready var TextEdit2 = $EquationLabel/AnswerLabel/Num2
 var practice = true
 
+
 func _ready() -> void:
 	completed = false
+	
 
 func _process(_delta: float) -> void:
 	if ((TextEdit1.text == str($EquationLabel.get_rand1()) && TextEdit2.text == str($EquationLabel.get_rand2())) \

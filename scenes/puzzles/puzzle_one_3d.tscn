@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://f6op8gdxrkeu"]
+[gd_scene load_steps=5 format=3 uid="uid://f6op8gdxrkeu"]
 
 [ext_resource type="Script" uid="uid://dlqbdivpd4v21" path="res://scripts/puzzles/puzzle_one_3d.gd" id="1_hw881"]
 [ext_resource type="Script" uid="uid://3knb1fw6yoda" path="res://scripts/puzzles/components/equation_label.gd" id="2_gc58s"]
 [ext_resource type="FontFile" uid="uid://0my668ilbos5" path="res://assets/fonts/DS-DIGI.TTF" id="2_p6l36"]
+[ext_resource type="PackedScene" uid="uid://caapg5wn513l5" path="res://scenes/components/button_3d.tscn" id="4_hw881"]
 
 [node name="PuzzleOne3D" type="Node3D"]
 script = ExtResource("1_hw881")
@@ -39,3 +40,7 @@ pixel_size = 0.0005
 text = "2"
 font = ExtResource("2_p6l36")
 font_size = 350
+
+[node name="Button3D" parent="." instance=ExtResource("4_hw881")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+visible = false

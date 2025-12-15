@@ -4,7 +4,7 @@ func _ready():
 	input_event.connect(_on_input_event)
 	mouse_entered.connect(_on_hover)
 	mouse_exited.connect(_on_unhover)
-	$"..".get_node("SubViewport/ColorRect").color = Color(0.4,0.4,0.4)
+	$"..".mesh.material.albedo_color = Color(0.3,0.3,0.3)
 
 
 func _on_input_event(camera, event, position, normal, shape_idx):
@@ -14,11 +14,13 @@ func _on_input_event(camera, event, position, normal, shape_idx):
 			
 			
 func _on_hover():
-	$"..".get_node("SubViewport/ColorRect").color = Color(0.5,0.5,0.5)
+	if (input_event.get_object() == $"."):
+		$"..".mesh.material.albedo_color = Color(0.35,0.35,0.35)
 
 
 func _on_unhover():
-	$"..".get_node("SubViewport/ColorRect").color = Color(0.4,0.4,0.4)	
+	if (input_event.get_object() == $"."):
+		$"..".mesh.material.albedo_color = Color(0.3,0.3,0.3)
 
 
 func _on_button_pressed():
