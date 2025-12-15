@@ -23,6 +23,7 @@ func _ready():
 	place_labels()
 	score = 0
 	
+	
 func set_label_Size():
 	for x in Labels:
 		x.size = Vector2(300, 260)
@@ -93,6 +94,8 @@ func _startGame():
 		label = Labels.pick_random()
 		label.show()
 		checkKeys = true
+	if (score >= 16):
+		win()
 		
 func _unhandled_input(event):
 	if checkKeys == false:
@@ -154,3 +157,6 @@ func _on_start_button_pressed() -> void:
 	$StartButton.disabled = true
 	GameStart = true
 	_startGame()
+
+func win():
+	print("You Won!")
