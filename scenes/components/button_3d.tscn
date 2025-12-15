@@ -1,32 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://caapg5wn513l5"]
+[gd_scene load_steps=5 format=3 uid="uid://caapg5wn513l5"]
 
 [ext_resource type="Script" uid="uid://btb4jjfuhw1lh" path="res://scripts/puzzles/components/button_3d.gd" id="1_f1uqr"]
 [ext_resource type="Script" uid="uid://bimje6eg4suja" path="res://scripts/components/button_area_3d.gd" id="1_g6g5h"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_86gmj"]
-size = Vector2(0.2, 0.2)
-orientation = 2
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_r7136"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdqrk"]
-resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_r7136")
+[ext_resource type="PackedScene" uid="uid://okm8q0m3g8ry" path="res://scenes/components/button.blend" id="2_8xisv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sdqrk"]
 size = Vector3(0.2, 0.2, 0.03)
 
 [node name="Button3D" type="MeshInstance3D"]
-mesh = SubResource("PlaneMesh_86gmj")
-surface_material_override/0 = SubResource("StandardMaterial3D_sdqrk")
 script = ExtResource("1_f1uqr")
-
-[node name="Area3D" type="Area3D" parent="."]
-script = ExtResource("1_g6g5h")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("BoxShape3D_sdqrk")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 
@@ -46,3 +28,17 @@ vertical_alignment = 1
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.31769732)
+
+[node name="button" parent="." instance=ExtResource("2_8xisv")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="button"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+script = ExtResource("1_g6g5h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="button/Area3D"]
+shape = SubResource("BoxShape3D_sdqrk")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9596827, 0.2810855, 0, -0.2810855, 0.9596827, 0, 0.080523014, 2.0131342)
+shadow_enabled = true
