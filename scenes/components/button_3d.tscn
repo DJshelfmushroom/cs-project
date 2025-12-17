@@ -1,21 +1,15 @@
+[gd_scene load_steps=6 format=3 uid="uid://caapg5wn513l5"]
 [gd_scene load_steps=7 format=3 uid="uid://caapg5wn513l5"]
 
 [ext_resource type="Script" uid="uid://btb4jjfuhw1lh" path="res://scripts/puzzles/components/button_3d.gd" id="1_f1uqr"]
 [ext_resource type="Script" uid="uid://bimje6eg4suja" path="res://scripts/components/button_area_3d.gd" id="1_g6g5h"]
 [ext_resource type="PackedScene" uid="uid://okm8q0m3g8ry" path="res://scenes/components/button.blend" id="2_8xisv"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f1uqr"]
-albedo_color = Color(0.30692267, 0.3069227, 0.30692264, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_8xisv"]
-material = SubResource("StandardMaterial3D_f1uqr")
-size = Vector3(0.2, 0.2, 0.03)
+[ext_resource type="FontFile" uid="uid://d3y7shqhxu6sv" path="res://assets/fonts/Urban Shadow Sans Serif.otf" id="3_8xisv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sdqrk"]
-size = Vector3(0.2, 0.2, 0.03)
+size = Vector3(0.25, 0.25, 0.03)
 
 [node name="Button3D" type="MeshInstance3D"]
-mesh = SubResource("BoxMesh_8xisv")
 script = ExtResource("1_f1uqr")
 
 [node name="Area3D" type="Area3D" parent="."]
@@ -55,6 +49,14 @@ script = ExtResource("1_g6g5h")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="button/Area3D"]
 shape = SubResource("BoxShape3D_sdqrk")
 
+[node name="Label3D" type="Label3D" parent="button"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.007, -0.01, -3.059797e-10)
+pixel_size = 0.0005
+modulate = Color(0.19793725, 0.19793722, 0.19793722, 1)
+text = "1"
+font = ExtResource("3_8xisv")
+font_size = 350
+outline_size = 0
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9596827, 0.2810855, 0, -0.2810855, 0.9596827, 0, 0.080523014, 2.0131342)
 light_indirect_energy = 1.3
