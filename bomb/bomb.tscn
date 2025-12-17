@@ -16,11 +16,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.013037, 0)
 script = ExtResource("2_1h7gg")
 metadata/link = NodePath("../Node3D2")
 
+[node name="RayCast3D" type="RayCast3D" parent="PlugLocs/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6254169, -0.7823271)
+
 [node name="Node3D2" type="Node3D" parent="PlugLocs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0551159, 0, 0)
-
-[node name="RayCast3D" type="RayCast3D" parent="PlugLocs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6384538, -0.7823271)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1.271507e-07, -0.32726738, 0.9449318, -2.2214532e-09, 0.9449318, 0.32726738, -1, -4.3711395e-08, 1.1942173e-07, 1.8606071, 0.8944851, 0)
