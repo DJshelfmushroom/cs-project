@@ -34,10 +34,10 @@ partial class OperationPath2D
 		for (int i = 1; i < _pointCount - 1; i++)
 		{
 			float t = (float)i / (_pointCount - 1);
-			Vector2 point = Vector2.Lerp(_end, t); // i ont even care
-			point.X += (float) GD.RandRange(-_size.X / 2, _size.X / 2) * (_spacing / 10f);
-			point.Y += (float) GD.RandRange(-_size.Y / 2, _size.Y / 2) * (_spacing / 10f);
-			points.Append(point);
+			// Vector2 point = Vector2.Lerp(_end, t); // i ont even care
+			//point.X += (float) GD.RandRange(-_size.X / 2, _size.X / 2) * (_spacing / 10f);
+			//point.Y += (float) GD.RandRange(-_size.Y / 2, _size.Y / 2) * (_spacing / 10f);
+			//points.Append(point);
 		}
 		
 		points.Append(_end);
