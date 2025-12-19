@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4pwgpjrmtysv"]
+
+[ext_resource type="PackedScene" uid="uid://okm8q0m3g8ry" path="res://scenes/components/button.blend" id="1_ar82o"]
+[ext_resource type="Script" uid="uid://ysuox7trlodu" path="res://scripts/components/memory_button_3d.gd" id="1_pe7gh"]
+[ext_resource type="Script" uid="uid://bimje6eg4suja" path="res://scripts/components/button_area_3d.gd" id="2_pe7gh"]
+[ext_resource type="FontFile" uid="uid://d3y7shqhxu6sv" path="res://assets/fonts/Urban Shadow Sans Serif.otf" id="3_fp5t1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gagxl"]
+size = Vector3(0.25, 0.25, 0.03)
+
+[node name="MemoryButton3D" type="MeshInstance3D"]
+script = ExtResource("1_pe7gh")
+
+[node name="button" parent="." instance=ExtResource("1_ar82o")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="button"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+script = ExtResource("2_pe7gh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="button/Area3D"]
+shape = SubResource("BoxShape3D_gagxl")
+
+[node name="Label3D" type="Label3D" parent="button"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.007, -0.01, -3.059797e-10)
+pixel_size = 0.0005
+modulate = Color(0.19793725, 0.19793722, 0.19793722, 1)
+text = "1"
+font = ExtResource("3_fp5t1")
+font_size = 350
+outline_size = 0

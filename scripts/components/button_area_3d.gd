@@ -18,9 +18,10 @@ func _on_input_event(camera, event, position, normal, shape_idx):
 
 
 func _on_button_pressed():
-	$"..".transform = $"..".transform.scaled(Vector3(1,1,-1))#.rotated_local(Vector3.LEFT, PI)
-	$"../../.."._on_button_pressed($"../..".num)
+	if ($"../..".disabled == false):
+		$"..".transform = $"..".transform.scaled(Vector3(1,1,-1))#.rotated_local(Vector3.LEFT, PI)
+		$"../../.."._on_but_pressed($"../..".num)
 	
 func _on_button_released():
 	$"..".transform = $"..".transform.scaled(Vector3(1,1,-1))#.rotated_local(Vector3.LEFT, PI)
-	$"../../.."._on_button_released($"../..".num)
+	$"../../.."._on_but_released($"../..".num)
