@@ -14,6 +14,7 @@ const keys : Dictionary = {
 }
 var score = null
 @onready var timer = $Timer
+@onready var screen_size = get_viewport().get_visible_rect()
 
 func _ready():
 	$EndScreen.hide()
@@ -45,7 +46,7 @@ func _process(_delta: float):
 	if awaitingInputs:
 		if processinstruction == keys.up:
 			
-			if (label.position.y > -120):
+			if (label_on_screen(label) == true):
 				label.position.y -= 8
 			else:
 				processinstruction = null
@@ -54,7 +55,7 @@ func _process(_delta: float):
 			
 		elif processinstruction == keys.down:
 			
-			if (label.position.y < 1040):
+			if (label_on_screen(label) == true):
 				label.position.y += 8
 			else:
 				processinstruction = null
@@ -63,7 +64,7 @@ func _process(_delta: float):
 
 		elif processinstruction == keys.left:
 			
-			if (label.position.x > -214):
+			if (label_on_screen(label) == true):
 				label.position.x -= 10.5
 			else:
 				processinstruction = null
@@ -72,7 +73,7 @@ func _process(_delta: float):
 				
 		elif processinstruction == keys.right:
 			
-			if (label.position.x < 1930):
+			if (label_on_screen(label) == true):
 				label.position.x += 10.5
 			else:
 				processinstruction = null
@@ -93,6 +94,10 @@ func reset_labels():
 
 func time_left():
 	return int(timer.get_time_left())
+
+func label_on_screen(word):
+	var rect = word.get_global_rect()
+	return screen_size.intersects(rect)
 
 func begin():
 	label = null
