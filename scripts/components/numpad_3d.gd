@@ -14,9 +14,9 @@ func _ready() -> void:
 			buttoninst.visible = true
 			button_num += 1
 			
-func _on_button_pressed(num : int):
+func _on_but_pressed(num : int):
 	$".."._on_button_pressed(num)
 	
-func _on_button_released(num : int):
+func _on_but_released(num : int):
 	$".."._on_button_released(num)
 			

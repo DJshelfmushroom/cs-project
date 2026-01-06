@@ -49,7 +49,7 @@ func _on_button_pressed(num : int):
 		TextEdit2.set_text(str(num))
 		
 	
-func _on_button_released(num : int):
+func _on_button_released(_num : int):
 	pass
 	
 

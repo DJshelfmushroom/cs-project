@@ -37,13 +37,13 @@ func _on_input_event(_camera, event, _position, _normal, _shape_idx):
 func _on_button_pressed():
 	$"..".transform = $"..".transform.scaled(Vector3(1,1,-1))
 	facing_out = false
-	$"../../.."._on_but_pressed($"../..".num)
+	$"../../.."._on_but_pressed($"../..".index)
 		
 	
 	
 func _on_button_released():
 	$"..".transform = $"..".transform.scaled(Vector3(1,1,-1))
 	facing_out = true
-	$"../../.."._on_but_released($"../..".num)
+	$"../../.."._on_but_released($"../..".index)
 	
 	#$"..".transform = $"..".transform.scaled(Vector3(1,1,-1))
