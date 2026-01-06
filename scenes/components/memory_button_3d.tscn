@@ -14,15 +14,15 @@ script = ExtResource("1_pe7gh")
 [node name="button" parent="." instance=ExtResource("1_ar82o")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="Area3D" type="Area3D" parent="button"]
+[node name="Area" type="Area3D" parent="button"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 script = ExtResource("2_pe7gh")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="button/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="button/Area"]
 shape = SubResource("BoxShape3D_gagxl")
 
 [node name="Label3D" type="Label3D" parent="button"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.007, -0.01, -3.059797e-10)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.010610298, -0.01, -4.6379087e-10)
 pixel_size = 0.0005
 modulate = Color(0.19793725, 0.19793722, 0.19793722, 1)
 text = "1"

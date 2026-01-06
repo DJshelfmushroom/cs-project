@@ -1,6 +1,7 @@
 extends Area3D
 
 var pressed = false
+var facing_out = true
 
 func _ready():
 	input_event.connect(_on_input_event)
@@ -9,20 +10,18 @@ func _ready():
 	#$"..".mesh.material.albedo_color = Color(0.3,0.3,0.3)
 
 func _process(_delta: float) -> void:
-	if pressed and !Input.is_action_pressed("ui_mouse_left_button"):
+	if pressed and !Input.is_action_pressed("ui_mouse_left_button") and !facing_out:
 		_on_button_released()
 		pressed = false
+		
 
-func _on_input_event(camera, event, position, normal, shape_idx):
+func _on_input_event(_camera, event, _position, _normal, _shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and !pressed and Input.is_action_just_pressed("ui_mouse_left_button"):
+		if event.button_index == MOUSE_BUTTON_LEFT and Input.is_action_just_pressed("ui_mouse_left_button") and !($"../..".disabled) and facing_out:
 			_on_button_pressed()
 			pressed = true
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			if event.pressed:
-				_on_button_pressed()
-			elif !event.pressed:
-				_on_button_pressed()
+		
+			
 			
 			
 #func _on_hover():
@@ -36,13 +35,15 @@ func _on_input_event(camera, event, position, normal, shape_idx):
 
 
 func _on_button_pressed():
-	if ($"../..".disabled == false):
-		$"..".transform = $"..".transform.scaled(Vector3(1,1,-1))#.rotated_local(Vector3.LEFT, PI)
-		$"../../.."._on_but_pressed($"../..".num)
+	$"..".transform = $"..".transform.scaled(Vector3(1,1,-1))
+	facing_out = false
+	$"../../.."._on_but_pressed($"../..".index)
+		
+	
 	
 func _on_button_released():
-	$"..".transform = $"..".transform.scaled(Vector3(1,1,-1))#.rotated_local(Vector3.LEFT, PI)
-	$"../../.."._on_but_released($"../..".num)
-
-	pass
+	$"..".transform = $"..".transform.scaled(Vector3(1,1,-1))
+	facing_out = true
+	$"../../.."._on_but_released($"../..".index)
+	
 	#$"..".transform = $"..".transform.scaled(Vector3(1,1,-1))
