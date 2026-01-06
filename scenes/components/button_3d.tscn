@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://caapg5wn513l5"]
+[gd_scene load_steps=6 format=3 uid="uid://caapg5wn513l5"]
 
 [ext_resource type="Script" uid="uid://btb4jjfuhw1lh" path="res://scripts/puzzles/components/button_3d.gd" id="1_f1uqr"]
 [ext_resource type="Script" uid="uid://bimje6eg4suja" path="res://scripts/components/button_area_3d.gd" id="1_g6g5h"]
@@ -56,6 +56,7 @@ text = "1"
 font = ExtResource("3_8xisv")
 font_size = 350
 outline_size = 0
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9596827, 0.2810855, 0, -0.2810855, 0.9596827, 0, 0.080523014, 2.0131342)
 light_indirect_energy = 1.3

@@ -31,6 +31,7 @@ func _ready() -> void:
 		button.num = nums[rand]
 		nums.remove_at(rand)
 		
+		
 func _process(_delta: float) -> void:
 	var win = true
 	for button in buttons:
@@ -43,7 +44,10 @@ func _process(_delta: float) -> void:
 	#if (completed && practice):
 		#$RedWireButton.visible = true
 
-func _on_but_pressed(b : int):
+func _on_but_pressed(_b : int):
+	pass
+
+func _on_but_released(b : int):
 	if (not(thisfailed)):
 		if (b1 == null):
 			b1 = buttons[b]
@@ -51,20 +55,17 @@ func _on_but_pressed(b : int):
 		elif (b2 == null):
 			b2 = buttons[b]
 			b2.on()
-			if (not(b2.num == b1.num)):
+			if (!(b2.num == b1.num)):
 				for button in buttons:
 					button.disabled = true
 				await get_tree().create_timer(1.0).timeout
 				b1.off()
 				b2.off()
 				for button in buttons:
-					if (button.set_text("")):
+					if (button.text == ""):
 						button.disabled = false
 			b1 = null
 			b2 = null
-
-func _on_but_released(x : int):
-	pass
 
 #func _on_red_wire_button_pressed() -> void:
 	#get_tree().change_scene_to_file("res://scenes/menus/practice_menu.tscn")
