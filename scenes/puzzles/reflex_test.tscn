@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://x74d10muhxn1"]
+[gd_scene load_steps=3 format=3 uid="uid://x74d10muhxn1"]
 
 [ext_resource type="Script" uid="uid://lf2df5egbido" path="res://scripts/puzzles/reflex_test.gd" id="1_x3fbl"]
+[ext_resource type="Script" uid="uid://c12ur810twi0b" path="res://scripts/ui/layout/button_pos.gd" id="2_usewa"]
 
 [node name="Reflex Test" type="Control"]
 layout_mode = 3
@@ -85,6 +86,7 @@ wait_time = 10.0
 one_shot = true
 
 [node name="Time" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 1606.0
 offset_right = 1920.0
@@ -115,5 +117,24 @@ theme_override_font_sizes/font_size = 45
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="RedWireButton" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.011000001
+anchor_top = 0.919
+anchor_right = 0.142
+anchor_bottom = 0.98300004
+offset_left = 718.88
+offset_top = -982.52
+offset_right = 912.88
+offset_bottom = -943.52
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 30
+text = "CUT THE RED WIRE"
+script = ExtResource("2_usewa")
+metadata/pos = Vector2(862, 40)
+
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="RedWireButton" to="." method="_on_red_wire_button_pressed"]

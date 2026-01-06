@@ -1,15 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bsx4bws50sqdx"]
+[gd_scene load_steps=8 format=3 uid="uid://bsx4bws50sqdx"]
 
 [ext_resource type="Script" uid="uid://cegaq2p1u1qo2" path="res://scripts/menus/game_selection.gd" id="1_crpe7"]
-[ext_resource type="Script" path="res://scripts/ui/buttons/back_button.gd" id="3_crpe7"]
-[ext_resource type="Script" path="res://scripts/ui/labels/label_2.gd" id="3_ej0sb"]
+[ext_resource type="Script" uid="uid://c76igupjvkh5n" path="res://scripts/ui/buttons/back_button.gd" id="3_crpe7"]
+[ext_resource type="Script" uid="uid://cb5fs7o0nls3" path="res://scripts/ui/labels/label_2.gd" id="3_ej0sb"]
 [ext_resource type="PackedScene" uid="uid://u0uswry712ai" path="res://scenes/puzzles/puzzle_1.tscn" id="4_bd0xv"]
 [ext_resource type="PackedScene" uid="uid://d4aqd6eakis0f" path="res://scenes/components/timers/timerrr.tscn" id="5_ej0sb"]
 [ext_resource type="PackedScene" uid="uid://dg31pwxba0x3b" path="res://scenes/puzzles/puzzle_2.tscn" id="5_x4twu"]
-[ext_resource type="Script" uid="uid://c76igupjvkh5n" path="res://scripts/ui/buttons/back_button.gd" id="3_crpe7"]
-[ext_resource type="Script" path="res://scripts/ui/labels/label_2.gd" id="3_ej0sb"]
-[ext_resource type="PackedScene" path="res://scenes/puzzles/puzzle_1.tscn" id="4_bd0xv"]
-[ext_resource type="PackedScene" path="res://scenes/components/timers/timerrr.tscn" id="5_ej0sb"]
+[ext_resource type="Texture2D" uid="uid://oe60g86ar2dn" path="res://background.jpg" id="7_3g1ko"]
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -76,5 +73,11 @@ offset_top = 317.0
 offset_right = -373.0
 offset_bottom = 173.0
 scale = Vector2(0.5, 0.5)
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -4096
+position = Vector2(968, 535)
+scale = Vector2(3.2, 3.2)
+texture = ExtResource("7_3g1ko")
 
 [connection signal="button_up" from="BackButton" to="." method="_on_back_button_up"]

@@ -25,9 +25,9 @@ vertical_alignment = 1
 [node name="Puzzle1TutorialButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 700.0
-offset_top = 180.0
+offset_top = 148.0
 offset_right = 1152.0
-offset_bottom = 385.0
+offset_bottom = 353.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Equation Puzzle Tutorial"
@@ -35,9 +35,9 @@ text = "Equation Puzzle Tutorial"
 [node name="Puzzle2TutorialButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 700.0
-offset_top = 440.0
-offset_right = 1164.0
-offset_bottom = 657.0
+offset_top = 376.0
+offset_right = 1152.0
+offset_bottom = 581.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Memory Puzzle Tutorial"
@@ -45,12 +45,22 @@ text = "Memory Puzzle Tutorial"
 [node name="Puzzle3TutorialButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 700.0
-offset_top = 700.0
-offset_right = 1169.0
-offset_bottom = 915.0
+offset_top = 604.0
+offset_right = 1152.0
+offset_bottom = 809.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Simon Puzzle Tutorial"
+
+[node name="Puzzle4TutorialButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 700.0
+offset_top = 832.0
+offset_right = 1152.0
+offset_bottom = 1037.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Reflex Puzzle Tutorial"
 
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 1
