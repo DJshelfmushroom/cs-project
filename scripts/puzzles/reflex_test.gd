@@ -1,4 +1,6 @@
 extends Control
+
+@onready var original_minigame = preload("res://scenes/puzzles/simon_says.tscn")
 var GameStart = false
 @onready var Labels = [$Up, $Down, $Left, $Right]
 var label = null
@@ -15,11 +17,14 @@ const keys : Dictionary = {
 var score = null
 @onready var timer = $Timer
 @onready var screen_size = get_viewport().get_visible_rect()
+var completed = false
+var practice = true
 
 func _ready():
 	$EndScreen.hide()
 	$Score.hide()
 	$RestartButton.hide()
+	$Time.hide()
 	$StartButton.show()
 	hideLabels()
 	reset_labels()
@@ -38,6 +43,10 @@ func prepare_timer():
 	timer.one_shot = true
 	
 func _process(_delta: float):
+	if (completed && practice):
+		$RedWireButton.visible = true
+		
+	
 	if (time_left() >= 0):
 		if (time_left() >= 10):
 			$Time.text = str(time_left())
@@ -111,6 +120,7 @@ func _startGame():
 	reset_labels()
 	place_labels()
 	begin()
+	$Time.show()
 	if (GameStart == true && time_left() > 0):
 		label = Labels.pick_random()
 		label.show()
@@ -169,7 +179,7 @@ func flash_colors(keyShown, keyClicked):
 	else:
 		label.add_theme_color_override("font_color", Color.RED)
 		score -= 1
-	print(score)
+	#print(score)
 	
 func hideLabels():
 	$Up.hide()
@@ -190,6 +200,7 @@ func win():
 	await get_tree().create_timer(0.5).timeout
 	$Score.text = "Score: " + str(score)
 	$Score.show()
+	completed = true
 func lose():
 	$EndScreen.text = "You Lost"
 	$EndScreen.show()
@@ -206,3 +217,6 @@ func _on_restart_button_pressed() -> void:
 	GameStart = true
 	timer.start()
 	_startGame()
+
+func _on_red_wire_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/menus/practice_menu.tscn")
