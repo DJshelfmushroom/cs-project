@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://c33jnblchqp25"]
+
+[ext_resource type="Script" uid="uid://bbs1m8qk80u72" path="res://scripts/puzzles/components/simon_button_3d.gd" id="1_4u1h0"]
+[ext_resource type="PackedScene" uid="uid://okm8q0m3g8ry" path="res://scenes/components/button.blend" id="2_fwa7l"]
+[ext_resource type="Script" uid="uid://3f8sojmo78eh" path="res://scripts/components/button_area_3d.gd" id="3_yokv4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5jgh7"]
+size = Vector3(0.25, 0.25, 0.03)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vthn"]
+albedo_color = Color(0.82606, 0.82606006, 0.82606, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_loskg"]
+material = SubResource("StandardMaterial3D_4vthn")
+size = Vector3(0.32, 0.32, 0.02)
+
+[node name="SimonButton3D" type="MeshInstance3D"]
+script = ExtResource("1_4u1h0")
+
+[node name="button" parent="." instance=ExtResource("2_fwa7l")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="button"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+script = ExtResource("3_yokv4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="button/Area3D"]
+shape = SubResource("BoxShape3D_5jgh7")
+
+[node name="ColorOutline" type="MeshInstance3D" parent="button/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.7422775e-10, 0, -0.02)
+mesh = SubResource("BoxMesh_loskg")
+skeleton = NodePath("../../..")

@@ -24,14 +24,14 @@ func _on_input_event(_camera, event, _position, _normal, _shape_idx):
 			
 			
 			
-#func _on_hover():
-	#if (input_event.get_object() == $"."):
-		#$"..".mesh.material.albedo_color = Color(0.35,0.35,0.35)
-#
-#
-#func _on_unhover():
-	#if (input_event.get_object() == $"."):
-		#$"..".mesh.material.albedo_color = Color(0.3,0.3,0.3)
+func _on_hover():
+	if input_event.get_object() == $"." and !$"../..".ignore_hover:
+		$"../..".on()
+
+
+func _on_unhover():
+	if (input_event.get_object() == $"."):
+		$"../..".off()
 
 
 func _on_button_pressed():

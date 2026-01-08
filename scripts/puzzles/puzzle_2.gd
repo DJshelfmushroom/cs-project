@@ -12,6 +12,7 @@ var practice = true
 	
 func _ready() -> void:
 	completed = false
+	$MemoryButton3D.visible = false
 	var index = 0
 	var y = 0
 	for i in range(3):
