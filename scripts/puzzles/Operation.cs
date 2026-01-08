@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using Godot;
 using Godot.NativeInterop;
@@ -10,7 +12,7 @@ public partial class Operation : Node
 {
 	override public void _Ready()
 	{
-		OperationPath2D operation = new OperationPath2D(new Vector2(200, 500), new Vector2(20, 20), new Vector2(), 5, 10, 30);
+		OperationPath2D operation = new OperationPath2D(new Vector2(200, 500), new Vector2(20, 20), Tuple.Create(200,200) 5, 10, 30);
 		Path2D curve = operation.GeneratePath();
 		
 		Line2D line = new Line2D();
@@ -23,8 +25,11 @@ public partial class Operation : Node
 
 partial class OperationPath2D
 {
-	private Vector2 _start, _end, _size;
+	private Vector2 _start, _end;
+	private Tuple<int,int> _size;
 	private int _spacing, _pointCount, _stepSize;
+	private const float ANGLE_RANGE = 120f;
+	private const int SNAP_TO_ANGLE = 45;
 
 	public Path2D GeneratePath() // render is for debugging
 	{
@@ -37,30 +42,71 @@ partial class OperationPath2D
 	{
 		Curve2D curve = new Curve2D();
 		Vector2[] points = new Vector2[_pointCount];
+		List<Vector2> pointsBack = new List<Vector2>();
 		points[0] = _start;
-		Vector2 previousPoint, newPoint = new Vector2();
-		float? angle;
 		for (int i = 1; i < _pointCount - 1; i++)
 		{
-			previousPoint = points[i-1];
-			angle = Random.Shared.NextSingle() * MathF.PI * 2;
-			newPoint.X = previousPoint.X + MathF.Cos((float)angle) * _stepSize;
-			newPoint.Y = previousPoint.Y + MathF.Sin((float)angle) * _stepSize;
-			GD.Print($"Generated point {i}: {newPoint}");
-			points[i] = (newPoint);
+			points[i] = GetNextPointOut(points[i-1], i);
 		}
-		points[_pointCount - 1] = _end;
-		angle = null;
-		foreach (Vector2 point in points) 
+		points[_pointCount - 1] = _start + _end;
+		Vector2 point = points[_pointCount-1];
+		while (point.DistanceSquaredTo(_end) > _spacing * _spacing)
 		{
-			GD.Print($"Generated point {point}");
-			curve.AddPoint(point);
+			point = GetNextPointIn(point);
+			pointsBack.Add(point);
+		}
+		{
 			
+		}
+
+		foreach (Vector2 index in points) 
+		{
+			GD.Print($"Generated point {index}");
+			curve.AddPoint(index);
 		}
 		return curve;
 	}
 
-	public OperationPath2D(Vector2 start, Vector2 end, Vector2 size, int spacing, int pointCount, int stepSize)
+	private Vector2 GetNextPointOut(Vector2 currentPoint, int? index = null, bool debug = false)
+		
+	{
+		 Vector2 nextPoint;
+		 float angle = (Random.Shared.NextSingle() * 2 * ANGLE_RANGE + 360 - ANGLE_RANGE)/360 * MathF.PI * 2f;
+		 if (SNAP_TO_ANGLE > 0)
+		 {
+			 angle = (float)(Math.Round(angle / (SNAP_TO_ANGLE * MathF.PI / 180)) * (SNAP_TO_ANGLE * MathF.PI / 180));
+		 }
+		 nextPoint = new Vector2((float)(currentPoint.X + Math.Cos(angle) * _stepSize),(float)(currentPoint.Y + Math.Sin(angle) * _stepSize));
+		 if (index.HasValue && !debug)
+		 {
+			 GD.Print($"Point {index.Value + 1}: {nextPoint}");
+		 }
+
+		 if (debug && index.HasValue)
+		 {
+			 index++;
+		 }
+
+		 if (Math.Abs(nextPoint.X - _start.X) > Math.Abs(_size.Item1) || Math.Abs(nextPoint.Y - _start.Y) > Math.Abs(_size.Item2)) 
+		 {
+			 return GetNextPointOut(currentPoint, index, true);
+		 }
+		 else
+		 {
+			 return nextPoint;
+		 }
+	}
+	
+	private Vector2 GetNextPointIn(Vector2 currentPoint)
+	{
+		Vector2 direction = (_end - currentPoint).Normalized();
+		Vector2 nextPoint = currentPoint + direction * _stepSize; // dont use this -- autogen
+		return nextPoint;
+	}
+	
+	
+
+	public OperationPath2D(Vector2 start, Vector2 end, Tuple<int,int> size, int spacing, int pointCount, int stepSize)
 	{
 		_start = start;
 		_end = end;

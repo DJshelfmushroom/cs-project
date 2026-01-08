@@ -9,5 +9,4 @@ public partial class Button3d : Node3D
 		ButtonMesh.Mesh = GD.Load<Mesh>("res://bomb/Models/bombButtonMesh.tres");	
 		this.AddChild(ButtonMesh);
 	}
-	
 }
