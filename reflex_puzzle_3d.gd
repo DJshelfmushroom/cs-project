@@ -19,7 +19,15 @@ var score = null
 #var completed = false
 #var practice = true
 
+func set_start_button():
+	$StartButton3D.set_text("Start Test")
+	$StartButton3D/button/Label3D.modulate = Color.WHITE
+	$StartButton3D/button/Label3D.font_size = 220
+	$StartButton3D/button/Label3D.pixel_size = 0.00025
+	#$StartButton3D2/button/Label3D.text = "Start Test"
+
 func _ready():
+	set_start_button()
 	$EndScreen.hide()
 	$Score.hide()
 	$RestartButton.hide()
