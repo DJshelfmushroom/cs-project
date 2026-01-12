@@ -1,12 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://1bqj0d1bbj3c"]
+[gd_scene load_steps=4 format=3 uid="uid://1bqj0d1bbj3c"]
 
 [ext_resource type="Script" uid="uid://c12ur810twi0b" path="res://scripts/ui/layout/button_pos.gd" id="1_58i0q"]
 [ext_resource type="Script" uid="uid://dgyse4nbyam63" path="res://reflex_puzzle_3d.gd" id="1_paxyd"]
-[ext_resource type="PackedScene" uid="uid://okm8q0m3g8ry" path="res://scenes/components/button.blend" id="3_aet4m"]
-[ext_resource type="Script" uid="uid://3f8sojmo78eh" path="res://scripts/components/button_area_3d.gd" id="4_qtuaw"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_vxs8h"]
-size = Vector3(0.25, 0.25, 0.03)
+[ext_resource type="PackedScene" uid="uid://caapg5wn513l5" path="res://scenes/components/button_3d.tscn" id="5_aet4m"]
 
 [node name="ReflexPuzzle3D" type="Node3D"]
 script = ExtResource("1_paxyd")
@@ -15,25 +11,27 @@ script = ExtResource("1_paxyd")
 visible = false
 pixel_size = 0.0025
 text = "Up!"
-font_size = 110
+font_size = 55
 
 [node name="Down" type="Label3D" parent="."]
 visible = false
 pixel_size = 0.0025
 text = "Down!"
-font_size = 110
+font_size = 55
 
 [node name="Left" type="Label3D" parent="."]
 visible = false
 pixel_size = 0.0025
 text = "Left!"
-font_size = 110
+font_size = 55
 
 [node name="Right" type="Label3D" parent="."]
 visible = false
 pixel_size = 0.0025
 text = "Right!"
-font_size = 110
+font_size = 55
+
+[node name="StartButton3D" parent="." instance=ExtResource("5_aet4m")]
 
 [node name="RestartButton" type="Button" parent="."]
 visible = false
@@ -50,16 +48,20 @@ wait_time = 10.0
 one_shot = true
 
 [node name="Time" type="Label3D" parent="."]
-visible = false
-text = "10"
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.26619, 0.61020386, 0)
+pixel_size = 0.0025
+text = "#"
 font_size = 55
 
 [node name="EndScreen" type="Label3D" parent="."]
 visible = false
+pixel_size = 0.0025
 font_size = 60
 
 [node name="Score" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09787357, 0)
 visible = false
+pixel_size = 0.0025
 font_size = 45
 
 [node name="RedWireButton" type="Button" parent="."]
@@ -79,20 +81,6 @@ text = "CUT THE RED WIRE"
 script = ExtResource("1_58i0q")
 metadata/pos = Vector2(862, 40)
 
-[node name="StartButton3D" parent="." instance=ExtResource("3_aet4m")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
-
-[node name="Area" type="Area3D" parent="StartButton3D"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
-script = ExtResource("4_qtuaw")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StartButton3D/Area"]
-shape = SubResource("BoxShape3D_vxs8h")
-
-[node name="Label3D" type="Label3D" parent="StartButton3D"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.010610298, -0.01, -4.6379087e-10)
-pixel_size = 0.0005
-text = "Start Test
-"
-font_size = 110
-outline_size = 0
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5401807)
+fov = 124.712265

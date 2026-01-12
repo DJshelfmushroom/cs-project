@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://ipind734fo34"]
+[gd_scene load_steps=3 format=3 uid="uid://cwui3aoo0t1ew"]
 
 [ext_resource type="Script" uid="uid://bl8306xynkj5m" path="res://scripts/puzzles/puzzle_2.gd" id="1_e5kyn"]
 [ext_resource type="PackedScene" uid="uid://c4pwgpjrmtysv" path="res://scenes/components/memory_button_3d.tscn" id="2_e5kyn"]
