@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cwx2igspb2vsu"
-path="res://.godot/imported/Keypad - 2.gltf-6ae8de5a6a69bd8c7f8f546f0d790405.scn"
+uid="uid://3v1jiiv0u45q"
+path="res://.godot/imported/7.gltf-5a262fd1d9d3aa605cc82306f467bcf9.scn"
 
 [deps]
 
-source_file="res://assets/Keypad/Keypad - 2.gltf"
-dest_files=["res://.godot/imported/Keypad - 2.gltf-6ae8de5a6a69bd8c7f8f546f0d790405.scn"]
+source_file="res://assets/Keypad/7.gltf"
+dest_files=["res://.godot/imported/7.gltf-5a262fd1d9d3aa605cc82306f467bcf9.scn"]
 
 [params]
 

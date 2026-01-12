@@ -1,4 +1,4 @@
-extends Label3D
+extends Label
 
 var gen = RandomNumberGenerator.new()
 var x = gen.randi_range(1,9)

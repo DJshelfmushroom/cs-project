@@ -10,8 +10,8 @@ func _ready() -> void:
 	completed = false
 
 func _process(_delta: float) -> void:
-	if ((TextEdit1.text == str($EquationLabel.get_rand1()) && TextEdit2.text == str($EquationLabel.get_rand2())) \
-	or (TextEdit1.text == str($EquationLabel.get_rand2()) && TextEdit2.text == str($EquationLabel.get_rand1()))):
+	if ((TextEdit1.text == str($EquationLabel.x) && TextEdit2.text == str($EquationLabel.y)) \
+	or (TextEdit1.text == str($EquationLabel.y) && TextEdit2.text == str($EquationLabel.x))):
 		completed = true
 	elif (not(TextEdit1.text == "") && not(TextEdit2.text == "") && strikeable == true):
 		TextEdit1.editable = false

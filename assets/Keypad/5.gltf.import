@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://evy4omqll5sx"
-path="res://.godot/imported/Keypad - 5.gltf-07a87376b1dd8f5080161eecedd1a061.scn"
+path="res://.godot/imported/5.gltf-12f141235839e55b82b2c8ffe8e57d7e.scn"
 
 [deps]
 
-source_file="res://assets/Keypad/Keypad - 5.gltf"
-dest_files=["res://.godot/imported/Keypad - 5.gltf-07a87376b1dd8f5080161eecedd1a061.scn"]
+source_file="res://assets/Keypad/5.gltf"
+dest_files=["res://.godot/imported/5.gltf-12f141235839e55b82b2c8ffe8e57d7e.scn"]
 
 [params]
 

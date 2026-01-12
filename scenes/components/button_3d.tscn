@@ -1,9 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://caapg5wn513l5"]
+[gd_scene load_steps=16 format=3 uid="uid://caapg5wn513l5"]
 
 [ext_resource type="Script" uid="uid://btb4jjfuhw1lh" path="res://scripts/puzzles/components/button_3d.gd" id="1_f1uqr"]
 [ext_resource type="Script" uid="uid://3f8sojmo78eh" path="res://scripts/components/button_area_3d.gd" id="1_g6g5h"]
 [ext_resource type="PackedScene" uid="uid://okm8q0m3g8ry" path="res://scenes/components/button.blend" id="2_8xisv"]
 [ext_resource type="FontFile" uid="uid://d3y7shqhxu6sv" path="res://assets/fonts/Urban Shadow Sans Serif.otf" id="3_8xisv"]
+[ext_resource type="PackedScene" uid="uid://u5gqi1vt4ehw" path="res://assets/Keypad/1.gltf" id="5_yqlvm"]
+[ext_resource type="PackedScene" uid="uid://cwx2igspb2vsu" path="res://assets/Keypad/2.gltf" id="6_i2pod"]
+[ext_resource type="PackedScene" uid="uid://wb88sg7brk7s" path="res://assets/Keypad/3.gltf" id="7_1h2bl"]
+[ext_resource type="PackedScene" uid="uid://bcwopion0ghc4" path="res://assets/Keypad/4.gltf" id="8_lojh8"]
+[ext_resource type="PackedScene" uid="uid://evy4omqll5sx" path="res://assets/Keypad/5.gltf" id="9_b0h4h"]
+[ext_resource type="PackedScene" uid="uid://c17ykwaa1tqrg" path="res://assets/Keypad/6.gltf" id="10_a0qvu"]
+[ext_resource type="PackedScene" uid="uid://3v1jiiv0u45q" path="res://assets/Keypad/7.gltf" id="11_etqmg"]
+[ext_resource type="PackedScene" uid="uid://d0ncpd1u5m7ve" path="res://assets/Keypad/8.gltf" id="12_shk8n"]
+[ext_resource type="PackedScene" uid="uid://p3pajakax4ic" path="res://assets/Keypad/9.gltf" id="13_8h2ja"]
+[ext_resource type="PackedScene" uid="uid://3qt78bmn8fky" path="res://assets/Keypad/Body.gltf" id="14_8v8ii"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sdqrk"]
 size = Vector3(0.25, 0.25, 0.03)
@@ -13,6 +23,7 @@ script = ExtResource("1_f1uqr")
 
 [node name="button" parent="." instance=ExtResource("2_8xisv")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+visible = false
 
 [node name="Area3D" type="Area3D" parent="button"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
@@ -29,3 +40,32 @@ text = "1"
 font = ExtResource("3_8xisv")
 font_size = 350
 outline_size = 0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9596827, 0.2810855, 0, -0.2810855, 0.9596827, 0, 0.080523014, 2.0131342)
+light_indirect_energy = 1.3
+shadow_enabled = true
+shadow_bias = 0.244
+
+[node name="Keypad" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.039106667, -0.24044484, 0)
+
+[node name="1" parent="Keypad" instance=ExtResource("5_yqlvm")]
+
+[node name="2" parent="Keypad" instance=ExtResource("6_i2pod")]
+
+[node name="3" parent="Keypad" instance=ExtResource("7_1h2bl")]
+
+[node name="4" parent="Keypad" instance=ExtResource("8_lojh8")]
+
+[node name="5" parent="Keypad" instance=ExtResource("9_b0h4h")]
+
+[node name="6" parent="Keypad" instance=ExtResource("10_a0qvu")]
+
+[node name="7" parent="Keypad" instance=ExtResource("11_etqmg")]
+
+[node name="8" parent="Keypad" instance=ExtResource("12_shk8n")]
+
+[node name="9" parent="Keypad" instance=ExtResource("13_8h2ja")]
+
+[node name="Body" parent="Keypad" instance=ExtResource("14_8v8ii")]
