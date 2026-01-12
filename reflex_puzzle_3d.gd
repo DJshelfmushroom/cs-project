@@ -15,7 +15,7 @@ const keys : Dictionary = {
 }
 var score = null
 @onready var timer = $Timer
-@onready var screen_size = get_viewport().get_visible_rect()
+#@onready var screen_size = get_viewport().get_visible_rect()
 #var completed = false
 #var practice = true
 
@@ -24,6 +24,7 @@ func set_start_button():
 	$StartButton3D/button/Label3D.modulate = Color.WHITE
 	$StartButton3D/button/Label3D.font_size = 220
 	$StartButton3D/button/Label3D.pixel_size = 0.00025
+	$StartButton3D.num = 0
 	#$StartButton3D2/button/Label3D.text = "Start Test"
 
 func _ready():
@@ -64,7 +65,7 @@ func _process(_delta: float):
 		if processinstruction == keys.up:
 			
 			if (label_on_screen(label) == true):
-				label.position.y -= 8
+				label.position.y += 0.015
 			else:
 				processinstruction = null
 				awaitingInputs = false
@@ -73,7 +74,7 @@ func _process(_delta: float):
 		elif processinstruction == keys.down:
 			
 			if (label_on_screen(label) == true):
-				label.position.y += 8
+				label.position.y -= 0.015
 			else:
 				processinstruction = null
 				awaitingInputs = false
@@ -82,7 +83,7 @@ func _process(_delta: float):
 		elif processinstruction == keys.left:
 			
 			if (label_on_screen(label) == true):
-				label.position.x -= 10.5
+				label.position.x -= 0.02
 			else:
 				processinstruction = null
 				awaitingInputs = false
@@ -91,7 +92,7 @@ func _process(_delta: float):
 		elif processinstruction == keys.right:
 			
 			if (label_on_screen(label) == true):
-				label.position.x += 10.5
+				label.position.x += 0.02
 			else:
 				processinstruction = null
 				awaitingInputs = false
@@ -103,7 +104,7 @@ func _process_instruction(key):
 
 func place_labels():
 	for x in Labels:
-		x.position = Vector3(800,380, 0)
+		x.position = Vector3(0,0, 0)
 
 func reset_labels():
 	for x in Labels:
@@ -113,8 +114,15 @@ func time_left():
 	return int(timer.get_time_left())
 
 func label_on_screen(word):
-	var rect = word.get_global_rect()
-	return screen_size.intersects(rect)
+	var screen = get_viewport().get_camera_3d()
+	var screen_position = screen.unproject_position(word.global_position)
+	var screen_size = get_viewport().size
+	return (
+		screen_position.x >= 0 and
+		screen_position.y >= 0 and
+		screen_position.x <= screen_size.x and
+		screen_position.y <= screen_size.y
+	)
 
 func begin():
 	label = null
@@ -195,12 +203,13 @@ func hideLabels():
 	$Left.hide()
 	$Right.hide()
 
-func _on_start_button_pressed() -> void:
-	$StartButton3D.hide()
-	$StartButton3D.disabled = true
-	GameStart = true
-	timer.start()
-	_startGame()
+func _on_but_pressed(num : int) -> void:
+	if num == 0:
+		$StartButton3D.hide()
+		$StartButton3D.disabled = true
+		GameStart = true
+		timer.start()
+		_startGame()
 
 func win():
 	$EndScreen.text = "You Won!"
@@ -226,5 +235,8 @@ func _on_restart_button_pressed() -> void:
 	timer.start()
 	_startGame()
 
+func _on_but_released(num : int):
+	pass
+	
 #func _on_red_wire_button_pressed() -> void:
 #	get_tree().change_scene_to_file("res://scenes/menus/practice_menu.tscn")
