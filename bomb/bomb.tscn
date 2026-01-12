@@ -1,11 +1,12 @@
 [gd_scene load_steps=7 format=3 uid="uid://b3aqjmj7grawb"]
+[gd_scene load_steps=5 format=3 uid="uid://b3aqjmj7grawb"]
 
 [ext_resource type="PackedScene" uid="uid://b5lb0ykdugkxc" path="res://bomb/bom.blend" id="1_f3ig0"]
-[ext_resource type="Script" uid="uid://cd13ygh6uu8dn" path="res://bomb/plug_wire.cs" id="2_1h7gg"]
 [ext_resource type="Script" uid="uid://ds6n1ew1wvesq" path="res://bomb/bomb.cs" id="2_f3gsr"]
 [ext_resource type="PackedScene" uid="uid://f6op8gdxrkeu" path="res://scenes/puzzles/puzzle_one_3d.tscn" id="3_f3gsr"]
 [ext_resource type="PackedScene" uid="uid://ipind734fo34" path="res://scenes/puzzles/puzzle_two_3d.tscn" id="4_27ssy"]
 [ext_resource type="PackedScene" uid="uid://dayhykcmbmowg" path="res://bomb/Button/Models/textures/roltateaxis.tscn" id="6_27ssy"]
+[ext_resource type="PackedScene" uid="uid://cwui3aoo0t1ew" path="res://scenes/puzzles/puzzle_two_3d.tscn" id="4_27ssy"]
 
 [node name="Bomb" type="Node3D"]
 
@@ -22,7 +23,6 @@ transform = Transform3D(-1.5298985e-08, 0, 0.35, 0, 0.35, 0, -0.35, 0, -1.529898
 
 [node name="Node3D" type="Node3D" parent="PlugLocs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.013037, 0)
-script = ExtResource("2_1h7gg")
 metadata/link = NodePath("../Node3D2")
 
 [node name="RayCast3D" type="RayCast3D" parent="PlugLocs/Node3D"]
