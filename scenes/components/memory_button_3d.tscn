@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://c4pwgpjrmtysv"]
 
 [ext_resource type="PackedScene" uid="uid://okm8q0m3g8ry" path="res://scenes/components/button.blend" id="1_ar82o"]
-[ext_resource type="Script" uid="uid://ysuox7trlodu" path="res://scripts/components/memory_button_3d.gd" id="1_pe7gh"]
-[ext_resource type="Script" uid="uid://bimje6eg4suja" path="res://scripts/components/memory_button_area_3d.gd" id="2_pe7gh"]
+[ext_resource type="Script" path="res://scripts/components/memory_button_3d.gd" id="1_pe7gh"]
+[ext_resource type="Script" path="res://scripts/components/memory_button_area_3d.gd" id="2_pe7gh"]
 [ext_resource type="FontFile" uid="uid://d3y7shqhxu6sv" path="res://assets/fonts/Urban Shadow Sans Serif.otf" id="3_fp5t1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gagxl"]
