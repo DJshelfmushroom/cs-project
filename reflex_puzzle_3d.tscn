@@ -11,25 +11,25 @@ script = ExtResource("1_paxyd")
 visible = false
 pixel_size = 0.0025
 text = "Up!"
-font_size = 110
+font_size = 55
 
 [node name="Down" type="Label3D" parent="."]
 visible = false
 pixel_size = 0.0025
 text = "Down!"
-font_size = 110
+font_size = 55
 
 [node name="Left" type="Label3D" parent="."]
 visible = false
 pixel_size = 0.0025
 text = "Left!"
-font_size = 110
+font_size = 55
 
 [node name="Right" type="Label3D" parent="."]
 visible = false
 pixel_size = 0.0025
 text = "Right!"
-font_size = 110
+font_size = 55
 
 [node name="StartButton3D" parent="." instance=ExtResource("5_aet4m")]
 
@@ -48,16 +48,20 @@ wait_time = 10.0
 one_shot = true
 
 [node name="Time" type="Label3D" parent="."]
-visible = false
-text = "10"
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.26619, 0.61020386, 0)
+pixel_size = 0.0025
+text = "#"
 font_size = 55
 
 [node name="EndScreen" type="Label3D" parent="."]
 visible = false
+pixel_size = 0.0025
 font_size = 60
 
 [node name="Score" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09787357, 0)
 visible = false
+pixel_size = 0.0025
 font_size = 45
 
 [node name="RedWireButton" type="Button" parent="."]
@@ -78,4 +82,5 @@ script = ExtResource("1_58i0q")
 metadata/pos = Vector2(862, 40)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.43591744)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5401807)
+fov = 124.712265
