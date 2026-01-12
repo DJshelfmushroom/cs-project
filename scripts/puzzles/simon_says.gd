@@ -1,6 +1,7 @@
 extends Node3D
 
-@onready var original_minigame = preload("res://scenes/puzzles/simon_says.tscn")
+@onready var original_minigame = preload("res://scenes/puzzles/simon_puzzle_3d.tscn")
+var button_scene = preload("res://scenes/components/simon_button_3d.tscn")
 var Level = 0
 var Color1 = 0
 var Color2 = 1
@@ -15,6 +16,7 @@ var ButtonsPressed = []
 var GameStart = true
 var GameStart2 = false
 var completed = false
+var setup = false
 #var practice = true
 
 #var FirstTime = 1
@@ -28,11 +30,34 @@ func _ready():
 	#	await _Start_Game()
 	#	FirstTime = 0
 	#	$StartGameButton.hide()
-	$Button.num = 1
-	$Button2.num = 2
-	$Button3.num = 3
-	$Button4.num = 4
-	$StartGameButton.num = 0
+	if !setup:
+		var button1inst = button_scene.instantiate()
+		var button2inst = button_scene.instantiate()
+		var button3inst = button_scene.instantiate()
+		var button4inst = button_scene.instantiate()
+		button1inst.name = "Button"
+		button1inst.position = Vector3(0, 0.35, 0)
+		button1inst.disabled = true
+		button2inst.name = "Button2"
+		button2inst.position = Vector3(0.35, 0.35, 0)
+		button2inst.disabled = true
+		button3inst.name = "Button3"
+		button3inst.position = Vector3(0, 0, 0)
+		button3inst.disabled = true
+		button4inst.name = "Button4"
+		button4inst.position = Vector3(0.35, 0, 0)
+		button4inst.disabled = true
+		add_child(button1inst)
+		add_child(button2inst)
+		add_child(button3inst)
+		add_child(button4inst)
+		$Button.num = 1
+		$Button2.num = 2
+		$Button3.num = 3
+		$Button4.num = 4
+		$Button3.set_color(Color.AQUA)
+		$StartGameButton.num = 0
+		setup = true
 	_Buttons_Disabled()
 	if GameStart2 == true:
 		await _Game_Over_Check()
@@ -177,10 +202,12 @@ func _Game_Over_Animation():
 	var parent = get_parent()
 	var new_minigame = original_minigame.instantiate()
 	name = "Simon"
-	new_minigame.name = "Simon Says"
-	new_minigame.scale.x = 0.5
-	new_minigame.scale.y = 0.5
-	new_minigame.position = Vector2(820,0)
+	new_minigame.name = "SimonPuzzle3D"
+	new_minigame.scale.x = scale.x
+	new_minigame.scale.y = scale.y
+	new_minigame.scale.z = scale.z
+	new_minigame.position = position
+	new_minigame.rotation = rotation
 	#new_minigame.practice = false
 	parent.add_child(new_minigame)
 	queue_free()
@@ -257,7 +284,7 @@ func _on_but_pressed(num : int) -> void:
 		$StartGameButton.disabled = true
 		_ready()
 			
-func _on_but_released(num : int):
+func _on_but_released(_num : int):
 	pass
 
 

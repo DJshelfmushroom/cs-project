@@ -29,7 +29,6 @@ script = ExtResource("3_yokv4")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="button/Area3D"]
 shape = SubResource("BoxShape3D_5jgh7")
 
-[node name="ColorOutline" type="MeshInstance3D" parent="button/Area3D"]
+[node name="ColorOutline" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.7422775e-10, 0, -0.02)
 mesh = SubResource("BoxMesh_loskg")
-skeleton = NodePath("../../..")

@@ -1,32 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2yiau653p0fr"]
+[gd_scene load_steps=3 format=3 uid="uid://c2yiau653p0fr"]
 
 [ext_resource type="Script" uid="uid://doi7txwxpofw" path="res://scripts/puzzles/simon_says.gd" id="1_6dpfr"]
-[ext_resource type="PackedScene" uid="uid://c33jnblchqp25" path="res://scenes/components/simon_button_3d.tscn" id="2_2ltfg"]
 [ext_resource type="PackedScene" uid="uid://caapg5wn513l5" path="res://scenes/components/button_3d.tscn" id="3_k8xbm"]
 
 [node name="SimonPuzzle3D" type="Node3D"]
 script = ExtResource("1_6dpfr")
 
-[node name="Button" parent="." instance=ExtResource("2_2ltfg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 0, 0)
-
-[node name="Button2" parent="." instance=ExtResource("2_2ltfg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
-skeleton = NodePath("../Button3")
-
-[node name="Button3" parent="." instance=ExtResource("2_2ltfg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 0.35, 0)
-skeleton = NodePath("../Button4")
-
-[node name="Button4" parent="." instance=ExtResource("2_2ltfg")]
-skeleton = NodePath("../Button")
-
 [node name="StartGameButton" parent="." instance=ExtResource("3_k8xbm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.72564113, 0.18251142, 0)
-skeleton = NodePath("../Button2")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35449326, 0, 0.7849114)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3830906, 0, 1.2034044)
+skeleton = NodePath("")
