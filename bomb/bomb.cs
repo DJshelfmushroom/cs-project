@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
+#define ts
 
 public partial class bomb : Node3D
 {
@@ -89,8 +90,22 @@ public partial class bomb : Node3D
 		}
 	}
 
+	
+/// <summary>
+/// wasted how much time on this
+/// </summary>
+/// <returns>rotation as vector 3</returns>
+	public Vector3 GetBombRotation()
+	{
+		return this.Rotation;
+	}
+
 	private void MouseWrap(InputEventMouseMotion motion)
 	{
+		var transform = Transform;
+		transform.Basis = transform.Basis.Rotated(Vector3.Up, motion.Relative.X * 0.01f);
+		transform.Basis = transform.Basis.Rotated(Vector3.Forward, motion.Relative.Y * 0.01f);
+		Transform = transform;
 		Vector2 mousePos = GetViewport().GetMousePosition();
 		Vector2 mouseVel = motion.Relative;
 		Vector2 size = GetViewport().GetVisibleRect().Size;
