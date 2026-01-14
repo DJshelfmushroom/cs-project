@@ -1,21 +1,30 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3aqjmj7grawb"]
+[gd_scene load_steps=11 format=3 uid="uid://b3aqjmj7grawb"]
 
+[ext_resource type="Script" uid="uid://cegaq2p1u1qo2" path="res://scripts/menus/game_selection.gd" id="1_2mi53"]
 [ext_resource type="PackedScene" uid="uid://b5lb0ykdugkxc" path="res://bomb/bom.blend" id="1_f3ig0"]
 [ext_resource type="Script" uid="uid://ds6n1ew1wvesq" path="res://bomb/bomb.cs" id="2_f3gsr"]
 [ext_resource type="PackedScene" uid="uid://f6op8gdxrkeu" path="res://scenes/puzzles/puzzle_one_3d.tscn" id="3_f3gsr"]
 [ext_resource type="PackedScene" uid="uid://cwui3aoo0t1ew" path="res://scenes/puzzles/puzzle_two_3d.tscn" id="4_27ssy"]
+[ext_resource type="PackedScene" uid="uid://c2yiau653p0fr" path="res://scenes/puzzles/simon_puzzle_3d.tscn" id="5_27ssy"]
 [ext_resource type="PackedScene" uid="uid://dayhykcmbmowg" path="res://bomb/Button/Models/textures/roltateaxis.tscn" id="6_27ssy"]
+[ext_resource type="Script" uid="uid://cb5fs7o0nls3" path="res://scripts/ui/labels/label_2.gd" id="8_da634"]
+[ext_resource type="Script" uid="uid://c12ur810twi0b" path="res://scripts/ui/layout/button_pos.gd" id="9_33y0u"]
+[ext_resource type="PackedScene" uid="uid://d4aqd6eakis0f" path="res://scenes/components/timers/timerrr.tscn" id="10_urila"]
 
 [node name="Bomb" type="Node3D"]
+script = ExtResource("1_2mi53")
 
 [node name="bomb_instance" parent="." instance=ExtResource("1_f3ig0")]
 script = ExtResource("2_f3gsr")
 
 [node name="PuzzleOne3D" parent="bomb_instance" instance=ExtResource("3_f3gsr")]
-transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0.056185506, 0, 1.0111829)
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -0.24016353, 0.013525248, 1.0271797)
 
 [node name="PuzzleTwo3D" parent="bomb_instance" instance=ExtResource("4_27ssy")]
-transform = Transform3D(-1.5298985e-08, 0, 0.35, 0, 0.35, 0, -0.35, 0, -1.5298985e-08, 0.5245471, 0.17879, 0.6534701)
+transform = Transform3D(-3.059797e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.059797e-08, 0.52670383, 0.19510743, 0.45340592)
+
+[node name="SimonPuzzle3D" parent="bomb_instance" instance=ExtResource("5_27ssy")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.5181878, -0.17222978, -0.3540955)
 
 [node name="PlugLocs" type="Node3D" parent="."]
 
@@ -40,3 +49,74 @@ transform = Transform3D(0.8660254, -2.1855694e-08, 0.5, -0.5, -3.7855173e-08, 0.
 light_energy = 1.66
 light_indirect_energy = 2.967
 light_angular_distance = 6.3
+
+[node name="StrikesLabel" type="Label" parent="."]
+offset_left = 1550.0
+offset_right = 1950.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 60
+text = "strikes: "
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8_da634")
+
+[node name="RedWireButton" type="Button" parent="."]
+visible = false
+anchors_preset = -1
+anchor_left = 0.011000001
+anchor_top = 0.919
+anchor_right = 0.142
+anchor_bottom = 0.98300004
+offset_left = 790.88
+offset_top = -942.52
+offset_right = 939.36
+offset_bottom = -941.64
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 30
+text = "CUT THE RED WIRE"
+script = ExtResource("9_33y0u")
+metadata/pos = Vector2(760, 50)
+
+[node name="ReturnButton" type="Button" parent="."]
+visible = false
+anchors_preset = -1
+anchor_left = 0.011000001
+anchor_top = 0.919
+anchor_right = 0.142
+anchor_bottom = 0.98300004
+offset_left = 28.88
+offset_top = -32.52002
+offset_right = -22.640015
+offset_bottom = -31.640015
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 30
+text = "RETURN TO MENU"
+script = ExtResource("9_33y0u")
+metadata/pos = Vector2(50, 960)
+
+[node name="GameOverLabel" type="Label" parent="."]
+visible = false
+anchors_preset = -1
+anchor_left = 0.011000001
+anchor_top = 0.919
+anchor_right = 0.142
+anchor_bottom = 0.98300004
+offset_left = 738.88
+offset_top = -942.52
+offset_right = 887.36
+offset_bottom = -911.64
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/pos = Vector2(760, 50)
+
+[node name="TimerNode" parent="." instance=ExtResource("10_urila")]
+offset_left = 93.0
+offset_top = 1494.0
+offset_right = 1324.6399
+offset_bottom = 2297.3599
+
+[connection signal="button_up" from="RedWireButton" to="." method="_on_back_button_up"]
+[connection signal="button_up" from="ReturnButton" to="." method="_on_back_button_up"]

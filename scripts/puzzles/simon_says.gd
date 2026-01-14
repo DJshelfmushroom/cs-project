@@ -17,19 +17,18 @@ var GameStart = true
 var GameStart2 = false
 var completed = false
 var setup = false
-#var practice = true
+var practice = true
 
-#var FirstTime = 1
+var FirstTime = 1
 
-#func _process(_delta: float) -> void:
-	#if (completed && practice):
-		#$RedWireButton.visible = true
+func _process(_delta: float) -> void:
+	if (completed && practice):
+		$RedWireButton.visible = true
 
 func _ready():
-	#if FirstTime == 1:
-	#	await _Start_Game()
-	#	FirstTime = 0
-	#	$StartGameButton.hide()
+	if FirstTime == 1:
+		await _Start_Game()
+		FirstTime = 0
 	if !setup:
 		var button1inst = button_scene.instantiate()
 		var button2inst = button_scene.instantiate()
@@ -76,30 +75,9 @@ func _ready():
 			else:
 				await _Win_Animation()
 				completed = true
-	
-#func _Button1():
-	#var Button1_color = $Button.get_theme_stylebox("normal").duplicate()
-	#$Button.add_theme_stylebox_override("normal", Button1_color)
-	#return Button1_color
-	#
-#func _Button2():
-	#var Button2_color = $Button2.get_theme_stylebox("normal").duplicate()
-	#$Button2.add_theme_stylebox_override("normal", Button2_color)
-	#return Button2_color
-	#
-#func _Button3():
-	#var Button3_color = $Button3.get_theme_stylebox("normal").duplicate()
-	#$Button3.add_theme_stylebox_override("normal", Button3_color)
-	#return Button3_color
- #
-#func _Button4():
-	#var Button4_color = $Button4.get_theme_stylebox("normal").duplicate()
-	#$Button4.add_theme_stylebox_override("normal", Button4_color)
-	#return Button4_color
-	
 
-#func _Start_Game():
-#	await GameStart2 == true
+func _Start_Game():
+	await GameStart2 == true
 	
 func _play_Pattern():
 	PatternPlaying = true
@@ -160,12 +138,6 @@ func _Buttons_Disabled():
 	$Button2.disabled = true
 	$Button3.disabled = true
 	$Button4.disabled = true
-		
-#func _Buttons_Dark():
-	#_Button1().bg_color = Color.DIM_GRAY
-	#_Button2().bg_color = Color.DIM_GRAY
-	#_Button3().bg_color = Color.DIM_GRAY
-	#_Button4().bg_color = Color.DIM_GRAY
 
 func _Player_Input():
 
@@ -196,9 +168,9 @@ func _Game_Over_Animation():
 	$Button4.set_color(Color.RED)
 	await get_tree().create_timer(0.4).timeout
 	_Buttons_Off()
-	#$"..".strikes += 1
+	$"../..".strikes += 1
 	await get_tree().create_timer(1.0).timeout
-	#$"..".fix = true
+	$"../..".fix = true
 	var parent = get_parent()
 	var new_minigame = original_minigame.instantiate()
 	name = "Simon"
@@ -208,7 +180,7 @@ func _Game_Over_Animation():
 	new_minigame.scale.z = scale.z
 	new_minigame.position = position
 	new_minigame.rotation = rotation
-	#new_minigame.practice = false
+	new_minigame.practice = false
 	parent.add_child(new_minigame)
 	queue_free()
 
@@ -288,6 +260,5 @@ func _on_but_released(_num : int):
 	pass
 
 
-
-#func _on_red_wire_button_pressed() -> void:
-	#get_tree().change_scene_to_file("res://scenes/menus/practice_menu.tscn")
+func _on_red_wire_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/menus/practice_menu.tscn")

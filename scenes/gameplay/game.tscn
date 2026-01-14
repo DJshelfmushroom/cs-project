@@ -87,6 +87,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/pos = Vector2(760, 50)
 
+[node name="TimerNode" parent="." instance=ExtResource("5_hve3p")]
+layout_mode = 1
+offset_left = 93.0
+offset_top = 1494.0
+offset_right = 1324.6399
+offset_bottom = 2297.3599
+
 [node name="Puzzle1" parent="." instance=ExtResource("4_vef74")]
 layout_mode = 1
 anchors_preset = -1
@@ -97,13 +104,6 @@ offset_top = 498.0
 offset_right = 1909.32
 offset_bottom = 1151.26
 scale = Vector2(0.7, 0.7)
-
-[node name="TimerNode" parent="." instance=ExtResource("5_hve3p")]
-layout_mode = 1
-offset_left = 93.0
-offset_top = 1494.0
-offset_right = 1324.6399
-offset_bottom = 2297.3599
 
 [node name="Puzzle2" parent="." instance=ExtResource("6_mfdv2")]
 layout_mode = 1

@@ -24,7 +24,7 @@ func _process(_delta: float) -> void:
 		TextEdit1.modulate = Color.RED
 		TextEdit2.editable = false
 		TextEdit2.modulate = Color.RED
-		#$"..".strikes += 1
+		$"../..".strikes += 1
 		strikeable = false
 		await get_tree().create_timer(1.0).timeout
 		TextEdit1.text = ""
@@ -35,8 +35,8 @@ func _process(_delta: float) -> void:
 		TextEdit2.modulate = Color.WHITE
 		strikeable = true
 		current_text = 1
-	#if (completed && practice):
-	#	$RedWireButton.visible = true
+	if (completed && practice):
+		$RedWireButton.visible = true
 	
 func _on_button_pressed(num : int):
 	if current_text == 1 and TextEdit1.editable:

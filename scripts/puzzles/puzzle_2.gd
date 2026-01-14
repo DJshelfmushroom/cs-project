@@ -42,14 +42,14 @@ func _process(_delta: float) -> void:
 		completed = true
 		for button in buttons:
 			button.set_color(Color.GREEN)
-	#if (completed && practice):
-		#$RedWireButton.visible = true
+	if (completed && practice):
+		$RedWireButton.visible = true
 
 func _on_but_pressed(_b : int):
 	pass
 
 func _on_but_released(b : int):
-	if (not(thisfailed)):
+	if !thisfailed:
 		if (b1 == null):
 			b1 = buttons[b]
 			b1.on()
@@ -68,5 +68,5 @@ func _on_but_released(b : int):
 			b1 = null
 			b2 = null
 
-#func _on_red_wire_button_pressed() -> void:
-	#get_tree().change_scene_to_file("res://scenes/menus/practice_menu.tscn")
+func _on_red_wire_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/menus/practice_menu.tscn")
