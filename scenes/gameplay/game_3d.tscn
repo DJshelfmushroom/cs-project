@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b3aqjmj7grawb" path="res://bomb/bomb.tscn" id="1_4lrra"]
 [ext_resource type="PackedScene" uid="uid://f6op8gdxrkeu" path="res://scenes/puzzles/puzzle_one_3d.tscn" id="2_6f4k4"]
-[ext_resource type="PackedScene" uid="uid://ipind734fo34" path="res://scenes/puzzles/puzzle_two_3d.tscn" id="3_ojxoi"]
+[ext_resource type="PackedScene" uid="uid://cwui3aoo0t1ew" path="res://scenes/puzzles/puzzle_two_3d.tscn" id="3_ojxoi"]
 [ext_resource type="PackedScene" uid="uid://c2yiau653p0fr" path="res://scenes/puzzles/simon_puzzle_3d.tscn" id="4_w0244"]
 
 [node name="Game3D" type="Node3D"]

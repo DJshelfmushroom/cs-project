@@ -100,10 +100,6 @@ public partial class bomb : Node3D
 
 	private void MouseWrap(InputEventMouseMotion motion)
 	{
-		var transform = Transform;
-		transform.Basis = transform.Basis.Rotated(Vector3.Up, motion.Relative.X * 0.01f);
-		transform.Basis = transform.Basis.Rotated(Vector3.Forward, motion.Relative.Y * 0.01f);
-		Transform = transform;
 		Vector2 mousePos = GetViewport().GetMousePosition();
 		Vector2 mouseVel = motion.Relative;
 		Vector2 size = GetViewport().GetVisibleRect().Size;
