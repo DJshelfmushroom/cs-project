@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://b3aqjmj7grawb"]
+
+[ext_resource type="PackedScene" uid="uid://b5lb0ykdugkxc" path="res://bomb/bom.blend" id="1_f3ig0"]
+[ext_resource type="Script" uid="uid://ds6n1ew1wvesq" path="res://bomb/bomb.cs" id="2_f3gsr"]
+[ext_resource type="PackedScene" uid="uid://f6op8gdxrkeu" path="res://scenes/puzzles/puzzle_one_3d.tscn" id="3_f3gsr"]
+[ext_resource type="PackedScene" uid="uid://cwui3aoo0t1ew" path="res://scenes/puzzles/puzzle_two_3d.tscn" id="4_27ssy"]
+[ext_resource type="Script" uid="uid://bwsbcc1ccrmyh" path="res://bomb/Button/Models/textures/Roltateaxis.cs" id="6_5f04w"]
+[ext_resource type="PackedScene" uid="uid://dayhykcmbmowg" path="res://bomb/Button/Models/textures/roltateaxis.tscn" id="6_27ssy"]
+
+[node name="Bomb" type="Node3D"]
+
+[node name="bomb_instance" parent="." instance=ExtResource("1_f3ig0")]
+script = ExtResource("2_f3gsr")
+
+[node name="PuzzleOne3D" parent="bomb_instance" instance=ExtResource("3_f3gsr")]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0.056185506, 0, 1.0111829)
+
+[node name="PuzzleTwo3D" parent="bomb_instance" instance=ExtResource("4_27ssy")]
+transform = Transform3D(-1.5298985e-08, 0, 0.35, 0, 0.35, 0, -0.35, 0, -1.5298985e-08, 0.5245471, 0.17879, 0.6534701)
+
+[node name="PlugLocs" type="Node3D" parent="."]
+
+[node name="Node3D" type="Node3D" parent="PlugLocs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.013037, 0)
+metadata/link = NodePath("../Node3D2")
+
+[node name="RayCast3D" type="RayCast3D" parent="PlugLocs/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6254169, -0.7823271)
+
+[node name="Node3D2" type="Node3D" parent="PlugLocs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0551159, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1.2224316e-07, -0.071549654, 0.99743706, -3.5054786e-08, 0.99743706, 0.071549654, -1, -4.3711395e-08, 1.194217e-07, 1.8606071, 0.12528819, 0)
+
+[node name="roltateaxis2" parent="Camera3D" instance=ExtResource("6_27ssy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0.075, -0.385)
+script = ExtResource("6_5f04w")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.8660254, -2.1855694e-08, 0.5, -0.5, -3.7855173e-08, 0.8660254, 0, -1, -4.371139e-08, 8.520605, 13.767857, 0)
+light_energy = 1.66
+light_indirect_energy = 2.967
+light_angular_distance = 6.3
