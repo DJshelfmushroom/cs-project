@@ -1,3 +1,4 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3aqjmj7grawb"]
 [gd_scene load_steps=11 format=3 uid="uid://b3aqjmj7grawb"]
 
 [ext_resource type="Script" uid="uid://cegaq2p1u1qo2" path="res://scripts/menus/game_selection.gd" id="1_2mi53"]
@@ -21,6 +22,7 @@ script = ExtResource("2_f3gsr")
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -0.24016353, 0.013525248, 1.0271797)
 
 [node name="PuzzleTwo3D" parent="bomb_instance" instance=ExtResource("4_27ssy")]
+transform = Transform3D(0, 0, 0.35, 0, 0.35, 0, -0.35, 0, 0, 0.5245471, 0.17879, 0.6534701)
 transform = Transform3D(-3.059797e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.059797e-08, 0.52670383, 0.19510743, 0.45340592)
 
 [node name="SimonPuzzle3D" parent="bomb_instance" instance=ExtResource("5_27ssy")]
@@ -39,13 +41,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6254169, -0.7823271)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0551159, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1.271507e-07, -0.32726738, 0.9449318, -2.2214532e-09, 0.9449318, 0.32726738, -1, -4.3711395e-08, 1.1942173e-07, 1.8606071, 0.8944851, 0)
+transform = Transform3D(0, -0.32726738, 0.9449318, 0, 0.9449318, 0.32726738, -1, 0, 0, 1.8606071, 0.8944851, 0)
 
 [node name="roltateaxis2" parent="Camera3D" instance=ExtResource("6_27ssy")]
-transform = Transform3D(1, 0, 0, 0, 1, -5.2200904e-15, 0, -5.2200904e-15, 1, 0.148, 0.073, -0.385)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.148, 0.073, -0.385)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.8660254, -2.1855694e-08, 0.5, -0.5, -3.7855173e-08, 0.8660254, 0, -1, -4.371139e-08, 8.520605, 13.767857, 0)
+transform = Transform3D(0.8660254, 0, 0.5, -0.5, 0, 0.8660254, 0, -1, 0, 8.520605, 13.767857, 0)
 light_energy = 1.66
 light_indirect_energy = 2.967
 light_angular_distance = 6.3
