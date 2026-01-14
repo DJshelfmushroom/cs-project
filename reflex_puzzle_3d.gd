@@ -25,13 +25,20 @@ func set_start_button():
 	$StartButton3D/button/Label3D.font_size = 220
 	$StartButton3D/button/Label3D.pixel_size = 0.00025
 	$StartButton3D.num = 0
-	#$StartButton3D2/button/Label3D.text = "Start Test"
+	
+func set_restart_button():
+	$RestartButton3D.set_text("Restart?")
+	$RestartButton3D/button/Label3D.modulate = Color.WHITE
+	$RestartButton3D/button/Label3D.font_size = 220
+	$RestartButton3D/button/Label3D.pixel_size = 0.00025
+	$RestartButton3D.num = 1
 
 func _ready():
 	set_start_button()
+	set_restart_button()
 	$EndScreen.hide()
 	$Score.hide()
-	$RestartButton.hide()
+	$RestartButton3D.hide()
 	$Time.hide()
 	$StartButton3D.show()
 	hideLabels()
@@ -210,6 +217,13 @@ func _on_but_pressed(num : int) -> void:
 		GameStart = true
 		timer.start()
 		_startGame()
+	if num == 1:
+		_ready()
+		$StartButton3D.hide()
+		$StartButton3D.disabled = true
+		GameStart = true
+		timer.start()
+		_startGame()
 
 func win():
 	$EndScreen.text = "You Won!"
@@ -224,7 +238,7 @@ func lose():
 	await get_tree().create_timer(0.5).timeout
 	$Score.text = "Score: " + str(score)
 	$Score.show()
-	$RestartButton.show()
+	$RestartButton3D.show()
 
 
 func _on_restart_button_pressed() -> void:
@@ -235,7 +249,7 @@ func _on_restart_button_pressed() -> void:
 	timer.start()
 	_startGame()
 
-func _on_but_released(num : int):
+func _on_but_released(_num : int):
 	pass
 	
 #func _on_red_wire_button_pressed() -> void:
