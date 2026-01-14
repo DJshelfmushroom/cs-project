@@ -2,8 +2,6 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-#define ts
-
 public partial class bomb : Node3D
 {
 	PackedScene _plugScene = GD.Load<PackedScene>("res://bomb/plug.tscn");
