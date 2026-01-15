@@ -102,12 +102,15 @@ public partial class bomb : Node3D
         }
     }
 
+	}
+		return Rotation;
+	{
+	public Vector3 GetBombRotation()
 
-    public Vector3 GetBombRotation()
-    {
-        return Rotation;
-    }
-
+	public void SetBombRotation(Vector3 rotation) // radians
+	{
+		Rotation = rotation;
+	}
     private bool MouseWrap(InputEventMouseMotion motion)
 	{
 		// get the mouse position and velocity
@@ -139,40 +142,33 @@ public partial class bomb : Node3D
             wrapped = true;
         }
 
-        return wrapped;
-    }
-
-    private void RotateBomb(InputEventMouseMotion motion)
-    {
-        var transform = Transform;
-        var sensitivity = 0.01f;
-
-        if (LockedAxis != LockedAxes.None)
-        {
-            Vector3 axis;
-            switch (LockedAxis)
-            {
-                case LockedAxes.X:
-                    axis = Vector3.Right;
-                    break;
-                case LockedAxes.Y:
-                    axis = Vector3.Up;
-                    break;
-                case LockedAxes.Z:
-                    axis = Vector3.Forward;
-                    break;
-                default: return;
-            }
-
-            var angle = (motion.Relative.X + motion.Relative.Y) * sensitivity;
-            transform.Basis = transform.Basis.Rotated(axis, angle);
-        }
-        else
-        {
-            transform.Basis = transform.Basis.Rotated(Vector3.Up, motion.Relative.X * sensitivity);
-            transform.Basis = transform.Basis.Rotated(Vector3.Forward, motion.Relative.Y * sensitivity);
-        }
-
-        Transform = transform;
-    }
+	private void RotateBomb(InputEventMouseMotion motion)
+	{
+		var transform = this.Transform;
+		var sensitivity = 0.01f;
+    
+		if (LockedAxis != LockedAxes.None)
+		{
+			// Single axis lock: map mouse to the locked axis
+			Vector3 axis;
+			switch (LockedAxis)
+			{
+				case LockedAxes.X: axis = Vector3.Right; break;
+				case LockedAxes.Y: axis = Vector3.Up; break;
+				case LockedAxes.Z: axis = Vector3.Forward; break;
+				default: return;
+			}
+			// Use combined mouse delta for free motion on locked axis (Blender-like)
+			float angle = (motion.Relative.X + motion.Relative.Y) * sensitivity;
+			transform.Basis = transform.Basis.Rotated(axis, angle);
+		}
+		else
+		{
+			// Free rotation: yaw on Up, pitch on Forward (your original)
+			transform.Basis = transform.Basis.Rotated(Vector3.Up, motion.Relative.X * sensitivity);
+			transform.Basis = transform.Basis.Rotated(Vector3.Forward, motion.Relative.Y * sensitivity);
+		}
+    
+		this.Transform = transform;
+	}
 }

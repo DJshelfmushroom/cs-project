@@ -1,4 +1,4 @@
-extends Control
+extends Node3D
 
 var strikes
 var failed = false
@@ -7,13 +7,13 @@ var fix = false
 
 func _ready() -> void:
 	strikes = 0
-	$Puzzle1.practice = false
-	$Puzzle2.practice = false
-	$"Simon Says".practice = false
+	$bomb_instance/PuzzleOne3D.practice = false
+	$bomb_instance/PuzzleTwo3D.practice = false
+	$bomb_instance/SimonPuzzle3D.practice = false
 
 func _process(_delta: float) -> void:
 	if (fix == false):
-		if ($Puzzle1.completed == true && $Puzzle2.completed == true && $"Simon Says".completed == true):
+		if ($bomb_instance/PuzzleOne3D.completed == true && $bomb_instance/PuzzleTwo3D.completed == true && $bomb_instance/SimonPuzzle3D.completed == true):
 			$TimerNode.stop_timer()
 			$TimerNode/Timer/TimeLabel.add_theme_color_override("font_color", "green")
 			$StrikesLabel.add_theme_color_override("font_color", "green")
@@ -23,12 +23,12 @@ func _process(_delta: float) -> void:
 		fix = false
 		
 	if (strikes >= 3 || ($TimerNode/Timer.time_left <= 0 && allcompleted == false)):
-		$Puzzle1/EquationLabel/AnswerLabel/TextEdit1.editable = false
-		$Puzzle1/EquationLabel/AnswerLabel/TextEdit2.editable = false
+		$bomb_instance/PuzzleOne3D/EquationLabel/AnswerLabel/Num1.editable = false
+		$bomb_instance/PuzzleOne3D/EquationLabel/AnswerLabel/Num2.editable = false
 		$StrikesLabel.add_theme_color_override("font_color", "red")
 		$TimerNode/Timer/TimeLabel.add_theme_color_override("font_color", "red")
 		failed = true
-		$Puzzle2.thisfailed = true
+		$bomb_instance/PuzzleTwo3D.thisfailed = true
 		$GameOverLabel.visible = true
 		$ReturnButton.visible = true
 

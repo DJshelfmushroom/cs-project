@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://1bqj0d1bbj3c"]
+[gd_scene load_steps=5 format=3 uid="uid://1bqj0d1bbj3c"]
 
 [ext_resource type="Script" uid="uid://c12ur810twi0b" path="res://scripts/ui/layout/button_pos.gd" id="1_58i0q"]
 [ext_resource type="Script" uid="uid://dgyse4nbyam63" path="res://reflex_puzzle_3d.gd" id="1_paxyd"]
 [ext_resource type="PackedScene" uid="uid://caapg5wn513l5" path="res://scenes/components/button_3d.tscn" id="5_aet4m"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_s0e8a"]
 
 [node name="ReflexPuzzle3D" type="Node3D"]
 script = ExtResource("1_paxyd")
@@ -32,16 +34,12 @@ text = "Right!"
 font_size = 55
 
 [node name="StartButton3D" parent="." instance=ExtResource("5_aet4m")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
-[node name="RestartButton" type="Button" parent="."]
+[node name="RestartButton3D" parent="." instance=ExtResource("5_aet4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
 visible = false
-offset_left = 775.0
-offset_top = 654.0
-offset_right = 1150.0
-offset_bottom = 730.0
-mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 55
-text = "Restart?"
+skeleton = NodePath("../StartButton3D")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
@@ -59,7 +57,7 @@ pixel_size = 0.0025
 font_size = 60
 
 [node name="Score" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09787357, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11468752, 0)
 visible = false
 pixel_size = 0.0025
 font_size = 45
@@ -81,6 +79,11 @@ text = "CUT THE RED WIRE"
 script = ExtResource("1_58i0q")
 metadata/pos = Vector2(862, 40)
 
+[node name="Boundary" type="Sprite3D" parent="."]
+transform = Transform3D(402.6187, 0, 0, 0, 215.8785, 0, 0, 0, 0.986, 0, 0, -0.18912554)
+modulate = Color(0.18000486, 0.18000486, 0.18000486, 1)
+texture = SubResource("CanvasTexture_s0e8a")
+
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5401807)
-fov = 124.712265
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.0028497)
+fov = 81.68426

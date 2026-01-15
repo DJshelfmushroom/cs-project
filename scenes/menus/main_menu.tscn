@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://tnxumru84hbs"]
+[gd_scene load_steps=8 format=3 uid="uid://tnxumru84hbs"]
 
 [ext_resource type="Script" uid="uid://hksu4anhif8j" path="res://scripts/menus/main_menu.gd" id="1_7vrkn"]
+[ext_resource type="Texture2D" uid="uid://d0ts6meocitmg" path="res://assets/textures/menu_bg.png" id="2_8r73w"]
 [ext_resource type="Script" uid="uid://c12ur810twi0b" path="res://scripts/ui/layout/button_pos.gd" id="2_jix8l"]
 [ext_resource type="Script" uid="uid://c7iwdg7snkt5n" path="res://scripts/menus/lvl_label.gd" id="4_imvie"]
 [ext_resource type="Script" uid="uid://by3ib5fqp6nbv" path="res://scripts/ui/cursor/custom_cursor.gd" id="4_jix8l"]
@@ -19,6 +20,11 @@ offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7vrkn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(965, 460)
+scale = Vector2(1.2623643, 1.2814727)
+texture = ExtResource("2_8r73w")
 
 [node name="PlayButton" type="Button" parent="."]
 layout_mode = 1
@@ -123,6 +129,19 @@ offset_top = 970.0
 offset_right = 180.0
 offset_bottom = 1005.0
 script = ExtResource("6_ng0o5")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 660.0
+offset_top = 80.0
+offset_right = 1260.0
+offset_bottom = 230.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 30
+theme_override_font_sizes/font_size = 100
+text = "REDWIRE"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="button_up" from="PlayButton" to="." method="_on_play_button_up"]
 [connection signal="button_up" from="TutorialsButton" to="." method="_on_tutorials_button_up"]
