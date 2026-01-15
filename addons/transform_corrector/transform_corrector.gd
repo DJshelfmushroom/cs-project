@@ -153,9 +153,9 @@ class TransformPropertyEditor extends EditorProperty:
 	var container: HBoxContainer
 	var axis_labels: Array[String] = ["X", "Y", "Z"]
 	var axis_colors: Array[Color] = [
-		Color(0.96, 0.20, 0.32),  # Red for X
-		Color(0.53, 0.84, 0.01),  # Green for Y
-		Color(0.16, 0.52, 0.95)   # Blue for Z
+		Color(0.732, 0.458, 0.447, 1.0),  # Red for X
+		Color(0.632, 0.797, 0.503, 1.0),  # Green for Y
+		Color(0.38, 0.549, 0.674, 1.0)   # Blue for Z
 	]
 	
 	func _init():

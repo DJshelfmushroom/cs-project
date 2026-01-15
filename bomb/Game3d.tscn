@@ -21,7 +21,6 @@ script = ExtResource("2_f3gsr")
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -0.24016353, 0.013525248, 1.0271797)
 
 [node name="PuzzleTwo3D" parent="bomb_instance" instance=ExtResource("4_27ssy")]
-transform = Transform3D(0, 0, 0.35, 0, 0.35, 0, -0.35, 0, 0, 0.5245471, 0.17879, 0.6534701)
 transform = Transform3D(-3.059797e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.059797e-08, 0.52670383, 0.19510743, 0.45340592)
 
 [node name="SimonPuzzle3D" parent="bomb_instance" instance=ExtResource("5_27ssy")]
