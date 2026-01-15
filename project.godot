@@ -35,6 +35,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="cs-project"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/transform_corrector/plugin.cfg")
+
 [gui]
 
 theme/custom_font="uid://d3y7shqhxu6sv"
