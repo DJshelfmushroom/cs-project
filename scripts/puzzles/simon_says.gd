@@ -252,9 +252,10 @@ func _on_but_pressed(num : int) -> void:
 				GameOver = true
 				_ready()
 	else:
-		GameStart2 = true
-		$StartGameButton.disabled = true
-		_ready()
+		if !$"../..".failed:
+			GameStart2 = true
+			$StartGameButton.disabled = true
+			_ready()
 			
 func _on_but_released(_num : int):
 	pass

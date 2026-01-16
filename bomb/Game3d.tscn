@@ -18,13 +18,13 @@ script = ExtResource("1_2mi53")
 script = ExtResource("2_f3gsr")
 
 [node name="PuzzleOne3D" parent="bomb_instance" instance=ExtResource("3_f3gsr")]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -0.24016353, 0.013525248, 1.0271797)
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -0.24016353, 0.013525248, 1.0004573)
 
 [node name="PuzzleTwo3D" parent="bomb_instance" instance=ExtResource("4_27ssy")]
-transform = Transform3D(-3.059797e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.059797e-08, 0.52670383, 0.19510743, 0.45340592)
+transform = Transform3D(-3.059797e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.059797e-08, 0.50984114, 0.19510743, 0.45340592)
 
 [node name="SimonPuzzle3D" parent="bomb_instance" instance=ExtResource("5_27ssy")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.5181878, -0.17222978, -0.3540955)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.52222013, -0.17222978, -0.3540955)
 
 [node name="PlugLocs" type="Node3D" parent="."]
 
