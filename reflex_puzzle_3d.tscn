@@ -80,8 +80,8 @@ script = ExtResource("1_58i0q")
 metadata/pos = Vector2(862, 40)
 
 [node name="Boundary" type="Sprite3D" parent="."]
-transform = Transform3D(402.6187, 0, 0, 0, 215.8785, 0, 0, 0, 0.986, 0, 0, -0.18912554)
-modulate = Color(0.18000486, 0.18000486, 0.18000486, 1)
+transform = Transform3D(159.81723, 0, 0, 0, 145.39384, 0, 0, 0, 0.986, 0, 0, -0.18912554)
+modulate = Color(0.26657522, 0.2665752, 0.2665752, 1)
 texture = SubResource("CanvasTexture_s0e8a")
 
 [node name="Camera3D" type="Camera3D" parent="."]

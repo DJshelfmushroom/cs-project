@@ -121,14 +121,9 @@ func time_left():
 	return int(timer.get_time_left())
 
 func label_on_screen(word):
-	var screen = get_viewport().get_camera_3d()
-	var screen_position = screen.unproject_position(word.global_position)
-	var screen_size = get_viewport().size
+	
 	return (
-		screen_position.x >= 0 and
-		screen_position.y >= 0 and
-		screen_position.x <= screen_size.x and
-		screen_position.y <= screen_size.y
+		(word.position.y <= 1.2 and word.position.y >= -1.2) and (word.position.x <= 2 and word.position.x >= -2)
 	)
 
 func begin():
