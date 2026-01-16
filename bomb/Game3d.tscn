@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b3aqjmj7grawb"]
+[gd_scene load_steps=12 format=3 uid="uid://b3aqjmj7grawb"]
 
 [ext_resource type="Script" uid="uid://cegaq2p1u1qo2" path="res://scripts/menus/game_selection.gd" id="1_2mi53"]
 [ext_resource type="PackedScene" uid="uid://b5lb0ykdugkxc" path="res://bomb/bom.blend" id="1_f3ig0"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c2yiau653p0fr" path="res://scenes/puzzles/simon_puzzle_3d.tscn" id="5_27ssy"]
 [ext_resource type="PackedScene" uid="uid://dayhykcmbmowg" path="res://bomb/Button/Models/textures/roltateaxis.tscn" id="6_27ssy"]
 [ext_resource type="Script" uid="uid://cb5fs7o0nls3" path="res://scripts/ui/labels/label_2.gd" id="8_da634"]
+[ext_resource type="Script" uid="uid://bwsbcc1ccrmyh" path="res://bomb/Button/Models/textures/Roltateaxis.cs" id="8_vy8rm"]
 [ext_resource type="Script" uid="uid://c12ur810twi0b" path="res://scripts/ui/layout/button_pos.gd" id="9_33y0u"]
 [ext_resource type="PackedScene" uid="uid://d4aqd6eakis0f" path="res://scenes/components/timers/timerrr.tscn" id="10_urila"]
 
@@ -43,6 +44,7 @@ transform = Transform3D(0, -0.32726738, 0.9449318, 0, 0.9449318, 0.32726738, -1,
 
 [node name="roltateaxis2" parent="Camera3D" instance=ExtResource("6_27ssy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.148, 0.073, -0.385)
+script = ExtResource("8_vy8rm")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.8660254, 0, 0.5, -0.5, 0, 0.8660254, 0, -1, 0, 8.520605, 13.767857, 0)
