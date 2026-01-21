@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb8xyvxk7y6lj"]
+
+[ext_resource type="PackedScene" uid="uid://cak5kd0dgl4ot" path="res://bomb/Button/BombButton.glb" id="1_bmgfu"]
+[ext_resource type="ArrayMesh" uid="uid://bqjcbt3da4cr3" path="res://bomb/Button/bombButtonMesh.tres" id="2_2bjmg"]
+
+[node name="BombButton" instance=ExtResource("1_bmgfu")]
+
+[node name="Cube" parent="." index="0"]
+mesh = ExtResource("2_2bjmg")
