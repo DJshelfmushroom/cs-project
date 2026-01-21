@@ -12,7 +12,7 @@ public partial class Operation : Node
 {
 	override public void _Ready()
 	{
-		OperationPath2D operation = new OperationPath2D(new Vector2(200, 500), new Vector2(20, 20), Tuple.Create(200,200) 5, 10, 30);
+		OperationPath2D operation = new OperationPath2D(new Vector2(200, 500), new Vector2(20, 20), Tuple.Create(200,200), 5, 10, 30);
 		Path2D curve = operation.GeneratePath();
 		
 		Line2D line = new Line2D();
