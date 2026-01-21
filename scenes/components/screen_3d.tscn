@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbcrfgck1oggo"]
+
+[ext_resource type="Script" uid="uid://c6tna4hkv23b0" path="res://screen_3d.gd" id="1_kakor"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nc6l1"]
+size = Vector3(0.05, 1, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_421de"]
+size = Vector3(1, 0.05, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_16uft"]
+albedo_color = Color(1.2333506e-07, 0.19606712, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_u7iqs"]
+material = SubResource("StandardMaterial3D_16uft")
+
+[node name="Screen3D" type="Node3D"]
+script = ExtResource("1_kakor")
+
+[node name="V1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_nc6l1")
+
+[node name="V2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9501457, 0.5, 0)
+mesh = SubResource("BoxMesh_nc6l1")
+
+[node name="H1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.475, 0.975, 0)
+mesh = SubResource("BoxMesh_421de")
+
+[node name="H2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.47519094, 0.025, 0)
+mesh = SubResource("BoxMesh_421de")
+
+[node name="Screen" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.475, 0.5, 5.9604645e-08)
+mesh = SubResource("QuadMesh_u7iqs")

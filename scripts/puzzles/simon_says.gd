@@ -27,7 +27,6 @@ func _process(_delta: float) -> void:
 
 func _ready():
 	if FirstTime == 1:
-		await _Start_Game()
 		FirstTime = 0
 	if !setup:
 		var button1inst = button_scene.instantiate()
@@ -76,8 +75,6 @@ func _ready():
 				await _Win_Animation()
 				completed = true
 
-func _Start_Game():
-	await GameStart2 == true
 	
 func _play_Pattern():
 	PatternPlaying = true
