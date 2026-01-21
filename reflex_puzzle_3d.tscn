@@ -4,7 +4,8 @@
 [ext_resource type="Script" uid="uid://dgyse4nbyam63" path="res://reflex_puzzle_3d.gd" id="1_paxyd"]
 [ext_resource type="PackedScene" uid="uid://caapg5wn513l5" path="res://scenes/components/button_3d.tscn" id="5_aet4m"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_s0e8a"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_s0e8a"]
+size = Vector3(0.005, 0.005, 0)
 
 [node name="ReflexPuzzle3D" type="Node3D"]
 script = ExtResource("1_paxyd")
@@ -46,7 +47,7 @@ wait_time = 10.0
 one_shot = true
 
 [node name="Time" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.26619, 0.61020386, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9615934, 0.61020386, 0)
 pixel_size = 0.0025
 text = "#"
 font_size = 55
@@ -79,10 +80,17 @@ text = "CUT THE RED WIRE"
 script = ExtResource("1_58i0q")
 metadata/pos = Vector2(862, 40)
 
-[node name="Boundary" type="Sprite3D" parent="."]
-transform = Transform3D(159.81723, 0, 0, 0, 145.39384, 0, 0, 0, 0.986, 0, 0, -0.18912554)
-modulate = Color(0.26657522, 0.2665752, 0.2665752, 1)
-texture = SubResource("CanvasTexture_s0e8a")
+[node name="Boundary" type="Node3D" parent="."]
+transform = Transform3D(347.455, 0, 0, 0, 258.74802, 0, 0, 0, 0.986, 0, 0, -0.54443514)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Boundary"]
+disable_mode = 1
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundary/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.9999989, 0, 0, 0, 1, 0, 0, 0.5687703)
+shape = SubResource("BoxShape3D_s0e8a")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.0028497)

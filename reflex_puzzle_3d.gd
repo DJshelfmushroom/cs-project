@@ -123,7 +123,7 @@ func time_left():
 func label_on_screen(word):
 	
 	return (
-		(word.position.y <= 1.2 and word.position.y >= -1.2) and (word.position.x <= 2 and word.position.x >= -2)
+		(word.position.y <= 1.25 and word.position.y >= -1.25) and (word.position.x <= 1.4 and word.position.x >= -1.4)
 	)
 
 func begin():
