@@ -1,0 +1,10 @@
+[gd_resource type="VisualShader" format=3 uid="uid://i4fdyvjx6lw7"]
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+
+
+"
+nodes/vertex/0/position = Vector2(1180, 200)
