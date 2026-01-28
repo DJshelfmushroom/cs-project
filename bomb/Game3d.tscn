@@ -131,10 +131,11 @@ scale_curve = SubResource("CurveTexture_8d7bq")
 script = ExtResource("1_2mi53")
 
 [node name="bomb_instance" parent="." instance=ExtResource("1_f3ig0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00033789873, 8.940697e-08, -0.0014241636)
 script = ExtResource("2_f3gsr")
 
 [node name="PuzzleOne3D" parent="bomb_instance" instance=ExtResource("3_f3gsr")]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -0.24016353, 0.013525248, 1.0004573)
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -0.20370534, 0.013525248, 1.001)
 
 [node name="PuzzleTwo3D" parent="bomb_instance" instance=ExtResource("4_27ssy")]
 transform = Transform3D(-3.059797e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.059797e-08, 0.50984114, 0.19510743, 0.45340592)
@@ -143,16 +144,6 @@ transform = Transform3D(-3.059797e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.059797e-08
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.52222013, -0.17222978, -0.3540955)
 
 [node name="PlugLocs" type="Node3D" parent="."]
-
-[node name="Node3D" type="Node3D" parent="PlugLocs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.013037, 0)
-metadata/link = NodePath("../Node3D2")
-
-[node name="RayCast3D" type="RayCast3D" parent="PlugLocs/Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6254169, -0.7823271)
-
-[node name="Node3D2" type="Node3D" parent="PlugLocs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0551159, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0, -0.32726738, 0.9449318, 0, 0.9449318, 0.32726738, -1, 0, 0, 1.8606071, 0.8944851, 0)

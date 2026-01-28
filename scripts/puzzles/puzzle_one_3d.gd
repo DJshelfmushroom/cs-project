@@ -10,6 +10,8 @@ var current_text = 1
 
 func _ready() -> void:
 	completed = false
+	$Screen3D.position = Vector3(-0.12,-0.2,-0.001)
+	$Screen3D.set_size(3,3)
 	
 
 func _process(_delta: float) -> void:

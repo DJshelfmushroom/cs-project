@@ -2,6 +2,8 @@ extends Area3D
 
 var pressed = false
 var facing_out = true
+var material = StandardMaterial3D.new()
+var material2 = StandardMaterial3D.new()
 
 func _ready():
 	input_event.connect(_on_input_event)
@@ -35,14 +37,12 @@ func _on_input_event(_camera, event, _position, _normal, _shape_idx):
 
 
 func _on_button_pressed():
-	$"..".transform = $"..".transform.translated(Vector3(0,0,-0.01))
 	facing_out = false
 	$"../../.."._on_but_pressed($"../..".index)
 		
 	
 	
 func _on_button_released():
-	$"..".transform = $"..".transform.translated(Vector3(0,0,0.01))
 	facing_out = true
 	$"../../.."._on_but_released($"../..".index)
 	

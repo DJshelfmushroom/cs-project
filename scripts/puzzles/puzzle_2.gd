@@ -13,6 +13,8 @@ var practice = true
 func _ready() -> void:
 	completed = false
 	$MemoryButton3D.visible = false
+	$Screen3D.position = Vector3(0.333, -0.42, -0.001)
+	$Screen3D.set_size(5.1,3.9)
 	var index = 0
 	var y = 0
 	for i in range(3):

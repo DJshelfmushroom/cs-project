@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://f6op8gdxrkeu"]
+[gd_scene load_steps=7 format=3 uid="uid://f6op8gdxrkeu"]
 
 [ext_resource type="Script" uid="uid://dlqbdivpd4v21" path="res://scripts/puzzles/puzzle_one_3d.gd" id="1_hw881"]
 [ext_resource type="Script" uid="uid://3knb1fw6yoda" path="res://scripts/puzzles/components/equation_label.gd" id="2_gc58s"]
 [ext_resource type="FontFile" uid="uid://0my668ilbos5" path="res://assets/fonts/DS-DIGI.TTF" id="2_p6l36"]
 [ext_resource type="Script" uid="uid://bdynmi3hy1d86" path="res://scenes/puzzles/num_1.gd" id="4_gc58s"]
 [ext_resource type="PackedScene" uid="uid://d1r0aghq7lunl" path="res://scenes/components/numpad_3d.tscn" id="4_hw881"]
+[ext_resource type="PackedScene" uid="uid://cbcrfgck1oggo" path="res://scenes/components/screen_3d.tscn" id="6_vgofx"]
 
 [node name="PuzzleOne3D" type="Node3D"]
 script = ExtResource("1_hw881")
@@ -43,4 +44,7 @@ font_size = 350
 script = ExtResource("4_gc58s")
 
 [node name="Numpad3D" parent="." instance=ExtResource("4_hw881")]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0.43109494, 0.13766661, 0)
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0.5, 0.13766661, 0)
+
+[node name="Screen3D" parent="." instance=ExtResource("6_vgofx")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.43330288, -0.55237395, 0)
