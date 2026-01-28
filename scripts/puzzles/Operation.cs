@@ -23,13 +23,15 @@ public partial class Operation : Node
 	}
 }
 
-partial class OperationPath2D
+class OperationPath2D
 {
-	private Vector2 _start, _end;
-	private Tuple<int,int> _size;
-	private int _spacing, _pointCount, _stepSize;
-	private const float ANGLE_RANGE = 120f;
-	private const int SNAP_TO_ANGLE = 45;
+	private readonly Vector2 _start, _end;
+	private readonly Tuple<int,int> _size;
+	private readonly int _spacing, _pointCount, _stepSize;
+	private const float AngleRange = 120f;
+	private const int SnapToAngle = 45;
+	private readonly float _angleRangeRadians = (2 * AngleRange + 360 - AngleRange)/360 * MathF.PI * 2f;
+	private readonly float _angleSnapRad = SnapToAngle * MathF.PI / 180;
 
 	public Path2D GeneratePath() // render is for debugging
 	{
@@ -71,10 +73,10 @@ partial class OperationPath2D
 		
 	{
 		 Vector2 nextPoint;
-		 float angle = (Random.Shared.NextSingle() * 2 * ANGLE_RANGE + 360 - ANGLE_RANGE)/360 * MathF.PI * 2f;
-		 if (SNAP_TO_ANGLE > 0)
+		 float angle = Random.Shared.NextSingle() * _angleRangeRadians;
+		 if (SnapToAngle > 0)
 		 {
-			 angle = (float)(Math.Round(angle / (SNAP_TO_ANGLE * MathF.PI / 180)) * (SNAP_TO_ANGLE * MathF.PI / 180));
+			 angle = (float)(Math.Round(angle / _angleSnapRad) * _angleSnapRad);
 		 }
 		 nextPoint = new Vector2((float)(currentPoint.X + Math.Cos(angle) * _stepSize),(float)(currentPoint.Y + Math.Sin(angle) * _stepSize));
 		 if (index.HasValue && !debug)
@@ -105,7 +107,15 @@ partial class OperationPath2D
 	}
 	
 	
-
+/// <summary>
+/// 
+/// </summary>
+/// <param name="start">where does it start? this should be the (center?) of the puzzle</param>
+/// <param name="end">where does it end up (should be a vector starting at "start" within size)</param>
+/// <param name="size">size of the generated puzzle</param>
+/// <param name="spacing">max space between lines</param>
+/// <param name="pointCount">The number of points it goes out</param>
+/// <param name="stepSize">The size of steps between points (essentially inverse if resolution)</param>
 	public OperationPath2D(Vector2 start, Vector2 end, Tuple<int,int> size, int spacing, int pointCount, int stepSize)
 	{
 		_start = start;
