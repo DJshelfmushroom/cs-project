@@ -35,7 +35,7 @@ public partial class bomb : Node3D
 			var ray = plugMesh.GetNode("RayCast3D") as RayCast3D;
 			ray.Enabled = true;
 			// set target position in local space
-			ray.TargetPosition = ray.ToLocal(this /*this is worse lol*/.GlobalPosition);
+			ray.TargetPosition = ray.ToLocal(this/*this is worse lol*/.GlobalPosition);
 			ray.ForceRaycastUpdate();
 
 			if (ray.IsColliding())
