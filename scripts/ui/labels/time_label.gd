@@ -1,4 +1,5 @@
 extends Label
+@warning_ignore_start("integer_division")
 
 func _ready() -> void:
 	position = Vector2(0,0)

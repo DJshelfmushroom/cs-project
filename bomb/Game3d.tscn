@@ -1,9 +1,9 @@
-[gd_scene load_steps=36 format=3 uid="uid://b3aqjmj7grawb"]
+[gd_scene format=3 uid="uid://b3aqjmj7grawb"]
 
 [ext_resource type="Script" uid="uid://cegaq2p1u1qo2" path="res://scripts/menus/game_selection.gd" id="1_2mi53"]
 [ext_resource type="PackedScene" uid="uid://b5lb0ykdugkxc" path="res://bomb/bom.blend" id="1_f3ig0"]
-[ext_resource type="Script" uid="uid://ds6n1ew1wvesq" path="res://bomb/bomb.cs" id="2_f3gsr"]
 [ext_resource type="PackedScene" uid="uid://f6op8gdxrkeu" path="res://scenes/puzzles/puzzle_one_3d.tscn" id="3_f3gsr"]
+[ext_resource type="Script" path="res://bomb/Bomb.cs" id="3_f726v"]
 [ext_resource type="PackedScene" uid="uid://cwui3aoo0t1ew" path="res://scenes/puzzles/puzzle_two_3d.tscn" id="4_27ssy"]
 [ext_resource type="PackedScene" uid="uid://c2yiau653p0fr" path="res://scenes/puzzles/simon_puzzle_3d.tscn" id="5_27ssy"]
 [ext_resource type="PackedScene" uid="uid://dayhykcmbmowg" path="res://bomb/Button/Models/textures/roltateaxis.tscn" id="6_27ssy"]
@@ -14,6 +14,14 @@
 [ext_resource type="Script" uid="uid://bkn7famq2x0tx" path="res://bomb/test.gd" id="12_f726v"]
 [ext_resource type="Material" uid="uid://bpyrxdtjblchr" path="res://bomb/Materials/Mat_Flare00.tres" id="12_oc1ei"]
 [ext_resource type="Texture2D" uid="uid://cbk131m5nl33b" path="res://GAP_EasyExplosions_Textures/Flare00.PNG" id="12_p0es4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f726v"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("12_p0es4")
+billboard_keep_scale = true
 
 [sub_resource type="Curve" id="Curve_f726v"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -127,38 +135,38 @@ scale_curve = SubResource("CurveTexture_8d7bq")
 
 [sub_resource type="QuadMesh" id="QuadMesh_ddge8"]
 
-[node name="Bomb" type="Node3D"]
+[node name="Bomb" type="Node3D" unique_id=279824733]
 script = ExtResource("1_2mi53")
 
-[node name="bomb_instance" parent="." instance=ExtResource("1_f3ig0")]
+[node name="bomb_instance" parent="." unique_id=1423946757 instance=ExtResource("1_f3ig0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00033789873, 8.940697e-08, -0.0014241636)
-script = ExtResource("2_f3gsr")
+script = ExtResource("3_f726v")
 
-[node name="PuzzleOne3D" parent="bomb_instance" instance=ExtResource("3_f3gsr")]
+[node name="PuzzleOne3D" parent="bomb_instance" unique_id=1176933819 instance=ExtResource("3_f3gsr")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -0.20370534, 0.013525248, 1.001)
 
-[node name="PuzzleTwo3D" parent="bomb_instance" instance=ExtResource("4_27ssy")]
+[node name="PuzzleTwo3D" parent="bomb_instance" unique_id=183311325 instance=ExtResource("4_27ssy")]
 transform = Transform3D(-3.059797e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.059797e-08, 0.50984114, 0.19510743, 0.45340592)
 
-[node name="SimonPuzzle3D" parent="bomb_instance" instance=ExtResource("5_27ssy")]
+[node name="SimonPuzzle3D" parent="bomb_instance" unique_id=1092913190 instance=ExtResource("5_27ssy")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.52222013, -0.17222978, -0.3540955)
 
-[node name="PlugLocs" type="Node3D" parent="."]
+[node name="PlugLocs" type="Node3D" parent="." unique_id=1374883541]
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1434780097]
 transform = Transform3D(0, -0.32726738, 0.9449318, 0, 0.9449318, 0.32726738, -1, 0, 0, 1.8606071, 0.8944851, 0)
 
-[node name="roltateaxis2" parent="Camera3D" instance=ExtResource("6_27ssy")]
+[node name="roltateaxis2" parent="Camera3D" unique_id=998242443 instance=ExtResource("6_27ssy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.148, 0.073, -0.385)
 script = ExtResource("8_vy8rm")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=111883687]
 transform = Transform3D(0.8660254, 0, 0.5, -0.5, 0, 0.8660254, 0, -1, 0, 8.520605, 13.767857, 0)
 light_energy = 1.66
 light_indirect_energy = 2.967
 light_angular_distance = 6.3
 
-[node name="StrikesLabel" type="Label" parent="."]
+[node name="StrikesLabel" type="Label" parent="." unique_id=752173838]
 offset_left = 1550.0
 offset_right = 1950.0
 offset_bottom = 100.0
@@ -168,7 +176,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("8_da634")
 
-[node name="RedWireButton" type="Button" parent="."]
+[node name="RedWireButton" type="Button" parent="." unique_id=954979841]
 visible = false
 anchors_preset = -1
 anchor_left = 0.011000001
@@ -185,7 +193,7 @@ text = "CUT THE RED WIRE"
 script = ExtResource("9_33y0u")
 metadata/pos = Vector2(760, 50)
 
-[node name="ReturnButton" type="Button" parent="."]
+[node name="ReturnButton" type="Button" parent="." unique_id=967983729]
 visible = false
 anchors_preset = -1
 anchor_left = 0.011000001
@@ -202,7 +210,7 @@ text = "RETURN TO MENU"
 script = ExtResource("9_33y0u")
 metadata/pos = Vector2(50, 960)
 
-[node name="GameOverLabel" type="Label" parent="."]
+[node name="GameOverLabel" type="Label" parent="." unique_id=1239132591]
 visible = false
 anchors_preset = -1
 anchor_left = 0.011000001
@@ -220,18 +228,17 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/pos = Vector2(760, 50)
 
-[node name="TimerNode" parent="." instance=ExtResource("10_urila")]
+[node name="TimerNode" parent="." unique_id=986713496 instance=ExtResource("10_urila")]
 offset_left = 93.0
 offset_top = 1494.0
 offset_right = 1324.6399
 offset_bottom = 2297.3599
 
-[node name="vfx_explosion" type="Node3D" parent="."]
+[node name="vfx_explosion" type="Node3D" parent="." unique_id=169848924]
 script = ExtResource("12_f726v")
 
-[node name="Spark" type="GPUParticles3D" parent="vfx_explosion"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8444836, 0, 0)
-material_override = ExtResource("12_oc1ei")
+[node name="Spark" type="GPUParticles3D" parent="vfx_explosion" unique_id=1018592064]
+material_override = SubResource("StandardMaterial3D_f726v")
 emitting = false
 amount = 20
 lifetime = 0.6
@@ -241,20 +248,18 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_8nerw")
 draw_pass_1 = SubResource("QuadMesh_osgfx")
 
-[node name="Flash" type="GPUParticles3D" parent="vfx_explosion"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0165015, 0, 0)
+[node name="Flash" type="GPUParticles3D" parent="vfx_explosion" unique_id=1122321838]
 material_override = ExtResource("12_oc1ei")
 emitting = false
 amount = 1
-lifetime = 0.09999999999999999
+lifetime = 0.1
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_8d7bq")
 draw_pass_1 = SubResource("QuadMesh_okahj")
 
-[node name="Fire" type="GPUParticles3D" parent="vfx_explosion"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9337282, 0, 0)
+[node name="Fire" type="GPUParticles3D" parent="vfx_explosion" unique_id=1894848928]
 material_override = ExtResource("12_oc1ei")
 emitting = false
 amount = 14
@@ -265,8 +270,7 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_ddge8")
 draw_pass_1 = SubResource("QuadMesh_imkj6")
 
-[node name="Smoke" type="GPUParticles3D" parent="vfx_explosion"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9459368, 0, 0)
+[node name="Smoke" type="GPUParticles3D" parent="vfx_explosion" unique_id=1205030488]
 material_override = SubResource("StandardMaterial3D_osgfx")
 emitting = false
 amount = 10

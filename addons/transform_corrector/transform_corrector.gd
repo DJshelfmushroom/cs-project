@@ -151,7 +151,7 @@ class TransformPropertyEditor extends EditorProperty:
 	var updating: bool = false
 	var spin_boxes: Array[EditorSpinSlider] = []
 	var container: HBoxContainer
-	var axis_labels: Array[String] = ["X", "Y", "Z"]
+	var axis_labels: Array[String] = ["x", "y", "z"]
 	var axis_colors: Array[Color] = [
 		Color(0.732, 0.458, 0.447, 1.0),  # Red for X
 		Color(0.632, 0.797, 0.503, 1.0),  # Green for Y

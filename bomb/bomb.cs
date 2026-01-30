@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class bomb : Node3D
+public partial class Bomb : Node3D
 {
 	private PackedScene _plugScene = GD.Load<PackedScene>("res://bomb/plug.tscn");
 
@@ -18,37 +18,10 @@ public partial class bomb : Node3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		make_plugs();
+		InstanceUtils.MakeInstances(this, _plugScene);
 	}
 
-	// makes plugs at the plug locations
-	private void make_plugs()
-	{
-		for (var i = 0; i < GetNode<Node>("../PlugLocs").GetChildCount(); i++)
-		{
-			// instantiate plug
-			var plugMesh = (Node3D)_plugScene.Instantiate();
-			AddChild(plugMesh);
-			// dear god this is horrendous
-			plugMesh.GlobalPosition = ((Node3D)GetNode<Node3D>("../PlugLocs").GetChildren()[i]).GlobalPosition;
-
-			var ray = plugMesh.GetNode("RayCast3D") as RayCast3D;
-			ray.Enabled = true;
-			// set target position in local space
-			ray.TargetPosition = ray.ToLocal(this/*this is worse lol*/.GlobalPosition);
-			ray.ForceRaycastUpdate();
-
-			if (ray.IsColliding())
-			{
-				// Normal of the collision point
-				var normal = ray.GetCollisionNormal().Normalized();
-				var collisionPoint = ray.GetCollisionPoint();
-				// Set the plug's position to the collision point (and rotate it to face outwards)
-				plugMesh.LookAt(collisionPoint + normal, plugMesh.Transform.Basis.Z);
-				plugMesh.GlobalPosition = collisionPoint;
-			}
-		}
-	}
+	// plug instantiation/placement moved to bomb/plug_utils.cs (PlugUtils.MakePlugs)
 
 	public override void _Process(double delta)
 	{
@@ -165,14 +138,14 @@ public partial class bomb : Node3D
 			}
 
 			var angle = (motion.Relative.X + motion.Relative.Y) * sensitivity;
-			transform.Basis = transform.Basis.Rotated(axis, angle);
+			transform.Basis = transform.Basis.Rotated(axis, angle).Orthonormalized();
 		}
 		else
 		{
 			transform.Basis = transform.Basis.Rotated(Vector3.Up, motion.Relative.X * sensitivity);
 			transform.Basis = transform.Basis.Rotated(Vector3.Forward, motion.Relative.Y * sensitivity);
+			transform.Basis = transform.Basis.Orthonormalized();
 		}
 
 		Transform = transform;
-	}
-}
+	}}
