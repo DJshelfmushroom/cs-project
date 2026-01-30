@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://caapg5wn513l5"]
+[gd_scene format=3 uid="uid://caapg5wn513l5"]
 
 [ext_resource type="Script" uid="uid://btb4jjfuhw1lh" path="res://scripts/puzzles/components/button_3d.gd" id="1_f1uqr"]
 [ext_resource type="Script" uid="uid://3f8sojmo78eh" path="res://scripts/components/button_area_3d.gd" id="1_g6g5h"]
@@ -8,23 +8,26 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_sdqrk"]
 size = Vector3(0.25, 0.25, 0.03)
 
-[node name="Button3D" type="MeshInstance3D"]
+[node name="Button3D" type="MeshInstance3D" unique_id=960169264]
 script = ExtResource("1_f1uqr")
 
-[node name="button" parent="." instance=ExtResource("2_8xisv")]
+[node name="button" parent="." unique_id=1902623790 instance=ExtResource("2_8xisv")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="Area3D" type="Area3D" parent="button"]
+[node name="Area3D" type="Area3D" parent="button" unique_id=1493170836]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 script = ExtResource("1_g6g5h")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="button/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="button/Area3D" unique_id=315482167]
 shape = SubResource("BoxShape3D_sdqrk")
 
-[node name="Label3D" type="Label3D" parent="button"]
+[node name="Label3D" type="Label3D" parent="button" unique_id=301041677]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.011647017, -0.01, -5.0910726e-10)
 pixel_size = 0.0005
 modulate = Color(0.19793725, 0.19793722, 0.19793722, 1)
 font = ExtResource("3_8xisv")
 font_size = 350
 outline_size = 0
+
+[connection signal="mouse_entered" from="button/Area3D" to="button/Area3D" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="button/Area3D" to="button/Area3D" method="_on_mouse_exited"]

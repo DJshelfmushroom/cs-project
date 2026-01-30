@@ -47,6 +47,8 @@ func _ready():
 	place_labels()
 	prepare_timer()
 	score = 0
+	$Screen3D.position = Vector3(-0.117, -0.117, -0.001)
+	$Screen3D.set_size(9.25,6)
 	
 	
 	
@@ -123,7 +125,7 @@ func time_left():
 func label_on_screen(word):
 	
 	return (
-		(word.position.y <= 1.25 and word.position.y >= -1.25) and (word.position.x <= 1.4 and word.position.x >= -1.4)
+		(word.position.y <= 0.7 and word.position.y >= -0.7) and (word.position.x <= 1. and word.position.x >= -1.)
 	)
 
 func begin():
@@ -207,18 +209,20 @@ func hideLabels():
 
 func _on_but_pressed(num : int) -> void:
 	if num == 0:
-		$StartButton3D.hide()
-		$StartButton3D.disabled = true
-		GameStart = true
-		timer.start()
-		_startGame()
+		if !$"../..".failed:
+			$StartButton3D.hide()
+			$StartButton3D.disabled = true
+			GameStart = true
+			timer.start()
+			_startGame()
 	if num == 1:
-		_ready()
-		$StartButton3D.hide()
-		$StartButton3D.disabled = true
-		GameStart = true
-		timer.start()
-		_startGame()
+		if !$"../..".failed:
+			_ready()
+			$StartButton3D.hide()
+			$StartButton3D.disabled = true
+			GameStart = true
+			timer.start()
+			_startGame()
 
 func win():
 	$EndScreen.text = "You Won!"
@@ -230,19 +234,20 @@ func win():
 func lose():
 	$EndScreen.text = "You Lost"
 	$EndScreen.show()
+	$"../..".strikes += 1
 	await get_tree().create_timer(0.5).timeout
 	$Score.text = "Score: " + str(score)
 	$Score.show()
 	$RestartButton3D.show()
 
 
-func _on_restart_button_pressed() -> void:
-	_ready()
-	$StartButton.hide()
-	$StartButton.disabled = true
-	GameStart = true
-	timer.start()
-	_startGame()
+#func _on_restart_button_pressed() -> void:
+#	_ready()
+#	$StartButton.hide()
+#	$StartButton.disabled = true
+#	GameStart = true
+#	timer.start()
+#	_startGame()
 
 func _on_but_released(_num : int):
 	pass

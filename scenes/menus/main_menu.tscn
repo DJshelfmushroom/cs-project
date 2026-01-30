@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://tnxumru84hbs"]
+[gd_scene format=3 uid="uid://tnxumru84hbs"]
 
 [ext_resource type="Script" uid="uid://hksu4anhif8j" path="res://scripts/menus/main_menu.gd" id="1_7vrkn"]
 [ext_resource type="Texture2D" uid="uid://d0ts6meocitmg" path="res://assets/textures/menu_bg.png" id="2_8r73w"]
@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://d3hm7i2w7dbg" path="res://scripts/menus/xp_label.gd" id="5_ng0o5"]
 [ext_resource type="Script" uid="uid://ctopr804dfmky" path="res://scripts/menus/xp_bar_progress.gd" id="6_ng0o5"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=769330128]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,12 +21,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7vrkn")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2138633308]
 position = Vector2(965, 460)
 scale = Vector2(1.2623643, 1.2814727)
 texture = ExtResource("2_8r73w")
 
-[node name="PlayButton" type="Button" parent="."]
+[node name="PlayButton" type="Button" parent="." unique_id=609719486]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.040000003
@@ -43,7 +43,7 @@ text = "PLAY"
 script = ExtResource("2_jix8l")
 metadata/pos = Vector2(760, 760)
 
-[node name="TutorialsButton" type="Button" parent="."]
+[node name="TutorialsButton" type="Button" parent="." unique_id=1145395376]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.040000003
@@ -60,7 +60,7 @@ text = "TUTORIALS"
 script = ExtResource("2_jix8l")
 metadata/pos = Vector2(810, 900)
 
-[node name="PacksButton" type="Button" parent="."]
+[node name="PacksButton" type="Button" parent="." unique_id=417527301]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.040000003
@@ -75,7 +75,7 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 30
 text = "PACKS"
 
-[node name="PracticeButton" type="Button" parent="."]
+[node name="PracticeButton" type="Button" parent="." unique_id=2002009578]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.040000003
@@ -90,10 +90,10 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 30
 text = "PRACTICE"
 
-[node name="Custom Cursor" type="Node2D" parent="."]
+[node name="Custom Cursor" type="Node2D" parent="." unique_id=371882005]
 script = ExtResource("4_jix8l")
 
-[node name="LvlLabel" type="Label" parent="."]
+[node name="LvlLabel" type="Label" parent="." unique_id=1545201647]
 layout_mode = 0
 offset_left = 90.0
 offset_top = 900.0
@@ -104,7 +104,7 @@ text = "LVL 0"
 vertical_alignment = 1
 script = ExtResource("4_imvie")
 
-[node name="XpLabel" type="Label" parent="."]
+[node name="XpLabel" type="Label" parent="." unique_id=217694159]
 layout_mode = 0
 offset_left = 90.0
 offset_top = 1015.0
@@ -114,7 +114,7 @@ theme_override_font_sizes/font_size = 40
 text = "0/0 XP"
 script = ExtResource("5_ng0o5")
 
-[node name="XpBarBackGround" type="ColorRect" parent="."]
+[node name="XpBarBackGround" type="ColorRect" parent="." unique_id=1730986927]
 layout_mode = 0
 offset_left = 80.0
 offset_top = 970.0
@@ -122,7 +122,7 @@ offset_right = 380.0
 offset_bottom = 1005.0
 color = Color(0.16206557, 0.1620656, 0.16206557, 1)
 
-[node name="XpBarProgress" type="ColorRect" parent="."]
+[node name="XpBarProgress" type="ColorRect" parent="." unique_id=650941223]
 layout_mode = 0
 offset_left = 80.0
 offset_top = 970.0
@@ -130,7 +130,7 @@ offset_right = 180.0
 offset_bottom = 1005.0
 script = ExtResource("6_ng0o5")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=565501892]
 layout_mode = 0
 offset_left = 660.0
 offset_top = 80.0
