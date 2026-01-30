@@ -10,10 +10,11 @@ func _ready() -> void:
 	$bomb_instance/PuzzleOne3D.practice = false
 	$bomb_instance/PuzzleTwo3D.practice = false
 	$bomb_instance/SimonPuzzle3D.practice = false
+	$bomb_instance/NumerlePuzzle3D.pratice = false
 
 func _process(_delta: float) -> void:
 	if (fix == false):
-		if ($bomb_instance/PuzzleOne3D.completed == true && $bomb_instance/PuzzleTwo3D.completed == true && $bomb_instance/SimonPuzzle3D.completed == true):
+		if ($bomb_instance/PuzzleOne3D.completed && $bomb_instance/PuzzleTwo3D.completed && $bomb_instance/SimonPuzzle3D.completed && !failed):
 			$TimerNode.stop_timer()
 			$TimerNode/Timer/TimeLabel.add_theme_color_override("font_color", "green")
 			$StrikesLabel.add_theme_color_override("font_color", "green")
@@ -22,7 +23,7 @@ func _process(_delta: float) -> void:
 	else:
 		fix = false
 		
-	if (strikes >= 3 || ($TimerNode/Timer.time_left <= 0 && allcompleted == false)):
+	if (strikes >= 3 || ($TimerNode/Timer.time_left <= 0 && !allcompleted)):
 		$bomb_instance/PuzzleOne3D/EquationLabel/AnswerLabel/Num1.editable = false
 		$bomb_instance/PuzzleOne3D/EquationLabel/AnswerLabel/Num2.editable = false
 		$StrikesLabel.add_theme_color_override("font_color", "red")

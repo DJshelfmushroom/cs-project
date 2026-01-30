@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://bwfhb1h884c5w"]
+
+[ext_resource type="Script" uid="uid://b6gvm34bmayx4" path="res://scripts/puzzles/numerle_puzzle_3d.gd" id="1_w3mba"]
+[ext_resource type="FontFile" uid="uid://0my668ilbos5" path="res://assets/fonts/DS-DIGI.TTF" id="2_7v61w"]
+[ext_resource type="PackedScene" uid="uid://d1r0aghq7lunl" path="res://scenes/components/numpad_3d.tscn" id="3_7ncyb"]
+
+[node name="NumerlePuzzle3D" type="Node3D" unique_id=1448556789]
+script = ExtResource("1_w3mba")
+
+[node name="BlankLabel1" type="Label3D" parent="." unique_id=673100396]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.17539376, 0, 0)
+pixel_size = 0.0005
+text = "|
+"
+font = ExtResource("2_7v61w")
+font_size = 350
+
+[node name="BlankLabel2" type="Label3D" parent="." unique_id=53296484]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+pixel_size = 0.0005
+text = "|
+"
+font = ExtResource("2_7v61w")
+font_size = 350
+
+[node name="BlankLabel3" type="Label3D" parent="." unique_id=681698083]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.17006889, 0, 0)
+pixel_size = 0.0005
+text = "|
+"
+font = ExtResource("2_7v61w")
+font_size = 350
+
+[node name="Label1" type="Label3D" parent="." unique_id=150550734]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16313532, 0.1252467, -0.0093871355)
+pixel_size = 0.0005
+text = "1"
+font = ExtResource("2_7v61w")
+font_size = 600
+
+[node name="Label2" type="Label3D" parent="." unique_id=1887214198]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013674244, 0.1252467, -0.0093871355)
+pixel_size = 0.0005
+text = "2"
+font = ExtResource("2_7v61w")
+font_size = 600
+
+[node name="Label3" type="Label3D" parent="." unique_id=1180708256]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18870471, 0.1252467, -0.0093871355)
+pixel_size = 0.0005
+text = "3"
+font = ExtResource("2_7v61w")
+font_size = 600
+
+[node name="Numpad3D" parent="." unique_id=38440848 instance=ExtResource("3_7ncyb")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -0.19556972, -0.1628725, -0.0093871355)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=291175707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.94637954)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D" unique_id=2127349427]

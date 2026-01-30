@@ -7,11 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://cwui3aoo0t1ew" path="res://scenes/puzzles/puzzle_two_3d.tscn" id="4_27ssy"]
 [ext_resource type="PackedScene" uid="uid://c2yiau653p0fr" path="res://scenes/puzzles/simon_puzzle_3d.tscn" id="5_27ssy"]
 [ext_resource type="PackedScene" uid="uid://dayhykcmbmowg" path="res://bomb/Button/Models/textures/roltateaxis.tscn" id="6_27ssy"]
+[ext_resource type="PackedScene" uid="uid://bwfhb1h884c5w" path="res://scenes/puzzles/numerle_puzzle_3d.tscn" id="7_f726v"]
 [ext_resource type="Script" uid="uid://cb5fs7o0nls3" path="res://scripts/ui/labels/label_2.gd" id="8_da634"]
 [ext_resource type="Script" uid="uid://bwsbcc1ccrmyh" path="res://bomb/Button/Models/textures/Roltateaxis.cs" id="8_vy8rm"]
 [ext_resource type="Script" uid="uid://c12ur810twi0b" path="res://scripts/ui/layout/button_pos.gd" id="9_33y0u"]
 [ext_resource type="PackedScene" uid="uid://d4aqd6eakis0f" path="res://scenes/components/timers/timerrr.tscn" id="10_urila"]
-[ext_resource type="Script" uid="uid://bkn7famq2x0tx" path="res://bomb/test.gd" id="12_f726v"]
 [ext_resource type="Material" uid="uid://bpyrxdtjblchr" path="res://bomb/Materials/Mat_Flare00.tres" id="12_oc1ei"]
 [ext_resource type="Texture2D" uid="uid://cbk131m5nl33b" path="res://GAP_EasyExplosions_Textures/Flare00.PNG" id="12_p0es4"]
 
@@ -151,7 +151,9 @@ transform = Transform3D(-3.059797e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.059797e-08
 [node name="SimonPuzzle3D" parent="bomb_instance" unique_id=1092913190 instance=ExtResource("5_27ssy")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.52222013, -0.17222978, -0.3540955)
 
-[node name="PlugLocs" type="Node3D" parent="." unique_id=1374883541]
+[node name="NumerlePuzzle3D" parent="bomb_instance" instance=ExtResource("7_f726v")]
+
+[node name="PlugLocs" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1434780097]
 transform = Transform3D(0, -0.32726738, 0.9449318, 0, 0.9449318, 0.32726738, -1, 0, 0, 1.8606071, 0.8944851, 0)
@@ -234,8 +236,7 @@ offset_top = 1494.0
 offset_right = 1324.6399
 offset_bottom = 2297.3599
 
-[node name="vfx_explosion" type="Node3D" parent="." unique_id=169848924]
-script = ExtResource("12_f726v")
+[node name="vfx_explosion" type="Node3D" parent="."]
 
 [node name="Spark" type="GPUParticles3D" parent="vfx_explosion" unique_id=1018592064]
 material_override = SubResource("StandardMaterial3D_f726v")
