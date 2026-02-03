@@ -5,7 +5,7 @@ var current_xp = 0
 
 func _ready() -> void:
 	var y = 100
-	for x in range(1, 101):
+	for x in range(1, 150):
 		level_xp_requirements.append(y)
 		if (x % 5 == 0):
 			y *= 2
