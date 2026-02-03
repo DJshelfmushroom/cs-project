@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://c28hneqi1mrrq"]
+
+[ext_resource type="Script" uid="uid://btdyvtfh6n208" path="res://scripts/components/segment_button_3d.gd" id="1_bxenh"]
+[ext_resource type="Script" uid="uid://3f8sojmo78eh" path="res://scripts/components/button_area_3d.gd" id="2_4lmoo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bxenh"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4lmoo"]
+material = SubResource("StandardMaterial3D_bxenh")
+radius = 0.025
+height = 0.25
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bg0l1"]
+size = Vector3(0.05, 0.25, 0.03)
+
+[node name="SegmentButton3D" type="MeshInstance3D" unique_id=754785337]
+script = ExtResource("1_bxenh")
+
+[node name="ColorOutline" type="MeshInstance3D" parent="." unique_id=1424432717]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.015)
+mesh = SubResource("CapsuleMesh_4lmoo")
+
+[node name="Area3D" type="Area3D" parent="ColorOutline" unique_id=1349510043]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.015)
+script = ExtResource("2_4lmoo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ColorOutline/Area3D" unique_id=1415698928]
+shape = SubResource("BoxShape3D_bg0l1")

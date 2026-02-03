@@ -156,6 +156,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.5
 transform = Transform3D(4.5298744e-08, -0.6, -2.6226834e-08, 0, -2.6226834e-08, 0.6, -0.6, -4.5298744e-08, -1.980071e-15, 0.01650051, 0.5140915, 0.013921186)
 
 [node name="NumerlePuzzle3D" parent="bomb_instance" unique_id=1847075634 instance=ExtResource("7_f726v")]
+transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 0.008612715, 0.062215574, -1.0066446)
 
 [node name="vfx_explosion" type="Node3D" parent="bomb_instance" unique_id=114048839]
 

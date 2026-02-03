@@ -39,14 +39,12 @@ func _on_mouse_exited():
 
 
 func _on_button_pressed():
-	$"..".transform = $"..".transform.translated(Vector3(0,0,-0.01))
 	facing_out = false
 	$"../../.."._on_but_pressed($"../..".num)
 		
 	
 	
 func _on_button_released():
-	$"..".transform = $"..".transform.translated(Vector3(0,0,0.01))
 	facing_out = true
 	$"../../.."._on_but_released($"../..".num)
 	

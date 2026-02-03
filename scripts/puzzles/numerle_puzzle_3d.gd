@@ -16,6 +16,8 @@ func _ready() -> void:
 	blanks.append(get_node("BlankLabel2"))
 	blanks.append(get_node("BlankLabel3"))
 	blanks.append(get_node("BlankLabel1"))
+	$Screen3D.set_size(2.5,1.3)
+	$Screen3D.position = Vector3(-0.112,-0.01,-0.001)
 	for x in range(3):
 		labels[x].text = ""
 		var gen = RandomNumberGenerator.new()
@@ -35,6 +37,8 @@ func _process(_delta: float) -> void:
 				wrong = true
 		if !wrong:
 			completed = true
+			for x in range(3):
+				blanks[x].modulate = Color.WHITE
 		for x in range(3):
 			if labels[x].text == str(answer[x]):
 				labels[x].modulate = Color.GREEN
@@ -51,11 +55,11 @@ func _process(_delta: float) -> void:
 									labels[y].modulate = Color.WHITE
 								else:
 									labels[x].modulate = Color.WHITE
-		if selected != 0:
+		if selected != 0 and !completed:
 			blanks[selected].modulate = Color.ORANGE
 			blanks[selected - 1].modulate = Color.WHITE
 			blanks[selected + 1].modulate = Color.WHITE
-		else:
+		elif !completed:
 			blanks[0].modulate = Color.ORANGE
 			blanks[1].modulate = Color.WHITE
 			blanks[2].modulate = Color.WHITE		
