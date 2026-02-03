@@ -17,3 +17,6 @@ func _on_puzzle_2_tutorial_button_up() -> void:
 
 func _on_puzzle_3_tutorial_button_up() -> void:
 	get_tree().change_scene_to_file("res://scenes/puzzles/tutorials/puzzle_3_tutorial.tscn")
+
+func _on_puzzle_4_tutorial_button_button_up() -> void:
+	get_tree().change_scene_to_file("res://scenes/puzzles/tutorials/puzzle_4_tutorial.tscn")

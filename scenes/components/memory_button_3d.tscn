@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4pwgpjrmtysv"]
+[gd_scene format=3 uid="uid://c4pwgpjrmtysv"]
 
 [ext_resource type="Script" uid="uid://ysuox7trlodu" path="res://scripts/components/memory_button_3d.gd" id="1_pe7gh"]
 [ext_resource type="Script" uid="uid://bimje6eg4suja" path="res://scripts/components/memory_button_area_3d.gd" id="2_pe7gh"]
@@ -15,19 +15,19 @@ orientation = 2
 [sub_resource type="BoxShape3D" id="BoxShape3D_gagxl"]
 size = Vector3(0.25, 0.25, 0.03)
 
-[node name="MemoryButton3D" type="MeshInstance3D"]
+[node name="MemoryButton3D" type="MeshInstance3D" unique_id=303994183]
 script = ExtResource("1_pe7gh")
 
-[node name="button" type="MeshInstance3D" parent="."]
+[node name="button" type="MeshInstance3D" parent="." unique_id=1075302811]
 mesh = SubResource("PlaneMesh_fp5t1")
 
-[node name="Area" type="Area3D" parent="button"]
+[node name="Area" type="Area3D" parent="button" unique_id=1943016331]
 script = ExtResource("2_pe7gh")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="button/Area"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="button/Area" unique_id=290123324]
 shape = SubResource("BoxShape3D_gagxl")
 
-[node name="Label3D" type="Label3D" parent="button"]
+[node name="Label3D" type="Label3D" parent="button" unique_id=1830286606]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0019581225, 0.00015720725)
 pixel_size = 0.0005
 modulate = Color(0.98039216, 0.39215687, 0, 1)
@@ -35,3 +35,6 @@ text = "1"
 font = ExtResource("3_ar82o")
 font_size = 450
 outline_size = 0
+
+[connection signal="mouse_entered" from="button/Area" to="button/Area" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="button/Area" to="button/Area" method="_on_mouse_exited"]

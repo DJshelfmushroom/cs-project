@@ -16,7 +16,7 @@ const keys : Dictionary = {
 var score = null
 @onready var timer = $Timer
 #@onready var screen_size = get_viewport().get_visible_rect()
-#var completed = false
+var completed = false
 #var practice = true
 
 func set_start_button():
@@ -230,7 +230,7 @@ func win():
 	await get_tree().create_timer(0.5).timeout
 	$Score.text = "Score: " + str(score)
 	$Score.show()
-	#completed = true
+	completed = true
 func lose():
 	$EndScreen.text = "You Lost"
 	$EndScreen.show()

@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if (fix == false):
-		if ($bomb_instance/PuzzleOne3D.completed && $bomb_instance/PuzzleTwo3D.completed && $bomb_instance/SimonPuzzle3D.completed && !failed):
+		if (puzzles_completed() && !failed):
 			$TimerNode.stop_timer()
 			$TimerNode/Timer/TimeLabel.add_theme_color_override("font_color", "green")
 			$StrikesLabel.add_theme_color_override("font_color", "green")
@@ -32,6 +32,12 @@ func _process(_delta: float) -> void:
 		$bomb_instance/PuzzleTwo3D.thisfailed = true
 		$GameOverLabel.visible = true
 		$ReturnButton.visible = true
+
+func puzzles_completed():
+	if ($bomb_instance/PuzzleOne3D.completed && $bomb_instance/PuzzleTwo3D.completed && $bomb_instance/SimonPuzzle3D.completed && $bomb_instance/ReflexPuzzle3D.completed):
+		return true
+	else:
+		return false
 
 func _on_back_button_up() -> void:
 	if (allcompleted):

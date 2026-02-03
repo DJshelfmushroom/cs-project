@@ -26,7 +26,7 @@ func _on_mouse_entered():
 
 func _on_mouse_exited():
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
-			
+
 			
 #func _on_hover():
 	#if input_event.get_object() == $"." and !$"../..".ignore_hover:

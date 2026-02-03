@@ -23,7 +23,12 @@ func _on_input_event(_camera, event, _position, _normal, _shape_idx):
 			_on_button_pressed()
 			pressed = true
 		
-			
+func _on_mouse_entered():
+	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+
+func _on_mouse_exited():
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+
 			
 			
 #func _on_hover():
