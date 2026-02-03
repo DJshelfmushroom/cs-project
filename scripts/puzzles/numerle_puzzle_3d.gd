@@ -6,7 +6,7 @@ var selected = 0
 var answer = []
 var nums = [1,2,3,4,5,6,7,8,9]
 var completed = false
-#var practice = true
+var practice = true
 
 func _ready() -> void:
 	labels.append(get_node("Label1"))

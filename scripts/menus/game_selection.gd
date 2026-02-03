@@ -10,7 +10,7 @@ func _ready() -> void:
 	$bomb_instance/PuzzleOne3D.practice = false
 	$bomb_instance/PuzzleTwo3D.practice = false
 	$bomb_instance/SimonPuzzle3D.practice = false
-	$bomb_instance/NumerlePuzzle3D.pratice = false
+	$bomb_instance/NumerlePuzzle3D.practice = false
 
 func _process(_delta: float) -> void:
 	if (fix == false):
