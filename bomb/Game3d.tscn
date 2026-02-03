@@ -140,7 +140,7 @@ scale_curve = SubResource("CurveTexture_8d7bq")
 script = ExtResource("1_2mi53")
 
 [node name="bomb_instance" parent="." unique_id=1423946757 instance=ExtResource("1_f3ig0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00033789873, 8.940697e-08, -0.0014241636)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.005)
 script = ExtResource("3_f726v")
 
 [node name="PuzzleOne3D" parent="bomb_instance" unique_id=1176933819 instance=ExtResource("3_f3gsr")]
@@ -157,13 +157,59 @@ transform = Transform3D(4.5298744e-08, -0.6, -2.6226834e-08, 0, -2.6226834e-08, 
 
 [node name="NumerlePuzzle3D" parent="bomb_instance" unique_id=1847075634 instance=ExtResource("7_f726v")]
 
+[node name="vfx_explosion" type="Node3D" parent="bomb_instance" unique_id=114048839]
+
+[node name="Spark" type="GPUParticles3D" parent="bomb_instance/vfx_explosion" unique_id=1018592064]
+material_override = SubResource("StandardMaterial3D_f726v")
+emitting = false
+amount = 20
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_8nerw")
+draw_pass_1 = SubResource("QuadMesh_osgfx")
+
+[node name="Flash" type="GPUParticles3D" parent="bomb_instance/vfx_explosion" unique_id=1122321838]
+material_override = ExtResource("12_oc1ei")
+emitting = false
+amount = 1
+lifetime = 0.1
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_8d7bq")
+draw_pass_1 = SubResource("QuadMesh_okahj")
+
+[node name="Fire" type="GPUParticles3D" parent="bomb_instance/vfx_explosion" unique_id=1894848928]
+material_override = ExtResource("12_oc1ei")
+emitting = false
+amount = 14
+lifetime = 0.55
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_ddge8")
+draw_pass_1 = SubResource("QuadMesh_imkj6")
+
+[node name="Smoke" type="GPUParticles3D" parent="bomb_instance/vfx_explosion" unique_id=1205030488]
+material_override = SubResource("StandardMaterial3D_osgfx")
+emitting = false
+amount = 10
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_okahj")
+draw_pass_1 = SubResource("QuadMesh_ddge8")
+
 [node name="PlugLocs" type="Node3D" parent="." unique_id=628909958]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1434780097]
-transform = Transform3D(0, -0.32726738, 0.9449318, 0, 0.9449318, 0.32726738, -1, 0, 0, 1.8606071, 0.8944851, 0)
+transform = Transform3D(-4.371139e-08, -0.1391731, 0.99026805, 0, 0.99026805, 0.1391731, -1, 6.0834497e-09, -4.328599e-08, 1.8606071, 0.8944851, 0)
 
 [node name="roltateaxis2" parent="Camera3D" unique_id=998242443 instance=ExtResource("6_27ssy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.148, 0.073, -0.385)
+transform = Transform3D(0.91068363, -0.24630313, -0.33164746, 0, 0.80281746, -0.59622484, 0.41310444, 0.5429722, 0.7311127, 0.125, 0.06, -0.12)
 script = ExtResource("8_vy8rm")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=111883687]
@@ -239,52 +285,6 @@ offset_left = 93.0
 offset_top = 1494.0
 offset_right = 1324.6399
 offset_bottom = 2297.3599
-
-[node name="vfx_explosion" type="Node3D" parent="." unique_id=114048839]
-
-[node name="Spark" type="GPUParticles3D" parent="vfx_explosion" unique_id=1018592064]
-material_override = SubResource("StandardMaterial3D_f726v")
-emitting = false
-amount = 20
-lifetime = 0.6
-one_shot = true
-explosiveness = 1.0
-fixed_fps = 60
-process_material = SubResource("ParticleProcessMaterial_8nerw")
-draw_pass_1 = SubResource("QuadMesh_osgfx")
-
-[node name="Flash" type="GPUParticles3D" parent="vfx_explosion" unique_id=1122321838]
-material_override = ExtResource("12_oc1ei")
-emitting = false
-amount = 1
-lifetime = 0.1
-one_shot = true
-explosiveness = 1.0
-fixed_fps = 60
-process_material = SubResource("ParticleProcessMaterial_8d7bq")
-draw_pass_1 = SubResource("QuadMesh_okahj")
-
-[node name="Fire" type="GPUParticles3D" parent="vfx_explosion" unique_id=1894848928]
-material_override = ExtResource("12_oc1ei")
-emitting = false
-amount = 14
-lifetime = 0.55
-one_shot = true
-explosiveness = 1.0
-fixed_fps = 60
-process_material = SubResource("ParticleProcessMaterial_ddge8")
-draw_pass_1 = SubResource("QuadMesh_imkj6")
-
-[node name="Smoke" type="GPUParticles3D" parent="vfx_explosion" unique_id=1205030488]
-material_override = SubResource("StandardMaterial3D_osgfx")
-emitting = false
-amount = 10
-lifetime = 0.8
-one_shot = true
-explosiveness = 1.0
-fixed_fps = 60
-process_material = SubResource("ParticleProcessMaterial_okahj")
-draw_pass_1 = SubResource("QuadMesh_ddge8")
 
 [connection signal="button_up" from="RedWireButton" to="." method="_on_back_button_up"]
 [connection signal="button_up" from="ReturnButton" to="." method="_on_back_button_up"]

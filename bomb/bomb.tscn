@@ -1,8 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://b36hy5bofpsne"]
+[gd_scene format=3 uid="uid://b36hy5bofpsne"]
 
 [ext_resource type="Script" uid="uid://cegaq2p1u1qo2" path="res://scripts/menus/game_selection.gd" id="1_2mi53"]
 [ext_resource type="PackedScene" uid="uid://b5lb0ykdugkxc" path="res://bomb/bom.blend" id="1_f3ig0"]
-[ext_resource type="Script" uid="uid://ds6n1ew1wvesq" path="res://bomb/bomb.cs" id="2_f3gsr"]
+[ext_resource type="Script" uid="uid://bre2spumxr7dc" path="res://bomb/bomb.cs" id="2_f3gsr"]
 [ext_resource type="PackedScene" uid="uid://f6op8gdxrkeu" path="res://scenes/puzzles/puzzle_one_3d.tscn" id="3_f3gsr"]
 [ext_resource type="PackedScene" uid="uid://cwui3aoo0t1ew" path="res://scenes/puzzles/puzzle_two_3d.tscn" id="4_27ssy"]
 [ext_resource type="PackedScene" uid="uid://c2yiau653p0fr" path="res://scenes/puzzles/simon_puzzle_3d.tscn" id="5_27ssy"]
@@ -11,46 +11,47 @@
 [ext_resource type="Script" uid="uid://c12ur810twi0b" path="res://scripts/ui/layout/button_pos.gd" id="9_33y0u"]
 [ext_resource type="PackedScene" uid="uid://d4aqd6eakis0f" path="res://scenes/components/timers/timerrr.tscn" id="10_urila"]
 
-[node name="Bomb" type="Node3D"]
+[node name="Bomb" type="Node3D" unique_id=400511722]
 script = ExtResource("1_2mi53")
 
-[node name="bomb_instance" parent="." instance=ExtResource("1_f3ig0")]
+[node name="bomb_instance" parent="." unique_id=2409384 instance=ExtResource("1_f3ig0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.372, 0)
 script = ExtResource("2_f3gsr")
 
-[node name="PuzzleOne3D" parent="bomb_instance" instance=ExtResource("3_f3gsr")]
+[node name="PuzzleOne3D" parent="bomb_instance" unique_id=110764516 instance=ExtResource("3_f3gsr")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -0.24016353, 0.013525248, 1.0006052)
 
-[node name="PuzzleTwo3D" parent="bomb_instance" instance=ExtResource("4_27ssy")]
+[node name="PuzzleTwo3D" parent="bomb_instance" unique_id=933314329 instance=ExtResource("4_27ssy")]
 transform = Transform3D(-3.059797e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.059797e-08, 0.49532336, 0.19510743, 0.45340592)
 
-[node name="SimonPuzzle3D" parent="bomb_instance" instance=ExtResource("5_27ssy")]
+[node name="SimonPuzzle3D" parent="bomb_instance" unique_id=1741246381 instance=ExtResource("5_27ssy")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.5181878, -0.17222978, -0.3540955)
 
-[node name="PlugLocs" type="Node3D" parent="."]
+[node name="PlugLocs" type="Node3D" parent="." unique_id=1536027744]
 
-[node name="Node3D" type="Node3D" parent="PlugLocs"]
+[node name="Node3D" type="Node3D" parent="PlugLocs" unique_id=2130698087]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.013037, 0)
 metadata/link = NodePath("../Node3D2")
 
-[node name="RayCast3D" type="RayCast3D" parent="PlugLocs/Node3D"]
+[node name="RayCast3D" type="RayCast3D" parent="PlugLocs/Node3D" unique_id=2034018903]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6254169, -0.7823271)
 
-[node name="Node3D2" type="Node3D" parent="PlugLocs"]
+[node name="Node3D2" type="Node3D" parent="PlugLocs" unique_id=1666667158]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0551159, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1438168203]
 transform = Transform3D(1.271507e-07, -0.32726738, 0.9449318, -2.2214532e-09, 0.9449318, 0.32726738, -1, -4.3711395e-08, 1.1942173e-07, 1.8606071, 0.8944851, 0)
 
-[node name="roltateaxis2" parent="Camera3D" instance=ExtResource("6_27ssy")]
-transform = Transform3D(1, 0, 0, 0, 1, -5.2200904e-15, 0, -5.2200904e-15, 1, 0.148, 0.073, -0.385)
+[node name="roltateaxis2" parent="Camera3D" unique_id=1256902150 instance=ExtResource("6_27ssy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14, 0.083, -0.16)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1165070918]
 transform = Transform3D(0.8660254, -2.1855694e-08, 0.5, -0.5, -3.7855173e-08, 0.8660254, 0, -1, -4.371139e-08, 8.520605, 13.767857, 0)
 light_energy = 1.66
 light_indirect_energy = 2.967
 light_angular_distance = 6.3
 
-[node name="StrikesLabel" type="Label" parent="."]
+[node name="StrikesLabel" type="Label" parent="." unique_id=148409480]
 offset_left = 1550.0
 offset_right = 1950.0
 offset_bottom = 100.0
@@ -60,7 +61,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("8_da634")
 
-[node name="RedWireButton" type="Button" parent="."]
+[node name="RedWireButton" type="Button" parent="." unique_id=1817945526]
 visible = false
 anchors_preset = -1
 anchor_left = 0.011000001
@@ -77,7 +78,7 @@ text = "CUT THE RED WIRE"
 script = ExtResource("9_33y0u")
 metadata/pos = Vector2(760, 50)
 
-[node name="ReturnButton" type="Button" parent="."]
+[node name="ReturnButton" type="Button" parent="." unique_id=955822909]
 visible = false
 anchors_preset = -1
 anchor_left = 0.011000001
@@ -94,7 +95,7 @@ text = "RETURN TO MENU"
 script = ExtResource("9_33y0u")
 metadata/pos = Vector2(50, 960)
 
-[node name="GameOverLabel" type="Label" parent="."]
+[node name="GameOverLabel" type="Label" parent="." unique_id=1784896746]
 visible = false
 anchors_preset = -1
 anchor_left = 0.011000001
@@ -112,7 +113,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/pos = Vector2(760, 50)
 
-[node name="TimerNode" parent="." instance=ExtResource("10_urila")]
+[node name="TimerNode" parent="." unique_id=1166560606 instance=ExtResource("10_urila")]
 offset_left = 93.0
 offset_top = 1494.0
 offset_right = 1324.6399
