@@ -18,10 +18,31 @@ public partial class bomb : Node3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		Node3D gamesNode = GetNode<Node3D>("./Games");
 		InstanceUtils.MakeInstances(this, _plugScene);
+		var ray = new RayCast3D();
+		ray.Enabled = true;
+		AddChild(ray);
+		
+		for (int i = 0; i < gamesNode.GetChildCount(); i++)
+		{
+			var child = gamesNode.GetChild(i) as Node3D;
+			if (child == null) continue;
+
+			var from = child.GlobalPosition;
+			var to = this.GlobalPosition;
+			ray.GlobalPosition = from;
+			ray.TargetPosition = to - from;
+			ray.ForceRaycastUpdate();
+			if (ray.IsColliding())
+			{
+				child.GlobalPosition = ray.GetCollisionPoint();
+			}
+		}
+		ray.QueueFree();
 	}
 
-	// plug instantiation/placement moved to bomb/plug_utils.cs (PlugUtils.MakePlugs)
+	// plug instantiation/placement moved to bomb/instance_utils.cs (InstanceUtils.MakeInstances)
 
 	public override void _Process(double delta)
 	{

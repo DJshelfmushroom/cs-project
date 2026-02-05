@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cegaq2p1u1qo2" path="res://scripts/menus/game_selection.gd" id="1_2mi53"]
 [ext_resource type="PackedScene" uid="uid://b5lb0ykdugkxc" path="res://bomb/bom.blend" id="1_f3ig0"]
 [ext_resource type="PackedScene" uid="uid://f6op8gdxrkeu" path="res://scenes/puzzles/puzzle_one_3d.tscn" id="3_f3gsr"]
-[ext_resource type="Script" uid="uid://bre2spumxr7dc" path="res://bomb/bomb.cs" id="3_f726v"]
+[ext_resource type="Script" uid="uid://o3ffvnix68gl" path="res://bomb/bomb.cs" id="3_f726v"]
 [ext_resource type="PackedScene" uid="uid://cwui3aoo0t1ew" path="res://scenes/puzzles/puzzle_two_3d.tscn" id="4_27ssy"]
 [ext_resource type="PackedScene" uid="uid://c2yiau653p0fr" path="res://scenes/puzzles/simon_puzzle_3d.tscn" id="5_27ssy"]
 [ext_resource type="PackedScene" uid="uid://dayhykcmbmowg" path="res://bomb/Button/Models/textures/roltateaxis.tscn" id="6_27ssy"]
@@ -143,20 +143,22 @@ script = ExtResource("1_2mi53")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.005)
 script = ExtResource("3_f726v")
 
-[node name="PuzzleOne3D" parent="bomb_instance" unique_id=1176933819 instance=ExtResource("3_f3gsr")]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -0.20370534, 0.013525248, 1.001)
+[node name="Games" type="Node3D" parent="bomb_instance" unique_id=261973402]
 
-[node name="PuzzleTwo3D" parent="bomb_instance" unique_id=183311325 instance=ExtResource("4_27ssy")]
-transform = Transform3D(-3.059797e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.059797e-08, 0.50984114, 0.19510743, 0.45340592)
+[node name="PuzzleOne3D" parent="bomb_instance/Games" unique_id=1176933819 instance=ExtResource("3_f3gsr")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -0.20370534, 0.013525248, 1.0235684)
 
-[node name="SimonPuzzle3D" parent="bomb_instance" unique_id=1092913190 instance=ExtResource("5_27ssy")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.52222013, -0.17222978, -0.3540955)
+[node name="PuzzleTwo3D" parent="bomb_instance/Games" unique_id=183311325 instance=ExtResource("4_27ssy")]
+transform = Transform3D(-3.059797e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.059797e-08, 0.50984114, 0.19510746, 0.45340592)
 
-[node name="ReflexPuzzle3D" parent="bomb_instance" unique_id=1784130657 instance=ExtResource("7_aalj4")]
+[node name="SimonPuzzle3D" parent="bomb_instance/Games" unique_id=1092913190 instance=ExtResource("5_27ssy")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.52222013, -0.17222977, -0.3540955)
+
+[node name="ReflexPuzzle3D" parent="bomb_instance/Games" unique_id=1784130657 instance=ExtResource("7_aalj4")]
 transform = Transform3D(4.5298744e-08, -0.6, -2.6226834e-08, 0, -2.6226834e-08, 0.6, -0.6, -4.5298744e-08, -1.980071e-15, 0.01650051, 0.5140915, 0.013921186)
 
-[node name="NumerlePuzzle3D" parent="bomb_instance" unique_id=1847075634 instance=ExtResource("7_f726v")]
-transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 0.008612715, 0.062215574, -1.0066446)
+[node name="NumerlePuzzle3D" parent="bomb_instance/Games" unique_id=1847075634 instance=ExtResource("7_f726v")]
+transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 0.008612715, 0.062215567, -1.0066446)
 
 [node name="vfx_explosion" type="Node3D" parent="bomb_instance" unique_id=114048839]
 
