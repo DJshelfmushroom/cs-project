@@ -1,15 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctddbvibesp31"]
+[gd_scene format=3 uid="uid://ctddbvibesp31"]
 
-[ext_resource type="Script" uid="uid://byhb4ivqov6s3" path="res://scripts/puzzles/tutorials/puzzle_1_tutorial.gd" id="1_yd5k4"]
-[ext_resource type="Script" uid="uid://bbi5g3r8nkyow" path="res://scripts/puzzles/tutorials/back_button_tutorial1.gd" id="2_728il"]
+[ext_resource type="Script" uid="uid://byhb4ivqov6s3" path="res://scripts/Tutorial Scripts/puzzle_tutorial.gd" id="1_yd5k4"]
+[ext_resource type="Script" uid="uid://bbi5g3r8nkyow" path="res://scripts/Tutorial Scripts/back_button_tutorial.gd" id="2_728il"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gl41s"]
 font_size = 46
 
-[node name="Puzzle1Tutorial" type="Label"]
+[node name="Puzzle1Tutorial" type="Label" unique_id=2078508889]
 offset_left = 120.0
 offset_top = 345.0
-offset_right = 1798.0
+offset_right = 1795.0
 offset_bottom = 642.0
 theme_override_font_sizes/font_size = 60
 text = "Equation Puzzle:
@@ -21,17 +21,17 @@ That set of values are your X and Y answers."
 label_settings = SubResource("LabelSettings_gl41s")
 script = ExtResource("1_yd5k4")
 
-[node name="BackButton" type="Button" parent="."]
+[node name="BackButton" type="Button" parent="." unique_id=1223377979]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.040000003
 anchor_top = 0.1
 anchor_right = -0.040000003
 anchor_bottom = 0.1
-offset_left = 117.8
-offset_top = 551.0
-offset_right = 367.8
-offset_bottom = 621.0
+offset_left = 117.00001
+offset_top = 550.0
+offset_right = 367.0
+offset_bottom = 620.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 30
 text = "BACK TO TUTORIALS"
