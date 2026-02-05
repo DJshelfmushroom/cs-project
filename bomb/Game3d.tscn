@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://b3aqjmj7grawb"]
+[gd_scene format=4 uid="uid://b3aqjmj7grawb"]
 
 [ext_resource type="Script" uid="uid://cegaq2p1u1qo2" path="res://scripts/menus/game_selection.gd" id="1_2mi53"]
 [ext_resource type="PackedScene" uid="uid://b5lb0ykdugkxc" path="res://bomb/bom.blend" id="1_f3ig0"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://d4aqd6eakis0f" path="res://scenes/components/timers/timerrr.tscn" id="10_urila"]
 [ext_resource type="Material" uid="uid://bpyrxdtjblchr" path="res://bomb/Materials/Mat_Flare00.tres" id="12_oc1ei"]
 [ext_resource type="Texture2D" uid="uid://cbk131m5nl33b" path="res://GAP_EasyExplosions_Textures/Flare00.PNG" id="12_p0es4"]
+[ext_resource type="Script" uid="uid://bbkdk8g0k6o5o" path="res://bomb/Button/Models/textures/Cube.cs" id="13_nykgf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f726v"]
 transparency = 1
@@ -214,6 +215,12 @@ transform = Transform3D(-4.371139e-08, -0.1391731, 0.99026805, 0, 0.99026805, 0.
 [node name="roltateaxis2" parent="Camera3D" unique_id=998242443 instance=ExtResource("6_27ssy")]
 transform = Transform3D(0.91068363, -0.24630313, -0.33164746, 0, 0.80281746, -0.59622484, 0.41310444, 0.5429722, 0.7311127, 0.125, 0.06, -0.12)
 script = ExtResource("8_vy8rm")
+
+[node name="Cube" type="MeshInstance3D" parent="Camera3D" unique_id=238138358]
+transform = Transform3D(0.01, 0, 0, 0, -4.3711387e-10, -0.01, 0, 0.01, -4.3711387e-10, 0, 0, 0)
+mesh = SubResource("ArrayMesh_un6j2")
+skeleton = NodePath("")
+script = ExtResource("13_nykgf")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=111883687]
 transform = Transform3D(0.8660254, 0, 0.5, -0.5, 0, 0.8660254, 0, -1, 0, 8.520605, 13.767857, 0)

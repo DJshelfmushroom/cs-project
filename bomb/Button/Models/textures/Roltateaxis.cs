@@ -6,9 +6,9 @@ using System.Net.NetworkInformation;
 public partial class Roltateaxis : Node3D
 {
 	private const float RayLength = 1000.0f;
-	private RayCast3D ray;
+	private RayCast3D _ray;
 	[Export] 
-	public Node3D BombNode = null;
+	public Node3D BombNode;
 	
 	public override void _Process(double delta)
 	{
@@ -35,12 +35,12 @@ public partial class Roltateaxis : Node3D
 
 	private void SetupRay()
 	{
-		ray = new RayCast3D();
-		ray.CollideWithBodies = true;
-		ray.Enabled = true;
-		ray.Name = "ClickRay";
-		AddChild(ray);
-		ray = GetNode<RayCast3D>("ClickRay");
+		_ray = new RayCast3D();
+		_ray.CollideWithBodies = true;
+		_ray.Enabled = true;
+		_ray.Name = "ClickRay";
+		AddChild(_ray);
+		_ray = GetNode<RayCast3D>("ClickRay");
 	}
 
 	public override void _Input(InputEvent @event)
@@ -52,21 +52,25 @@ public partial class Roltateaxis : Node3D
 			Camera3D camera = GetParent<Camera3D>();
 			var from = camera.ProjectRayOrigin(eventMouseButton.Position);
 			var to = from + camera.ProjectRayNormal(eventMouseButton.Position) * RayLength;
-			
-			ray.Position = from;
-			ray.TargetPosition = to;
-			ray.ForceRaycastUpdate();
-			DebugDraw3D.DrawRay(from, to, 5f, Colors.Red, 10000000F);
-			GD.Print(ray.Position);	
-			if (ray.IsColliding())
+			_ray.Position = from;
+			_ray.TargetPosition = to;
+			_ray.ForceRaycastUpdate();
+			GD.Print($"from {from} to {to}");
+			GD.Print($"Mouse position: {eventMouseButton.Position}");
+			if (_ray.IsColliding())
 			{
-				var collider = ray.GetCollider();
+				DebugDraw3D.DrawRay(_ray.Position, _ray.TargetPosition, 5f, Colors.Green, 10000000F);
+				var collider = _ray.GetCollider();
 				GD.Print("ray collided with " + collider.Get("Name"));
 				if (collider is Roltateaxis)
 				{
 					GD.Print("Roltateaxis clicked");
 					GetParent<bomb>().Call("SetLockedAxis", this.Name);
 				}
+			}
+			else
+			{
+				DebugDraw3D.DrawRay(_ray.Position, _ray.TargetPosition, 5f, Colors.Red, 10000000F);
 			}
 		}
 	}
