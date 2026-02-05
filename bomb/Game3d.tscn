@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://cb5fs7o0nls3" path="res://scripts/ui/labels/label_2.gd" id="8_da634"]
 [ext_resource type="Script" uid="uid://bwsbcc1ccrmyh" path="res://bomb/Button/Models/textures/Roltateaxis.cs" id="8_vy8rm"]
 [ext_resource type="Script" uid="uid://c12ur810twi0b" path="res://scripts/ui/layout/button_pos.gd" id="9_33y0u"]
+[ext_resource type="PackedScene" uid="uid://dm88p66swvyrh" path="res://scenes/puzzles/segment_puzzle_3d.tscn" id="9_nykgf"]
 [ext_resource type="PackedScene" uid="uid://d4aqd6eakis0f" path="res://scenes/components/timers/timerrr.tscn" id="10_urila"]
 [ext_resource type="Material" uid="uid://bpyrxdtjblchr" path="res://bomb/Materials/Mat_Flare00.tres" id="12_oc1ei"]
 [ext_resource type="Texture2D" uid="uid://cbk131m5nl33b" path="res://GAP_EasyExplosions_Textures/Flare00.PNG" id="12_p0es4"]
@@ -160,6 +161,9 @@ transform = Transform3D(4.5298744e-08, -0.6, -2.6226834e-08, 0, -2.6226834e-08, 
 
 [node name="NumerlePuzzle3D" parent="bomb_instance/Games" unique_id=1847075634 instance=ExtResource("7_f726v")]
 transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 0.008612715, 0.062215567, -1.0066446)
+
+[node name="SegmentPuzzle3D" parent="bomb_instance" unique_id=971203949 instance=ExtResource("9_nykgf")]
+transform = Transform3D(-0.5, 0, -7.54979e-08, 7.54979e-08, -2.1855694e-08, -0.5, -3.300118e-15, -0.5, 2.1855694e-08, 0.09755497, -0.508193, -0.10657404)
 
 [node name="vfx_explosion" type="Node3D" parent="bomb_instance" unique_id=114048839]
 

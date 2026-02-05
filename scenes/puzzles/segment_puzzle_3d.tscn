@@ -2,33 +2,44 @@
 
 [ext_resource type="Script" uid="uid://cucp4wvseg4pd" path="res://scripts/puzzles/segment_puzzle_3d.gd" id="1_0epcp"]
 [ext_resource type="PackedScene" uid="uid://c28hneqi1mrrq" path="res://scenes/components/segment_button_3d.tscn" id="1_tx22x"]
+[ext_resource type="FontFile" uid="uid://0my668ilbos5" path="res://assets/fonts/DS-DIGI.TTF" id="3_qf1h4"]
 
 [node name="SegmentPuzzle3D" type="Node3D" unique_id=971203949]
 script = ExtResource("1_0epcp")
 
-[node name="SB3D1" parent="." unique_id=754785337 instance=ExtResource("1_tx22x")]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.18, 0.355, 0)
-
-[node name="SB3D2" parent="." unique_id=457036548 instance=ExtResource("1_tx22x")]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.18, 0.05, 0)
-
-[node name="SB3D3" parent="." unique_id=1900345373 instance=ExtResource("1_tx22x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34, 0.505, 0)
-
-[node name="SB3D4" parent="." unique_id=2041822469 instance=ExtResource("1_tx22x")]
+[node name="SB3D0" parent="." unique_id=2041822469 instance=ExtResource("1_tx22x")]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.18, 0.665, 0)
 
-[node name="SB3D5" parent="." unique_id=1765245780 instance=ExtResource("1_tx22x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0.2, 0)
+[node name="SB3D1" parent="." unique_id=1900345373 instance=ExtResource("1_tx22x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34, 0.505, 0)
 
-[node name="SB3D6" parent="." unique_id=421219375 instance=ExtResource("1_tx22x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0.505, 0)
-
-[node name="SB3D7" parent="." unique_id=1299648100 instance=ExtResource("1_tx22x")]
+[node name="SB3D2" parent="." unique_id=1299648100 instance=ExtResource("1_tx22x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34, 0.2, 0)
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1785911782]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1783486, 0.47155672, 0.9010104)
+[node name="SB3D3" parent="." unique_id=457036548 instance=ExtResource("1_tx22x")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.18, 0.05, 0)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D" unique_id=863910503]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57083064, 0.4626469, 0.66825163)
+[node name="SB3D4" parent="." unique_id=1765245780 instance=ExtResource("1_tx22x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0.2, 0)
+
+[node name="SB3D5" parent="." unique_id=421219375 instance=ExtResource("1_tx22x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0.505, 0)
+
+[node name="SB3D6" parent="." unique_id=754785337 instance=ExtResource("1_tx22x")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.18, 0.355, 0)
+
+[node name="NumsLabel" type="Label3D" parent="." unique_id=1745699898]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18, 0.85, 0)
+pixel_size = 0.0005
+modulate = Color(0.98039216, 0.39215687, 0, 1)
+text = "0 | 0"
+font = ExtResource("3_qf1h4")
+font_size = 400
+
+[node name="NumsLabel2" type="Label3D" parent="." unique_id=1960548916]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18, 0.85, -0.001)
+pixel_size = 0.0005
+modulate = Color(0.27387273, 0.27387273, 0.27387273, 1)
+text = "8 | 8"
+font = ExtResource("3_qf1h4")
+font_size = 400

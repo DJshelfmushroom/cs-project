@@ -17,7 +17,7 @@ var score = null
 @onready var timer = $Timer
 #@onready var screen_size = get_viewport().get_visible_rect()
 var completed = false
-#var practice = true
+var practice = true
 
 func set_start_button():
 	$StartButton3D.set_text("Start Test")

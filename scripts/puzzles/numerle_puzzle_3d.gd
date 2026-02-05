@@ -68,7 +68,7 @@ func _process(_delta: float) -> void:
 	
 
 func _on_button_pressed(num : int):
-	if !completed:
+	if !completed and !$"../..".failed:
 		labels[selected].text = str(num)
 		labels[selected].modulate = Color.WHITE
 		if selected < 2:

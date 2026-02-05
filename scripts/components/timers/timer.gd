@@ -3,7 +3,7 @@ extends Timer
 var stopped
 
 func _ready() -> void:
-	wait_time = 60
+	wait_time = 120
 	one_shot = true
 	stopped = false
 	start()
