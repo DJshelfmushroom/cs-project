@@ -24,43 +24,63 @@ vertical_alignment = 1
 
 [node name="Puzzle1TutorialButton" type="Button" parent="." unique_id=1312369457]
 layout_mode = 0
-offset_left = 700.0
-offset_top = 148.0
-offset_right = 1152.0
-offset_bottom = 353.0
+offset_left = 450.0
+offset_top = 150.0
+offset_right = 902.0
+offset_bottom = 355.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Equation Puzzle Tutorial"
 
 [node name="Puzzle2TutorialButton" type="Button" parent="." unique_id=1702153204]
 layout_mode = 0
-offset_left = 700.0
-offset_top = 376.0
-offset_right = 1152.0
-offset_bottom = 581.0
+offset_left = 450.0
+offset_top = 375.0
+offset_right = 902.0
+offset_bottom = 580.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Memory Puzzle Tutorial"
 
 [node name="Puzzle3TutorialButton" type="Button" parent="." unique_id=1259683025]
 layout_mode = 0
-offset_left = 700.0
-offset_top = 604.0
-offset_right = 1152.0
-offset_bottom = 809.0
+offset_left = 950.0
+offset_top = 150.0
+offset_right = 1402.0
+offset_bottom = 355.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Simon Puzzle Tutorial"
 
 [node name="Puzzle4TutorialButton" type="Button" parent="." unique_id=1531921206]
 layout_mode = 0
-offset_left = 700.0
-offset_top = 832.0
-offset_right = 1152.0
-offset_bottom = 1037.0
+offset_left = 950.0
+offset_top = 375.0
+offset_right = 1402.0
+offset_bottom = 580.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Reflex Puzzle Tutorial"
+
+[node name="Puzzle5TutorialButton" type="Button" parent="." unique_id=1211510790]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 600.0
+offset_right = 902.0
+offset_bottom = 805.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Numerle Puzzle Tutorial"
+
+[node name="Puzzle6TutorialButton" type="Button" parent="." unique_id=1516122093]
+layout_mode = 0
+offset_left = 950.0
+offset_top = 600.0
+offset_right = 1402.0
+offset_bottom = 805.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Segment Puzzle Tutorial"
 
 [node name="BackButton" type="Button" parent="." unique_id=471234110]
 layout_mode = 1
@@ -81,4 +101,6 @@ text = "BACK"
 [connection signal="button_up" from="Puzzle2TutorialButton" to="." method="_on_puzzle_2_tutorial_button_up"]
 [connection signal="button_up" from="Puzzle3TutorialButton" to="." method="_on_puzzle_3_tutorial_button_up"]
 [connection signal="button_up" from="Puzzle4TutorialButton" to="." method="_on_puzzle_4_tutorial_button_button_up"]
+[connection signal="button_up" from="Puzzle5TutorialButton" to="." method="_on_puzzle_5_tutorial_button_button_up"]
+[connection signal="button_up" from="Puzzle6TutorialButton" to="." method="_on_puzzle_6_tutorial_button_button_up"]
 [connection signal="button_up" from="BackButton" to="." method="_on_back_button_up"]
