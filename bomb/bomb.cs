@@ -36,7 +36,7 @@ public partial class bomb : Node3D
 			ray.ForceRaycastUpdate();
 			if (ray.IsColliding())
 			{
-				child.GlobalPosition = ray.GetCollisionPoint();
+				child.GlobalPosition = ray.GetCollisionPoint() + ray.GetCollisionNormal() * 0.0105f;
 			}
 		}
 		ray.QueueFree();
