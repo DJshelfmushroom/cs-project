@@ -165,9 +165,9 @@ func _Game_Over_Animation():
 	$Button4.set_color(Color.RED)
 	await get_tree().create_timer(0.4).timeout
 	_Buttons_Off()
-	$"../..".strikes += 1
+	$"../../..".strikes += 1
 	await get_tree().create_timer(1.0).timeout
-	$"../..".fix = true
+	$"../../..".fix = true
 	var parent = get_parent()
 	var new_minigame = original_minigame.instantiate()
 	name = "Simon"
@@ -249,7 +249,7 @@ func _on_but_pressed(num : int) -> void:
 				GameOver = true
 				_ready()
 	else:
-		if !$"../..".failed:
+		if !$"../../..".failed:
 			GameStart2 = true
 			$StartGameButton.disabled = true
 			_ready()

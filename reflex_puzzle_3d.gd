@@ -209,14 +209,14 @@ func hideLabels():
 
 func _on_but_pressed(num : int) -> void:
 	if num == 0:
-		if !$"../..".failed:
+		if !$"../../..".failed:
 			$StartButton3D.hide()
 			$StartButton3D.disabled = true
 			GameStart = true
 			timer.start()
 			_startGame()
 	if num == 1:
-		if !$"../..".failed:
+		if !$"../../..".failed:
 			_ready()
 			$StartButton3D.hide()
 			$StartButton3D.disabled = true
@@ -234,7 +234,7 @@ func win():
 func lose():
 	$EndScreen.text = "You Lost"
 	$EndScreen.show()
-	$"../..".strikes += 1
+	$"../../..".strikes += 1
 	await get_tree().create_timer(0.5).timeout
 	$Score.text = "Score: " + str(score)
 	$Score.show()

@@ -65,7 +65,7 @@ func _on_but_pressed(num : int):
 			ismatch = true
 	if !ismatch:
 		buttons[num].set_lighting(Color.RED)
-		$"../..".strikes += 1
+		$"../../..".strikes += 1
 		buttons[num].disabled = true
 		await get_tree().create_timer(1.0).timeout
 		buttons[num].light_off()

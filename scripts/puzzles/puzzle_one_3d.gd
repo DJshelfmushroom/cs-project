@@ -26,7 +26,7 @@ func _process(_delta: float) -> void:
 		TextEdit1.modulate = Color.RED
 		TextEdit2.editable = false
 		TextEdit2.modulate = Color.RED
-		$"../..".strikes += 1
+		$"../../..".strikes += 1
 		strikeable = false
 		await get_tree().create_timer(1.0).timeout
 		TextEdit1.text = ""
