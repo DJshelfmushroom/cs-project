@@ -216,11 +216,6 @@ transform = Transform3D(-4.371139e-08, -0.1391731, 0.99026805, 0, 0.99026805, 0.
 transform = Transform3D(0.91068363, -0.24630313, -0.33164746, 0, 0.80281746, -0.59622484, 0.41310444, 0.5429722, 0.7311127, 0.125, 0.06, -0.12)
 script = ExtResource("8_vy8rm")
 
-[node name="Cube" type="MeshInstance3D" parent="Camera3D" unique_id=238138358]
-transform = Transform3D(0.01, 0, 0, 0, -4.3711387e-10, -0.01, 0, 0.01, -4.3711387e-10, 0, 0, 0)
-mesh = SubResource("ArrayMesh_un6j2")
-skeleton = NodePath("")
-script = ExtResource("13_nykgf")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=111883687]
 transform = Transform3D(0.8660254, 0, 0.5, -0.5, 0, 0.8660254, 0, -1, 0, 8.520605, 13.767857, 0)
