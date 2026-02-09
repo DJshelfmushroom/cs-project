@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c28hneqi1mrrq"]
 
 [ext_resource type="Script" uid="uid://btdyvtfh6n208" path="res://scripts/components/segment_button_3d.gd" id="1_bxenh"]
-[ext_resource type="Script" uid="uid://3f8sojmo78eh" path="res://scripts/components/button_area_3d.gd" id="2_4lmoo"]
+[ext_resource type="Script" uid="uid://clvqwnwnb6gya" path="res://scripts/components/segment_area_3d.gd" id="2_bxenh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bxenh"]
 emission_enabled = true
@@ -23,7 +23,7 @@ mesh = SubResource("CapsuleMesh_4lmoo")
 
 [node name="Area3D" type="Area3D" parent="ColorOutline" unique_id=1349510043]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.015)
-script = ExtResource("2_4lmoo")
+script = ExtResource("2_bxenh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ColorOutline/Area3D" unique_id=1415698928]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.018019542)

@@ -26,6 +26,7 @@ func _ready() -> void:
 		nums.append(allnums[rand])
 		allnums.remove_at(rand)
 	$NumsLabel.text = str(nums[0]) + " | " + str(nums[1])
+	
 	for x in range(segments[nums[0]].size()):
 		for y in range(segments[nums[1]].size()):
 			if segments[nums[0]][x] == segments[nums[1]][y]:

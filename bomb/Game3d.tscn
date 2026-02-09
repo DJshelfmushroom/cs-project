@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cwui3aoo0t1ew" path="res://scenes/puzzles/puzzle_two_3d.tscn" id="4_27ssy"]
 [ext_resource type="PackedScene" uid="uid://c2yiau653p0fr" path="res://scenes/puzzles/simon_puzzle_3d.tscn" id="5_27ssy"]
 [ext_resource type="PackedScene" uid="uid://dayhykcmbmowg" path="res://bomb/Button/Models/textures/roltateaxis.tscn" id="6_27ssy"]
-[ext_resource type="PackedScene" uid="uid://1bqj0d1bbj3c" path="res://reflex_puzzle_3d.tscn" id="7_aalj4"]
+[ext_resource type="PackedScene" uid="uid://1bqj0d1bbj3c" path="res://scenes/puzzles/reflex_puzzle_3d.tscn" id="7_aalj4"]
 [ext_resource type="PackedScene" uid="uid://bwfhb1h884c5w" path="res://scenes/puzzles/numerle_puzzle_3d.tscn" id="7_f726v"]
 [ext_resource type="Script" uid="uid://cb5fs7o0nls3" path="res://scripts/ui/labels/label_2.gd" id="8_da634"]
 [ext_resource type="Script" uid="uid://bwsbcc1ccrmyh" path="res://bomb/Button/Models/textures/Roltateaxis.cs" id="8_vy8rm"]

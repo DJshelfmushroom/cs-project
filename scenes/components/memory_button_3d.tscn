@@ -31,7 +31,6 @@ shape = SubResource("BoxShape3D_gagxl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0019581225, 0.00015720725)
 pixel_size = 0.0005
 modulate = Color(0.98039216, 0.39215687, 0, 1)
-text = "1"
 font = ExtResource("3_ar82o")
 font_size = 450
 outline_size = 0

@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://c12ur810twi0b" path="res://scripts/ui/layout/button_pos.gd" id="1_58i0q"]
 [ext_resource type="Script" uid="uid://dgyse4nbyam63" path="res://reflex_puzzle_3d.gd" id="1_paxyd"]
+[ext_resource type="PackedScene" uid="uid://c4pwgpjrmtysv" path="res://scenes/components/memory_button_3d.tscn" id="2_f8dat"]
+[ext_resource type="FontFile" uid="uid://0my668ilbos5" path="res://assets/fonts/DS-DIGI.TTF" id="4_hcldi"]
 [ext_resource type="PackedScene" uid="uid://cbcrfgck1oggo" path="res://scenes/components/screen_3d.tscn" id="4_pwbcx"]
 [ext_resource type="PackedScene" uid="uid://caapg5wn513l5" path="res://scenes/components/button_3d.tscn" id="5_aet4m"]
 
@@ -11,34 +13,39 @@ script = ExtResource("1_paxyd")
 [node name="Up" type="Label3D" parent="." unique_id=476189538]
 visible = false
 pixel_size = 0.0025
-text = "Up!"
-font_size = 55
+text = "UP"
+font = ExtResource("4_hcldi")
+font_size = 75
 
 [node name="Down" type="Label3D" parent="." unique_id=1578632275]
 visible = false
 pixel_size = 0.0025
-text = "Down!"
-font_size = 55
+text = "DOWN"
+font = ExtResource("4_hcldi")
+font_size = 75
 
 [node name="Left" type="Label3D" parent="." unique_id=1160077475]
 visible = false
 pixel_size = 0.0025
-text = "Left!"
-font_size = 55
+text = "LEFT"
+font = ExtResource("4_hcldi")
+font_size = 75
 
 [node name="Right" type="Label3D" parent="." unique_id=2039157526]
 visible = false
 pixel_size = 0.0025
-text = "Right!"
-font_size = 55
+text = "RIGHT"
+font = ExtResource("4_hcldi")
+font_size = 75
 
-[node name="StartButton3D" parent="." unique_id=264216701 instance=ExtResource("5_aet4m")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+[node name="StartButton" parent="." unique_id=303994183 instance=ExtResource("2_f8dat")]
+transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0, 0)
+skeleton = NodePath("")
 
 [node name="RestartButton3D" parent="." unique_id=1260216462 instance=ExtResource("5_aet4m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
 visible = false
-skeleton = NodePath("../StartButton3D")
+skeleton = NodePath("")
 
 [node name="Timer" type="Timer" parent="." unique_id=562176720]
 wait_time = 10.0
@@ -53,6 +60,7 @@ font_size = 55
 [node name="EndScreen" type="Label3D" parent="." unique_id=217815367]
 visible = false
 pixel_size = 0.0025
+font = ExtResource("4_hcldi")
 font_size = 60
 
 [node name="Score" type="Label3D" parent="." unique_id=920407733]

@@ -20,35 +20,35 @@ var completed = false
 var practice = true
 
 func set_start_button():
-	$StartButton3D.set_text("Start Test")
-	$StartButton3D/button/Label3D.modulate = Color.WHITE
-	$StartButton3D/button/Label3D.font_size = 220
-	$StartButton3D/button/Label3D.pixel_size = 0.00025
-	$StartButton3D.num = 0
+	$StartButton.set_text("START")
+	$StartButton/button/Label3D.modulate = Color.WHITE
+	$StartButton/button/Label3D.font_size = 220
+	$StartButton/button/Label3D.pixel_size = 0.00025
+	$StartButton.num = 0
 	
-func set_restart_button():
-	$RestartButton3D.set_text("Restart?")
-	$RestartButton3D/button/Label3D.modulate = Color.WHITE
-	$RestartButton3D/button/Label3D.font_size = 220
-	$RestartButton3D/button/Label3D.pixel_size = 0.00025
-	$RestartButton3D.num = 1
+#func set_restart_button():
+	#$RestartButton3D.set_text("Restart?")
+	#$RestartButton3D/button/Label3D.modulate = Color.WHITE
+	#$RestartButton3D/button/Label3D.font_size = 220
+	#$RestartButton3D/button/Label3D.pixel_size = 0.00025
+	#$RestartButton3D.num = 1
 
 func _ready():
 	set_start_button()
-	set_restart_button()
+	#set_restart_button()
 	$EndScreen.hide()
 	$Score.hide()
 	$RestartButton3D.hide()
 	$Time.hide()
-	$StartButton3D.show()
+	$StartButton.show()
 	hideLabels()
 	reset_labels()
 	#set_label_Size()
 	place_labels()
-	prepare_timer()
+	#prepare_timer()
 	score = 0
 	$Screen3D.position = Vector3(-0.117, -0.117, -0.001)
-	$Screen3D.set_size(9.25,6)
+	$Screen3D.set_size(4,3)
 	
 	
 	
@@ -56,20 +56,20 @@ func _ready():
 #	for x in Labels:
 #		x.size = Vector2(300, 260)
 	
-func prepare_timer():
-	timer.wait_time = 13
-	timer.one_shot = true
+#func prepare_timer():
+	#timer.wait_time = 13
+	#timer.one_shot = true
 	
 func _process(_delta: float):
 	#if (completed && practice):
 	#	$RedWireButton.visible = true
 		
 	
-	if (time_left() >= 0):
-		if (time_left() >= 10):
-			$Time.text = str(time_left())
-		if (time_left() < 10):
-			$Time.text = "0" + str(time_left())
+	#if (time_left() >= 0):
+		#if (time_left() >= 10):
+			#$Time.text = str(time_left())
+		#if (time_left() < 10):
+			#$Time.text = "0" + str(time_left())
 	if awaitingInputs:
 		if processinstruction == keys.up:
 			
@@ -106,7 +106,8 @@ func _process(_delta: float):
 				processinstruction = null
 				awaitingInputs = false
 				_startGame()
-						
+	if score >= 20:
+		win()	
 				
 func _process_instruction(key):
 	processinstruction = key
@@ -125,7 +126,7 @@ func time_left():
 func label_on_screen(word):
 	
 	return (
-		(word.position.y <= 0.7 and word.position.y >= -0.7) and (word.position.x <= 1. and word.position.x >= -1.)
+		(word.position.y <= 0.293 and word.position.y >= -0.28) and (word.position.x <= 0.3 and word.position.x >= -0.3)
 	)
 
 func begin():
@@ -140,49 +141,49 @@ func _startGame():
 	reset_labels()
 	place_labels()
 	begin()
-	$Time.show()
-	if (GameStart == true && time_left() > 0):
+	#$Time.show()
+	if GameStart and !completed:
 		label = Labels.pick_random()
 		label.show()
 		checkKeys = true
-	if (time_left() <= 0):
-		hideLabels()
-		if (score >= 16):
-			win()
-		else:
-			lose()
+	#if (time_left() <= 0):
+		#hideLabels()
+		#if (score >= 16):
+			#win()
+		#else:
+			#lose()
 
 func _unhandled_input(event):
-	if checkKeys == false:
-		return
+		if !checkKeys or completed or $"../../..".failed:
+			return
 
-	if event.is_action_pressed("ui_up"):
-		keyPressed = keys.up
-		checkKeys = false
-		_process_instruction(keyPressed)
-		awaitingInputs = true
-		flash_colors(Labels.find(label), keyPressed)
+		if event.is_action_pressed("ui_up"):
+			keyPressed = keys.up
+			checkKeys = false
+			_process_instruction(keyPressed)
+			awaitingInputs = true
+			flash_colors(Labels.find(label), keyPressed)
 
-	elif event.is_action_pressed("ui_down"):
-		keyPressed = keys.down
-		checkKeys = false
-		_process_instruction(keyPressed)
-		awaitingInputs = true
-		flash_colors(Labels.find(label), keyPressed)
+		elif event.is_action_pressed("ui_down"):
+			keyPressed = keys.down
+			checkKeys = false
+			_process_instruction(keyPressed)
+			awaitingInputs = true
+			flash_colors(Labels.find(label), keyPressed)
 
-	elif event.is_action_pressed("ui_left"):
-		keyPressed = keys.left
-		checkKeys = false
-		_process_instruction(keyPressed)
-		awaitingInputs = true
-		flash_colors(Labels.find(label), keyPressed)
-	
-	elif event.is_action_pressed("ui_right"):
-		keyPressed = keys.right
-		checkKeys = false
-		_process_instruction(keyPressed)
-		awaitingInputs = true
-		flash_colors(Labels.find(label), keyPressed)
+		elif event.is_action_pressed("ui_left"):
+			keyPressed = keys.left
+			checkKeys = false
+			_process_instruction(keyPressed)
+			awaitingInputs = true
+			flash_colors(Labels.find(label), keyPressed)
+		
+		elif event.is_action_pressed("ui_right"):
+			keyPressed = keys.right
+			checkKeys = false
+			_process_instruction(keyPressed)
+			awaitingInputs = true
+			flash_colors(Labels.find(label), keyPressed)
 
 
 func check_keys(keyShown, keyClicked):
@@ -199,6 +200,7 @@ func flash_colors(keyShown, keyClicked):
 	else:
 		label.modulate = Color.RED
 		score -= 1
+		$"../../..".strikes += 1
 	#print(score)
 	
 func hideLabels():
@@ -210,35 +212,40 @@ func hideLabels():
 func _on_but_pressed(num : int) -> void:
 	if num == 0:
 		if !$"../../..".failed:
-			$StartButton3D.hide()
-			$StartButton3D.disabled = true
+			$StartButton.hide()
+			$StartButton.disabled = true
 			GameStart = true
 			timer.start()
 			_startGame()
 	if num == 1:
 		if !$"../../..".failed:
 			_ready()
-			$StartButton3D.hide()
-			$StartButton3D.disabled = true
+			$StartButton.hide()
+			$StartButton.disabled = true
 			GameStart = true
 			timer.start()
 			_startGame()
 
 func win():
-	$EndScreen.text = "You Won!"
-	$EndScreen.show()
-	await get_tree().create_timer(0.5).timeout
-	$Score.text = "Score: " + str(score)
-	$Score.show()
+	checkKeys = false
 	completed = true
-func lose():
-	$EndScreen.text = "You Lost"
+	$EndScreen.text = "TEST COMPLETE"
+	$EndScreen.modulate = Color.GREEN
 	$EndScreen.show()
-	$"../../..".strikes += 1
 	await get_tree().create_timer(0.5).timeout
-	$Score.text = "Score: " + str(score)
-	$Score.show()
-	$RestartButton3D.show()
+	hideLabels()
+	
+	#$Score.text = "Score: " + str(score)
+	#$Score.show()
+	
+#func lose():
+	#$EndScreen.text = "You Lost"
+	#$EndScreen.show()
+	#$"../../..".strikes += 1
+	#await get_tree().create_timer(0.5).timeout
+	#$Score.text = "Score: " + str(score)
+	#$Score.show()
+	#$RestartButton3D.show()
 
 
 #func _on_restart_button_pressed() -> void:
