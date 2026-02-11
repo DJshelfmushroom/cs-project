@@ -10,6 +10,10 @@ func set_lighting(color : Color):
 	newmaterial.albedo_color = color
 	$ColorOutline.set_surface_override_material(0,newmaterial)
 	
+func win():
+	$ColorOutline.mesh.material.emission = Color.GREEN
+	disabled = true
+	
 func light_off():
 	var newmaterial = StandardMaterial3D.new()
 	$ColorOutline.set_surface_override_material(0,newmaterial)

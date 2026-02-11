@@ -20,6 +20,8 @@ func _process(_delta: float) -> void:
 		TextEdit1.modulate = Color.GREEN
 		TextEdit2.editable = false
 		TextEdit2.modulate = Color.GREEN
+		$EquationLabel.modulate = Color.LIGHT_GREEN
+		$EquationLabel/AnswerLabel.modulate = Color.LIGHT_GREEN
 		completed = true
 	elif (not(TextEdit1.text == "") && not(TextEdit2.text == "") && strikeable == true):
 		TextEdit1.editable = false

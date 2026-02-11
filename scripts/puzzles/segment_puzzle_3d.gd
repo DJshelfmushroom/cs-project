@@ -54,7 +54,8 @@ func _process(_delta: float) -> void:
 		if !nomatch:
 			completed = true
 			for x in range(buttons.size()):
-				buttons[x].disabled = true
+				buttons[x].win()
+			$NumsLabel.modulate = Color.GREEN
 				
 func _on_but_pressed(num : int):
 	var ismatch = false
