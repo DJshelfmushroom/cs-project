@@ -1,4 +1,4 @@
-[gd_resource type="ArrayMesh" load_steps=2 format=4 uid="uid://bqjcbt3da4cr3"]
+[gd_resource type="ArrayMesh" format=4 uid="uid://bqjcbt3da4cr3"]
 
 [ext_resource type="Material" uid="uid://cldjdnpqh8wkt" path="res://bomb/Button/ButtonRust.tres" id="1_kkwes"]
 

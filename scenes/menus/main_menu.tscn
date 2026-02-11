@@ -90,7 +90,7 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 30
 text = "PRACTICE"
 
-[node name="Custom Cursor" type="Node2D" parent="." unique_id=371882005]
+[node name="CustomCursor" type="Node2D" parent="." unique_id=371882005]
 script = ExtResource("4_jix8l")
 
 [node name="LvlLabel" type="Label" parent="." unique_id=1545201647]
@@ -143,7 +143,18 @@ text = "RedWire"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="MouseOptionsButton" type="Button" parent="." unique_id=2033683098]
+layout_mode = 0
+offset_left = 1353.0
+offset_top = 862.0
+offset_right = 1653.0
+offset_bottom = 942.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 30
+text = "Mouse Options"
+
 [connection signal="button_up" from="PlayButton" to="." method="_on_play_button_up"]
 [connection signal="button_up" from="TutorialsButton" to="." method="_on_tutorials_button_up"]
 [connection signal="button_up" from="PacksButton" to="." method="_on_packs_button_button_up"]
 [connection signal="pressed" from="PracticeButton" to="." method="_on_practice_button_pressed"]
+[connection signal="pressed" from="MouseOptionsButton" to="." method="_on_mouse_options_button_pressed"]

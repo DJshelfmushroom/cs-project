@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://d0slybtawhubr"]
+
+[ext_resource type="Script" uid="uid://djaetgnhsp8dj" path="res://scripts/menus/mouse_options.gd" id="1_cu73m"]
+[ext_resource type="PackedScene" uid="uid://tnxumru84hbs" path="res://scenes/menus/main_menu.tscn" id="2_eqq3d"]
+
+[node name="MouseOptions" type="Control" unique_id=767658096]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cu73m")
+
+[node name="Red_Mouse" type="Button" parent="." unique_id=1419029016]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 450.0
+offset_right = 800.0
+offset_bottom = 550.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Red Cursor"
+
+[node name="Green_Mouse" type="Button" parent="." unique_id=1393783912]
+layout_mode = 0
+offset_left = 900.0
+offset_top = 450.0
+offset_right = 1200.0
+offset_bottom = 550.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Green Cursor"
+
+[node name="Set" type="Label" parent="." unique_id=1803000527]
+layout_mode = 0
+offset_left = 900.0
+offset_top = 450.0
+offset_right = 940.0
+offset_bottom = 466.0
+theme_override_font_sizes/font_size = 35
+text = "(Set)"
+
+[node name="MainMenu" parent="." unique_id=769330128 instance=ExtResource("2_eqq3d")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="Red_Mouse" to="." method="_on_red_mouse_pressed"]
+[connection signal="pressed" from="Green_Mouse" to="." method="_on_green_mouse_pressed"]
