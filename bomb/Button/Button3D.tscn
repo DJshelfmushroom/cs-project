@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cgngh0jl8ww28"]
+[gd_scene format=3 uid="uid://cgngh0jl8ww28"]
 
 [ext_resource type="Script" uid="uid://dvmhyoq3fcode" path="res://bomb/Button/Button3d.cs" id="1_geh2h"]
-[ext_resource type="ArrayMesh" uid="uid://bqjcbt3da4cr3" path="res://bomb/Button/bombButtonMesh.tres" id="1_rm1ok"]
+[ext_resource type="ArrayMesh" uid="uid://bqjcbt3da4cr3" path="res://bomb/Button/Models/bombButtonMesh.tres" id="1_rm1ok"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_geh2h"]
 depth_test = 1
