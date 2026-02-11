@@ -9,7 +9,7 @@ public partial class Area3d : Area3D
 		base._Input(@event);
 		if (@event is InputEventMouseButton mouseButtonEvent && mouseButtonEvent.Pressed && mouseButtonEvent.ButtonIndex == MouseButton.Left && mouseOver)
 		{
-			GD.Print("Left mouse button pressed on Area3D");
+			GD.Print("Left mouse button pressed on Area3D " + Name);
 		}
 	 }
 

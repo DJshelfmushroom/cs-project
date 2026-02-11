@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://1bqj0d1bbj3c" path="res://scenes/puzzles/reflex_puzzle_3d.tscn" id="7_aalj4"]
 [ext_resource type="PackedScene" uid="uid://bwfhb1h884c5w" path="res://scenes/puzzles/numerle_puzzle_3d.tscn" id="7_f726v"]
 [ext_resource type="Script" uid="uid://cb5fs7o0nls3" path="res://scripts/ui/labels/label_2.gd" id="8_da634"]
-[ext_resource type="Script" uid="uid://bwsbcc1ccrmyh" path="res://bomb/Button/Models/textures/Roltateaxis.cs" id="8_vy8rm"]
+[ext_resource type="Script" uid="uid://bwsbcc1ccrmyh" path="res://scripts/ui/roltateAxis/Roltateaxis.cs" id="8_vy8rm"]
 [ext_resource type="Script" uid="uid://c12ur810twi0b" path="res://scripts/ui/layout/button_pos.gd" id="9_33y0u"]
 [ext_resource type="PackedScene" uid="uid://dm88p66swvyrh" path="res://scenes/puzzles/segment_puzzle_3d.tscn" id="9_nykgf"]
 [ext_resource type="Script" uid="uid://blgp7xfn1j5te" path="res://bomb/explosion.cs" id="10_un6j2"]
@@ -173,6 +173,7 @@ transform = Transform3D(-4.371139e-08, -0.1391731, 0.99026805, 0, 0.99026805, 0.
 [node name="roltateaxis2" parent="Camera3D" unique_id=998242443 instance=ExtResource("6_27ssy")]
 transform = Transform3D(0.91068363, -0.24630313, -0.33164746, 0, 0.80281746, -0.59622484, 0.41310444, 0.5429722, 0.7311127, 0.125, 0.06, -0.12)
 script = ExtResource("8_vy8rm")
+_size = 0.01
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=111883687]
 transform = Transform3D(0.8660254, 0, 0.5, -0.5, 0, 0.8660254, 0, -1, 0, 8.520605, 13.767857, 0)
