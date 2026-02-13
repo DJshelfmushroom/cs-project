@@ -18,7 +18,7 @@ public partial class Roltateaxis : Node3D
 		try
 		{
 			
-			Vector3 bombRotation = (Vector3)BombNode.Call("GetBombRotation") + new Vector3(0, -0.60f, 0) ;
+			Vector3 bombRotation = (Vector3)BombNode.Call("GetBombRotation") + new Vector3(0, -0.60f, 0);
 			GlobalRotation = bombRotation;
 			//GD.Print("Roltateaxis bombRotation: " + bombRotation);
 		}
@@ -61,6 +61,7 @@ public partial class Roltateaxis : Node3D
 					box.Size = new Vector3(size, 0.01f, size);
 					shape.Position = Vector3.ModelTop;
 					area.Name = "Top (+y)";
+					
 					break;
 				case Sides.Bottom:
 					box.Size = new Vector3(size, 0.01f, size);
@@ -94,53 +95,22 @@ public partial class Roltateaxis : Node3D
 			shape.Name = area.Name.ToString().Substring(0,area.Name.ToString().Length - 9) + "Face Shape";
 			shape.Shape = box;
 			area.AddChild(shape);
+			area.SetShape(shape);
 			AddChild(area);
 			
 		}
 	}
 
+	public static StringName GetLookAtMethodName()
+	{
+		return "SetBombRotationFromSide";
+	}
 
-	
-	// private void SetupRay()
-	// {
-	// 	_ray = new RayCast3D();
-	// 	_ray.CollideWithBodies = true;
-	// 	_ray.Enabled = true;
-	// 	_ray.Name = "ClickRay";
-	// 	AddChild(_ray);
-	// 	_ray = GetNode<RayCast3D>("ClickRay");
-	// }
-	//
-	// public override void _Input(InputEvent @event)
-	// {
-	// 	base._Input(@event);
-	// 	if (@event is InputEventMouseButton eventMouseButton && eventMouseButton.Pressed &&
-	// 		eventMouseButton.ButtonIndex == MouseButton.Left)
-	// 	{
-	// 		Camera3D camera = GetParent<Camera3D>();
-	// 		var from = camera.ProjectRayOrigin(eventMouseButton.Position);
-	// 		var to = from + camera.ProjectRayNormal(eventMouseButton.Position) * RayLength;
-	// 		_ray.Position = from;
-	// 		_ray.TargetPosition = to;
-	// 		_ray.ForceRaycastUpdate();
-	// 		GD.Print($"from {from} to {to}");
-	// 		GD.Print($"Mouse position: {eventMouseButton.Position}");
-	// 		if (_ray.IsColliding())
-	// 		{
-	// 			DebugDraw3D.DrawRay(_ray.Position, _ray.TargetPosition, 5f, Colors.Green, 10000000F);
-	// 			var collider = _ray.GetCollider();
-	// 			GD.Print("ray collided with " + collider.Get("Name"));
-	// 			if (collider is Roltateaxis)
-	// 			{
-	// 				GD.Print("Roltateaxis clicked");
-	// 				GetParent<bomb>().Call("SetLockedAxis", this.Name);
-	// 			}
-	// 		}
-	// 		else
-	// 		{
-	// 			DebugDraw3D.DrawRay(_ray.Position, _ray.TargetPosition, 5f, Colors.Red, 10000000F);
-	// 		}
-	// 	}
-	// }
-	
+	public void SetBombRotationFromSide(Node3D side)
+	{
+		BombNode.Call(Node3D.MethodName.LookAtFromPosition,Vector3.Zero, side.Position.Rotated(Vector3.Down, Single.Pi* 3/2)
+			// .Rotated(Vector3.Left, Single.Pi)
+		);
+	}
+
 }
