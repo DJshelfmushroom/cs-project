@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d0slybtawhubr"]
 
 [ext_resource type="Script" uid="uid://djaetgnhsp8dj" path="res://scripts/menus/mouse_options.gd" id="1_cu73m"]
-[ext_resource type="PackedScene" uid="uid://tnxumru84hbs" path="res://scenes/menus/main_menu.tscn" id="2_eqq3d"]
+[ext_resource type="PackedScene" uid="uid://deitcqaq6r0c6" path="res://scenes/menus/custom_cursor.tscn" id="2_eqq3d"]
 
 [node name="MouseOptions" type="Control" unique_id=767658096]
 layout_mode = 3
@@ -24,26 +24,47 @@ text = "Red Cursor"
 
 [node name="Green_Mouse" type="Button" parent="." unique_id=1393783912]
 layout_mode = 0
-offset_left = 900.0
+offset_left = 875.0
 offset_top = 450.0
-offset_right = 1200.0
+offset_right = 1175.0
 offset_bottom = 550.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Green Cursor"
 
-[node name="Set" type="Label" parent="." unique_id=1803000527]
+[node name="Black_Mouse" type="Button" parent="." unique_id=1438418172]
 layout_mode = 0
-offset_left = 900.0
+offset_left = 1240.0
 offset_top = 450.0
-offset_right = 940.0
-offset_bottom = 466.0
-theme_override_font_sizes/font_size = 35
-text = "(Set)"
+offset_right = 1540.0
+offset_bottom = 550.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Black Cursor"
 
-[node name="MainMenu" parent="." unique_id=769330128 instance=ExtResource("2_eqq3d")]
+[node name="Set" type="Label" parent="." unique_id=1803000527]
 visible = false
-layout_mode = 1
+layout_mode = 0
+offset_left = 821.0
+offset_top = 345.0
+offset_right = 883.0
+offset_bottom = 381.0
+theme_override_font_sizes/font_size = 35
+text = "(Current)"
+
+[node name="BackButton" type="Button" parent="." unique_id=1428718503]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 980.0
+offset_right = 300.0
+offset_bottom = 1050.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 35
+text = "Back"
+
+[node name="CustomCursor" parent="." unique_id=696082529 instance=ExtResource("2_eqq3d")]
 
 [connection signal="pressed" from="Red_Mouse" to="." method="_on_red_mouse_pressed"]
 [connection signal="pressed" from="Green_Mouse" to="." method="_on_green_mouse_pressed"]
+[connection signal="pressed" from="Black_Mouse" to="." method="_on_black_mouse_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

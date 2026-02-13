@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://hksu4anhif8j" path="res://scripts/menus/main_menu.gd" id="1_7vrkn"]
 [ext_resource type="Texture2D" uid="uid://d0ts6meocitmg" path="res://assets/textures/menu_bg.png" id="2_8r73w"]
 [ext_resource type="Script" uid="uid://c12ur810twi0b" path="res://scripts/ui/layout/button_pos.gd" id="2_jix8l"]
+[ext_resource type="PackedScene" uid="uid://deitcqaq6r0c6" path="res://scenes/menus/custom_cursor.tscn" id="4_8r73w"]
 [ext_resource type="Script" uid="uid://c7iwdg7snkt5n" path="res://scripts/menus/lvl_label.gd" id="4_imvie"]
-[ext_resource type="Script" uid="uid://by3ib5fqp6nbv" path="res://scripts/ui/cursor/custom_cursor.gd" id="4_jix8l"]
 [ext_resource type="Script" uid="uid://d3hm7i2w7dbg" path="res://scripts/menus/xp_label.gd" id="5_ng0o5"]
 [ext_resource type="Script" uid="uid://ctopr804dfmky" path="res://scripts/menus/xp_bar_progress.gd" id="6_ng0o5"]
 
@@ -90,8 +90,17 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 30
 text = "PRACTICE"
 
-[node name="CustomCursor" type="Node2D" parent="." unique_id=371882005]
-script = ExtResource("4_jix8l")
+[node name="MouseOptionsButton" type="Button" parent="." unique_id=2033683098]
+layout_mode = 0
+offset_left = 1353.0
+offset_top = 862.0
+offset_right = 1653.0
+offset_bottom = 942.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 30
+text = "Mouse Options"
+
+[node name="CustomCursor" parent="." unique_id=696082529 instance=ExtResource("4_8r73w")]
 
 [node name="LvlLabel" type="Label" parent="." unique_id=1545201647]
 layout_mode = 0
@@ -142,16 +151,6 @@ theme_override_font_sizes/font_size = 180
 text = "RedWire"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="MouseOptionsButton" type="Button" parent="." unique_id=2033683098]
-layout_mode = 0
-offset_left = 1353.0
-offset_top = 862.0
-offset_right = 1653.0
-offset_bottom = 942.0
-mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 30
-text = "Mouse Options"
 
 [connection signal="button_up" from="PlayButton" to="." method="_on_play_button_up"]
 [connection signal="button_up" from="TutorialsButton" to="." method="_on_tutorials_button_up"]

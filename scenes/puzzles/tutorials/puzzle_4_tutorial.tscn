@@ -15,7 +15,8 @@ theme_override_font_sizes/font_size = 60
 text = "Reflex Puzzle:
 When you start the round, random prompts will appear in the middle of the screen, directing
 you to press a direction (using the arrow keys). To complete this puzzle, you will need to
-press the correct direction multiple times in a row to gain enough points to pass the round."
+press the correct direction multiple times in a row to gain enough points to pass the round.
+Be careful, though, as a single mistake will give you a strike"
 label_settings = SubResource("LabelSettings_3vyhl")
 script = ExtResource("1_gm2vj")
 
