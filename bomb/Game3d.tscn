@@ -13,11 +13,11 @@
 [ext_resource type="Script" uid="uid://bwsbcc1ccrmyh" path="res://scripts/ui/roltateAxis/Roltateaxis.cs" id="8_vy8rm"]
 [ext_resource type="Script" uid="uid://c12ur810twi0b" path="res://scripts/ui/layout/button_pos.gd" id="9_33y0u"]
 [ext_resource type="PackedScene" uid="uid://dm88p66swvyrh" path="res://scenes/puzzles/segment_puzzle_3d.tscn" id="9_nykgf"]
-[ext_resource type="Script" uid="uid://blgp7xfn1j5te" path="res://bomb/explosion.cs" id="10_un6j2"]
 [ext_resource type="PackedScene" uid="uid://7mtx5ru3uhk0" path="res://scenes/puzzles/disable_puzzle_3d.tscn" id="10_un6j2"]
 [ext_resource type="PackedScene" uid="uid://d4aqd6eakis0f" path="res://scenes/components/timers/timerrr.tscn" id="10_urila"]
 [ext_resource type="Material" uid="uid://bpyrxdtjblchr" path="res://bomb/Materials/Mat_Flare00.tres" id="12_oc1ei"]
 [ext_resource type="Texture2D" uid="uid://cbk131m5nl33b" path="res://GAP_EasyExplosions_Textures/Flare00.PNG" id="12_p0es4"]
+[ext_resource type="Script" uid="uid://blgp7xfn1j5te" path="res://bomb/explosion.cs" id="18_8nerw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f726v"]
 transparency = 1
@@ -299,11 +299,11 @@ offset_top = 1494.0
 offset_right = 1324.6399
 offset_bottom = 2297.3599
 
-[node name="vfx_explosion" type="Node3D" parent="." unique_id=114048839]
+[node name="vfx_explosion" type="Node3D" parent="." unique_id=1172848322]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.005)
-script = ExtResource("10_un6j2")
+script = ExtResource("18_8nerw")
 
-[node name="Spark" type="GPUParticles3D" parent="vfx_explosion" unique_id=1018592064]
+[node name="Spark" type="GPUParticles3D" parent="vfx_explosion" unique_id=696695109]
 material_override = SubResource("StandardMaterial3D_f726v")
 emitting = false
 amount = 20
@@ -314,7 +314,7 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_8nerw")
 draw_pass_1 = SubResource("QuadMesh_osgfx")
 
-[node name="Flash" type="GPUParticles3D" parent="vfx_explosion" unique_id=1122321838]
+[node name="Flash" type="GPUParticles3D" parent="vfx_explosion" unique_id=439724249]
 material_override = ExtResource("12_oc1ei")
 emitting = false
 amount = 1
@@ -325,7 +325,7 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_8d7bq")
 draw_pass_1 = SubResource("QuadMesh_okahj")
 
-[node name="Fire" type="GPUParticles3D" parent="vfx_explosion" unique_id=1894848928]
+[node name="Fire" type="GPUParticles3D" parent="vfx_explosion" unique_id=2090787151]
 material_override = ExtResource("12_oc1ei")
 emitting = false
 amount = 14
@@ -336,7 +336,7 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_ddge8")
 draw_pass_1 = SubResource("QuadMesh_imkj6")
 
-[node name="Smoke" type="GPUParticles3D" parent="vfx_explosion" unique_id=1205030488]
+[node name="Smoke" type="GPUParticles3D" parent="vfx_explosion" unique_id=402152500]
 material_override = SubResource("StandardMaterial3D_osgfx")
 emitting = false
 amount = 10
