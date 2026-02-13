@@ -28,7 +28,7 @@ public partial class explosion : Node
 		}
 	}
 
-	public override void _UnhandledInput(InputEvent @event)
+/*	public override void _UnhandledInput(InputEvent @event)
 	{
 		if (@event is InputEventKey keyEvent && keyEvent.Keycode == Key.Space)		{
 			foreach (GpuParticles3D child in GetChildren())
@@ -38,4 +38,5 @@ public partial class explosion : Node
 			GetNode<Node3D>("../bomb_instance").Hide();
 		}
 	}
+	*/
 }
