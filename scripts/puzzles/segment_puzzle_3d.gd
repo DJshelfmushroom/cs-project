@@ -21,7 +21,7 @@ var practice = true
 
 func _ready() -> void:
 	$Screen3D.set_size(2,1)
-	$Screen3D.position = Vector3(0.07, 0.77, -0.001)
+	$Screen3D.position = Vector3(0.07, 0.77, -0.002)
 	for x in range(2):
 		var gen = RandomNumberGenerator.new()
 		var rand = gen.randi_range(0, allnums.size() - 1)

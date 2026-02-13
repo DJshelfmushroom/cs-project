@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bgfgng0ta202l"]
+
+[ext_resource type="Script" uid="uid://7qatm2ox3hfn" path="res://scripts/components/even_odd_button_3d.gd" id="1_silys"]
+[ext_resource type="Script" uid="uid://3f8sojmo78eh" path="res://scripts/components/button_area_3d.gd" id="2_xvp35"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_deud4"]
+radius = 0.12
+height = 0.05
+is_hemisphere = true
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_upctn"]
+height = 0.07
+radius = 0.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ani0v"]
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ax8be"]
+material = SubResource("StandardMaterial3D_ani0v")
+top_radius = 0.15
+bottom_radius = 0.15
+height = 0.03
+
+[node name="ColorsButton3D" type="MeshInstance3D" unique_id=143485016]
+script = ExtResource("1_silys")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1309827797]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("SphereMesh_deud4")
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D" unique_id=2111771204]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+script = ExtResource("2_xvp35")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D" unique_id=463969786]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.020303342)
+shape = SubResource("CylinderShape3D_upctn")
+
+[node name="ColorOutline" type="MeshInstance3D" parent="." unique_id=1336466230]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 8.7422775e-10, 0, -0.013433762)
+mesh = SubResource("CylinderMesh_ax8be")

@@ -36,13 +36,14 @@ func _process(_delta: float) -> void:
 	if $bomb_instance/Games/DisablePuzzle3D.completed:
 		disable_first = true
 	if ($bomb_instance/Games/PuzzleOne3D.completed || $bomb_instance/Games/PuzzleTwo3D.completed || $bomb_instance/Games/SimonPuzzle3D.completed ||
-	 $bomb_instance/Games/ReflexPuzzle3D.completed || $bomb_instance/Games/NumerlePuzzle3D.completed || $bomb_instance/Games/SegmentPuzzle3D.completed) && !disable_first:
+	 $bomb_instance/Games/ReflexPuzzle3D.completed || $bomb_instance/Games/NumerlePuzzle3D.completed || $bomb_instance/Games/SegmentPuzzle3D.completed ||
+	 $bomb_instance/Games/ColorsPuzzle3D.completed) && !disable_first:
 		strikes = 3
 
 func puzzles_completed():
 	if ($bomb_instance/Games/PuzzleOne3D.completed && $bomb_instance/Games/PuzzleTwo3D.completed && $bomb_instance/Games/SimonPuzzle3D.completed &&
 	 $bomb_instance/Games/ReflexPuzzle3D.completed && $bomb_instance/Games/NumerlePuzzle3D.completed && $bomb_instance/Games/SegmentPuzzle3D.completed &&
-	$bomb_instance/Games/DisablePuzzle3D.completed):
+	$bomb_instance/Games/DisablePuzzle3D.completed && $bomb_instance/Games/ColorsPuzzle3D.completed):
 		return true
 	else:
 		return false

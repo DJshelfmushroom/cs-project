@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dke5f875oy13r"]
+
+[ext_resource type="Script" uid="uid://r84is6g21j8q" path="res://scripts/puzzles/even_odd_puzzle_3d.gd" id="1_x6dsd"]
+[ext_resource type="PackedScene" uid="uid://bgfgng0ta202l" path="res://scenes/components/colors_button_3d.tscn" id="2_0wpts"]
+
+[node name="ColorsPuzzle3D" type="Node3D" unique_id=1215706253]
+script = ExtResource("1_x6dsd")
+
+[node name="CB3D0" parent="." unique_id=143485016 instance=ExtResource("2_0wpts")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17, 0.295, 0)
+
+[node name="CB3D1" parent="." unique_id=235958918 instance=ExtResource("2_0wpts")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34, 0, 0)
+
+[node name="CB3D2" parent="." unique_id=778385193 instance=ExtResource("2_0wpts")]

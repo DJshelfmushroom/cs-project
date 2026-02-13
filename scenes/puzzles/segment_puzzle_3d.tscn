@@ -38,7 +38,7 @@ font = ExtResource("3_qf1h4")
 font_size = 400
 
 [node name="NumsLabel2" type="Label3D" parent="." unique_id=1960548916]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18, 0.9, -0.001)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18, 0.9, -0.0012404899)
 pixel_size = 0.0005
 modulate = Color(0.27387273, 0.27387273, 0.27387273, 1)
 text = "8 | 8"
