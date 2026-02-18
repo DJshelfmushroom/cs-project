@@ -1,5 +1,7 @@
 extends Control
 
+func _ready() -> void:
+	$CustomCursor.set_mouse_cursor(SaveManager.arrow, SaveManager.hand, SaveManager.color)
 
 func _on_play_button_up() -> void:
 	get_tree().change_scene_to_file("res://bomb/Game3d.tscn")

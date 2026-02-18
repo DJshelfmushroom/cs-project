@@ -1,13 +1,23 @@
 extends Node2D
 
 # Load the custom images for the mouse cursor.
-#var arrow = load("res://assets/cursor/RedWire_Cursor.png")
-#var hand = load("res://assets/cursor/RedWire_Hand.png")
+var this_arrow = null
+var this_hand = null
 var cursor_color = null
 	
 
 func set_mouse_cursor(arrow, hand, color):
-	Input.set_custom_mouse_cursor(arrow, Input.CURSOR_ARROW)
-	Input.set_custom_mouse_cursor(hand, Input.CURSOR_POINTING_HAND)
+	this_arrow = arrow
+	this_hand = hand
+	Input.set_custom_mouse_cursor(this_arrow, Input.CURSOR_ARROW)
+	Input.set_custom_mouse_cursor(this_hand, Input.CURSOR_POINTING_HAND)
 	cursor_color = color
 	print("mouse cursor changed")
+
+
+func get_mouse_arrow():
+	return this_arrow
+func get_mouse_hand():
+	return this_hand
+func get_mouse_color():
+	return cursor_color
