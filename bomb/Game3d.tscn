@@ -304,6 +304,7 @@ offset_bottom = 2297.3599
 
 [node name="vfx_explosion" type="Node3D" parent="." unique_id=1234027106]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.005)
+script = ExtResource("18_8nerw")
 
 [node name="Spark" type="GPUParticles3D" parent="vfx_explosion" unique_id=398459104]
 material_override = SubResource("StandardMaterial3D_f726v")

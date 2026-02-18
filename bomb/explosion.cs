@@ -16,7 +16,7 @@ public partial class explosion : Node
 		frame++;
 		if (frame % 4 == 0)
 		{
-			if ((bool)GetNode("..").Get("failed"))
+			if ((bool)GetNode("..").Get("failed") || (int)GetNode("..").Get("strikes") >= 3)
 			{
 				foreach (GpuParticles3D child in GetChildren())
 				{
