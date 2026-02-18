@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c8i4k84ak0pti"]
+[gd_scene format=3 uid="uid://b3aqjmj7grawb"]
 
 [ext_resource type="Script" uid="uid://cegaq2p1u1qo2" path="res://scripts/menus/game_selection.gd" id="1_2mi53"]
 [ext_resource type="PackedScene" uid="uid://b5lb0ykdugkxc" path="res://bomb/bom.blend" id="1_f3ig0"]
@@ -14,12 +14,12 @@
 [ext_resource type="PackedScene" uid="uid://dm88p66swvyrh" path="res://scenes/puzzles/segment_puzzle_3d.tscn" id="9_nykgf"]
 [ext_resource type="PackedScene" uid="uid://7mtx5ru3uhk0" path="res://scenes/puzzles/disable_puzzle_3d.tscn" id="10_un6j2"]
 [ext_resource type="PackedScene" uid="uid://d4aqd6eakis0f" path="res://scenes/components/timers/timerrr.tscn" id="10_urila"]
-[ext_resource type="PackedScene" path="res://scenes/puzzles/colors_puzzle_3d.tscn" id="11_8nerw"]
+[ext_resource type="PackedScene" uid="uid://dke5f875oy13r" path="res://scenes/puzzles/colors_puzzle_3d.tscn" id="11_8nerw"]
 [ext_resource type="Material" uid="uid://bpyrxdtjblchr" path="res://bomb/Materials/Mat_Flare00.tres" id="12_oc1ei"]
 [ext_resource type="Texture2D" uid="uid://cbk131m5nl33b" path="res://GAP_EasyExplosions_Textures/Flare00.PNG" id="12_p0es4"]
 [ext_resource type="Script" uid="uid://bjuoa1be3dlqx" path="res://bomb/CameraControl.cs" id="13_un6j2"]
-[ext_resource type="Script" uid="uid://blgp7xfn1j5te" path="res://bomb/explosion.cs" id="19_osgfx"]
 [ext_resource type="Script" uid="uid://bwsbcc1ccrmyh" path="res://scripts/ui/roltateAxis/Roltateaxis.cs" id="16_osgfx"]
+[ext_resource type="Script" uid="uid://blgp7xfn1j5te" path="res://bomb/explosion.cs" id="19_osgfx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f726v"]
 transparency = 1
