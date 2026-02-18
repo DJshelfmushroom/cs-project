@@ -40,3 +40,6 @@ shape = SubResource("CylinderShape3D_upctn")
 [node name="ColorOutline" type="MeshInstance3D" parent="." unique_id=1336466230]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 8.7422775e-10, 0, -0.013433762)
 mesh = SubResource("CylinderMesh_ax8be")
+
+[connection signal="mouse_entered" from="MeshInstance3D/Area3D" to="MeshInstance3D/Area3D" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="MeshInstance3D/Area3D" to="MeshInstance3D/Area3D" method="_on_mouse_exited"]

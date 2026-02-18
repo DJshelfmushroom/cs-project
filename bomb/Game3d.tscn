@@ -18,7 +18,6 @@
 [ext_resource type="Material" uid="uid://bpyrxdtjblchr" path="res://bomb/Materials/Mat_Flare00.tres" id="12_oc1ei"]
 [ext_resource type="Texture2D" uid="uid://cbk131m5nl33b" path="res://GAP_EasyExplosions_Textures/Flare00.PNG" id="12_p0es4"]
 [ext_resource type="Script" uid="uid://bjuoa1be3dlqx" path="res://bomb/CameraControl.cs" id="13_un6j2"]
-[ext_resource type="Script" uid="uid://blgp7xfn1j5te" path="res://bomb/explosion.cs" id="18_8nerw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f726v"]
 transparency = 1
