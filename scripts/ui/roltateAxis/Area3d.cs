@@ -39,14 +39,4 @@ public partial class Area3d : Area3D
 		base._MouseExit();
 		MouseOver = false;
 	}
-	
-	// public void SetDirection(int dir) 
-	// {
-	// 	this.direction = dir;
-	// }
-	//
-	// public int GetDirection()
-	// {
-	// 	return direction;
-	// }
 }

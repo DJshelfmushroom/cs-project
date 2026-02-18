@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Net.NetworkInformation;
 
+
 public partial class Roltateaxis : Node3D
 {
 	// private const float RayLength = 1000.0f;
@@ -10,7 +11,7 @@ public partial class Roltateaxis : Node3D
 	[Export] 
 	public Node3D BombNode;
 	[Export]
-	private float _size = .001f;
+	private float _size = .01f;
 
 	private const float _thickness = .00001f;
 	
@@ -47,7 +48,7 @@ public partial class Roltateaxis : Node3D
 		Front = 4,
 		Back = 5
 	}
-	// rn cant be smaller than .01 in size (easy fix)
+
 	private void CreateButtons(float size)
 	{
 		
@@ -62,7 +63,6 @@ public partial class Roltateaxis : Node3D
 					box.Size = new Vector3(size, _thickness, size);
 					shape.Position = Vector3.ModelTop;
 					area.Name = "Top (+y)";
-					
 					break;
 				case Sides.Bottom:
 					box.Size = new Vector3(size, _thickness, size);
@@ -82,16 +82,16 @@ public partial class Roltateaxis : Node3D
 				case Sides.Front:
 					area.Name = "Front (+z)";
 					box.Size = new Vector3(size, size, _thickness);
-					shape.Position = Vector3.ModelFront;
+					shape.Position = Vector3.ModelRear;
 					break;
 				case Sides.Back:
 					area.Name = "Back (-z)";
 					box.Size = new Vector3(size, size, _thickness);
-					shape.Position = Vector3.ModelRear;
+					shape.Position = Vector3.ModelFront;
 					break;
 			}
-
-			shape.Position *= size / 2;
+			
+			shape.Position *= size / 2 - _thickness + .01f;
 			area.Name += " Face";
 			shape.Name = area.Name.ToString().Substring(0,area.Name.ToString().Length - 9) + "Face Shape";
 			shape.Shape = box;
@@ -109,9 +109,8 @@ public partial class Roltateaxis : Node3D
 
 	public void SetBombRotationFromSide(Node3D side)
 	{
-		GD.Print($"bomb pos (local): {BombNode.Position}, side pos (local): {side.Position.Rotated(Vector3.Down, Single.Pi * 3/2)}");
 		BombNode.Call(Node3D.MethodName.LookAtFromPosition, Vector3.Zero,
-			side.Position.Rotated(Vector3.Down, Single.Pi * 3 / 2));
+			side.Position.Rotated(Vector3.Down, Single.Pi * 3 / 2)); 
 		BombNode.Position = new Vector3(0,0.5f,0);
 	}
 
