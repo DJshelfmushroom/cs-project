@@ -39,6 +39,7 @@ func _process(_delta: float) -> void:
 	 $bomb_instance/Games/ReflexPuzzle3D.completed || $bomb_instance/Games/NumerlePuzzle3D.completed || $bomb_instance/Games/SegmentPuzzle3D.completed ||
 	 $bomb_instance/Games/ColorsPuzzle3D.completed) && !disable_first:
 		strikes = 3
+		failed = true
 
 func puzzles_completed():
 	if ($bomb_instance/Games/PuzzleOne3D.completed && $bomb_instance/Games/PuzzleTwo3D.completed && $bomb_instance/Games/SimonPuzzle3D.completed &&

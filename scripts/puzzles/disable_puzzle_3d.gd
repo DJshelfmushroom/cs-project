@@ -22,11 +22,11 @@ func _process(_delta: float) -> void:
 		$TextEdit3D.visible = true
 		
 
-func _on_but_pressed(num : int):
+func _on_but_pressed(_num : int):
 	if !$"../../..".failed:
 		$EnterButton.visible = false
 		$TextEdit3D.visible = true
 		$TextEdit3D.disabled = false
 
-func _on_but_released(num : int):
-	pass
+#func _on_but_released(num : int):
+	#pass

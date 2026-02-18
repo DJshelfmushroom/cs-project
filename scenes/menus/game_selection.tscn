@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bsx4bws50sqdx"]
+[gd_scene format=3 uid="uid://bsx4bws50sqdx"]
 
 [ext_resource type="Script" uid="uid://cegaq2p1u1qo2" path="res://scripts/menus/game_selection.gd" id="1_crpe7"]
 [ext_resource type="Script" uid="uid://c76igupjvkh5n" path="res://scripts/ui/buttons/back_button.gd" id="3_crpe7"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dg31pwxba0x3b" path="res://scenes/puzzles/puzzle_2.tscn" id="5_x4twu"]
 [ext_resource type="Texture2D" uid="uid://oe60g86ar2dn" path="res://background.jpg" id="7_3g1ko"]
 
-[node name="Game" type="Control"]
+[node name="Game" type="Control" unique_id=599395944]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,7 +21,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_crpe7")
 
-[node name="StrikesLabel" type="Label" parent="."]
+[node name="StrikesLabel" type="Label" parent="." unique_id=719603355]
 layout_mode = 0
 offset_left = 1550.0
 offset_right = 1950.0
@@ -32,7 +32,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_ej0sb")
 
-[node name="BackButton" type="Button" parent="."]
+[node name="BackButton" type="Button" parent="." unique_id=1852085606]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.011000001
@@ -48,7 +48,7 @@ theme_override_font_sizes/font_size = 30
 text = "BACK"
 script = ExtResource("3_crpe7")
 
-[node name="Puzzle1" parent="." instance=ExtResource("4_bd0xv")]
+[node name="Puzzle1" parent="." unique_id=1129349157 instance=ExtResource("4_bd0xv")]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.104
@@ -59,14 +59,14 @@ offset_right = 1722.32
 offset_bottom = 942.26
 scale = Vector2(0.7, 0.7)
 
-[node name="TimerNode" parent="." instance=ExtResource("5_ej0sb")]
+[node name="TimerNode" parent="." unique_id=308135010 instance=ExtResource("5_ej0sb")]
 layout_mode = 1
 offset_left = 93.0
 offset_top = 1494.0
 offset_right = 1324.6399
 offset_bottom = 2297.3599
 
-[node name="Puzzle2" parent="." instance=ExtResource("5_x4twu")]
+[node name="Puzzle2" parent="." unique_id=2138301385 instance=ExtResource("5_x4twu")]
 layout_mode = 1
 offset_left = 295.0
 offset_top = 317.0
@@ -74,7 +74,7 @@ offset_right = -373.0
 offset_bottom = 173.0
 scale = Vector2(0.5, 0.5)
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="." unique_id=344987610]
 z_index = -4096
 position = Vector2(968, 535)
 scale = Vector2(3.2, 3.2)
