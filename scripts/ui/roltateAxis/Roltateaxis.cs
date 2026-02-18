@@ -10,7 +10,9 @@ public partial class Roltateaxis : Node3D
 	[Export] 
 	public Node3D BombNode;
 	[Export]
-	private float _size = 1.0f;
+	private float _size = .001f;
+
+	private const float _thickness = .00001f;
 	
 	
 	public override void _Process(double delta)
@@ -57,34 +59,34 @@ public partial class Roltateaxis : Node3D
 			switch ((Sides)i)
 			{
 				case Sides.Top:
-					box.Size = new Vector3(size, 0.01f, size);
+					box.Size = new Vector3(size, _thickness, size);
 					shape.Position = Vector3.ModelTop;
 					area.Name = "Top (+y)";
 					
 					break;
 				case Sides.Bottom:
-					box.Size = new Vector3(size, 0.01f, size);
+					box.Size = new Vector3(size, _thickness, size);
 					shape.Position = Vector3.ModelBottom;
 					area.Name = "Bottom (-y)";
 					break;
 				case Sides.Left:
-					box.Size = new Vector3(0.01f, size, size);
+					box.Size = new Vector3(_thickness, size, size);
 					shape.Position = Vector3.ModelLeft;
 					area.Name = "Left (+x)";
 					break;
 				case Sides.Right:
 					area.Name = "Right (-x)";
-					box.Size = new Vector3(0.01f, size, size);
+					box.Size = new Vector3(_thickness, size, size);
 					shape.Position = Vector3.ModelRight;
 					break;
 				case Sides.Front:
 					area.Name = "Front (+z)";
-					box.Size = new Vector3(size, size, 0.01f);
+					box.Size = new Vector3(size, size, _thickness);
 					shape.Position = Vector3.ModelFront;
 					break;
 				case Sides.Back:
 					area.Name = "Back (-z)";
-					box.Size = new Vector3(size, size, 0.01f);
+					box.Size = new Vector3(size, size, _thickness);
 					shape.Position = Vector3.ModelRear;
 					break;
 			}
