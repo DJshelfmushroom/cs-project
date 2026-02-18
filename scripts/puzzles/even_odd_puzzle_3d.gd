@@ -79,7 +79,7 @@ func _ready() -> void:
 		for button in buttons:
 			if button.color == Color.RED:
 				combo.append(button.num)
-				
+				 
 				
 func _process(_delta: float) -> void:
 	if combo == pressed:

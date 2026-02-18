@@ -227,7 +227,6 @@ script = ExtResource("13_un6j2")
 
 [node name="roltateaxis2" parent="Camera3D" unique_id=998242443 instance=ExtResource("6_27ssy")]
 transform = Transform3D(0.91068363, -0.24630313, -0.33164746, 0, 0.80281746, -0.59622484, 0.41310444, 0.5429722, 0.7311127, 0.125, 0.06, -0.12)
-script = ExtResource("16_osgfx")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=111883687]
 transform = Transform3D(0.8660254, 0, 0.5, -0.5, 0, 0.8660254, 0, -1, 0, 8.520605, 13.767857, 0)
