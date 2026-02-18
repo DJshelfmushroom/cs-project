@@ -26,24 +26,6 @@ func _ready() -> void:
 	
 	
 	if buttons[combo[0]].color == Color.RED:
-		if colors[0] != Color.YELLOW:
-			for button in buttons:
-				if button.color == Color.YELLOW:
-					combo.append(button.num)
-		else:
-			for button in buttons:
-				if button.color == Color.BLUE:
-					combo.append(button.num)
-	elif buttons[combo[0]].color == Color.BLUE:
-		if colors[0] != Color.GREEN:
-			for button in buttons:
-				if button.color == Color.GREEN:
-					combo.append(button.num)
-		else:
-			for button in buttons:
-				if button.color == Color.RED:
-					combo.append(button.num)
-	elif buttons[combo[0]].color == Color.GREEN:
 		if colors[0] != Color.BLUE:
 			for button in buttons:
 				if button.color == Color.BLUE:
@@ -52,7 +34,7 @@ func _ready() -> void:
 			for button in buttons:
 				if button.color == Color.YELLOW:
 					combo.append(button.num)
-	elif buttons[combo[0]].color == Color.YELLOW:
+	elif buttons[combo[0]].color == Color.BLUE:
 		if colors[0] != Color.RED:
 			for button in buttons:
 				if button.color == Color.RED:
@@ -60,6 +42,24 @@ func _ready() -> void:
 		else:
 			for button in buttons:
 				if button.color == Color.GREEN:
+					combo.append(button.num)
+	elif buttons[combo[0]].color == Color.GREEN:
+		if colors[0] != Color.YELLOW:
+			for button in buttons:
+				if button.color == Color.YELLOW:
+					combo.append(button.num)
+		else:
+			for button in buttons:
+				if button.color == Color.BLUE:
+					combo.append(button.num)
+	elif buttons[combo[0]].color == Color.YELLOW:
+		if colors[0] != Color.GREEN:
+			for button in buttons:
+				if button.color == Color.GREEN:
+					combo.append(button.num)
+		else:
+			for button in buttons:
+				if button.color == Color.RED:
 					combo.append(button.num)
 		
 	

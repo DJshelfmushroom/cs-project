@@ -28,5 +28,5 @@ func _on_but_pressed(_num : int):
 		$TextEdit3D.visible = true
 		$TextEdit3D.disabled = false
 
-#func _on_but_released(num : int):
-	#pass
+func _on_but_released(_num : int):
+	pass

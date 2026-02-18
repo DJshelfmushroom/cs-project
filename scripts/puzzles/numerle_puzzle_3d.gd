@@ -79,5 +79,5 @@ func _on_button_pressed(num : int):
 		
 		
 	
-#func _on_button_released(num : int):
-	#pass
+func _on_button_released(_num : int):
+	pass

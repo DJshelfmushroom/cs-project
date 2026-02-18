@@ -75,5 +75,5 @@ func _on_but_pressed(num : int):
 		buttons[num].light_off()
 		buttons[num].disabled = false
 	
-#func _on_but_released(num : int):
-	#pass
+func _on_but_released(_num : int):
+	pass
