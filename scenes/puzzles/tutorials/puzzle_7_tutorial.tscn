@@ -15,7 +15,13 @@ theme_override_font_sizes/font_size = 60
 text = "Disable Puzzle:
 When this puzzle appears on the bomb, it needs to be completed before all other puzzles.
 Completing another puzzle before it will result in a game over. To complete this puzzle, you 
-simply need to type the phrase \"Disable_Defense\", and hit enter to submit it."
+simply need to type the phrase \"Disable_Defense\", and hit enter to submit it.
+
+In this puzzle, you will see 3 colored buttons. For instructions referring to the \"color order\", 
+assume the order to be Red, Blue, Green, Yellow. 
+     First button: If red is present, press the top button. Otherwise, press the blue button.
+     Second button: If the first button you pressed was Red or Green, press the button 1 space forward in the color order. Otherwise, press the button 1 space backward in the color order. If this button is not present, press the button 1 space in the opposite direction in the color order instead.
+     Third button: Press the button 1 space forward in the color order from whichever color is not present."
 label_settings = SubResource("LabelSettings_3vyhl")
 script = ExtResource("1_42xkd")
 
