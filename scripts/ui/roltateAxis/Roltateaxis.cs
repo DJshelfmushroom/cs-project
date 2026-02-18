@@ -12,6 +12,7 @@ public partial class Roltateaxis : Node3D
 	[Export]
 	private float _size = 1.0f;
 	
+	
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
@@ -20,7 +21,6 @@ public partial class Roltateaxis : Node3D
 			
 			Vector3 bombRotation = (Vector3)BombNode.Call("GetBombRotation") + new Vector3(0, -0.60f, 0);
 			GlobalRotation = bombRotation;
-			//GD.Print("Roltateaxis bombRotation: " + bombRotation);
 		}
 		catch (Exception _) // what is type cast exception
 		{
@@ -31,7 +31,6 @@ public partial class Roltateaxis : Node3D
 	public override void _Ready()
 	{
 		base._Ready();
-		// SetupRay();
 		if (BombNode == null) BombNode = GetNode<Node3D>("../../bomb_instance");
 		CreateButtons(_size);
 	}
@@ -108,9 +107,10 @@ public partial class Roltateaxis : Node3D
 
 	public void SetBombRotationFromSide(Node3D side)
 	{
-		BombNode.Call(Node3D.MethodName.LookAtFromPosition,Vector3.Zero, side.Position.Rotated(Vector3.Down, Single.Pi* 3/2)
-			// .Rotated(Vector3.Left, Single.Pi)
-		);
+		GD.Print($"bomb pos (local): {BombNode.Position}, side pos (local): {side.Position.Rotated(Vector3.Down, Single.Pi * 3/2)}");
+		BombNode.Call(Node3D.MethodName.LookAtFromPosition, Vector3.Zero,
+			side.Position.Rotated(Vector3.Down, Single.Pi * 3 / 2));
+		BombNode.Position = new Vector3(0,0.5f,0);
 	}
 
 }
