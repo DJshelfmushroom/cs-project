@@ -91,7 +91,7 @@ public partial class Roltateaxis : Node3D
 					break;
 			}
 			
-			shape.Position *= size / 2 - _thickness + .01f;
+			shape.Position *= size / 1024 - _thickness + .01f;
 			area.Name += " Face";
 			shape.Name = area.Name.ToString().Substring(0,area.Name.ToString().Length - 9) + "Face Shape";
 			shape.Shape = box;
@@ -110,7 +110,12 @@ public partial class Roltateaxis : Node3D
 	public void SetBombRotationFromSide(Node3D side)
 	{
 		BombNode.Call(Node3D.MethodName.LookAtFromPosition, Vector3.Zero,
-			side.Position.Rotated(Vector3.Down, Single.Pi * 3 / 2)); 
+			side.Position.Rotated(Vector3.Up, Single.Pi * 3 / 2).Dot(Vector3.Up) < .99f 
+				?
+				side.Position.Rotated(Vector3.Down, Single.Pi * 3 / 2)
+				:
+				side.Position.Rotated(Vector3.Left, Single.Pi * 3 / 2)
+			); 
 		BombNode.Position = new Vector3(0,0.5f,0);
 	}
 
