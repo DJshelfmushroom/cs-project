@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://b3aqjmj7grawb"]
 
+[ext_resource type="Script" uid="uid://bwsbcc1ccrmyh" path="res://scripts/ui/roltateAxis/Roltateaxis.cs" id="16_osgfx"]
 [ext_resource type="Script" uid="uid://cegaq2p1u1qo2" path="res://scripts/menus/game_selection.gd" id="1_2mi53"]
 [ext_resource type="PackedScene" uid="uid://b5lb0ykdugkxc" path="res://bomb/bom.blend" id="1_f3ig0"]
 [ext_resource type="PackedScene" uid="uid://f6op8gdxrkeu" path="res://scenes/puzzles/puzzle_one_3d.tscn" id="3_f3gsr"]
