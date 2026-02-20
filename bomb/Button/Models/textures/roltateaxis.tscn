@@ -18,11 +18,9 @@ image = SubResource("Image_oawbh")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xew8t"]
 resource_name = "Material"
-transparency = 1
 shading_mode = 0
 albedo_color = Color(1, 1, 1, 0.32941177)
 albedo_texture = SubResource("ImageTexture_dgghe")
-disable_receive_shadows = true
 grow_amount = -0.39
 fov_override = 30.0
 stencil_flags = 2
@@ -64,7 +62,7 @@ shadow_mesh = SubResource("ArrayMesh_dgghe")
 
 [node name="roltateaxis" unique_id=906463618 instance=ExtResource("1_p1lp8")]
 
-[node name="Cube" parent="." index="0"]
+[node name="Cube" parent="." index="0" unique_id=1401795537]
 transform = Transform3D(0.01, 0, 0, 0, -4.3711387e-10, -0.01, 0, 0.01, -4.3711387e-10, 0, 0, 0)
 mesh = SubResource("ArrayMesh_t23w2")
 script = ExtResource("2_oawbh")

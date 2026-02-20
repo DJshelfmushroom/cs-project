@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Area3d : Area3D
+public partial class Side : Area3D
 {
 	private bool MouseOver = false;
 	private CollisionShape3D _shape;

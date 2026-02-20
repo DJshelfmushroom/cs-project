@@ -12,7 +12,6 @@ public partial class Roltateaxis : Node3D
 	public Node3D BombNode;
 	[Export]
 	private float _size = .01f;
-
 	private const float _thickness = .00001f;
 	
 	
@@ -54,9 +53,10 @@ public partial class Roltateaxis : Node3D
 		
 		for (int i = 0; i < 6; i++)
 		{
-			var area = new Area3d();
+			var area = new Side();
 			var shape = new CollisionShape3D();
 			var box = new BoxShape3D();
+			var text = new Label3D();
 			switch ((Sides)i)
 			{
 				case Sides.Top:
@@ -92,9 +92,21 @@ public partial class Roltateaxis : Node3D
 			}
 			
 			shape.Position *= size / 1024 - _thickness + .01f;
+			// GD.Print(area.Name.ToString().Substring(area.Name.ToString().IndexOf('(') + 2, 1));
+			text.Text = area.Name.ToString().Substring(area.Name.ToString().IndexOf('(') + 2, 1);
 			area.Name += " Face";
 			shape.Name = area.Name.ToString().Substring(0,area.Name.ToString().Length - 9) + "Face Shape";
 			shape.Shape = box;
+
+			text.Font = GD.Load<Font>("res://assets/fonts/Urban Shadow Sans Serif.otf");
+			text.Billboard = BaseMaterial3D.BillboardModeEnum.Disabled;
+			text.Position = shape.Position;
+			text.LookAtFromPosition(text.Position, Vector3.Zero);
+			text.FontSize = (int) (size * 10000);
+			text.PixelSize = .0001f;
+			text.SetLayerMaskValue(1, true);
+			text.SetLayerMaskValue(2, true);
+			area.AddChild(text);
 			area.AddChild(shape);
 			area.SetShape(shape);
 			AddChild(area);
@@ -106,17 +118,24 @@ public partial class Roltateaxis : Node3D
 	{
 		return "SetBombRotationFromSide";
 	}
-
-	public void SetBombRotationFromSide(Node3D side)
+	
+	public void SetBombRotationFromSide(Node3D side) // what the hell is this
 	{
-		BombNode.Call(Node3D.MethodName.LookAtFromPosition, Vector3.Zero,
-			side.Position.Rotated(Vector3.Up, Single.Pi * 3 / 2).Dot(Vector3.Up) < .99f 
-				?
-				side.Position.Rotated(Vector3.Down, Single.Pi * 3 / 2)
-				:
-				side.Position.Rotated(Vector3.Left, Single.Pi * 3 / 2)
-			); 
-		BombNode.Position = new Vector3(0,0.5f,0);
+		
+		// GD.Print(side.Position.Rotated(Vector3.Up, Single.Pi * 3 / 2).DirectionTo(Vector3.Up).Dot(Vector3.Right));
+		if (Single.Abs(side.Position.Rotated(Vector3.Up, Single.Pi * 3 / 2).DirectionTo(Vector3.Up).Dot(Vector3.Right)) >= 0.01f || Single.Abs(side.Position.Rotated(Vector3.Up, Single.Pi * 3 / 2).DirectionTo(Vector3.Up).Dot(Vector3.Right)) == 0)
+		{
+			// GD.Print(1);
+			BombNode.Call(Node3D.MethodName.LookAtFromPosition, Vector3.Zero, side.Position.Rotated(Vector3.Up, Single.Pi * 3 / 2)); 
+		}
+		else
+		{
+			// GD.Print(2);
+			BombNode.Call(Node3D.MethodName.LookAtFromPosition, Vector3.Zero, side.Position.Rotated(Vector3.Down, Single.Pi * 3 / 2)); 
+			BombNode.Rotate(Vector3.Up, Single.Pi * 2);
+		}
+		BombNode.Position = new Vector3(0, 0.667f, 0);
+
 	}
 
 }

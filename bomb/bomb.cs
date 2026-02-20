@@ -40,6 +40,7 @@ public partial class bomb : Node3D
 			}
 		}
 		ray.QueueFree();
+		Position = new Vector3(0, 0.667f, 0); // idk how else to do it tbh - more in roltateaxis.cs
 	}
 
 	// plug instantiation/placement moved to bomb/instance_utils.cs (InstanceUtils.MakeInstances)
