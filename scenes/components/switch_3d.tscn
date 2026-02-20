@@ -1,18 +1,23 @@
 [gd_scene format=3 uid="uid://bplihb267mgq3"]
 
-[ext_resource type="Script" uid="uid://cq6qsuocw8qf7" path="res://scenes/components/switch_area_3d.gd" id="1_rlg43"]
+[ext_resource type="Script" uid="uid://cq6qsuocw8qf7" path="res://scripts/switch_area_3d.gd" id="1_rlg43"]
+[ext_resource type="Script" uid="uid://v0qwalg2mxjl" path="res://scenes/components/switch_3d.gd" id="1_up2f0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_up2f0"]
 size = Vector3(0.6, 0.4, 1.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_up2f0"]
+albedo_color = Color(0.9411765, 0.9411765, 0.9411765, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3xlla"]
+material = SubResource("StandardMaterial3D_up2f0")
+size = Vector3(0.23, 0.2, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_qyrs0"]
 size = Vector3(0.17, 0.17, 1.1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2kiwq"]
 size = Vector3(0.4, 0.17, 0.17)
-
-[sub_resource type="BoxMesh" id="BoxMesh_3xlla"]
-size = Vector3(0.23, 0.2, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hrobm"]
 albedo_color = Color(1, 0, 0, 1)
@@ -29,6 +34,8 @@ material = SubResource("StandardMaterial3D_j17lr")
 size = Vector2(0.5, 0.5)
 
 [node name="Switch3D" type="MeshInstance3D" unique_id=1520643565]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+script = ExtResource("1_up2f0")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1158885472]
 script = ExtResource("1_rlg43")
@@ -36,6 +43,11 @@ script = ExtResource("1_rlg43")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1256008366]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.1, 0)
 shape = SubResource("BoxShape3D_up2f0")
+
+[node name="Switch" type="MeshInstance3D" parent="Area3D" unique_id=73214999]
+transform = Transform3D(1, 0, 0, 0, -0.8660254, -0.50000006, 0, 0.50000006, -0.8660254, 0.2, -0.05, 0)
+mesh = SubResource("BoxMesh_3xlla")
+skeleton = NodePath("../..")
 
 [node name="V1" type="MeshInstance3D" parent="." unique_id=328413545]
 mesh = SubResource("BoxMesh_qyrs0")
@@ -52,16 +64,12 @@ mesh = SubResource("BoxMesh_2kiwq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0.46486545)
 mesh = SubResource("BoxMesh_2kiwq")
 
-[node name="Switch" type="MeshInstance3D" parent="." unique_id=73214999]
-transform = Transform3D(1, 0, 0, 0, -0.86602545, -0.49999997, 0, 0.49999997, -0.86602545, 0.2, -0.05, 0)
-mesh = SubResource("BoxMesh_3xlla")
-
 [node name="Red" type="MeshInstance3D" parent="." unique_id=1447222175]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.05, -0.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.05, -0.2548832)
 mesh = SubResource("PlaneMesh_ihflq")
 
 [node name="Green" type="MeshInstance3D" parent="." unique_id=469609352]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.05, 0.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.05, 0.2562915)
 mesh = SubResource("PlaneMesh_mdhr6")
 skeleton = NodePath("../Red")
 

@@ -15,10 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://7mtx5ru3uhk0" path="res://scenes/puzzles/disable_puzzle_3d.tscn" id="10_un6j2"]
 [ext_resource type="PackedScene" uid="uid://d4aqd6eakis0f" path="res://scenes/components/timers/timerrr.tscn" id="10_urila"]
 [ext_resource type="PackedScene" uid="uid://dke5f875oy13r" path="res://scenes/puzzles/colors_puzzle_3d.tscn" id="11_8nerw"]
+[ext_resource type="PackedScene" uid="uid://ok3cku68k8sl" path="res://scenes/puzzles/switches_puzzle_3d.tscn" id="12_kfs2p"]
 [ext_resource type="Material" uid="uid://bpyrxdtjblchr" path="res://bomb/Materials/Mat_Flare00.tres" id="12_oc1ei"]
 [ext_resource type="Texture2D" uid="uid://cbk131m5nl33b" path="res://GAP_EasyExplosions_Textures/Flare00.PNG" id="12_p0es4"]
 [ext_resource type="Script" uid="uid://bjuoa1be3dlqx" path="res://bomb/CameraControl.cs" id="13_un6j2"]
-[ext_resource type="Script" uid="uid://bwsbcc1ccrmyh" path="res://scripts/ui/roltateAxis/Roltateaxis.cs" id="16_osgfx"]
 [ext_resource type="Script" uid="uid://blgp7xfn1j5te" path="res://bomb/explosion.cs" id="19_osgfx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f726v"]
@@ -156,7 +156,7 @@ transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -0.20370534, 0.01352524
 transform = Transform3D(-3.059797e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.059797e-08, 0.50984114, 0.19510746, 0.45340592)
 
 [node name="SimonPuzzle3D" parent="bomb_instance/Games" unique_id=1092913190 instance=ExtResource("5_27ssy")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.52222013, -0.17222977, -0.3540955)
+transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, -0.52222, -0.059907258, -0.64449143)
 
 [node name="ReflexPuzzle3D" parent="bomb_instance/Games" unique_id=1784130657 instance=ExtResource("7_aalj4")]
 transform = Transform3D(4.5298744e-08, -0.6, -2.6226834e-08, 0, -2.6226834e-08, 0.6, -0.6, -4.5298744e-08, -1.980071e-15, 0.01650051, 0.5140915, 0.013921186)
@@ -172,6 +172,9 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.24854377, 0.30216974
 
 [node name="ColorsPuzzle3D" parent="bomb_instance/Games" unique_id=1215706253 instance=ExtResource("11_8nerw")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.17118174, -0.5093038, 0.29210222)
+
+[node name="SwitchesPuzzle3D" parent="bomb_instance/Games" unique_id=992902016 instance=ExtResource("12_kfs2p")]
+transform = Transform3D(1.3113417e-08, 0, -0.1, 0, 0.1, 0, 0.1, 0, 1.3113417e-08, -0.5034778, 0.0135183185, 0.30586419)
 
 [node name="vfx_explosion" type="Node3D" parent="bomb_instance" unique_id=114048839]
 

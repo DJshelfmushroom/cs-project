@@ -12,12 +12,9 @@ func _ready():
 
 func _on_input_event(_camera, event, _position, _normal, _shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and Input.is_action_just_pressed("ui_mouse_left_button") and !($"../..".disabled):
+		if event.button_index == MOUSE_BUTTON_LEFT and Input.is_action_just_pressed("ui_mouse_left_button") and !($"..".disabled):
 			_on_button_pressed()
-			if up:
-				up = false
-			else:
-				up = true
+			
 		
 func _on_mouse_entered():
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
@@ -37,8 +34,15 @@ func _on_mouse_exited():
 
 
 func _on_button_pressed():
-	$"..".transform = $"..".transform.translated(Vector3(0,0,-0.01))
-	$"../../.."._on_but_pressed($"../..".num)
+	if up:
+		up = false
+		$"..".up = false
+		$Switch.rotation = Vector3(5*PI/6, 0, 0)
+	else:
+		up = true
+		$"..".up = true
+		$Switch.rotation = Vector3(PI/6, 0, 0)
+	$"../.."._on_but_pressed($"..".num)
 		
 	
 	

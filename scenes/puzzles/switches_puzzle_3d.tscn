@@ -1,3 +1,13 @@
 [gd_scene format=3 uid="uid://ok3cku68k8sl"]
 
+[ext_resource type="Script" uid="uid://d4nmbltlchbkt" path="res://scripts/puzzles/switches_puzzle_3d.gd" id="1_q33qn"]
+[ext_resource type="PackedScene" uid="uid://bplihb267mgq3" path="res://scenes/components/switch_3d.tscn" id="2_xp24m"]
+[ext_resource type="PackedScene" uid="uid://cbcrfgck1oggo" path="res://scenes/components/screen_3d.tscn" id="3_xp24m"]
+
 [node name="SwitchesPuzzle3D" type="Node3D" unique_id=992902016]
+script = ExtResource("1_q33qn")
+
+[node name="Switch3D" parent="." unique_id=1520643565 instance=ExtResource("2_xp24m")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 1.4, 0, 0)
+
+[node name="Screen3D" parent="." unique_id=586305135 instance=ExtResource("3_xp24m")]
