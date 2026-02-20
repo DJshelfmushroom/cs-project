@@ -18,7 +18,7 @@ func _ready():
 	
 	
 func check_mouse_cursor():
-	return $CustomCursor.cursor_color
+	return SaveManager.color
 
 func prepare_buttons():
 	if (SaveManager.level < 3):
@@ -48,16 +48,31 @@ func set_black_to_base():
 	$Black_Mouse.disabled = true
 
 func _on_red_mouse_pressed() -> void:
+	SaveManager.arrow = red_arrow
+	SaveManager.hand  = red_hand
+	SaveManager.color = "red"
+	
 	$CustomCursor.set_mouse_cursor(red_arrow, red_hand, "red")
 	place_set()
+	SaveManager.save()
 	
 func _on_green_mouse_pressed() -> void:
+	SaveManager.arrow = green_arrow
+	SaveManager.hand  = green_hand
+	SaveManager.color = "green"
+	
 	$CustomCursor.set_mouse_cursor(green_arrow, green_hand, "green")
 	place_set()
+	SaveManager.save()
 
 func _on_black_mouse_pressed() -> void:
+	SaveManager.arrow = black_arrow
+	SaveManager.hand  = black_hand
+	SaveManager.color = "black"
+	
 	$CustomCursor.set_mouse_cursor(black_arrow, black_hand, "black")
 	place_set()
+	SaveManager.save()
 
 func _on_back_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")

@@ -3,8 +3,8 @@ extends Node2D
 # Load the custom images for the mouse cursor.
 var this_arrow = null
 var this_hand = null
-var cursor_color = null
-	
+var cursor_color = "red"
+
 
 func set_mouse_cursor(arrow, hand, color):
 	this_arrow = arrow

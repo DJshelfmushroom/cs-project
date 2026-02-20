@@ -1,15 +1,15 @@
 extends Node
 
 var save_path = "user://save_data.save"
-var cursor = preload("res://scenes/menus/custom_cursor.tscn").instantiate()
+
 
 var pack1owned : int = 0
 var level : int = 0
 var totalxp : int = 0
 
-var arrow = cursor.call("get_mouse_arrow")
-var hand = cursor.call("get_mouse_hand")
-var color = cursor.call("get_mouse_color")
+var arrow
+var hand
+var color : String = "red"
 
 
 func _ready() -> void:
@@ -25,9 +25,24 @@ func save():
 	
 	
 func save_mouse_info(file):
-	file.store_var(arrow)
-	file.store_var(hand)
 	file.store_var(color)
+	
+func load_mouse_info(file):
+	var loaded_color = file.get_var()
+	if loaded_color == null:
+		loaded_color = "red"
+
+	color = loaded_color
+	
+	if (color == "red"):
+		arrow = load("res://assets/cursor/RedWire_Cursor.png")
+		hand = load("res://assets/cursor/RedWire_Hand.png")
+	elif (color == "green"):
+		arrow = load("res://assets/cursor/Green_RedWire_Cursor.png")
+		hand = load("res://assets/cursor/Green_RedWire_Hand.png")
+	else:
+		pass
+
 
 func load_data():
 	if FileAccess.file_exists(save_path):
@@ -35,9 +50,7 @@ func load_data():
 		pack1owned = file.get_var(pack1owned)
 		level = file.get_var(level)
 		totalxp = file.get_var(totalxp)
-		#arrow = file.getvar(arrow)
-		#hand = file.get_var(hand)
-		#color = file.get_var(color)
+		load_mouse_info(file)
 	else:
 		pack1owned = 0
 		level = 0
@@ -45,3 +58,4 @@ func load_data():
 		arrow = load("res://assets/cursor/RedWire_Cursor.png")
 		hand = load("res://assets/cursor/RedWire_Hand.png")
 		color = "red"
+		
