@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://v0qwalg2mxjl" path="res://scenes/components/switch_3d.gd" id="1_up2f0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_up2f0"]
-size = Vector3(0.6, 0.4, 1.2)
+size = Vector3(0.6, 0.2, 1.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_up2f0"]
 albedo_color = Color(0.9411765, 0.9411765, 0.9411765, 1)
@@ -41,7 +41,7 @@ script = ExtResource("1_up2f0")
 script = ExtResource("1_rlg43")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1256008366]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.19159342, -6.189245e-09)
 shape = SubResource("BoxShape3D_up2f0")
 
 [node name="Switch" type="MeshInstance3D" parent="Area3D" unique_id=73214999]

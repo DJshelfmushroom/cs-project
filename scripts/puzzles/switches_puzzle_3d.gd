@@ -17,8 +17,9 @@ func _ready() -> void:
 		var i = 0
 		for x in range(5):
 			var switch_inst = switch_scene.instantiate()
+			switch_inst.scale = Vector3(1.0,0.7,1.0)
 			switch_inst.num = n
-			switch_inst.position = Vector3(i,j,0)
+			switch_inst.position = Vector3(i,j,-0.01)
 			switches.append(switch_inst)
 			add_child(switch_inst)
 			var rand = randi_range(1,2)
