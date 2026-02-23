@@ -32,7 +32,7 @@ func load_mouse_info(file):
 	if loaded_color == null:
 		loaded_color = "red"
 
-	color = loaded_color
+	color = str(loaded_color)
 	
 	if (color == "red"):
 		arrow = load("res://assets/cursor/RedWire_Cursor.png")
