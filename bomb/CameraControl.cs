@@ -1,6 +1,8 @@
 using System;
+using System.Diagnostics;
 using System.Linq.Expressions;
 using Godot;
+using Godot.Collections;
 using v3 = Godot.Vector3;
 using dd3d = DebugDraw3D;
 
@@ -9,50 +11,32 @@ public partial class CameraControl : Camera3D
 	private static readonly Action<String> log = Godot.GD.Print;
 	public void Zoom(float amount)
 	{
-		// 3 methods:
-		// amount, min, max. change fov for zoom
-		// this.Fov = Mathf.Clamp(this.Fov + amount, -500, 120);
-		// Move towards forward
-		//Transform = Transform.Translated(Vector3.ModelLeft * amount);
-		// Move towards bomb
-		var bomb = GetNode<Node3D>("../bomb_instance");
+		Node3D bomb = GetNode<Node3D>("../bomb_instance");
 		v3 direction = (bomb.GlobalPosition - this.GlobalPosition).Normalized();
-		float distToBomb = (bomb.GlobalPosition - this.GlobalPosition).Length();
-		var ray = new RayCast3D();
-		ray.Enabled = true;
-		AddChild(ray);
-		ray.GlobalPosition = this.GlobalPosition;
-		// ensure the ray will detect both bodies and areas and check all layers while debugging
-		ray.CollideWithBodies = true;
-		//ray.CollideWithAreas = true;
-		ray.CollisionMask = uint.MaxValue;
 
-		// TargetPosition is local to the RayCast node, so set it to the vector from the ray origin to the bomb
-		ray.TargetPosition = bomb.GlobalPosition - ray.GlobalPosition;
-		ray.ForceRaycastUpdate();
-		dd3d.DrawLine(ray.GlobalPosition, bomb.GlobalPosition, Colors.Green, 1f);
-		if (ray.IsColliding())
+		PhysicsDirectSpaceState3D spaceState = GetWorld3D().DirectSpaceState;
+		PhysicsRayQueryParameters3D query = PhysicsRayQueryParameters3D.Create(
+			this.GlobalPosition,
+			bomb.GlobalPosition,
+			collisionMask: uint.MaxValue
+		);
+		query.CollideWithBodies = true;
+
+		Dictionary result = spaceState.IntersectRay(query);
+
+		if (result.Count > 0)
 		{
-			v3 point = ray.GetCollisionPoint();
+			v3 point = (v3)result["position"];
 			float distToColPoint = (point - this.GlobalPosition).Length();
-			log("😭" + point);
-			DebugDraw3D.DrawPoints([point], DebugDraw3D.PointType.TypeSphere, 0.01f, Colors.Red, (float)base.GetProcessDeltaTime());
+
+			// prevent zooming in past the collision point
 			if (amount < 0 && distToColPoint <= 0.1f)
 			{
-				ray.QueueFree();
 				return;
 			}
 		}
-		// Don't let the camera zoom closer than this distance to the bomb
-		/*
-		if (amount < 0 && distToBomb <= 0.6f)
-		{
-			return;
-		}
-		*/
-		Transform = Transform.Translated(direction * -amount);
-		ray.QueueFree();
 
+		Transform = Transform.Translated(direction * -amount);
 	}
 
 	public void Pan(float x, float y)
