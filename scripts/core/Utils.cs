@@ -8,7 +8,7 @@ namespace csproject.scripts.core;
 public partial class Utils : Node
 {
 	private static readonly bool Debug = true;
-	
+
 	/// <summary>
 	/// Prints a formatted string for debugging (future plans: error/warning/debug, more options for not sending).
 	/// Please use this instead of GD.Print.
@@ -16,7 +16,13 @@ public partial class Utils : Node
 	/// <param name="message">The string to print</param>
 	/// <param name="source">Should be `this` (.NET) or `self` (gdscript) in most cases. Just used for name. Set to null for `General`</param>
 	/// <param name="type">Use if you want a different note `Debug` by default</param>
-	public static void Log(string message, Node source, string type = "Debug") 
+	public static void Log(string message, Node source, string type = "Debug")
+	{
+		Log(message, source.GetPath().ToString().Substring(6), type);
+	}
+
+	// prefer not to use, but it works
+	public static void Log(string message, string source, string type = "Debug")
 	{
 		if (!Debug) return;
 		StringBuilder output = new StringBuilder();
@@ -27,8 +33,9 @@ public partial class Utils : Node
 		}
 		else
 		{
-			output.Append(source.GetName());
+			output.Append(source);
 		}
+
 		output.Append("]: ");
 		output.Append(message);
 
@@ -65,21 +72,3 @@ public partial class Utils : Node
 		}
 	}
 }
-
-// public partial class Util : Node
-// {
-// 	public override void _Ready()
-// 	{
-// 		
-// 	}
-//
-// 	public override void _Process(double delta)
-// 	{
-// 		base._Process(delta);
-// 	}
-//
-// 	public override void _Input(InputEvent @event)
-// 	{
-// 	}
-// 	
-// }
