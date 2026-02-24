@@ -53,7 +53,7 @@ public partial class Roltateaxis : Node3D
 		
 		for (int i = 0; i < 6; i++)
 		{
-			var area = new Side();
+			var area = new csproject.scripts.ui.roltateAxis.Side();
 			var shape = new CollisionShape3D();
 			var box = new BoxShape3D();
 			var text = new Label3D();

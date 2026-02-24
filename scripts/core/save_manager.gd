@@ -1,6 +1,6 @@
 extends Node
 
-var save_path = "user://save_data.save"
+var save_path : String = "user://save_data.save"
 
 
 var pack1owned : int = 0
@@ -58,4 +58,6 @@ func load_data():
 		arrow = load("res://assets/cursor/RedWire_Cursor.png")
 		hand = load("res://assets/cursor/RedWire_Hand.png")
 		color = "red"
-		
+
+func get_save_path():
+	return save_path;

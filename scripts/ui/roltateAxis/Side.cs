@@ -1,42 +1,45 @@
 using Godot;
-using System;
+using Utils = csproject.scripts.core.Utils;
+
+namespace csproject.scripts.ui.roltateAxis;
 
 public partial class Side : Area3D
 {
-	private bool MouseOver = false;
+	private bool _mouseOver = false;
 	private CollisionShape3D _shape;
-	// private int direction;
 	private static StringName _lookAtName;
+	
 	public override void _Input(InputEvent @event)
-	 {
+	{
 		base._Input(@event);
-		if (@event is InputEventMouseButton mouseButtonEvent && mouseButtonEvent.Pressed && mouseButtonEvent.ButtonIndex == MouseButton.Left && MouseOver)
+		if (@event is InputEventMouseButton mouseButtonEvent && mouseButtonEvent.Pressed && mouseButtonEvent.ButtonIndex == MouseButton.Left && _mouseOver)
 		{
-			GD.Print("Left mouse button pressed on Area3D " + Name);
-			GD.Print(Position.ToString());
 			GetParent().Call(_lookAtName, _shape);
 		}
-	 }
+	}
 
 	public override void _Ready()
 	{
 		_lookAtName = Roltateaxis.GetLookAtMethodName();
 	}
+	
 
 	public void SetShape(CollisionShape3D shape)
 	{
-		this._shape = shape;
+		_shape = shape;
 	}
 
-	public override void _MouseEnter()
+	public override void _MouseEnter() // would like to note that the cursor hitbox is a little wierd
 	{
 		base._MouseEnter();
-		MouseOver = true;
+		_mouseOver = true;
+		Utils.SetCursor(Utils.CursorState.Hand);
 	}
 
 	public override void _MouseExit()
 	{
 		base._MouseExit();
-		MouseOver = false;
+		_mouseOver = false;
+		Utils.SetCursor(Utils.CursorState.Arrow);
 	}
 }

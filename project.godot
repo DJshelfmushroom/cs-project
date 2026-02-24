@@ -24,6 +24,7 @@ config/icon="res://icon.svg"
 SceneManager="*res://scripts/core/SceneManager.cs"
 SaveManager="*res://scripts/core/save_manager.gd"
 LevelManager="*res://scripts/core/level_manager.gd"
+Utils="*uid://dl3rmlya0gn8f"
 
 [debug_draw_3d]
 

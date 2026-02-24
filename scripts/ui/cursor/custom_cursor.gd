@@ -12,7 +12,7 @@ func set_mouse_cursor(arrow, hand, color):
 	Input.set_custom_mouse_cursor(this_arrow, Input.CURSOR_ARROW)
 	Input.set_custom_mouse_cursor(this_hand, Input.CURSOR_POINTING_HAND)
 	cursor_color = color
-	print("mouse cursor changed")
+	Utils.LogGD("Mouse cursor changed", self) # if this is unwelcome you can change it
 
 
 func get_mouse_arrow():
