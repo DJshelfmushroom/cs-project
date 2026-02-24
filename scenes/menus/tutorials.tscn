@@ -92,6 +92,16 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Disable Puzzle Tutorial"
 
+[node name="Puzzle8TutorialButton" type="Button" parent="." unique_id=226502825]
+layout_mode = 0
+offset_left = 950.0
+offset_top = 825.0
+offset_right = 1402.0
+offset_bottom = 1030.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Colors Puzzle Tutorial"
+
 [node name="BackButton" type="Button" parent="." unique_id=471234110]
 layout_mode = 1
 anchors_preset = -1
@@ -114,4 +124,5 @@ text = "BACK"
 [connection signal="button_up" from="Puzzle5TutorialButton" to="." method="_on_puzzle_5_tutorial_button_button_up"]
 [connection signal="button_up" from="Puzzle6TutorialButton" to="." method="_on_puzzle_6_tutorial_button_button_up"]
 [connection signal="button_up" from="Puzzle7TutorialButton" to="." method="_on_puzzle_7_tutorial_button_button_up"]
+[connection signal="pressed" from="Puzzle8TutorialButton" to="." method="_on_puzzle_8_tutorial_button_pressed"]
 [connection signal="button_up" from="BackButton" to="." method="_on_back_button_up"]

@@ -9,6 +9,9 @@ var green_hand = load("res://assets/cursor/Green_RedWire_Hand.png")
 var black_arrow = load("res://assets/cursor/Black_RedWire_Cursor.png")
 var black_hand = load("res://assets/cursor/Black_RedWire_Hand.png")
 
+var silver_arrow = load("res://assets/cursor/Silver_RedWire_Cursor.png")
+var silver_hand = load("res://assets/cursor/Silver_RedWire_Hand.png")
+
 var mouse_cursor = null
 
 
@@ -35,6 +38,9 @@ func place_set():
 		$Set.show()
 	elif (check_mouse_cursor() == "black"):
 		$Set.position = Vector2($Black_Mouse.position.x + 85, $Black_Mouse.position.y + 140)
+		$Set.show()
+	elif (check_mouse_cursor() == "silver"):
+		$Set.position = Vector2($Silver_Mouse.position.x + 85, $Silver_Mouse.position.y + 140)
 		$Set.show()
 	else:
 		$Set.hide()
@@ -73,6 +79,16 @@ func _on_black_mouse_pressed() -> void:
 	$CustomCursor.set_mouse_cursor(black_arrow, black_hand, "black")
 	place_set()
 	SaveManager.save()
+
+func _on_silver_mouse_pressed() -> void:
+	SaveManager.arrow = silver_arrow
+	SaveManager.hand  = silver_hand
+	SaveManager.color = "silver"
+	
+	$CustomCursor.set_mouse_cursor(silver_arrow, silver_hand, "silver")
+	place_set()
+	SaveManager.save()
+
 
 func _on_back_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")

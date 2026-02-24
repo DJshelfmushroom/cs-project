@@ -42,6 +42,16 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Black Cursor"
 
+[node name="Silver_Mouse" type="Button" parent="." unique_id=1051565119]
+layout_mode = 0
+offset_left = 873.0
+offset_top = 609.0
+offset_right = 1173.0
+offset_bottom = 709.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Silver Cursor"
+
 [node name="Set" type="Label" parent="." unique_id=1803000527]
 visible = false
 layout_mode = 0
@@ -67,4 +77,5 @@ text = "Back"
 [connection signal="pressed" from="Red_Mouse" to="." method="_on_red_mouse_pressed"]
 [connection signal="pressed" from="Green_Mouse" to="." method="_on_green_mouse_pressed"]
 [connection signal="pressed" from="Black_Mouse" to="." method="_on_black_mouse_pressed"]
+[connection signal="pressed" from="Silver_Mouse" to="." method="_on_silver_mouse_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

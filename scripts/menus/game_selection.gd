@@ -33,11 +33,10 @@ func _process(_delta: float) -> void:
 		$bomb_instance/Games/PuzzleTwo3D.thisfailed = true
 		$GameOverLabel.visible = true
 		$ReturnButton.visible = true
+		$Camera3D/roltateaxis2.hide()
 	if $bomb_instance/Games/DisablePuzzle3D.completed:
 		disable_first = true
-	if ($bomb_instance/Games/PuzzleOne3D.completed || $bomb_instance/Games/PuzzleTwo3D.completed || $bomb_instance/Games/SimonPuzzle3D.completed ||
-	 $bomb_instance/Games/ReflexPuzzle3D.completed || $bomb_instance/Games/NumerlePuzzle3D.completed || $bomb_instance/Games/SegmentPuzzle3D.completed ||
-	 $bomb_instance/Games/ColorsPuzzle3D.completed || $bomb_instance/Games/SwitchesPuzzle3D.completed) && !disable_first:
+	if (disable_consequence()) && !disable_first:
 		strikes = 3
 		failed = true
 
@@ -49,11 +48,20 @@ func puzzles_completed():
 	else:
 		return false
 
+
+func disable_consequence():
+	for c in $bomb_instance/Games.get_children():
+		if c.completed && c.name != "DisablePuzzle3D":
+			return true
+	return false
+
+
+
 func _on_back_button_up() -> void:
 	if (allcompleted):
 		SaveManager.pack1owned += 1
-		SaveManager.totalxp += 15
+		SaveManager.totalxp += 30
 	else:
-		SaveManager.totalxp += 5
+		SaveManager.totalxp += 10
 	SaveManager.save()
 	get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
