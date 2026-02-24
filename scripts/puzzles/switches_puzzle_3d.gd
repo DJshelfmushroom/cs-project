@@ -72,7 +72,7 @@ func _process(_delta: float) -> void:
 				dot.modulate = Color.GREEN
 				
 		
-func _on_but_pressed(num : int):
+func _on_switch_flipped(num : int):
 	if !$"../../..".failed:
 		if switches[num].up:
 			current.append(num)

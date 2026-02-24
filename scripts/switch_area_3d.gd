@@ -42,7 +42,7 @@ func _on_button_pressed():
 		up = true
 		$"..".up = true
 		$Switch.rotation = Vector3(PI/6, 0, 0)
-	$"../.."._on_but_pressed($"..".num)
+	$"../.."._on_switch_flipped($"..".num)
 		
 	
 	
