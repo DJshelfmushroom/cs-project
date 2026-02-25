@@ -5,7 +5,7 @@ namespace csproject.scripts.ui.roltateAxis;
 
 public partial class Side : Area3D
 {
-	private bool _mouseOver = false;
+	private bool _mouseOver;
 	private CollisionShape3D _shape;
 	private static StringName _lookAtName;
 	

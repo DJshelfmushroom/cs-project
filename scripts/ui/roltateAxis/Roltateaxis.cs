@@ -1,8 +1,7 @@
-using Godot;
 using System;
-using System.Diagnostics;
-using System.Net.NetworkInformation;
+using Godot;
 
+namespace csproject.scripts.ui.roltateAxis;
 
 public partial class Roltateaxis : Node3D
 {
@@ -12,7 +11,7 @@ public partial class Roltateaxis : Node3D
 	public Node3D BombNode;
 	[Export]
 	private float _size = .01f;
-	private const float _thickness = .00001f;
+	private const float Thickness = .00001f;
 	
 	
 	public override void _Process(double delta)
@@ -53,46 +52,45 @@ public partial class Roltateaxis : Node3D
 		
 		for (int i = 0; i < 6; i++)
 		{
-			var area = new csproject.scripts.ui.roltateAxis.Side();
+			var area = new Side();
 			var shape = new CollisionShape3D();
 			var box = new BoxShape3D();
 			var text = new Label3D();
 			switch ((Sides)i)
 			{
 				case Sides.Top:
-					box.Size = new Vector3(size, _thickness, size);
+					box.Size = new Vector3(size, Thickness, size);
 					shape.Position = Vector3.ModelTop;
 					area.Name = "Top (+y)";
 					break;
 				case Sides.Bottom:
-					box.Size = new Vector3(size, _thickness, size);
+					box.Size = new Vector3(size, Thickness, size);
 					shape.Position = Vector3.ModelBottom;
 					area.Name = "Bottom (-y)";
 					break;
 				case Sides.Left:
-					box.Size = new Vector3(_thickness, size, size);
+					box.Size = new Vector3(Thickness, size, size);
 					shape.Position = Vector3.ModelLeft;
 					area.Name = "Left (+x)";
 					break;
 				case Sides.Right:
 					area.Name = "Right (-x)";
-					box.Size = new Vector3(_thickness, size, size);
+					box.Size = new Vector3(Thickness, size, size);
 					shape.Position = Vector3.ModelRight;
 					break;
 				case Sides.Front:
 					area.Name = "Front (+z)";
-					box.Size = new Vector3(size, size, _thickness);
+					box.Size = new Vector3(size, size, Thickness);
 					shape.Position = Vector3.ModelRear;
 					break;
 				case Sides.Back:
 					area.Name = "Back (-z)";
-					box.Size = new Vector3(size, size, _thickness);
+					box.Size = new Vector3(size, size, Thickness);
 					shape.Position = Vector3.ModelFront;
 					break;
 			}
 			
-			shape.Position *= size / 1024 - _thickness + .01f;
-			// GD.Print(area.Name.ToString().Substring(area.Name.ToString().IndexOf('(') + 2, 1));
+			shape.Position *= size / 1024 - Thickness + .01f;
 			text.Text = area.Name.ToString().Substring(area.Name.ToString().IndexOf('(') + 2, 1);
 			area.Name += " Face";
 			shape.Name = area.Name.ToString().Substring(0,area.Name.ToString().Length - 9) + "Face Shape";
@@ -122,15 +120,12 @@ public partial class Roltateaxis : Node3D
 	public void SetBombRotationFromSide(Node3D side) // what the hell is this
 	{
 		
-		// GD.Print(side.Position.Rotated(Vector3.Up, Single.Pi * 3 / 2).DirectionTo(Vector3.Up).Dot(Vector3.Right));
 		if (Single.Abs(side.Position.Rotated(Vector3.Up, Single.Pi * 3 / 2).DirectionTo(Vector3.Up).Dot(Vector3.Right)) >= 0.01f || Single.Abs(side.Position.Rotated(Vector3.Up, Single.Pi * 3 / 2).DirectionTo(Vector3.Up).Dot(Vector3.Right)) == 0)
 		{
-			// GD.Print(1);
 			BombNode.Call(Node3D.MethodName.LookAtFromPosition, Vector3.Zero, side.Position.Rotated(Vector3.Up, Single.Pi * 3 / 2)); 
 		}
 		else
 		{
-			// GD.Print(2);
 			BombNode.Call(Node3D.MethodName.LookAtFromPosition, Vector3.Zero, side.Position.Rotated(Vector3.Down, Single.Pi * 3 / 2)); 
 			BombNode.Rotate(Vector3.Up, Single.Pi * 2);
 		}
