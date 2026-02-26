@@ -11,6 +11,7 @@ var arrow
 var hand
 var color : String = "red"
 
+var completedAchievements = []
 
 func _ready() -> void:
 	load_data()
@@ -22,11 +23,13 @@ func save():
 	file.store_var(level)
 	file.store_var(totalxp)
 	save_mouse_info(file)
+	completedAchievements = file.store_var(Achievements.completedAchievements)
 	
 	
 func save_mouse_info(file):
 	file.store_var(color)
 	
+
 func load_mouse_info(file):
 	var loaded_color = file.get_var()
 	if loaded_color == null:
@@ -57,6 +60,7 @@ func load_data():
 		level = file.get_var(level)
 		totalxp = file.get_var(totalxp)
 		load_mouse_info(file)
+		Achievements.load_achievements(file.get_var())
 	else:
 		pack1owned = 0
 		level = 0
@@ -64,6 +68,7 @@ func load_data():
 		arrow = load("res://assets/cursor/RedWire_Cursor.png")
 		hand = load("res://assets/cursor/RedWire_Hand.png")
 		color = "red"
+		completedAchievements = []
 
 func get_save_path():
 	return save_path;

@@ -25,6 +25,7 @@ SceneManager="*res://scripts/core/SceneManager.cs"
 SaveManager="*res://scripts/core/save_manager.gd"
 LevelManager="*res://scripts/core/level_manager.gd"
 Utils="*uid://dl3rmlya0gn8f"
+Achievements="*uid://de3yj11gujba4"
 
 [debug_draw_3d]
 

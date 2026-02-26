@@ -62,6 +62,6 @@ func _on_back_button_up() -> void:
 		SaveManager.pack1owned += 1
 		SaveManager.totalxp += 30
 	else:
-		SaveManager.totalxp += 10
+		SaveManager.totalxp += 8
 	SaveManager.save()
 	get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
