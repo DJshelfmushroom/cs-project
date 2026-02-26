@@ -16,23 +16,23 @@ public partial class CameraControl : Camera3D
 
 		PhysicsDirectSpaceState3D spaceState = GetWorld3D().DirectSpaceState;
 		PhysicsRayQueryParameters3D query = PhysicsRayQueryParameters3D.Create(
-			this.GlobalPosition,
-			bomb.GlobalPosition,
-			collisionMask: uint.MaxValue
+			this.GlobalPosition, bomb.GlobalPosition, collisionMask: uint.MaxValue
 		);
 		query.CollideWithBodies = true;
-
 		Dictionary result = spaceState.IntersectRay(query);
 
-		if (result.Count > 0)
+		if (amount < 0) // zooming in toward bomb
 		{
-			v3 point = (v3)result["position"];
-			float distToColPoint = (point - this.GlobalPosition).Length();
-
-			// prevent zooming in past the collision point
-			if (amount < 0 && distToColPoint <= 0.1f)
+			if (result.Count > 0)
 			{
-				return;
+				v3 point = (v3)result["position"];
+				float distToColPoint = (point - this.GlobalPosition).Length();
+				if (distToColPoint - Math.Abs(amount) <= 0.05f)
+					return;
+			}
+			else
+			{
+				return; // camera already inside, don't zoom further in
 			}
 		}
 
@@ -43,6 +43,16 @@ public partial class CameraControl : Camera3D
 	{
 		// pan the camera by moving it along its local axes
 		this.TranslateObjectLocal(new Vector3(x, y, 0));
+
+		// After panning, push the camera back if it clipped into the bomb.
+		// Same radial logic as RotateBomb: stay on the bomb→camera line.
+		bomb bombNode = GetNode<bomb>("../bomb_instance");
+		v3 dir = (this.GlobalPosition - bombNode.GlobalPosition).Normalized();
+		float exitDist = bombNode.GetMinCameraDistance(dir);
+		float minDist = exitDist + this.Near * 3f;
+		float currentDist = (this.GlobalPosition - bombNode.GlobalPosition).Length();
+		if (currentDist < minDist)
+			this.GlobalPosition = bombNode.GlobalPosition + dir * minDist;
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
@@ -51,7 +61,7 @@ public partial class CameraControl : Camera3D
 		{
 			if (Input.IsActionPressed("cam_pan_mod"))
 			{
-				Pan(-motion.Relative.X * 0.01f, motion.Relative.Y * 0.01f);
+				Pan(-motion.Relative.X * 0.003f, motion.Relative.Y * 0.003f);
 			}
 		}
 		else if (@event is InputEventMouseButton buttonEvent)
