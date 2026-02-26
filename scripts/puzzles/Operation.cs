@@ -99,7 +99,9 @@ class OperationPath2D(
 				{
 					int d1 = random.Next(0, 3) - 1;
 					dir = new Vector2(d1, d1 == 0 ? WierdRound(random.NextSingle() - .5f) : 0);
-				} while (dir.IsEqualApprox(-1 * prevDir) || dir.IsEqualApprox(prevDir));
+				} while (dir.IsEqualApprox(-1 * prevDir) 
+						 // || dir.IsEqualApprox(prevDir)
+						 );
 
 				prevDir = dir;
 				// Utils.Log($"dir: {dir}", "scripts/puzzles/Operation");
