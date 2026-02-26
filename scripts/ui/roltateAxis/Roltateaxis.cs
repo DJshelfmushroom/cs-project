@@ -116,8 +116,8 @@ public partial class Roltateaxis : Node3D
 	{
 		return "SetBombRotationFromSide";
 	}
-	
-	public void SetBombRotationFromSide(Node3D side) // what the hell is this
+
+	private void SetBombRotationFromSide(Node3D side) // what the hell is this
 	{
 		
 		if (Single.Abs(side.Position.Rotated(Vector3.Up, Single.Pi * 3 / 2).DirectionTo(Vector3.Up).Dot(Vector3.Right)) >= 0.01f || Single.Abs(side.Position.Rotated(Vector3.Up, Single.Pi * 3 / 2).DirectionTo(Vector3.Up).Dot(Vector3.Right)) == 0)
@@ -130,7 +130,6 @@ public partial class Roltateaxis : Node3D
 			BombNode.Rotate(Vector3.Up, Single.Pi * 2);
 		}
 		BombNode.Position = new Vector3(0, 0.667f, 0);
-
 	}
 
 }

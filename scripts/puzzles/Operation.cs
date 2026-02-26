@@ -21,7 +21,7 @@ public partial class Operation : Node
 		base._UnhandledInput(@event);
 		if (@event.IsActionPressed("key_x"))
 		{
-			Utils.Log("refresh",  this);
+			Utils.Log("refresh",  this, color: "green");
 			GenerateLine();
 		}
 	}
@@ -32,7 +32,7 @@ public partial class Operation : Node
 			15,new Vector2(50, 200), this);
 		foreach (Node child in GetChildren())
 		{
-			RemoveChild(child);
+			child.QueueFree();
 		}
 		Line2D line = new Line2D();
 		// place:
@@ -50,7 +50,7 @@ public partial class Operation : Node
 		
 		AddChild(line);
 		place:
-		Utils.Log("Passed", this);
+		Utils.Log("Passed", this, color: "green");
 	}
 }
 
@@ -92,24 +92,25 @@ class OperationPath2D(
 			int attempts = 0;
 			attemptsAbsolute++;
 
-			curve_roll:
+			// curve_roll:
 			do
 			{
 				attempts++;
 				do
 				{
 					int d1 = random.Next(0, 3) - 1;
-					dir = new Vector2(d1, d1 == 0 ? WierdRound(random.NextSingle() - .5f) : 0);
+					dir = new Vector2(d1, d1 == 0 ? AbsoluteCeiling(random.NextSingle() - .5f) : 0);
+					Utils.Log($"dir: {dir}", owner);
 				} while (dir.IsEqualApprox(-1 * prevDir) 
-						 // || dir.IsEqualApprox(prevDir)
+						 || dir.IsEqualApprox(prevDir)
 						 );
 
-				prevDir = dir;
+				
 				// Utils.Log($"dir: {dir}", "scripts/puzzles/Operation");
+				// Utils.Log($"points: {points.Count}", owner);
 				var newPoint = dir * pointDist + points[i - 1];
-				points.Add(newPoint);
-
-				var polyline = Geometry2D.OffsetPolyline([points[i - 1], newPoint], 5);
+				
+				var polyline = Geometry2D.OffsetPolyline([points[i - 1], newPoint], 5, endType: Geometry2D.PolyEndType.Butt);
 				var collision = new CollisionPolygon2D();
 				collision.Polygon = polyline.ToArray().First();
 				var body = new StaticBody2D();
@@ -119,72 +120,79 @@ class OperationPath2D(
 				var ray = new RayCast2D();
 				ray.Position = points[i - 1];
 				ray.TargetPosition = newPoint;
+				Utils.Log($"pos: {ray.Position}, targ: {ray.TargetPosition}", owner);
 				ray.CollideWithBodies = true;
 				ray.CollideWithAreas = false;
 				ray.Enabled = true;
 				ray.ExcludeParent = true;
+				ray.HitFromInside = false;
 				owner.AddChild(ray);
 				ray.ForceRaycastUpdate();
 				if (ray.IsColliding())
 				{
-					if (ray.GetCollider() is StaticBody2D && owner.GetChildren().Contains(ray.GetCollider()))
+					Utils.Log($"Collision: {((Node2D)ray.GetCollider()).Name}, position: {ray.GetCollisionPoint()}", owner);
+					if (ray.GetCollider() is StaticBody2D && owner.GetChildren().Contains(ray.GetCollider()) && ray.GetCollider() != body)
 					{
-						// Utils.Log("Collision", owner);
-						owner.RemoveChild(ray);
+						body.QueueFree();
+						// ray.QueueFree();
+						// i--;
 						continue;
 					}
 				}
-				owner.RemoveChild(ray);
+				points.Add(newPoint);
+				prevDir = dir;
+				ray.QueueFree();
 				break;
 			} while (attempts < AttemptThreshold);
 
-			if (attempts == AttemptThreshold)
-			{
-				attempts -= AttemptThreshold / 5;
-				Utils.Log("attempts at limit", owner ,"WARN");
-				pointDist -= pointDist > 10? 10 : 0;
-				if (pointDist == 0)
-				{
-					points.RemoveAt(points.Count - 1);
-					i--;
-				}
-
-				goto curve_roll;
-			} 
-			if (attemptsAbsolute > 50)
-			{
-				Utils.Log("Attempts past threshold", owner, "ERROR");
-				i = 0;
-				foreach (var child in owner.GetChildren())
-				{
-					if (startChildren.Contains(child)) continue;
-					owner.RemoveChild(child);
-				}
-				attemptsAbsolute = -10;
-				continue;
-			}
-
-			if (attemptsAbsolute < 0)
-			{
-				throw new StackOverflowException();
-			}
+			// if (attempts == AttemptThreshold)
+			// {
+			// 	//attempts -= AttemptThreshold / 5;
+			// 	Utils.Log("attempts at limit", owner ,"WARN");
+			// 	pointDist -= pointDist > 10? 10 : 0;
+			// 	if (pointDist == 0)
+			// 	{
+			// 		// points.RemoveAt(points.Count - 1);
+			// 		// i--;
+			// 	}
+			//
+			// 	goto curve_roll;
+			// } 
+			// if (attemptsAbsolute > 50)
+			// {
+			// 	Utils.Log("Attempts past threshold", owner, "ERROR");
+			// 	i = 0;
+			// 	foreach (var child in owner.GetChildren())
+			// 	{
+			// 		if (startChildren.Contains(child)) continue;
+			// 		owner.RemoveChild(child);
+			// 	}
+			// 	attemptsAbsolute = -10;
+			// 	continue;
+			// }
+			//
+			// if (attemptsAbsolute < 0)
+			// {
+			// 	throw new StackOverflowException();
+			// }
 
 		}
-
+		
 		foreach (var child in owner.GetChildren())
 		{
 			if (startChildren.Contains(child)) continue;
-			owner.RemoveChild(child);
+			child.QueueFree();
 		}
 
 		foreach (var point in points)
 		{
 			curve.AddPoint(point + _center);
 		}
+		
 		return curve;
 	}
 
-	private static int WierdRound(float i)
+	private static int AbsoluteCeiling(float i)
 	{
 		return (int)(Math.Sign(i) * Math.Ceiling(MathF.Abs(i)));
 	}
