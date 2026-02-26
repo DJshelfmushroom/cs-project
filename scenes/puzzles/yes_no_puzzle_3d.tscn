@@ -4,12 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://bplihb267mgq3" path="res://scenes/components/switch_3d.tscn" id="2_ue3bv"]
 [ext_resource type="FontFile" uid="uid://0my668ilbos5" path="res://assets/fonts/DS-DIGI.TTF" id="3_2dkve"]
 [ext_resource type="PackedScene" uid="uid://caapg5wn513l5" path="res://scenes/components/button_3d.tscn" id="4_hb0c8"]
+[ext_resource type="PackedScene" uid="uid://cbcrfgck1oggo" path="res://scenes/components/screen_3d.tscn" id="5_ue3bv"]
 
 [node name="YesNoPuzzle3D" type="Node3D" unique_id=271774940]
 script = ExtResource("1_bf4fv")
 
 [node name="Switch3D" parent="." unique_id=1520643565 instance=ExtResource("2_ue3bv")]
-transform = Transform3D(1, 0, 0, 0, -3.059797e-08, -1, 0, 0.7, -4.371139e-08, -0.6, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -3.059797e-08, -0.98, 0, 0.7, -4.283716e-08, -0.6, -0.06826912, -0.026176691)
 
 [node name="Label3D" type="Label3D" parent="." unique_id=2102141745]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -47,5 +48,7 @@ font_size = 1000
 outline_size = 0
 
 [node name="Button3D" parent="." unique_id=960169264 instance=ExtResource("4_hb0c8")]
-transform = Transform3D(2.5, 0, 0, 0, 4, 0, 0, 0, 4, 0.46, -0.01, 0)
+transform = Transform3D(2.5, 0, 0, 0, 4, 0, 0, 0, 4, 0.46, -0.06829662, -0.008751035)
 skeleton = NodePath("../Switch3D")
+
+[node name="Screen3D" parent="." unique_id=236409183 instance=ExtResource("5_ue3bv")]
