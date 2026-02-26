@@ -8,6 +8,8 @@ var yes = false
 var done = 0
 
 func _ready() -> void:
+	$Screen3D.set_size(2.7,0.9)
+	$Screen3D.position = Vector3(-0.5,0.56,-0.02)
 	for x in range(4):
 		var rand = randi_range(0,25)
 		currentletters.append(letters[rand])
