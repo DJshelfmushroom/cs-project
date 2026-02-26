@@ -23,7 +23,7 @@ public partial class Roltateaxis : Node3D
 			Vector3 bombRotation = (Vector3)BombNode.Call("GetBombRotation") + new Vector3(0, -0.60f, 0);
 			GlobalRotation = bombRotation;
 		}
-		catch (Exception _) // what is type cast exception
+		catch (Exception) // what is type cast exception
 		{
 			return;
 		}

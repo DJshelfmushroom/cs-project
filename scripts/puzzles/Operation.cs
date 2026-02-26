@@ -9,11 +9,9 @@ namespace csproject.scripts.puzzles;
 
 public partial class Operation : Node
 {
-	private OperationPath2D _operation;
+	// private OperationPath2D _operation;
 	override public void _Ready()
 	{
-		_operation = new OperationPath2D(new Vector2(500, 500), new Vector2(500, 500),
-			15,new Vector2(50, 200), this);
 		GenerateLine();
 		
 	}
@@ -30,7 +28,9 @@ public partial class Operation : Node
 
 	private void GenerateLine() 
 	{
-		foreach (Node child in this.GetChildren())
+		OperationPath2D operation = new OperationPath2D(new Vector2(500, 500), new Vector2(500, 500),
+			15,new Vector2(50, 200), this);
+		foreach (Node child in GetChildren())
 		{
 			RemoveChild(child);
 		}
@@ -38,10 +38,11 @@ public partial class Operation : Node
 		// place:
 		try
 		{
-			line.Points = _operation.GenerateCurve().GetBakedPoints();
+			line.Points = operation.GenerateCurve().GetBakedPoints();
 		}
 		catch (StackOverflowException)
 		{
+			Utils.Log("uh oh", this, "ERROR");
 			goto place;	
 		}
 
@@ -49,7 +50,7 @@ public partial class Operation : Node
 		
 		AddChild(line);
 		place:
-		Utils.Log("uh oh", this, "ERROR");
+		Utils.Log("Passed", this);
 	}
 }
 
@@ -64,7 +65,7 @@ class OperationPath2D(
 	private Vector2 _center = center;
 	private Vector2 _size = size;
 	private StartPoint _startPoint = startPoint;
-	private const int ATTEMPT_THRESHOLD = 50;
+	private const int AttemptThreshold = 50;
 
 	public enum StartPoint
 	{
@@ -84,7 +85,7 @@ class OperationPath2D(
 		int rRange = Math.Abs((int)pointSpaceRange.Y - (int)pointSpaceRange.X);
 		var prevDir = new Vector2(0, 0);
 		int attemptsAbsolute = 0;
-		for (int i = 1; i < pointCount; i++) //TODO make size work, figure out a way to optimize
+		for (int i = 1; i < pointCount; i++) //TODO make size work, figure out a way to optimize, implement startpoint
 		{
 			int pointDist = (int)(rRange * random.NextSingle() + rBottom);
 			Vector2 dir;
@@ -128,23 +129,24 @@ class OperationPath2D(
 				{
 					if (ray.GetCollider() is StaticBody2D && owner.GetChildren().Contains(ray.GetCollider()))
 					{
-						Utils.Log("Collision", owner);
+						// Utils.Log("Collision", owner);
 						owner.RemoveChild(ray);
 						continue;
 					}
 				}
 				owner.RemoveChild(ray);
 				break;
-			} while (attempts < ATTEMPT_THRESHOLD);
+			} while (attempts < AttemptThreshold);
 
-			if (attempts == ATTEMPT_THRESHOLD)
+			if (attempts == AttemptThreshold)
 			{
-				attempts -= ATTEMPT_THRESHOLD / 10;
+				attempts -= AttemptThreshold / 5;
 				Utils.Log("attempts at limit", owner ,"WARN");
 				pointDist -= pointDist > 10? 10 : 0;
 				if (pointDist == 0)
 				{
 					points.RemoveAt(points.Count - 1);
+					i--;
 				}
 
 				goto curve_roll;
@@ -158,14 +160,13 @@ class OperationPath2D(
 					if (startChildren.Contains(child)) continue;
 					owner.RemoveChild(child);
 				}
-
 				attemptsAbsolute = -10;
+				continue;
 			}
 
 			if (attemptsAbsolute < 0)
 			{
 				throw new StackOverflowException();
-				return null;
 			}
 
 		}
@@ -181,15 +182,6 @@ class OperationPath2D(
 			curve.AddPoint(point + _center);
 		}
 		return curve;
-	}
-
-	private void RaycastSection(Vector2 from,  Vector2 to)
-	{
-		var ray = new RayCast2D();
-		ray.Position = from;
-		ray.TargetPosition = to;
-		
-		
 	}
 
 	private static int WierdRound(float i)
