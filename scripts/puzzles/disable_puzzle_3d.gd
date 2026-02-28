@@ -1,10 +1,12 @@
 extends Node3D
 
+var id = 7
+
 var completed = false
 
 func _ready() -> void:
 	$Screen3D.set_size(2.7,0.6)
-	$Screen3D.position = Vector3(0.7,-0.35,-0.0002)
+	$Screen3D.position = Vector3(-0.55,-0.35,0.001)
 
 func _process(_delta: float) -> void:
 	if $TextEdit3D.text.to_lower() == "disable_defense\u200B" || $TextEdit3D.text.to_lower() == "disable_defense|\u200B" || $TextEdit3D.text.to_lower() == "disable_defense\u200B|":

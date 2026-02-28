@@ -1,5 +1,7 @@
 extends Node3D
 
+var id = 1
+
 var completed
 var strikeable = true
 @onready var TextEdit1 = $EquationLabel/AnswerLabel/Num1
@@ -39,8 +41,9 @@ func _process(_delta: float) -> void:
 		TextEdit2.modulate = Color.WHITE
 		strikeable = true
 		current_text = 1
-	if (completed && practice):
-		$RedWireButton.visible = true
+	if $"../../..".failed:
+		$EquationLabel/AnswerLabel/Num1.editable = false
+		$EquationLabel/AnswerLabel/Num2.editable = false
 	
 func _on_button_pressed(num : int):
 	if current_text == 1 and TextEdit1.editable:

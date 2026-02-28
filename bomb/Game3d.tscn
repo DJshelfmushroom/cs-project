@@ -152,7 +152,7 @@ script = ExtResource("3_f726v")
 [node name="Games" type="Node3D" parent="bomb_instance" unique_id=261973402]
 
 [node name="PuzzleOne3D" parent="bomb_instance/Games" unique_id=1176933819 instance=ExtResource("3_f3gsr")]
-transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, -0.225, 1)
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, -0.25, 1)
 
 [node name="PuzzleTwo3D" parent="bomb_instance/Games" unique_id=183311325 instance=ExtResource("4_27ssy")]
 transform = Transform3D(-1.7484556e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.7484556e-08, 0.5, 0.25, 0.5)
