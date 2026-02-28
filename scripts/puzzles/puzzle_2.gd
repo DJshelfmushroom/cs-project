@@ -1,5 +1,7 @@
 extends Node3D
 
+var id = 2
+
 var completed
 var nums = [1,1,2,2,3,3,4,4,5,5,6,6]
 var buttons = []
@@ -13,16 +15,16 @@ var practice = true
 func _ready() -> void:
 	completed = false
 	$MemoryButton3D.visible = false
-	$Screen3D.position = Vector3(0.333, -0.42, -0.001)
+	$Screen3D.position = Vector3(-0.067, -0.14, 0.002)
 	$Screen3D.set_size(5.1,3.9)
 	var index = 0
-	var y = 0
+	var y = -2.773
 	for i in range(3):
-		var x = 0
+		var x = -4
 		for j in range(4):
 			var buttoninst = button_scene.instantiate()
 			add_child(buttoninst)
-			buttoninst.position = Vector3(x / 10.0, y / -10.0, 0)
+			buttoninst.position = Vector3(x / 10.0, y / -10.0, 0.003)
 			buttoninst.index = index
 			buttoninst.set_text("")
 			buttons.append(buttoninst)
@@ -44,8 +46,8 @@ func _process(_delta: float) -> void:
 		completed = true
 		for button in buttons:
 			button.set_color(Color.GREEN)
-	if (completed && practice):
-		$RedWireButton.visible = true
+	if $"../../..".failed:
+		thisfailed = true
 
 func _on_but_pressed(_b : int):
 	pass

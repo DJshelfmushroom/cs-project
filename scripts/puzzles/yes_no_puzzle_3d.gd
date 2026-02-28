@@ -1,5 +1,7 @@
 extends Node3D
 
+var id = 10
+
 var completed = false
 var letters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 var currentletters = []
@@ -9,7 +11,7 @@ var done = 0
 
 func _ready() -> void:
 	$Screen3D.set_size(2.7,0.9)
-	$Screen3D.position = Vector3(-0.5,0.56,-0.02)
+	$Screen3D.position = Vector3(-0.5,0.16,0.001)
 	for x in range(4):
 		var rand = randi_range(0,25)
 		currentletters.append(letters[rand])
