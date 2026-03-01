@@ -9,28 +9,28 @@
 script = ExtResource("1_0epcp")
 
 [node name="SB3D0" parent="." unique_id=2041822469 instance=ExtResource("1_tx22x")]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.18, 0.07, 0)
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.18, 0.22, 0)
 
 [node name="SB3D1" parent="." unique_id=1900345373 instance=ExtResource("1_tx22x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34, -0.09, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34, 0.06, 0)
 
 [node name="SB3D2" parent="." unique_id=1299648100 instance=ExtResource("1_tx22x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34, -0.4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34, -0.25, 0)
 
 [node name="SB3D3" parent="." unique_id=457036548 instance=ExtResource("1_tx22x")]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.18, -0.55, 0)
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.18, -0.4, 0)
 
 [node name="SB3D4" parent="." unique_id=1765245780 instance=ExtResource("1_tx22x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, -0.4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, -0.25, 0)
 
 [node name="SB3D5" parent="." unique_id=421219375 instance=ExtResource("1_tx22x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, -0.09, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0.06, 0)
 
 [node name="SB3D6" parent="." unique_id=754785337 instance=ExtResource("1_tx22x")]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.18, -0.245, 0)
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.18, -0.09, 0)
 
 [node name="NumsLabel" type="Label3D" parent="." unique_id=1745699898]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18, 0.3, 0.002)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18, 0.45, 0.002)
 pixel_size = 0.0005
 modulate = Color(0.98039216, 0.39215687, 0, 1)
 text = "0 | 0"
