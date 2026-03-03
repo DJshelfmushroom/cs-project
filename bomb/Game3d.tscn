@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://bjuoa1be3dlqx" path="res://bomb/CameraControl.cs" id="13_un6j2"]
 [ext_resource type="Script" uid="uid://bwsbcc1ccrmyh" path="res://scripts/ui/roltateAxis/Roltateaxis.cs" id="16_osgfx"]
 [ext_resource type="Script" uid="uid://blgp7xfn1j5te" path="res://bomb/explosion.cs" id="19_osgfx"]
+[ext_resource type="Texture2D" uid="uid://cnu8l7hiepbgb" path="res://backdrop.jpg" id="23_okahj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f726v"]
 transparency = 1
@@ -142,6 +143,16 @@ scale_max = 4.0
 scale_curve = SubResource("CurveTexture_8d7bq")
 
 [sub_resource type="QuadMesh" id="QuadMesh_ddge8"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_okahj"]
+panorama = ExtResource("23_okahj")
+
+[sub_resource type="Sky" id="Sky_ddge8"]
+sky_material = SubResource("PanoramaSkyMaterial_okahj")
+
+[sub_resource type="Environment" id="Environment_okahj"]
+background_mode = 2
+sky = SubResource("Sky_ddge8")
 
 [node name="Bomb" type="Node3D" unique_id=279824733]
 script = ExtResource("1_2mi53")
@@ -313,6 +324,14 @@ explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_okahj")
 draw_pass_1 = SubResource("QuadMesh_ddge8")
+
+[node name="backdrop" type="Sprite3D" parent="." unique_id=1863696714]
+transform = Transform3D(-8.601941e-08, -0.35691753, 1.9678948, -1.560136e-08, 1.9678948, 0.35691753, -2, 0, -8.742278e-08, -2.7749445, 0.6251159, 0)
+visible = false
+texture = ExtResource("23_okahj")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2119346855]
+environment = SubResource("Environment_okahj")
 
 [connection signal="button_up" from="RedWireButton" to="." method="_on_back_button_up"]
 [connection signal="button_up" from="ReturnButton" to="." method="_on_back_button_up"]
