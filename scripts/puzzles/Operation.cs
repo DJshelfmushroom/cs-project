@@ -108,6 +108,8 @@ class OperationPath2D(
 				
 				// Utils.Log($"dir: {dir}", "scripts/puzzles/Operation");
 				// Utils.Log($"points: {points.Count}", owner);
+				Utils.Log($"i: {i}", owner);
+				Utils.Log($"point list len: {points.Count}", owner);
 				var newPoint = dir * pointDist + points[i - 1];
 				
 				var polyline = Geometry2D.OffsetPolyline([points[i - 1], newPoint], 5, endType: Geometry2D.PolyEndType.Butt);
