@@ -1,0 +1,52 @@
+[gd_resource type="VisualShader" format=3 uid="uid://2jq6vc2upjw2"]
+
+[ext_resource type="Texture2D" uid="uid://cnu8l7hiepbgb" path="res://backdrop.jpg" id="1_lvjfo"]
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_dfta0"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(10, 10, 10)]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_lvjfo"]
+parameter_name = "Intensity"
+hint = 1
+max = 7.5
+default_value_enabled = true
+default_value = 1.0
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_lvjfo"]
+parameter_name = "Image"
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_lvjfo"]
+output_port_for_preview = 0
+function = 10
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_yxb8x"]
+expanded_output_ports = [0]
+source = 5
+texture = ExtResource("1_lvjfo")
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_lvjfo"]
+input_name = "sky_coords"
+
+[resource]
+mode = 3
+flags/use_half_res_pass = false
+flags/use_quarter_res_pass = false
+flags/disable_fog = false
+flags/use_debanding = false
+nodes/sky/0/position = Vector2(440, 320)
+nodes/sky/3/node = SubResource("VisualShaderNodeTexture_yxb8x")
+nodes/sky/3/position = Vector2(-140, 180)
+nodes/sky/5/node = SubResource("VisualShaderNodeInput_lvjfo")
+nodes/sky/5/position = Vector2(-520, 0)
+nodes/sky/12/node = SubResource("VisualShaderNodeVectorOp_dfta0")
+nodes/sky/12/position = Vector2(200, 240)
+nodes/sky/14/node = SubResource("VisualShaderNodeFloatParameter_lvjfo")
+nodes/sky/14/position = Vector2(-440, 600)
+nodes/sky/16/node = SubResource("VisualShaderNodeTexture2DParameter_lvjfo")
+nodes/sky/16/position = Vector2(-580, 180)
+nodes/sky/17/node = SubResource("VisualShaderNodeFloatFunc_lvjfo")
+nodes/sky/17/position = Vector2(-66.21124, 649.4361)
+nodes/sky/connections = PackedInt32Array(5, 0, 3, 0, 3, 0, 12, 0, 12, 0, 0, 0, 16, 0, 3, 2, 14, 0, 17, 0, 17, 0, 12, 1)
