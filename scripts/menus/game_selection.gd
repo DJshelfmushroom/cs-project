@@ -5,7 +5,7 @@ preload("res://scenes/puzzles/reflex_puzzle_3d.tscn"), preload("res://scenes/puz
 preload("res://scenes/puzzles/disable_puzzle_3d.tscn"), preload("res://scenes/puzzles/colors_puzzle_3d.tscn"), preload("res://scenes/puzzles/switches_puzzle_3d.tscn"),
 preload("res://scenes/puzzles/yes_no_puzzle_3d.tscn")]
 
-var puzzle_scales = [0.45,0.4,0.5,0.5,0.4,0.4,0.2,0.6,0.08,0.17]
+var puzzle_scales = [0.45,0.4,0.5,0.5,0.4,0.35,0.2,0.6,0.08,0.17]
 
 var possible_positions = [
 	Vector3(0.5,0.25,0.5),Vector3(0.5,0.25,-0.5),Vector3(0.5,-0.25,0.5),Vector3(0.5,-0.25,-0.5),
@@ -22,6 +22,8 @@ var rotations = [
 	Vector3(0.0, 0.0, 0.0), Vector3(0.0, 180.0 / 180 * PI, 0.0)
 ]
 
+var puzzles_on_front = 0
+
 var strikes
 var failed = false
 var allcompleted = false
@@ -30,36 +32,53 @@ var disable_first = false
 
 var current_puzzles = []
 
+var num_puzzles = 7
+
+
+
 
 func _ready() -> void:
 	for c in $bomb_instance/Games.get_children():
 		c.visible = false
-	for p in range(puzzles.size()):
-		var rand
-		var unique = false
-		while !unique:
-			unique = true
-			rand = randi_range(0,possible_positions.size() - 1)
-			for puzzle in current_puzzles:
-				if puzzle.position == possible_positions[rand]:
+	while current_puzzles.size() < num_puzzles: 
+		var p = randi_range(0,puzzles.size() - 1)
+		var matchh = false
+		if !current_puzzles.is_empty():
+			for k in current_puzzles:
+				if k.id == p + 1:
+					matchh = true
+		if !matchh:
+			var rand
+			var unique = false
+			while !unique:
+				unique = true
+				rand = randi_range(0,possible_positions.size() - 1)
+				for puzzle in current_puzzles:
+					if puzzle.position == possible_positions[rand]:
+						unique = false
+				if rand < 4 and unique:
+					puzzles_on_front += 1
+				if puzzles_on_front < 3 and rand > 3:
 					unique = false
-		var puzzle_inst = puzzles[p].instantiate()
-		puzzle_inst.position = possible_positions[rand]
-		puzzle_inst.scale = Vector3(puzzle_scales[p],puzzle_scales[p],puzzle_scales[p])
-		if rand < 4:
-			puzzle_inst.rotation = rotations[0]
-		elif rand < 8:
-			puzzle_inst.rotation = rotations[1]
-		elif rand < 12:
-			puzzle_inst.rotation = rotations[2]
-		elif rand < 16:
-			puzzle_inst.rotation = rotations[3]
-		elif rand < 18:
-			puzzle_inst.rotation = rotations[4]
-		else:
-			puzzle_inst.rotation = rotations[5]
-		$bomb_instance/Games.add_child(puzzle_inst)
-		current_puzzles.append(puzzle_inst)
+				
+					
+			var puzzle_inst = puzzles[p].instantiate()
+			puzzle_inst.position = possible_positions[rand]
+			puzzle_inst.scale = Vector3(puzzle_scales[p],puzzle_scales[p],puzzle_scales[p])
+			if rand < 4:
+				puzzle_inst.rotation = rotations[0]
+			elif rand < 8:
+				puzzle_inst.rotation = rotations[1]
+			elif rand < 12:
+				puzzle_inst.rotation = rotations[2]
+			elif rand < 16:
+				puzzle_inst.rotation = rotations[3]
+			elif rand < 18:
+				puzzle_inst.rotation = rotations[4]
+			else:
+				puzzle_inst.rotation = rotations[5]
+			$bomb_instance/Games.add_child(puzzle_inst)
+			current_puzzles.append(puzzle_inst)
 		
 	strikes = 0
 

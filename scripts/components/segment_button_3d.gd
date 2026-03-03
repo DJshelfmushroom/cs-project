@@ -3,6 +3,9 @@ extends MeshInstance3D
 var num
 var disabled = false
 
+func _ready() -> void:
+	$ColorOutline.mesh.material = StandardMaterial3D.new()
+
 func set_lighting(color : Color):
 	var newmaterial = StandardMaterial3D.new()
 	newmaterial.emission_enabled = true
