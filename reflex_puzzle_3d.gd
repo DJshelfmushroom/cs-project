@@ -15,7 +15,7 @@ const keys : Dictionary = {
 	"left": 2,
 	"right": 3
 }
-var score = null
+var score = 0
 @onready var timer = $Timer
 #@onready var screen_size = get_viewport().get_visible_rect()
 var completed = false
