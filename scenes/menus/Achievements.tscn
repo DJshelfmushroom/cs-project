@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://bwgb0qht3ogck"]
+
+[ext_resource type="Script" uid="uid://ovyl7h55uwyo" path="res://scripts/menus/achievements.gd" id="1_8rns3"]
+
+[node name="Achievements" type="Control" unique_id=474812439]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_8rns3")
+
+[node name="Label" type="Label" parent="." unique_id=423505663]
+layout_mode = 0
+offset_left = 800.0
+offset_top = 60.0
+offset_right = 1167.0
+offset_bottom = 131.0
+theme_override_font_sizes/font_size = 70
+text = "Achievements:"
+vertical_alignment = 1
+
+[node name="Achievement Buttons" type="Control" parent="." unique_id=1228960276]
+anchors_preset = 0
+offset_left = 520.0
+offset_top = 185.0
+offset_right = 560.0
+offset_bottom = 225.0
+
+[node name="Test" type="Button" parent="Achievement Buttons" unique_id=2086035408]
+layout_mode = 0
+offset_left = 376.0
+offset_right = 714.0
+offset_bottom = 95.0
+mouse_filter = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Test"
+
+[node name="Test2" type="Button" parent="Achievement Buttons" unique_id=19785169]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 128.0
+offset_right = 714.0
+offset_bottom = 223.0
+mouse_filter = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Test2"
+
+[node name="ReachedLevel5Button" type="Button" parent="Achievement Buttons" unique_id=1040102603]
+layout_mode = 0
+offset_right = 338.0
+offset_bottom = 95.0
+mouse_filter = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Reached Level 5"
