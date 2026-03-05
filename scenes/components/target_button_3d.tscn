@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bo7k58g1h7syg"]
+
+[ext_resource type="Script" uid="uid://cjas4p7e4owss" path="res://scripts/components/target_button_3d.gd" id="1_a726t"]
+[ext_resource type="Script" uid="uid://bimje6eg4suja" path="res://scripts/components/memory_button_area_3d.gd" id="2_0530s"]
+[ext_resource type="FontFile" uid="uid://0my668ilbos5" path="res://assets/fonts/DS-DIGI.TTF" id="3_4qdfs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnlih"]
+albedo_color = Color(0.19607843, 0.19607843, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_maljf"]
+material = SubResource("StandardMaterial3D_lnlih")
+top_radius = 0.2
+bottom_radius = 0.2
+height = 0.001
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6ylf8"]
+height = 0.05
+radius = 0.2
+
+[node name="TargetButton3D" type="MeshInstance3D" unique_id=372823650]
+script = ExtResource("1_a726t")
+
+[node name="button" type="MeshInstance3D" parent="." unique_id=1904265633]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_maljf")
+
+[node name="Area" type="Area3D" parent="button" unique_id=1584720992]
+script = ExtResource("2_0530s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="button/Area" unique_id=1221411405]
+shape = SubResource("CylinderShape3D_6ylf8")
+
+[node name="Label3D" type="Label3D" parent="button" unique_id=2136857127]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0019581225, 0.00015720725)
+pixel_size = 0.0005
+modulate = Color(0.98039216, 0.39215687, 0, 1)
+font = ExtResource("3_4qdfs")
+font_size = 450
+outline_size = 0
+
+[connection signal="mouse_entered" from="button/Area" to="button/Area" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="button/Area" to="button/Area" method="_on_mouse_exited"]

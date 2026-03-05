@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://cbk131m5nl33b" path="res://GAP_EasyExplosions_Textures/Flare00.PNG" id="12_p0es4"]
 [ext_resource type="PackedScene" uid="uid://c4xsv4n3rm3go" path="res://scenes/puzzles/yes_no_puzzle_3d.tscn" id="13_8d7bq"]
 [ext_resource type="Script" uid="uid://bjuoa1be3dlqx" path="res://bomb/CameraControl.cs" id="13_un6j2"]
+[ext_resource type="PackedScene" uid="uid://dc4bmkfln20f1" path="res://scenes/puzzles/target_puzzle_3d.tscn" id="14_dsxht"]
 [ext_resource type="Script" uid="uid://bwsbcc1ccrmyh" path="res://scripts/ui/roltateAxis/Roltateaxis.cs" id="16_osgfx"]
 [ext_resource type="Script" uid="uid://blgp7xfn1j5te" path="res://bomb/explosion.cs" id="19_osgfx"]
 [ext_resource type="Texture2D" uid="uid://cnu8l7hiepbgb" path="res://backdrop.jpg" id="23_okahj"]
@@ -195,6 +196,9 @@ transform = Transform3D(6.0398317e-09, 0, -0.08, 0, 0.08, 0, 0.08, 0, 6.0398317e
 
 [node name="YesNoPuzzle3D" parent="bomb_instance/Games" unique_id=271774940 instance=ExtResource("13_8d7bq")]
 transform = Transform3D(-7.430936e-09, 0, 0.17, 0, 0.17, 0, -0.17, 0, -7.430936e-09, 0.5, 0.25, -0.5)
+
+[node name="TargetPuzzle3D" parent="bomb_instance/Games" unique_id=1739271415 instance=ExtResource("14_dsxht")]
+transform = Transform3D(-8.742278e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.742278e-09, 0.5110478, -0.18216884, 0.5443217)
 
 [node name="PlugLocs" type="Node3D" parent="." unique_id=628909958]
 

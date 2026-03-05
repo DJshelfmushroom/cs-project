@@ -178,6 +178,11 @@ func _Game_Over_Animation():
 	new_minigame.rotation = rotation
 	new_minigame.practice = false
 	parent.add_child(new_minigame)
+	for p in range($"../../..".current_puzzles.size()):
+		if $"../../..".current_puzzles[p].id == id:
+			$"../../..".current_puzzles.remove_at(p)
+			break
+	$"../../..".current_puzzles.append(new_minigame)
 	queue_free()
 
 func _Win_Animation():
