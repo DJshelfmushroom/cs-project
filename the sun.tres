@@ -21,6 +21,13 @@ texture_type = 1
 output_port_for_preview = 0
 function = 10
 
+[sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_lvjfo"]
+output_port_for_preview = 0
+
+[sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_dfta0"]
+parameter_name = "xy_offset"
+default_value_enabled = true
+
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_yxb8x"]
 expanded_output_ports = [0]
 source = 5
@@ -28,6 +35,7 @@ texture = ExtResource("1_lvjfo")
 texture_type = 1
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_lvjfo"]
+output_port_for_preview = 0
 input_name = "sky_coords"
 
 [resource]
@@ -40,13 +48,17 @@ nodes/sky/0/position = Vector2(440, 320)
 nodes/sky/3/node = SubResource("VisualShaderNodeTexture_yxb8x")
 nodes/sky/3/position = Vector2(-140, 180)
 nodes/sky/5/node = SubResource("VisualShaderNodeInput_lvjfo")
-nodes/sky/5/position = Vector2(-520, 0)
+nodes/sky/5/position = Vector2(-860, -240)
 nodes/sky/12/node = SubResource("VisualShaderNodeVectorOp_dfta0")
 nodes/sky/12/position = Vector2(200, 240)
 nodes/sky/14/node = SubResource("VisualShaderNodeFloatParameter_lvjfo")
 nodes/sky/14/position = Vector2(-440, 600)
 nodes/sky/16/node = SubResource("VisualShaderNodeTexture2DParameter_lvjfo")
-nodes/sky/16/position = Vector2(-580, 180)
+nodes/sky/16/position = Vector2(-880, 320)
 nodes/sky/17/node = SubResource("VisualShaderNodeFloatFunc_lvjfo")
 nodes/sky/17/position = Vector2(-66.21124, 649.4361)
-nodes/sky/connections = PackedInt32Array(5, 0, 3, 0, 3, 0, 12, 0, 12, 0, 0, 0, 16, 0, 3, 2, 14, 0, 17, 0, 17, 0, 12, 1)
+nodes/sky/18/node = SubResource("VisualShaderNodeUVFunc_lvjfo")
+nodes/sky/18/position = Vector2(-480, -20)
+nodes/sky/19/node = SubResource("VisualShaderNodeVec2Parameter_dfta0")
+nodes/sky/19/position = Vector2(-880, 20)
+nodes/sky/connections = PackedInt32Array(3, 0, 12, 0, 12, 0, 0, 0, 16, 0, 3, 2, 14, 0, 17, 0, 17, 0, 12, 1, 5, 0, 18, 0, 18, 0, 3, 0, 19, 0, 18, 2)
