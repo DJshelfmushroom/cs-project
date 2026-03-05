@@ -2,13 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using csproject.scripts.core;
+using csproject.scripts.puzzles.OperationSub;
 using Godot;
+using Side = csproject.scripts.ui.roltateAxis.Side;
+
 // ReSharper disable ReturnValueOfPureMethodIsNotUsed
 
 namespace csproject.scripts.puzzles;
 
 public partial class Operation : Node
 {
+	public const int id = 12; // to reference in GDScript
+	
 	// private OperationPath2D _operation;
 	override public void _Ready()
 	{
@@ -51,6 +56,16 @@ public partial class Operation : Node
 		AddChild(line);
 		place:
 		Utils.Log("Passed", this, color: "green");
+	}
+	
+	private void Success()
+	{
+		Utils.Log("Success", this, color: "green");
+	}
+	
+	private void Failure()
+	{
+		Utils.Log("Failure", this, "ERROR");
 	}
 }
 
@@ -111,7 +126,12 @@ class OperationPath2D(
 				var polyline = Geometry2D.OffsetPolyline([points[i - 1], newPoint], 5, endType: Geometry2D.PolyEndType.Butt);
 				var collision = new CollisionPolygon2D();
 				collision.Polygon = polyline.ToArray().First();
-				var area = new Area2D();
+				OperationArea2D.Section lineSection;
+				if (i == 1) lineSection = OperationArea2D.Section.First;
+				else if (i == pointCount - 1) lineSection = OperationArea2D.Section.Last;
+				else lineSection = OperationArea2D.Section.Middle;
+
+				var area = new OperationArea2D(lineSection);
 				area.AddChild(collision);
 				owner.AddChild(area);
 				var ray = new RayCast2D();
