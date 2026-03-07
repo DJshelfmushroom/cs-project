@@ -1,6 +1,5 @@
 using System;
 using System.Text;
-using csproject.scripts.puzzles;
 using Godot;
 
 namespace csproject.scripts.core;
@@ -9,7 +8,7 @@ namespace csproject.scripts.core;
 public partial class Utils : Node
 {
 	private static bool _debug = true;
-	private static readonly string[] LogBlacklist = new[] { "" }; // paths that aren't to be logged 
+	private static readonly string[] LogBlacklist = [""]; // paths that aren't to be logged 
 
 	/// <summary>
 	/// Prints a formatted string for debugging (future plans: error/warning/debug, more options for not sending).
@@ -70,7 +69,7 @@ public partial class Utils : Node
 	/// A quick and simplified way to set the cursor shape
 	/// </summary>
 	/// <param name="state">the state of the cursor (currently: Arrow or "Hand," which is the pointing hand)</param>
-	/// <exception cref="ArgumentOutOfRangeException">Used when the state parameter is not an option here</exception>
+	/// <exception cref="NotImplementedException">Used when the state parameter is not an option here</exception>
 	public static void SetCursor(CursorState state)
 	{
 		switch (state)
@@ -82,8 +81,8 @@ public partial class Utils : Node
 				Input.SetDefaultCursorShape(Input.CursorShape.PointingHand);
 				break;
 			default:
-				Utils.Log("Please use a valid CursorState!", "Utils.SetCursor call", "ERROR");
-				throw new ArgumentOutOfRangeException();
+				Log("Please use a valid CursorState!", "Utils.SetCursor call", "ERROR");
+				throw new NotImplementedException();
 		}
 	}
 	
