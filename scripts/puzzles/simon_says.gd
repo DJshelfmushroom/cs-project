@@ -1,5 +1,7 @@
 extends Node3D
 
+var id = 3
+
 @onready var original_minigame = preload("res://scenes/puzzles/simon_puzzle_3d.tscn")
 var button_scene = preload("res://scenes/components/simon_button_3d.tscn")
 var Level = 0
@@ -21,9 +23,6 @@ var practice = true
 
 var FirstTime = 1
 
-func _process(_delta: float) -> void:
-	if (completed && practice):
-		$RedWireButton.visible = true
 
 func _ready():
 	if FirstTime == 1:
@@ -34,16 +33,16 @@ func _ready():
 		var button3inst = button_scene.instantiate()
 		var button4inst = button_scene.instantiate()
 		button1inst.name = "Button"
-		button1inst.position = Vector3(0, 0.35, 0)
+		button1inst.position = Vector3(-0.3, 0.2, 0.02)
 		button1inst.disabled = true
 		button2inst.name = "Button2"
-		button2inst.position = Vector3(0.35, 0.35, 0)
+		button2inst.position = Vector3(0.05, 0.2, 0.02)
 		button2inst.disabled = true
 		button3inst.name = "Button3"
-		button3inst.position = Vector3(0, 0, 0)
+		button3inst.position = Vector3(-0.3, -0.15, 0.02)
 		button3inst.disabled = true
 		button4inst.name = "Button4"
-		button4inst.position = Vector3(0.35, 0, 0)
+		button4inst.position = Vector3(0.05, -0.15, 0.02)
 		button4inst.disabled = true
 		add_child(button1inst)
 		add_child(button2inst)
@@ -179,6 +178,11 @@ func _Game_Over_Animation():
 	new_minigame.rotation = rotation
 	new_minigame.practice = false
 	parent.add_child(new_minigame)
+	for p in range($"../../..".current_puzzles.size()):
+		if $"../../..".current_puzzles[p].id == id:
+			$"../../..".current_puzzles.remove_at(p)
+			break
+	$"../../..".current_puzzles.append(new_minigame)
 	queue_free()
 
 func _Win_Animation():

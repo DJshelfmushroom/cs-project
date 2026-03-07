@@ -25,6 +25,7 @@ SceneManager="*res://scripts/core/SceneManager.cs"
 SaveManager="*res://scripts/core/save_manager.gd"
 LevelManager="*res://scripts/core/level_manager.gd"
 Utils="*uid://dl3rmlya0gn8f"
+Achievements="*uid://de3yj11gujba4"
 
 [debug_draw_3d]
 
@@ -83,7 +84,7 @@ cam_zoom_out={
 }
 cam_pan_mod={
 "deadzone": 0.2,
-"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":true,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":3,"canceled":false,"pressed":false,"double_click":false,"script":null)
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":true,"ctrl_pressed":false,"meta_pressed":false,"button_mask":4,"position":Vector2(320, 0),"global_position":Vector2(329, 48),"factor":1.0,"button_index":3,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
 

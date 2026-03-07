@@ -1,5 +1,7 @@
 extends Node3D
 
+var id = 8
+
 var completed = false
 var buttons = []
 var combo = []

@@ -7,9 +7,10 @@
 script = ExtResource("1_x6dsd")
 
 [node name="CB3D0" parent="." unique_id=143485016 instance=ExtResource("2_0wpts")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17, 0.295, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, 0.1, 0)
 
 [node name="CB3D1" parent="." unique_id=235958918 instance=ExtResource("2_0wpts")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14, -0.2, 0)
 
 [node name="CB3D2" parent="." unique_id=778385193 instance=ExtResource("2_0wpts")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, -0.2, 0)

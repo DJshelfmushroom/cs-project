@@ -1,5 +1,7 @@
 extends Node3D
 
+var id = 5
+
 var labels = []
 var blanks = []
 var selected = 0
@@ -17,7 +19,7 @@ func _ready() -> void:
 	blanks.append(get_node("BlankLabel3"))
 	blanks.append(get_node("BlankLabel1"))
 	$Screen3D.set_size(2.5,1.3)
-	$Screen3D.position = Vector3(-0.112,-0.01,-0.001)
+	$Screen3D.position = Vector3(-0.112,0.19,0.001)
 	for x in range(3):
 		labels[x].text = ""
 		var gen = RandomNumberGenerator.new()

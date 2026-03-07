@@ -26,8 +26,10 @@ func check_mouse_cursor():
 func prepare_buttons():
 	if (SaveManager.level < 3):
 		set_green_to_base()
-	if (SaveManager.level < 8):
+	if (SaveManager.level < 6):
 		set_black_to_base()
+	if (SaveManager.level < 9):
+		set_silver_to_base()
 
 func place_set():
 	if (check_mouse_cursor() == "red"):
@@ -50,8 +52,11 @@ func set_green_to_base():
 	$Green_Mouse.text = "Unlocks at Level 3"
 	$Green_Mouse.disabled = true
 func set_black_to_base():
-	$Black_Mouse.text = "Unlocks at Level 8"
+	$Black_Mouse.text = "Unlocks at Level 6"
 	$Black_Mouse.disabled = true
+func set_silver_to_base():
+	$Silver_Mouse.text = "Unlocks at Level 9"
+	$Silver_Mouse.disabled = true
 
 func _on_red_mouse_pressed() -> void:
 	SaveManager.arrow = red_arrow

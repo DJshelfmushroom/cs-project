@@ -17,13 +17,14 @@ public partial class Utils : Node
 	/// <param name="message">The string to print</param>
 	/// <param name="source">Should be `this` (.NET) or `self` (gdscript) in most cases. Just used for name. Set to null for `General`</param>
 	/// <param name="type">Use if you want a different note `Debug` by default</param>
-	public static void Log(string message, Node source, string type = "DEBUG")
+	/// <param name="color">Change the color of the message with BBCode format (eg. "yellow", "red")</param>
+	public static void Log(string message, Node source, string type = "DEBUG", string color = "yellow")
 	{
-		Log(message, source.GetPath().ToString().Substring(6), type);
+		Log(message, source.GetPath().ToString().Substring(6), type, color);
 	}
 
 	// prefer not to use, but it works
-	public static void Log(string message, string source, string type = "DEBUG")
+	public static void Log(string message, string source, string type = "DEBUG", string color = "yellow")
 	{
 		//TODO implement path blacklist
 		//TODO integrate better with Godot
@@ -41,8 +42,12 @@ public partial class Utils : Node
 
 		output.Append("]: ");
 		output.Append(message);
+		if (type == "ERROR")
+		{
+			color = "red";
+		}
 
-		GD.PrintRich("[color=yellow]",output.ToString(), "[/color]");
+		GD.PrintRich("[color=" + color + "]",output.ToString(), "[/color]");
 	}
 
 	public static void LogGD(string message, Node source)

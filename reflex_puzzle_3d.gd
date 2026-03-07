@@ -1,5 +1,7 @@
 extends Node3D
 
+var id = 4
+
 var GameStart = false
 @onready var Labels = [$Up, $Down, $Left, $Right]
 var label = null
@@ -13,11 +15,10 @@ const keys : Dictionary = {
 	"left": 2,
 	"right": 3
 }
-var score = null
+var score = 0
 @onready var timer = $Timer
 #@onready var screen_size = get_viewport().get_visible_rect()
 var completed = false
-var practice = true
 
 func set_start_button():
 	$StartButton.set_text("START")
@@ -47,7 +48,7 @@ func _ready():
 	place_labels()
 	#prepare_timer()
 	score = 0
-	$Screen3D.position = Vector3(-0.117, -0.117, -0.001)
+	$Screen3D.position = Vector3(-0.117, -0.117, 0.001)
 	$Screen3D.set_size(4,3)
 	
 	
@@ -114,7 +115,7 @@ func _process_instruction(key):
 
 func place_labels():
 	for x in Labels:
-		x.position = Vector3(0,0, 0)
+		x.position = Vector3(0,0, 0.002)
 
 func reset_labels():
 	for x in Labels:

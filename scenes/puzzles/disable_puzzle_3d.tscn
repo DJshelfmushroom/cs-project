@@ -10,15 +10,15 @@
 script = ExtResource("1_wif38")
 
 [node name="TextEdit3D" parent="." unique_id=1282285990 instance=ExtResource("1_1cytw")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -1.2, 0, 0)
 visible = false
 
 [node name="EnterButton" parent="." unique_id=303994183 instance=ExtResource("3_6c0oq")]
-transform = Transform3D(6, 0, 0, 0, 1.2, 0, 0, 0, 1.999, 1.1298426, 0.1469913, 0.016324759)
+transform = Transform3D(6, 0, 0, 0, 1.2, 0, 0, 0, 1.999, -0.07, 0.147, 0.016)
 skeleton = NodePath("")
 
 [node name="Label3D" type="Label3D" parent="EnterButton" unique_id=1830650345]
-transform = Transform3D(0.3, 0, 0, 0, 1.5, 0, 0, 0, 0.3, 0, 0, 0.001)
+transform = Transform3D(0.3, 0, 0, 0, 1.5, 0, 0, 0, 0.3, 0, 0, 0.002)
 pixel_size = 0.0005
 modulate = Color(0.78431374, 0.19607843, 0.98039216, 1)
 text = "enter terminal"
@@ -26,7 +26,7 @@ font = ExtResource("4_pxva3")
 font_size = 200
 
 [node name="Disabled" type="Label3D" parent="." unique_id=843861256]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1041187, 0.15111092, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.15, 0.002)
 visible = false
 pixel_size = 0.0005
 modulate = Color(0, 1, 0, 1)
@@ -35,7 +35,7 @@ font = ExtResource("4_pxva3")
 font_size = 600
 
 [node name="DisableFailed" type="Label3D" parent="." unique_id=907481769]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1041187, 0.15111092, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.15, 0.002)
 visible = false
 pixel_size = 0.0005
 modulate = Color(1, 0, 0, 1)

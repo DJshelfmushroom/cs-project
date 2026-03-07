@@ -3,6 +3,7 @@ extends Node3D
 var button_scene = preload("res://scenes/components/button_3d.tscn")
 
 func _ready() -> void:
+	$Button3D.visible = false
 	var button_num = 1
 	for y in range(0, -87, -29):
 		for x in range(0, 87, 29):

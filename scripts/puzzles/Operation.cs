@@ -2,13 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using csproject.scripts.core;
+using csproject.scripts.puzzles.OperationSub;
 using Godot;
+using Side = csproject.scripts.ui.roltateAxis.Side;
+
 // ReSharper disable ReturnValueOfPureMethodIsNotUsed
 
 namespace csproject.scripts.puzzles;
 
 public partial class Operation : Node
 {
+	public const int id = 12; // to reference in GDScript
+	
 	// private OperationPath2D _operation;
 	override public void _Ready()
 	{
@@ -21,7 +26,7 @@ public partial class Operation : Node
 		base._UnhandledInput(@event);
 		if (@event.IsActionPressed("key_x"))
 		{
-			Utils.Log("refresh",  this);
+			Utils.Log("refresh",  this, color: "green");
 			GenerateLine();
 		}
 	}
@@ -32,7 +37,7 @@ public partial class Operation : Node
 			15,new Vector2(50, 200), this);
 		foreach (Node child in GetChildren())
 		{
-			RemoveChild(child);
+			child.QueueFree();
 		}
 		Line2D line = new Line2D();
 		// place:
@@ -50,7 +55,17 @@ public partial class Operation : Node
 		
 		AddChild(line);
 		place:
-		Utils.Log("Passed", this);
+		Utils.Log("Passed", this, color: "green");
+	}
+	
+	private void Success()
+	{
+		Utils.Log("Success", this, color: "green");
+	}
+	
+	private void Failure()
+	{
+		Utils.Log("Failure", this, "ERROR");
 	}
 }
 
@@ -62,7 +77,7 @@ class OperationPath2D(
 	Node owner,
 	OperationPath2D.StartPoint startPoint = OperationPath2D.StartPoint.BottomLeft)
 {
-	private Vector2 _center = center;
+	private readonly Vector2 _center = center;
 	private Vector2 _size = size;
 	private StartPoint _startPoint = startPoint;
 	private const int AttemptThreshold = 50;
@@ -92,99 +107,77 @@ class OperationPath2D(
 			int attempts = 0;
 			attemptsAbsolute++;
 
-			curve_roll:
+			// curve_roll:
 			do
 			{
 				attempts++;
 				do
 				{
 					int d1 = random.Next(0, 3) - 1;
-					dir = new Vector2(d1, d1 == 0 ? WierdRound(random.NextSingle() - .5f) : 0);
+					dir = new Vector2(d1, d1 == 0 ? AbsoluteCeiling(random.NextSingle() - .5f) : 0);
+					Utils.Log($"dir: {dir}", owner);
 				} while (dir.IsEqualApprox(-1 * prevDir) 
-						 // || dir.IsEqualApprox(prevDir)
+						 || dir.IsEqualApprox(prevDir)
 						 );
-
-				prevDir = dir;
-				// Utils.Log($"dir: {dir}", "scripts/puzzles/Operation");
+				
+				Utils.Log($"i: {i}", owner);
+				Utils.Log($"point list len: {points.Count}", owner);
 				var newPoint = dir * pointDist + points[i - 1];
-				points.Add(newPoint);
-
-				var polyline = Geometry2D.OffsetPolyline([points[i - 1], newPoint], 5);
+				var polyline = Geometry2D.OffsetPolyline([points[i - 1], newPoint], 5, endType: Geometry2D.PolyEndType.Butt);
 				var collision = new CollisionPolygon2D();
 				collision.Polygon = polyline.ToArray().First();
-				var body = new StaticBody2D();
-				body.AddChild(collision);
-				owner.AddChild(body);
+				OperationArea2D.Section lineSection;
+				if (i == 1) lineSection = OperationArea2D.Section.First;
+				else if (i == pointCount - 1) lineSection = OperationArea2D.Section.Last;
+				else lineSection = OperationArea2D.Section.Middle;
 
+				var area = new OperationArea2D(lineSection);
+				area.AddChild(collision);
+				owner.AddChild(area);
 				var ray = new RayCast2D();
 				ray.Position = points[i - 1];
 				ray.TargetPosition = newPoint;
-				ray.CollideWithBodies = true;
-				ray.CollideWithAreas = false;
+				Utils.Log($"pos: {ray.Position}, targ: {ray.TargetPosition}", owner);
+				ray.CollideWithBodies = false;
+				ray.CollideWithAreas = true;
 				ray.Enabled = true;
 				ray.ExcludeParent = true;
+				ray.HitFromInside = false;
 				owner.AddChild(ray);
 				ray.ForceRaycastUpdate();
 				if (ray.IsColliding())
 				{
-					if (ray.GetCollider() is StaticBody2D && owner.GetChildren().Contains(ray.GetCollider()))
+					Utils.Log($"Collision: {((Node2D)ray.GetCollider()).Name}, position: {ray.GetCollisionPoint()}", owner);
+					if (ray.GetCollider() is Area2D && owner.GetChildren().Contains(ray.GetCollider()))
 					{
-						// Utils.Log("Collision", owner);
-						owner.RemoveChild(ray);
+						area.QueueFree();
+						// ray.QueueFree();
 						continue;
 					}
 				}
-				owner.RemoveChild(ray);
+				
+				points.Add(newPoint);
+				prevDir = dir;
+				ray.QueueFree();
 				break;
 			} while (attempts < AttemptThreshold);
-
-			if (attempts == AttemptThreshold)
-			{
-				attempts -= AttemptThreshold / 5;
-				Utils.Log("attempts at limit", owner ,"WARN");
-				pointDist -= pointDist > 10? 10 : 0;
-				if (pointDist == 0)
-				{
-					points.RemoveAt(points.Count - 1);
-					i--;
-				}
-
-				goto curve_roll;
-			} 
-			if (attemptsAbsolute > 50)
-			{
-				Utils.Log("Attempts past threshold", owner, "ERROR");
-				i = 0;
-				foreach (var child in owner.GetChildren())
-				{
-					if (startChildren.Contains(child)) continue;
-					owner.RemoveChild(child);
-				}
-				attemptsAbsolute = -10;
-				continue;
-			}
-
-			if (attemptsAbsolute < 0)
-			{
-				throw new StackOverflowException();
-			}
-
 		}
-
-		foreach (var child in owner.GetChildren())
-		{
-			if (startChildren.Contains(child)) continue;
-			owner.RemoveChild(child);
-		}
+		
+		// foreach (var child in owner.GetChildren())
+		// {
+		// 	if (startChildren.Contains(child)) continue;
+		// 	child.QueueFree();
+		// }
 
 		foreach (var point in points)
 		{
 			curve.AddPoint(point + _center);
 		}
+		
 		return curve;
 	}
 
-	private static int WierdRound(float i)
+	private static int AbsoluteCeiling(float i)
 	{
 		return (int)(Math.Sign(i) * Math.Ceiling(MathF.Abs(i)));
 	}

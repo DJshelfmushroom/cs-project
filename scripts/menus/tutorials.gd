@@ -33,3 +33,11 @@ func _on_puzzle_7_tutorial_button_button_up() -> void:
 
 func _on_puzzle_8_tutorial_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/puzzles/tutorials/puzzle_8_tutorial.tscn")
+
+
+func _on_puzzle_9_tutorial_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/puzzles/tutorials/puzzle_9_tutorial.tscn")
+
+
+func _on_puzzle_10_tutorial_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/puzzles/tutorials/puzzle_10_tutorial.tscn")

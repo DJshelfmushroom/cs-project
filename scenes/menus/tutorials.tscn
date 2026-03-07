@@ -27,7 +27,7 @@ layout_mode = 0
 offset_left = 450.0
 offset_top = 150.0
 offset_right = 902.0
-offset_bottom = 355.0
+offset_bottom = 300.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Equation Puzzle Tutorial"
@@ -37,7 +37,7 @@ layout_mode = 0
 offset_left = 950.0
 offset_top = 150.0
 offset_right = 1402.0
-offset_bottom = 355.0
+offset_bottom = 300.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Memory Puzzle Tutorial"
@@ -45,9 +45,9 @@ text = "Memory Puzzle Tutorial"
 [node name="Puzzle3TutorialButton" type="Button" parent="." unique_id=1259683025]
 layout_mode = 0
 offset_left = 450.0
-offset_top = 375.0
+offset_top = 325.0
 offset_right = 902.0
-offset_bottom = 580.0
+offset_bottom = 475.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Simon Puzzle Tutorial"
@@ -55,9 +55,9 @@ text = "Simon Puzzle Tutorial"
 [node name="Puzzle4TutorialButton" type="Button" parent="." unique_id=1531921206]
 layout_mode = 0
 offset_left = 950.0
-offset_top = 375.0
+offset_top = 325.0
 offset_right = 1402.0
-offset_bottom = 580.0
+offset_bottom = 475.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Reflex Puzzle Tutorial"
@@ -65,9 +65,9 @@ text = "Reflex Puzzle Tutorial"
 [node name="Puzzle5TutorialButton" type="Button" parent="." unique_id=1211510790]
 layout_mode = 0
 offset_left = 450.0
-offset_top = 600.0
+offset_top = 500.0
 offset_right = 902.0
-offset_bottom = 805.0
+offset_bottom = 650.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Numerle Puzzle Tutorial"
@@ -75,9 +75,9 @@ text = "Numerle Puzzle Tutorial"
 [node name="Puzzle6TutorialButton" type="Button" parent="." unique_id=1516122093]
 layout_mode = 0
 offset_left = 950.0
-offset_top = 600.0
+offset_top = 500.0
 offset_right = 1402.0
-offset_bottom = 805.0
+offset_bottom = 650.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Segment Puzzle Tutorial"
@@ -85,9 +85,9 @@ text = "Segment Puzzle Tutorial"
 [node name="Puzzle7TutorialButton" type="Button" parent="." unique_id=1297284989]
 layout_mode = 0
 offset_left = 450.0
-offset_top = 825.0
+offset_top = 675.0
 offset_right = 902.0
-offset_bottom = 1030.0
+offset_bottom = 825.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Disable Puzzle Tutorial"
@@ -95,12 +95,32 @@ text = "Disable Puzzle Tutorial"
 [node name="Puzzle8TutorialButton" type="Button" parent="." unique_id=226502825]
 layout_mode = 0
 offset_left = 950.0
-offset_top = 825.0
+offset_top = 675.0
 offset_right = 1402.0
-offset_bottom = 1030.0
+offset_bottom = 825.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Colors Puzzle Tutorial"
+
+[node name="Puzzle9TutorialButton" type="Button" parent="." unique_id=1250116568]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 850.0
+offset_right = 902.0
+offset_bottom = 1000.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Switches Puzzle Tutorial"
+
+[node name="Puzzle10TutorialButton" type="Button" parent="." unique_id=66791437]
+layout_mode = 0
+offset_left = 950.0
+offset_top = 850.0
+offset_right = 1402.0
+offset_bottom = 1000.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "True/False Puzzle Tutorial"
 
 [node name="BackButton" type="Button" parent="." unique_id=471234110]
 layout_mode = 1
@@ -125,4 +145,6 @@ text = "BACK"
 [connection signal="button_up" from="Puzzle6TutorialButton" to="." method="_on_puzzle_6_tutorial_button_button_up"]
 [connection signal="button_up" from="Puzzle7TutorialButton" to="." method="_on_puzzle_7_tutorial_button_button_up"]
 [connection signal="pressed" from="Puzzle8TutorialButton" to="." method="_on_puzzle_8_tutorial_button_pressed"]
+[connection signal="pressed" from="Puzzle9TutorialButton" to="." method="_on_puzzle_9_tutorial_button_pressed"]
+[connection signal="pressed" from="Puzzle10TutorialButton" to="." method="_on_puzzle_10_tutorial_button_pressed"]
 [connection signal="button_up" from="BackButton" to="." method="_on_back_button_up"]

@@ -47,6 +47,7 @@ public partial class bomb : Node3D
 
 	public override void _Process(double delta)
 	{
+
 		//TODO: custom axis draw?
 		switch (LockedAxis)
 		{
@@ -137,7 +138,7 @@ public partial class bomb : Node3D
 		return wrapped;
 	}
 
-	private void RotateBomb(InputEventMouseMotion motion)
+	private void RotateBomb(InputEventMouseMotion motion, bool force = false)
 	{
 		var transform = Transform;
 		var sensitivity = 0.01f;
@@ -170,4 +171,89 @@ public partial class bomb : Node3D
 		}
 
 		Transform = transform;
-	}}
+
+		// After rotating, push the camera straight back along the bomb→camera
+		// direction if a corner swung into it. This keeps the camera centred on
+		// the bomb — no sideways drift.
+		var camera = GetNode<Camera3D>("../Camera3D");
+		Aabb localAabb = GetMergedLocalAabb();
+
+		// Direction from bomb to camera, in both world and local space.
+		Vector3 dir = (camera.GlobalPosition - GlobalPosition).Normalized();
+		Vector3 localDir = GlobalTransform.Basis.Inverse() * dir; // basis is orthonormal → lengths preserved
+
+		// How far along localDir does the AABB surface lie from the bomb's local origin?
+		float exitDist = RayAabbExitDistance(localAabb, Vector3.Zero, localDir);
+		float minDist = exitDist + camera.Near * 3f;
+
+		float currentDist = (camera.GlobalPosition - GlobalPosition).Length();
+		if (currentDist < minDist)
+			camera.GlobalPosition = GlobalPosition + dir * minDist;
+	}
+
+	public float GetMinCameraDistance(Vector3 worldDir)
+	{
+		Aabb localAabb = GetMergedLocalAabb();
+		Vector3 localDir = GlobalTransform.Basis.Inverse() * worldDir;
+		return RayAabbExitDistance(localAabb, Vector3.Zero, localDir);
+	}
+
+	private Aabb GetMergedLocalAabb()
+	{
+		Aabb merged = new Aabb();
+		bool first = true;
+		foreach (Node child in GetChildren())
+		{
+			if (child is VisualInstance3D visual)
+			{
+				// Transform each child's AABB into this node's local space
+				Aabb childAabb = TransformAabb(visual.GetAabb(), (child as Node3D).Transform);
+				merged = first ? childAabb : merged.Merge(childAabb);
+				first = false;
+			}
+		}
+		return merged;
+	}
+
+	private static Aabb TransformAabb(Aabb aabb, Transform3D t)
+	{
+		Vector3 mn = aabb.Position, mx = aabb.End;
+		Vector3[] corners = {
+			t * new Vector3(mn.X, mn.Y, mn.Z), t * new Vector3(mx.X, mn.Y, mn.Z),
+			t * new Vector3(mn.X, mx.Y, mn.Z), t * new Vector3(mx.X, mx.Y, mn.Z),
+			t * new Vector3(mn.X, mn.Y, mx.Z), t * new Vector3(mx.X, mn.Y, mx.Z),
+			t * new Vector3(mn.X, mx.Y, mx.Z), t * new Vector3(mx.X, mx.Y, mx.Z),
+		};
+		Vector3 newMin = corners[0], newMax = corners[0];
+		for (int i = 1; i < 8; i++) { newMin = newMin.Min(corners[i]); newMax = newMax.Max(corners[i]); }
+		return new Aabb(newMin, newMax - newMin);
+	}
+
+	/// <summary>
+	/// Computes the distance along a ray from <paramref name="origin"/> in direction <paramref name="dir"/>
+	/// to the exit point (the far intersection) with an axis-aligned bounding box.
+	/// </summary>
+	/// <param name="box">Axis-aligned bounding box. <see langword="box.Position"/> is treated as the minimum corner and <see langword="box.End"/> as the maximum corner.</param>
+	/// <param name="origin">The ray origin, in the same coordinate space as <paramref name="box"/>.</param>
+	/// <param name="dir">The ray direction vector. The vector is not required to be normalized. Components with absolute value less than 1e-6 are treated as parallel to the corresponding axis.</param>
+	private static float RayAabbExitDistance(Aabb box, Vector3 origin, Vector3 dir)
+	{
+		Vector3 mn = box.Position, mx = box.End;
+		float tMin = float.NegativeInfinity, tMax = float.PositiveInfinity;
+		for (int i = 0; i < 3; i++)
+		{
+			if (Mathf.Abs(dir[i]) < 1e-6f)
+			{
+				if (origin[i] < mn[i] || origin[i] > mx[i]) return 0f;
+				continue;
+			}
+			float t1 = (mn[i] - origin[i]) / dir[i];
+			float t2 = (mx[i] - origin[i]) / dir[i];
+			if (t1 > t2) { float tmp = t1; t1 = t2; t2 = tmp; }
+			tMin = Mathf.Max(tMin, t1);
+			tMax = Mathf.Min(tMax, t2);
+		}
+		if (tMax < 0f || tMin > tMax) return 0f;
+		return tMax; // far intersection — the exit face
+	}
+}

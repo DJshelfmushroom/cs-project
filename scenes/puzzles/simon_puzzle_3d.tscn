@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2yiau653p0fr"]
+[gd_scene format=3 uid="uid://c2yiau653p0fr"]
 
 [ext_resource type="Script" uid="uid://doi7txwxpofw" path="res://scripts/puzzles/simon_says.gd" id="1_6dpfr"]
 [ext_resource type="PackedScene" uid="uid://caapg5wn513l5" path="res://scenes/components/button_3d.tscn" id="3_k8xbm"]
 
-[node name="SimonPuzzle3D" type="Node3D"]
+[node name="SimonPuzzle3D" type="Node3D" unique_id=1512555344]
 script = ExtResource("1_6dpfr")
 
-[node name="StartGameButton" parent="." instance=ExtResource("3_k8xbm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.72564113, 0.18251142, -0.01233387)
+[node name="StartGameButton" parent="." unique_id=122910079 instance=ExtResource("3_k8xbm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39574212, 0, 0.009)
 skeleton = NodePath("")

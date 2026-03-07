@@ -6,6 +6,8 @@
 [ext_resource type="FontFile" uid="uid://0my668ilbos5" path="res://assets/fonts/DS-DIGI.TTF" id="4_hcldi"]
 [ext_resource type="PackedScene" uid="uid://cbcrfgck1oggo" path="res://scenes/components/screen_3d.tscn" id="4_pwbcx"]
 [ext_resource type="PackedScene" uid="uid://caapg5wn513l5" path="res://scenes/components/button_3d.tscn" id="5_aet4m"]
+[ext_resource type="Script" uid="uid://fq0oosq08fsj" path="res://scenes/puzzles/progress_label.gd" id="7_7vj4h"]
+[ext_resource type="Script" uid="uid://op5nqfuy38di" path="res://scenes/puzzles/progress_bar_progress.gd" id="8_5pkql"]
 
 [node name="ReflexPuzzle3D" type="Node3D" unique_id=1784130657]
 script = ExtResource("1_paxyd")
@@ -18,6 +20,7 @@ font = ExtResource("4_hcldi")
 font_size = 75
 
 [node name="Down" type="Label3D" parent="." unique_id=1578632275]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.002)
 visible = false
 pixel_size = 0.0025
 text = "DOWN"
@@ -25,6 +28,7 @@ font = ExtResource("4_hcldi")
 font_size = 75
 
 [node name="Left" type="Label3D" parent="." unique_id=1160077475]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.002)
 visible = false
 pixel_size = 0.0025
 text = "LEFT"
@@ -32,6 +36,7 @@ font = ExtResource("4_hcldi")
 font_size = 75
 
 [node name="Right" type="Label3D" parent="." unique_id=2039157526]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.002)
 visible = false
 pixel_size = 0.0025
 text = "RIGHT"
@@ -39,7 +44,7 @@ font = ExtResource("4_hcldi")
 font_size = 75
 
 [node name="StartButton" parent="." unique_id=303994183 instance=ExtResource("2_f8dat")]
-transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0, 0)
+transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0, 0.002)
 skeleton = NodePath("")
 
 [node name="RestartButton3D" parent="." unique_id=1260216462 instance=ExtResource("5_aet4m")]
@@ -52,19 +57,20 @@ wait_time = 10.0
 one_shot = true
 
 [node name="Time" type="Label3D" parent="." unique_id=1228111576]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9615934, 0.61020386, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.962, 0.61, 0.002)
 pixel_size = 0.0025
 text = "#"
 font_size = 55
 
 [node name="EndScreen" type="Label3D" parent="." unique_id=217815367]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.002)
 visible = false
 pixel_size = 0.0025
 font = ExtResource("4_hcldi")
 font_size = 60
 
 [node name="Score" type="Label3D" parent="." unique_id=920407733]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11468752, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.115, 0.002)
 visible = false
 pixel_size = 0.0025
 font_size = 45
@@ -88,3 +94,29 @@ metadata/pos = Vector2(862, 40)
 
 [node name="Screen3D" parent="." unique_id=1248000073 instance=ExtResource("4_pwbcx")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.45, -0.3921696, 0)
+
+[node name="ProgressLabel" type="Label" parent="." unique_id=1542725158]
+visible = false
+offset_left = 813.0
+offset_top = 721.0
+offset_right = 1091.0
+offset_bottom = 792.0
+theme_override_font_sizes/font_size = 40
+text = "0/0 XP"
+script = ExtResource("7_7vj4h")
+
+[node name="ProgressBarBackground" type="ColorRect" parent="." unique_id=1414047738]
+visible = false
+offset_left = 803.0
+offset_top = 676.0
+offset_right = 1103.0
+offset_bottom = 711.0
+color = Color(0.16206557, 0.1620656, 0.16206557, 1)
+
+[node name="ProgressBarProgress" type="ColorRect" parent="." unique_id=2074383022]
+visible = false
+offset_left = 803.0
+offset_top = 676.0
+offset_right = 903.0
+offset_bottom = 711.0
+script = ExtResource("8_5pkql")
