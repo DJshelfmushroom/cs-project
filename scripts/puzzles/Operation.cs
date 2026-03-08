@@ -101,7 +101,7 @@ class OperationPath2D(
 		var prevDir = new Vector2(0, 0);
 		int attempts = 0;
 		int i = 1;
-		while (i < pointCount) //TODO make size work, figure out a way to optimize, implement startpoint
+		while (i < pointCount) //TODO make size work, figure out a way to optimize, implement startpoint, patch infinite looping
 		{
 			int pointDist = (int)(rRange * random.NextSingle() + rBottom);
 			Vector2 dir;
