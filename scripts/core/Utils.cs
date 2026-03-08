@@ -30,7 +30,7 @@ public partial class Utils : Node
 		//TODO integrate better with Godot
 		if (!_debug) return;
 		StringBuilder output = new StringBuilder();
-		output.Append($"[{type}@ ");
+		output.Append($"[{type}@");
 		if (source == null)
 		{
 			output.Append("General");

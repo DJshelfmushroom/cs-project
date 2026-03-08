@@ -99,18 +99,16 @@ class OperationPath2D(
 		int rBottom = (int) pointSpaceRange.X;
 		int rRange = Math.Abs((int)pointSpaceRange.Y - (int)pointSpaceRange.X);
 		var prevDir = new Vector2(0, 0);
-		int attemptsAbsolute = 0;
-		for (int i = 1; i < pointCount; i++) //TODO make size work, figure out a way to optimize, implement startpoint
+		int attempts = 0;
+		int i = 1;
+		while (i < pointCount) //TODO make size work, figure out a way to optimize, implement startpoint
 		{
 			int pointDist = (int)(rRange * random.NextSingle() + rBottom);
 			Vector2 dir;
-			int attempts = 0;
-			attemptsAbsolute++;
 
 			// curve_roll:
 			do
 			{
-				attempts++;
 				do
 				{
 					int d1 = random.Next(0, 3) - 1;
@@ -135,9 +133,10 @@ class OperationPath2D(
 				area.AddChild(collision);
 				owner.AddChild(area);
 				var ray = new RayCast2D();
-				ray.Position = points[i - 1];
-				ray.TargetPosition = newPoint;
-				Utils.Log($"pos: {ray.Position}, targ: {ray.TargetPosition}", owner);
+				ray.GlobalPosition = points[i - 1];
+				ray.Position = Vector2.Zero;
+				ray.TargetPosition = newPoint - points[i - 1];
+				Utils.Log($"pos: {ray.GlobalPosition}, targ: {ray.TargetPosition}", owner);
 				ray.CollideWithBodies = false;
 				ray.CollideWithAreas = true;
 				ray.Enabled = true;
@@ -145,6 +144,7 @@ class OperationPath2D(
 				ray.HitFromInside = false;
 				owner.AddChild(ray);
 				ray.ForceRaycastUpdate();
+				attempts++;
 				if (ray.IsColliding())
 				{
 					Utils.Log($"Collision: {((Node2D)ray.GetCollider()).Name}, position: {ray.GetCollisionPoint()}", owner);
@@ -152,15 +152,23 @@ class OperationPath2D(
 					{
 						area.QueueFree();
 						// ray.QueueFree();
+						// i--;
+						if (attempts > AttemptThreshold)
+						{
+							break;
+						}
+
 						continue;
 					}
 				}
 				
 				points.Add(newPoint);
 				prevDir = dir;
-				ray.QueueFree();
+				// ray.QueueFree();
+				i++;
+				attempts = 0;
 				break;
-			} while (attempts < AttemptThreshold);
+			} while (true);
 		}
 		
 		// foreach (var child in owner.GetChildren())
