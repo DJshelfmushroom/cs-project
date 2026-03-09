@@ -1,16 +1,16 @@
 extends Control
 
-var red_arrow = load("res://assets/cursor/RedWire_Cursor.png")
-var red_hand = load("res://assets/cursor/RedWire_Hand.png")
+var red_arrow = preload("res://assets/cursor/RedWire_Cursor.png")
+var red_hand = preload("res://assets/cursor/RedWire_Hand.png")
 
-var green_arrow = load("res://assets/cursor/Green_RedWire_Cursor.png")
-var green_hand = load("res://assets/cursor/Green_RedWire_Hand.png")
+var green_arrow = preload("res://assets/cursor/Green_RedWire_Cursor.png")
+var green_hand = preload("res://assets/cursor/Green_RedWire_Hand.png")
 
-var black_arrow = load("res://assets/cursor/Black_RedWire_Cursor.png")
-var black_hand = load("res://assets/cursor/Black_RedWire_Hand.png")
+var black_arrow = preload("res://assets/cursor/Black_RedWire_Cursor.png")
+var black_hand = preload("res://assets/cursor/Black_RedWire_Hand.png")
 
-var silver_arrow = load("res://assets/cursor/Silver_RedWire_Cursor.png")
-var silver_hand = load("res://assets/cursor/Silver_RedWire_Hand.png")
+var silver_arrow = preload("res://assets/cursor/Silver_RedWire_Cursor.png")
+var silver_hand = preload("res://assets/cursor/Silver_RedWire_Hand.png")
 
 var mouse_cursor = null
 

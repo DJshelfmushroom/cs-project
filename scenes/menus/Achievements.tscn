@@ -17,6 +17,16 @@ theme_override_font_sizes/font_size = 70
 text = "Achievements:"
 vertical_alignment = 1
 
+[node name="BackButton" type="Button" parent="." unique_id=815345594]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 980.0
+offset_right = 300.0
+offset_bottom = 1050.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 35
+text = "Back"
+
 [node name="Achievement Buttons" type="Control" parent="." unique_id=1228960276]
 anchors_preset = 0
 offset_left = 520.0
@@ -53,3 +63,25 @@ mouse_filter = 2
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Reached Level 5"
+
+[node name="BeatGameUnder60" type="Button" parent="Achievement Buttons" unique_id=272953625]
+layout_mode = 0
+offset_top = 128.0
+offset_right = 338.0
+offset_bottom = 223.0
+mouse_filter = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 33
+text = "Beat Game in Under 1 Minute"
+
+[node name="BeatGameUnder30" type="Button" parent="Achievement Buttons" unique_id=1258551453]
+layout_mode = 0
+offset_top = 248.0
+offset_right = 338.0
+offset_bottom = 343.0
+mouse_filter = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 29
+text = "Beat Game in Under 30 Seconds"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
