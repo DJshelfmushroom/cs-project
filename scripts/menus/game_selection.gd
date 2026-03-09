@@ -33,13 +33,18 @@ var disable_first = false
 var current_puzzles = []
 var completed_puzzles = 0
 var animation_countdown = 0
+var animation_duration = 240
 
 var num_puzzles = 7
+
+var shader_mat : ShaderMaterial
 
 
 
 
 func _ready() -> void:
+	# for setting the parameters on win
+	shader_mat = $"WorldEnvironment".get_environment().get_sky().get_material()
 	for c in $bomb_instance/Games.get_children():
 		c.visible = false
 	while current_puzzles.size() < num_puzzles: 
@@ -93,11 +98,16 @@ func _process(_delta: float) -> void:
 	if local_puzzles_completed > completed_puzzles:
 		# fire puzzle completed logic
 		completed_puzzles = local_puzzles_completed
-		animation_countdown = 60
+		animation_countdown = animation_duration
 	if animation_countdown > 0:
-		var current_offset:Vector2 = $"WorldEnvironment".get_environment().get_sky().get_material().get_shader_parameter("xy_offset")
-		$"WorldEnvironment".get_environment().get_sky().get_material().set_shader_parameter("xy_offset", Vector2(0, current_offset.y + (1/60.0)))
+		var current_offset:Vector2 = shader_mat.get_shader_parameter("xy_offset")
+		var current_angle:float = shader_mat.get_shader_parameter("RotationAngle")
+		shader_mat.set_shader_parameter("xy_offset", Vector2(0, current_offset.y + (1.0/animation_duration)))
+		shader_mat.set_shader_parameter("RotationAngle", current_angle + (2*PI)/animation_duration)
 		animation_countdown -= 1
+	else:
+		shader_mat.set_shader_parameter("xy_offset", Vector2(0, 0))
+		shader_mat.set_shader_parameter("RotationAngle", 0)
 	if (fix == false):
 		if (puzzles_completed() && !failed):
 			$TimerNode.stop_timer()

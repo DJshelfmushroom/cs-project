@@ -28,11 +28,27 @@ output_port_for_preview = 0
 parameter_name = "xy_offset"
 default_value_enabled = true
 
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_yxb8x"]
+parameter_name = "RotationAngle"
+default_value_enabled = true
+
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_yxb8x"]
 expanded_output_ports = [0]
 source = 5
 texture = ExtResource("1_lvjfo")
 texture_type = 1
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_lvjfo"]
+size = Vector2(400, 300)
+expression = "float pivot = 0.5;
+vec2 shifted_uv = uv_in - vec2(pivot);
+
+float s = sin(angle);
+float c = cos(angle);
+mat2 rotation = mat2(vec2(c, -s), vec2(s, c));
+
+uv_out = (rotation * shifted_uv) + vec2(pivot);
+"
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_lvjfo"]
 output_port_for_preview = 0
@@ -44,13 +60,13 @@ flags/use_half_res_pass = false
 flags/use_quarter_res_pass = false
 flags/disable_fog = false
 flags/use_debanding = false
-nodes/sky/0/position = Vector2(440, 320)
+nodes/sky/0/position = Vector2(2160, 100)
 nodes/sky/3/node = SubResource("VisualShaderNodeTexture_yxb8x")
-nodes/sky/3/position = Vector2(-140, 180)
+nodes/sky/3/position = Vector2(1540, 200)
 nodes/sky/5/node = SubResource("VisualShaderNodeInput_lvjfo")
 nodes/sky/5/position = Vector2(-860, -240)
 nodes/sky/12/node = SubResource("VisualShaderNodeVectorOp_dfta0")
-nodes/sky/12/position = Vector2(200, 240)
+nodes/sky/12/position = Vector2(1920, 20)
 nodes/sky/14/node = SubResource("VisualShaderNodeFloatParameter_lvjfo")
 nodes/sky/14/position = Vector2(-440, 600)
 nodes/sky/16/node = SubResource("VisualShaderNodeTexture2DParameter_lvjfo")
@@ -61,4 +77,20 @@ nodes/sky/18/node = SubResource("VisualShaderNodeUVFunc_lvjfo")
 nodes/sky/18/position = Vector2(-480, -20)
 nodes/sky/19/node = SubResource("VisualShaderNodeVec2Parameter_dfta0")
 nodes/sky/19/position = Vector2(-880, 20)
-nodes/sky/connections = PackedInt32Array(3, 0, 12, 0, 12, 0, 0, 0, 16, 0, 3, 2, 14, 0, 17, 0, 17, 0, 12, 1, 5, 0, 18, 0, 18, 0, 3, 0, 19, 0, 18, 2)
+nodes/sky/22/node = SubResource("VisualShaderNodeFloatParameter_yxb8x")
+nodes/sky/22/position = Vector2(-200, 140)
+nodes/sky/31/node = SubResource("VisualShaderNodeExpression_lvjfo")
+nodes/sky/31/position = Vector2(80, -240)
+nodes/sky/31/size = Vector2(400, 300)
+nodes/sky/31/input_ports = "0,3,uv_in;1,0,angle;"
+nodes/sky/31/output_ports = "0,3,uv_out;"
+nodes/sky/31/expression = "float pivot = 0.5;
+vec2 shifted_uv = uv_in - vec2(pivot);
+
+float s = sin(angle);
+float c = cos(angle);
+mat2 rotation = mat2(vec2(c, -s), vec2(s, c));
+
+uv_out = (rotation * shifted_uv) + vec2(pivot);
+"
+nodes/sky/connections = PackedInt32Array(3, 0, 12, 0, 12, 0, 0, 0, 16, 0, 3, 2, 14, 0, 17, 0, 17, 0, 12, 1, 5, 0, 18, 0, 19, 0, 18, 2, 18, 0, 31, 0, 31, 0, 3, 0, 22, 0, 31, 1)
