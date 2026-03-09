@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using csproject.scripts.core;
 using csproject.scripts.puzzles.OperationSub;
+using csproject.scripts.ui.roltateAxis;
 using Godot;
 using Side = csproject.scripts.ui.roltateAxis.Side;
 
@@ -12,10 +14,10 @@ namespace csproject.scripts.puzzles;
 
 public partial class Operation : Node
 {
-	public const int id = 12; // to reference in GDScript
+	public const int id = 13; // to reference in GDScript
 	
 	// private OperationPath2D _operation;
-	override public void _Ready()
+	public override void _Ready()
 	{
 		GenerateLine();
 		
@@ -39,31 +41,29 @@ public partial class Operation : Node
 		{
 			child.QueueFree();
 		}
-		Line2D line = new Line2D();
-		// place:
+
 		try
 		{
-			line.Points = operation.GenerateCurve().GetBakedPoints();
+			operation.GenerateCurve();
+			goto place;	
 		}
 		catch (StackOverflowException)
 		{
 			Utils.Log("uh oh", this, "ERROR");
-			goto place;	
+
 		}
 
-		line.Width = 5;
-		
-		AddChild(line);
+		return;
 		place:
 		Utils.Log("Passed", this, color: "green");
 	}
 	
-	private void Success()
+	public void Success()
 	{
 		Utils.Log("Success", this, color: "green");
 	}
 	
-	private void Failure()
+	public void Failure()
 	{
 		Utils.Log("Failure", this, "ERROR");
 	}
@@ -80,7 +80,7 @@ class OperationPath2D(
 	private readonly Vector2 _center = center;
 	private Vector2 _size = size;
 	private StartPoint _startPoint = startPoint;
-	private const int AttemptThreshold = 50;
+	private const int AttemptThreshold = 500;
 
 	public enum StartPoint
 	{
@@ -90,7 +90,9 @@ class OperationPath2D(
 		BottomRight
 	}
 	
-	public Curve2D GenerateCurve()
+	
+	// generates a curve that also happens to render if you treat it correctly. 
+	public bool GenerateCurve()
 	{
 		var startChildren = owner.GetChildren();
 		Curve2D curve = new Curve2D();
@@ -121,7 +123,7 @@ class OperationPath2D(
 				Utils.Log($"i: {i}", owner);
 				Utils.Log($"point list len: {points.Count}", owner);
 				var newPoint = dir * pointDist + points[i - 1];
-				var polyline = Geometry2D.OffsetPolyline([points[i - 1], newPoint], 5, endType: Geometry2D.PolyEndType.Butt);
+				var polyline = Geometry2D.OffsetPolyline([points[i - 1], newPoint], 5, endType: Geometry2D.PolyEndType.Joined);
 				var collision = new CollisionPolygon2D();
 				collision.Polygon = polyline.ToArray().First();
 				OperationArea2D.Section lineSection;
@@ -155,7 +157,8 @@ class OperationPath2D(
 						// i--;
 						if (attempts > AttemptThreshold)
 						{
-							break;
+							throw new EncoderFallbackException("Freak you");
+							return false;
 						}
 
 						continue;
@@ -170,6 +173,7 @@ class OperationPath2D(
 				break;
 			} while (true);
 		}
+		return true;
 		
 		// foreach (var child in owner.GetChildren())
 		// {
@@ -177,12 +181,10 @@ class OperationPath2D(
 		// 	child.QueueFree();
 		// }
 
-		foreach (var point in points)
-		{
-			curve.AddPoint(point + _center);
-		}
-		
-		return curve;
+		// foreach (var point in points)
+		// {
+		// 	curve.AddPoint(point + _center);
+		// }
 	}
 
 	private static int AbsoluteCeiling(float i)

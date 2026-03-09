@@ -1,5 +1,7 @@
 using System;
+using System.Linq;
 using Godot;
+using Godot.NativeInterop;
 using static csproject.scripts.core.Utils;
 
 namespace csproject.scripts.puzzles.OperationSub;
@@ -25,7 +27,8 @@ public partial class OperationArea2D(OperationArea2D.Section section) : Area2D
         Log("Mouse entered " + section + $" intersect: {intersections}", this);
         if (intersections == 0 && section != Section.First)
         {
-            GetParent().Call(FailMethod);
+            // GetParent().Call(FailMethod);
+            ((Operation)GetParent()).Failure();
         }
 
         intersections++;
@@ -39,7 +42,8 @@ public partial class OperationArea2D(OperationArea2D.Section section) : Area2D
         {
             try
             {
-                GetParent().Call(SuccessMethod);
+                // GetParent().Call(SuccessMethod);
+                ((Operation)GetParent()).Success();
             } catch (Exception)
             {
                 Log("OperationArea not child of Operation. Please don't do this. It's not made for this.", this, "ERROR");
@@ -51,7 +55,8 @@ public partial class OperationArea2D(OperationArea2D.Section section) : Area2D
         {
             try
             {
-                GetParent().Call(FailMethod);
+                // GetParent().Call(FailMethod);
+                ((Operation)GetParent()).Failure();
             } catch (Exception)
             {
                 Log("OperationArea not child of Operation. Please don't do this. It's not made for this.", this, "ERROR");
@@ -77,10 +82,12 @@ public partial class OperationArea2D(OperationArea2D.Section section) : Area2D
             RenderingServer.CanvasItemClear(canvasItem);
             
             var polygon = childCP.GetPolygon();
-            
-            var colors = new Color[4];
-            
-            //TODO: https://github.com/NovaDC/Godot-DrawnArea2D/blob/main/addons/drawn_area_2d/drawn_area_2d.gd#L47
+
+            var colors = new Godot.Collections.Array<Color>();
+            colors.Resize(polygon.Length);
+            colors.Fill(new Color(Colors.Aquamarine));
+            RenderingServer.CanvasItemAddPolygon(canvasItem, polygon, colors.ToArray());
+            // https://github.com/NovaDC/Godot-DrawnArea2D/blob/main/addons/drawn_area_2d/drawn_area_2d.gd#L47
         }
     }
 }
