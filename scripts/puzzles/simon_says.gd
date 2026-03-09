@@ -88,9 +88,9 @@ func _play_Pattern():
 		if Pattern[x] == Color4:
 			$Button4.set_color(Color.YELLOW)
 			
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(0.4).timeout
 		_Buttons_Off()
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(0.2).timeout
 	PatternPlaying = false
 	_Button_Check()
 		

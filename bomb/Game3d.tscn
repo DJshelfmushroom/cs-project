@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://c4xsv4n3rm3go" path="res://scenes/puzzles/yes_no_puzzle_3d.tscn" id="13_8d7bq"]
 [ext_resource type="Script" uid="uid://bjuoa1be3dlqx" path="res://bomb/CameraControl.cs" id="13_un6j2"]
 [ext_resource type="PackedScene" uid="uid://dc4bmkfln20f1" path="res://scenes/puzzles/target_puzzle_3d.tscn" id="14_dsxht"]
+[ext_resource type="PackedScene" uid="uid://b7g2vfs6nph28" path="res://scenes/puzzles/track_puzzle_3d.tscn" id="15_dsxht"]
 [ext_resource type="Script" uid="uid://bwsbcc1ccrmyh" path="res://scripts/ui/roltateAxis/Roltateaxis.cs" id="16_osgfx"]
 [ext_resource type="Script" uid="uid://blgp7xfn1j5te" path="res://bomb/explosion.cs" id="19_osgfx"]
 [ext_resource type="Texture2D" uid="uid://cnu8l7hiepbgb" path="res://backdrop.jpg" id="23_okahj"]
@@ -150,7 +151,7 @@ scale_curve = SubResource("CurveTexture_8d7bq")
 shader = ExtResource("24_ddge8")
 shader_parameter/xy_offset = Vector2(0, 0)
 shader_parameter/Image = ExtResource("23_okahj")
-shader_parameter/Intensity = 1.6650000790875001
+shader_parameter/Intensity = 1.6650000790875
 
 [sub_resource type="Sky" id="Sky_ddge8"]
 sky_material = SubResource("ShaderMaterial_imkj6")
@@ -199,6 +200,8 @@ transform = Transform3D(-7.430936e-09, 0, 0.17, 0, 0.17, 0, -0.17, 0, -7.430936e
 
 [node name="TargetPuzzle3D" parent="bomb_instance/Games" unique_id=1739271415 instance=ExtResource("14_dsxht")]
 transform = Transform3D(-8.742278e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.742278e-09, 0.5110478, -0.18216884, 0.5443217)
+
+[node name="TrackPuzzle3D" parent="bomb_instance/Games" unique_id=47252245 instance=ExtResource("15_dsxht")]
 
 [node name="PlugLocs" type="Node3D" parent="." unique_id=628909958]
 
