@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/bom.blend-f4cf2caf30c17af6f1665395b4d60c31.sc
 
 nodes/root_type="Node3D"
 nodes/root_name="bomb_instance"
-nodes/root_script=Resource("uid://bpwsomjmulr57", "res://bomb/bomb.gd")
+nodes/root_script=null
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
