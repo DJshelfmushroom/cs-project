@@ -50,7 +50,7 @@ public partial class Operation : Node
 		catch (StackOverflowException)
 		{
 			Utils.Log("uh oh", this, "ERROR");
-
+			// GenerateLine();
 		}
 
 		return;
@@ -80,7 +80,7 @@ class OperationPath2D(
 	private readonly Vector2 _center = center;
 	private Vector2 _size = size;
 	private StartPoint _startPoint = startPoint;
-	private const int AttemptThreshold = 500;
+	private const int AttemptThreshold = 50;
 
 	public enum StartPoint
 	{
@@ -157,8 +157,8 @@ class OperationPath2D(
 						// i--;
 						if (attempts > AttemptThreshold)
 						{
-							throw new EncoderFallbackException("Freak you");
-							return false;
+							throw new StackOverflowException("");
+							// return false;
 						}
 
 						continue;

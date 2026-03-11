@@ -46,7 +46,6 @@ public partial class Utils : Node
 		{
 			color = "red";
 		}
-
 		GD.PrintRich("[color=" + color + "]",output.ToString(), "[/color]");
 	}
 
