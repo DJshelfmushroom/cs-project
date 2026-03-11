@@ -33,8 +33,8 @@ func _on_but_pressed(num : int):
 	if points == 0:
 		$Timer.start(5.0)
 	points += 1
-	var x = randf_range(-0.76,0.76)
-	var y = randf_range(-0.6,0.6)
+	var x = randf_range(-0.75,0.75)
+	var y = randf_range(-0.57,0.57)
 	$TargetButton3D.position = Vector3(x, y, 0.002)
 
 func _on_but_released(num : int):

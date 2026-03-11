@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dl1myi1c3cti8"]
+
+[ext_resource type="Script" uid="uid://b2h1bvt0vkc0l" path="res://scripts/components/shift_area.gd" id="1_cupth"]
+[ext_resource type="Script" uid="uid://ca5uyd60rde4p" path="res://scripts/components/shift_button_3d.gd" id="1_pxqrg"]
+[ext_resource type="FontFile" uid="uid://0my668ilbos5" path="res://assets/fonts/DS-DIGI.TTF" id="2_pxqrg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pwd0j"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ypbtm"]
+material = SubResource("StandardMaterial3D_pwd0j")
+size = Vector2(0.25, 0.25)
+orientation = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ajq7c"]
+size = Vector3(0.25, 0.25, 0.03)
+
+[node name="ShiftButton3D" type="Node3D" unique_id=832842744]
+script = ExtResource("1_pxqrg")
+
+[node name="button" type="MeshInstance3D" parent="." unique_id=369203742]
+mesh = SubResource("PlaneMesh_ypbtm")
+
+[node name="Area" type="Area3D" parent="button" unique_id=994867921]
+script = ExtResource("1_cupth")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="button/Area" unique_id=232845196]
+shape = SubResource("BoxShape3D_ajq7c")
+
+[node name="Label3D" type="Label3D" parent="button" unique_id=371576732]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0019581225, 0.00015720725)
+pixel_size = 0.0005
+modulate = Color(0.98039216, 0.39215687, 0, 1)
+font = ExtResource("2_pxqrg")
+font_size = 450
+outline_size = 0
+
+[connection signal="mouse_entered" from="button/Area" to="button/Area" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="button/Area" to="button/Area" method="_on_mouse_exited"]

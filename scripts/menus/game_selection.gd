@@ -7,6 +7,8 @@ preload("res://scenes/puzzles/yes_no_puzzle_3d.tscn"), preload("res://scenes/puz
 
 var puzzle_scales = [0.45,0.4,0.5,0.5,0.4,0.35,0.2,0.6,0.08,0.17,0.2,0.2]
 
+var puzzle_weights = [2,4,3,3,2,2,1,3,2,4,3,3] #Value of how hard/time-consuming each puzzle is, will eventually be used to determine what puzzles you get
+
 var possible_positions = [
 	Vector3(0.5,0.25,0.5),Vector3(0.5,0.25,-0.5),Vector3(0.5,-0.25,0.5),Vector3(0.5,-0.25,-0.5),
 	Vector3(-0.5,0.25,0.5),Vector3(-0.5,0.25,-0.5),Vector3(-0.5,-0.25,0.5),Vector3(-0.5,-0.25,-0.5),
@@ -33,20 +35,16 @@ var disable_first = false
 var current_puzzles = []
 var completed_puzzles = 0
 var animation_countdown = 0
-var animation_duration = 240
 
 var num_puzzles = 7
 
-var shader_mat : ShaderMaterial
-
-var timeleft = 0
+var weight = 0
 
 
 
 
 func _ready() -> void:
-	# for setting the parameters on win
-	shader_mat = $"WorldEnvironment".get_environment().get_sky().get_material()
+	weight = SaveManager.level + 5
 	for c in $bomb_instance/Games.get_children():
 		c.visible = false
 	while current_puzzles.size() < num_puzzles: 
@@ -103,17 +101,11 @@ func _process(_delta: float) -> void:
 		completed_puzzles = local_puzzles_completed
 		animation_countdown = animation_duration if !cancel else 0
 	if animation_countdown > 0:
-		var current_offset:Vector2 = shader_mat.get_shader_parameter("xy_offset")
-		var current_angle:float = shader_mat.get_shader_parameter("RotationAngle")
-		shader_mat.set_shader_parameter("xy_offset", Vector2(0, current_offset.y + (1.0/animation_duration)))
-		shader_mat.set_shader_parameter("RotationAngle", current_angle + (2*PI)/animation_duration)
+		var current_offset:Vector2 = $"WorldEnvironment".get_environment().get_sky().get_material().get_shader_parameter("xy_offset")
+		$"WorldEnvironment".get_environment().get_sky().get_material().set_shader_parameter("xy_offset", Vector2(0, current_offset.y + (1/60.0)))
 		animation_countdown -= 1
-	else:
-		shader_mat.set_shader_parameter("xy_offset", Vector2(0, 0))
-		shader_mat.set_shader_parameter("RotationAngle", 0)
 	if (fix == false):
 		if (puzzles_completed() && !failed):
-			timeleft = $TimerNode/Timer.time_left
 			$TimerNode.stop_timer()
 			$TimerNode/Timer/TimeLabel.add_theme_color_override("font_color", "green")
 			$StrikesLabel.add_theme_color_override("font_color", "green")
@@ -155,17 +147,10 @@ func disable_consequence():
 			return true
 	return false
 
-func check_for_achievements():
-	print(timeleft)
-	if timeleft >= 30:
-		Achievements.completed_achievement("Beat game under 1:00")
-	if timeleft >= 60:
-		Achievements.completed_achievement("Beat game under 30")
 
 
 func _on_back_button_up() -> void:
 	if (allcompleted):
-		check_for_achievements()
 		SaveManager.pack1owned += 1
 		SaveManager.totalxp += 30
 	else:

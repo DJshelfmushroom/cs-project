@@ -26,14 +26,14 @@ func _process(_delta: float) -> void:
 				randy = randf_range(-0.0025,0.0025)
 				randx = randf_range(-0.003,0.003)
 			time -= 0.5
-	if $TrackButton3D.position.x < -0.76:
-		$TrackButton3D.position.x = -0.76
-	if $TrackButton3D.position.x > 0.76:
-		$TrackButton3D.position.x = 0.76
-	if $TrackButton3D.position.y < -0.6:
-		$TrackButton3D.position.y = -0.6
-	if $TrackButton3D.position.y > 0.6:
-		$TrackButton3D.position.y = 0.6
+	if $TrackButton3D.position.x < -0.75:
+		$TrackButton3D.position.x = -0.75
+	if $TrackButton3D.position.x > 0.75:
+		$TrackButton3D.position.x = 0.75
+	if $TrackButton3D.position.y < -0.57:
+		$TrackButton3D.position.y = -0.57
+	if $TrackButton3D.position.y > 0.57:
+		$TrackButton3D.position.y = 0.57
 		
 			
 		
@@ -50,7 +50,7 @@ func _on_but_pressed(num : int):
 	if !$"../../..".failed:
 		start = true
 		$TrackButton3D.disabled = true
-		$Timer.start(5.0)
+		$Timer.start(3.0)
 		randy = randf_range(-0.0025,0.0025)
 		randx = randf_range(-0.003,0.003)
 
