@@ -64,24 +64,24 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Reached Level 5"
 
-[node name="BeatGameUnder60" type="Button" parent="Achievement Buttons" unique_id=272953625]
+[node name="BeatGameUnder90" type="Button" parent="Achievement Buttons" unique_id=272953625]
 layout_mode = 0
 offset_top = 128.0
 offset_right = 338.0
 offset_bottom = 223.0
 mouse_filter = 2
 mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 33
-text = "Beat Game in Under 1 Minute"
+theme_override_font_sizes/font_size = 39
+text = "Beat Game in Under 1:30"
 
-[node name="BeatGameUnder30" type="Button" parent="Achievement Buttons" unique_id=1258551453]
+[node name="BeatGameUnder60" type="Button" parent="Achievement Buttons" unique_id=1258551453]
 layout_mode = 0
 offset_top = 248.0
 offset_right = 338.0
 offset_bottom = 343.0
 mouse_filter = 2
 mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 29
-text = "Beat Game in Under 30 Seconds"
+theme_override_font_sizes/font_size = 33
+text = "Beat Game in Under 1 Minute"
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

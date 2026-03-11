@@ -39,6 +39,8 @@ var num_puzzles = 7
 
 var shader_mat : ShaderMaterial
 
+var timeleft = 0
+
 
 
 
@@ -110,11 +112,11 @@ func _process(_delta: float) -> void:
 		shader_mat.set_shader_parameter("RotationAngle", 0)
 	if (fix == false):
 		if (puzzles_completed() && !failed):
+			timeleft = $TimerNode/Timer.time_left
 			$TimerNode.stop_timer()
 			$TimerNode/Timer/TimeLabel.add_theme_color_override("font_color", "green")
 			$StrikesLabel.add_theme_color_override("font_color", "green")
 			allcompleted = true
-			check_for_achievements()
 			$RedWireButton.visible = true
 	else:
 		fix = false
@@ -153,14 +155,16 @@ func disable_consequence():
 	return false
 
 func check_for_achievements():
-	if $TimerNode/Timer.time_left >= 60:
+	print(timeleft)
+	if timeleft >= 30:
 		Achievements.completed_achievement("Beat game under 1:00")
-	if $TimerNode/Timer.time_left >= 90:
+	if timeleft >= 60:
 		Achievements.completed_achievement("Beat game under 30")
-	SaveManager.save()
+
 
 func _on_back_button_up() -> void:
 	if (allcompleted):
+		check_for_achievements()
 		SaveManager.pack1owned += 1
 		SaveManager.totalxp += 30
 	else:
