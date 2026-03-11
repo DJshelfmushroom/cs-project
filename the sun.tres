@@ -22,7 +22,6 @@ output_port_for_preview = 0
 function = 10
 
 [sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_lvjfo"]
-output_port_for_preview = 0
 
 [sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_dfta0"]
 parameter_name = "xy_offset"

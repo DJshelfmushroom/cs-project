@@ -98,9 +98,10 @@ func _process(_delta: float) -> void:
 		if puzzle.completed:
 			local_puzzles_completed += 1	
 	if local_puzzles_completed > completed_puzzles:
+		var cancel := current_puzzles.any(func(p): return p.id == 7 && !p.completed)
 		# fire puzzle completed logic
 		completed_puzzles = local_puzzles_completed
-		animation_countdown = animation_duration
+		animation_countdown = animation_duration if !cancel else 0
 	if animation_countdown > 0:
 		var current_offset:Vector2 = shader_mat.get_shader_parameter("xy_offset")
 		var current_angle:float = shader_mat.get_shader_parameter("RotationAngle")
