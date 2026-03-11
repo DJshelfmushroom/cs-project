@@ -12,6 +12,9 @@ var black_hand = preload("res://assets/cursor/Black_RedWire_Hand.png")
 var silver_arrow = preload("res://assets/cursor/Silver_RedWire_Cursor.png")
 var silver_hand = preload("res://assets/cursor/Silver_RedWire_Hand.png")
 
+var quick_arrow = preload("res://assets/cursor/Quick_RedWire_Cursor.png")
+var quick_hand = preload("res://assets/cursor/Quick_RedWire_Hand.png")
+
 var mouse_cursor = null
 
 
@@ -42,6 +45,9 @@ func place_set():
 		$Set.position = Vector2($Black_Mouse.position.x + 85, $Black_Mouse.position.y + 140)
 		$Set.show()
 	elif (check_mouse_cursor() == "silver"):
+		$Set.position = Vector2($Silver_Mouse.position.x + 85, $Silver_Mouse.position.y + 140)
+		$Set.show()
+	elif (check_mouse_cursor() == "quick"):
 		$Set.position = Vector2($Silver_Mouse.position.x + 85, $Silver_Mouse.position.y + 140)
 		$Set.show()
 	else:
@@ -91,6 +97,15 @@ func _on_silver_mouse_pressed() -> void:
 	SaveManager.color = "silver"
 	
 	$CustomCursor.set_mouse_cursor(silver_arrow, silver_hand, "silver")
+	place_set()
+	SaveManager.save()
+
+func _on_quick_mouse_pressed() -> void:
+	SaveManager.arrow = quick_arrow
+	SaveManager.hand  = quick_hand
+	SaveManager.color = "quick"
+	
+	$CustomCursor.set_mouse_cursor(quick_arrow, quick_hand, "quick")
 	place_set()
 	SaveManager.save()
 

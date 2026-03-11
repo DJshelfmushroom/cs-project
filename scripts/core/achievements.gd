@@ -8,7 +8,6 @@ func completed_achievement(achievementName):
 	var achievement = allAchievements.find(achievementName)
 	if !completedAchievements.has(achievementName):
 		completedAchievements.append(allAchievements[achievement])
-		print(allAchievements, completedAchievements)
 		SaveManager.save()
 	else:
 		pass

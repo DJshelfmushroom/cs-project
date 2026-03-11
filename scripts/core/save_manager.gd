@@ -12,12 +12,14 @@ var hand
 var color : String = "red"
 
 var completedAchievements = []
+var deleted = false
 
 func _ready() -> void:
 	load_data()
 
 
 func save():
+	deleted = false
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
 	file.store_var(pack1owned)
 	file.store_var(level)
@@ -69,6 +71,16 @@ func load_data():
 		hand = load("res://assets/cursor/RedWire_Hand.png")
 		color = "red"
 		completedAchievements = []
+
+func _input(event):
+	if (Utils.GetDebug()):
+		if (Input.is_key_pressed(Key.KEY_SHIFT) && Input.is_key_pressed(Key.KEY_D) && Input.is_key_pressed(Key.KEY_C)):
+			if (deleted == false):
+				if FileAccess.file_exists(save_path):
+					DirAccess.remove_absolute(save_path)
+					deleted = true
+	#if (Input.is_key_pressed(Key.KEY_SHIFT) && Input.is_key_pressed(Key.KEY_D) && Input.is_key_pressed(Key.KEY_C)):
+	#	print("check")
 
 func get_save_path():
 	return save_path;

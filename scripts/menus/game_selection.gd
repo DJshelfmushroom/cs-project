@@ -40,6 +40,8 @@ var num_puzzles = 7
 
 var weight = 0
 
+var timeleft = 0
+var once = false
 
 
 
@@ -106,6 +108,9 @@ func _process(_delta: float) -> void:
 		animation_countdown -= 1
 	if (fix == false):
 		if (puzzles_completed() && !failed):
+			if (once == false):
+				timeleft = $TimerNode/Timer.time_left
+			once = true
 			$TimerNode.stop_timer()
 			$TimerNode/Timer/TimeLabel.add_theme_color_override("font_color", "green")
 			$StrikesLabel.add_theme_color_override("font_color", "green")
@@ -147,6 +152,11 @@ func disable_consequence():
 			return true
 	return false
 
+func check_for_achievements():
+	if timeleft >= 30:
+		Achievements.completed_achievement("Beat game under 1:30")
+	if timeleft >= 60:
+		Achievements.completed_achievement("Beat game under 1:00")
 
 
 func _on_back_button_up() -> void:

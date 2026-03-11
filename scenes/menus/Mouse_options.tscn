@@ -52,6 +52,16 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Silver Cursor"
 
+[node name="Quick_Mouse" type="Button" parent="." unique_id=1658754592]
+layout_mode = 0
+offset_left = 1241.0
+offset_top = 609.0
+offset_right = 1541.0
+offset_bottom = 709.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Quick Cursor"
+
 [node name="Set" type="Label" parent="." unique_id=1803000527]
 visible = false
 layout_mode = 0
@@ -78,4 +88,5 @@ text = "Back"
 [connection signal="pressed" from="Green_Mouse" to="." method="_on_green_mouse_pressed"]
 [connection signal="pressed" from="Black_Mouse" to="." method="_on_black_mouse_pressed"]
 [connection signal="pressed" from="Silver_Mouse" to="." method="_on_silver_mouse_pressed"]
+[connection signal="pressed" from="Quick_Mouse" to="." method="_on_quick_mouse_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
