@@ -39,21 +39,22 @@ public partial class Operation : Node
 			15,new Vector2(50, 200), this);
 		foreach (Node child in GetChildren())
 		{
+			RemoveChild(child);
 			child.QueueFree();
 		}
 
-		try
+		// try
+		// {
+		operation:
+		if (operation.GenerateCurve())
 		{
-			operation.GenerateCurve();
-			goto place;	
+			goto place;
 		}
-		catch (StackOverflowException)
+		else
 		{
 			Utils.Log("uh oh", this, "ERROR");
-			// GenerateLine();
+			goto operation;
 		}
-
-		return;
 		place:
 		Utils.Log("Passed", this, color: "green");
 	}
@@ -115,7 +116,7 @@ class OperationPath2D(
 				{
 					int d1 = random.Next(0, 3) - 1;
 					dir = new Vector2(d1, d1 == 0 ? AbsoluteCeiling(random.NextSingle() - .5f) : 0);
-					Utils.Log($"dir: {dir}", owner);
+					// Utils.Log($"dir: {dir}", owner);
 				} while (dir.IsEqualApprox(-1 * prevDir) 
 						 || dir.IsEqualApprox(prevDir)
 						 );
@@ -124,21 +125,32 @@ class OperationPath2D(
 				Utils.Log($"point list len: {points.Count}", owner);
 				var newPoint = dir * pointDist + points[i - 1];
 				var polyline = Geometry2D.OffsetPolyline([points[i - 1], newPoint], 5, endType: Geometry2D.PolyEndType.Joined);
+				if (polyline.Count == 0) continue; 
 				var collision = new CollisionPolygon2D();
 				collision.Polygon = polyline.ToArray().First();
 				OperationArea2D.Section lineSection;
-				if (i == 1) lineSection = OperationArea2D.Section.First;
-				else if (i == pointCount - 1) lineSection = OperationArea2D.Section.Last;
+				var color = Colors.Aquamarine;
+				if (i == 1) 
+				{lineSection = OperationArea2D.Section.First;
+					color = Colors.GreenYellow;
+				}
+				else if (i == pointCount - 1) 
+				{lineSection = OperationArea2D.Section.Last;
+					color = Colors.Coral;
+				}
 				else lineSection = OperationArea2D.Section.Middle;
 
 				var area = new OperationArea2D(lineSection);
+				area.color = color;
 				area.AddChild(collision);
 				owner.AddChild(area);
+				area.InputPickable = true;
+				area.QueueRedraw();
 				var ray = new RayCast2D();
 				ray.GlobalPosition = points[i - 1];
-				ray.Position = Vector2.Zero;
+				// ray.Position = Vector2.Zero;
 				ray.TargetPosition = newPoint - points[i - 1];
-				Utils.Log($"pos: {ray.GlobalPosition}, targ: {ray.TargetPosition}", owner);
+				// Utils.Log($"pos: {ray.GlobalPosition}, targ: {ray.TargetPosition}", owner);
 				ray.CollideWithBodies = false;
 				ray.CollideWithAreas = true;
 				ray.Enabled = true;
@@ -157,35 +169,26 @@ class OperationPath2D(
 						// i--;
 						if (attempts > AttemptThreshold)
 						{
-							throw new StackOverflowException("");
-							// return false;
+							// throw new StackOverflowException("");
+							return false;
 						}
 
 						continue;
 					}
 				}
-				
+				Utils.Log($"attempts: {attempts}", owner, color: "blue");
 				points.Add(newPoint);
 				prevDir = dir;
-				// ray.QueueFree();
+				owner.RemoveChild(ray);
+				ray.QueueFree();
 				i++;
 				attempts = 0;
 				break;
 			} while (true);
 		}
 		return true;
-		
-		// foreach (var child in owner.GetChildren())
-		// {
-		// 	if (startChildren.Contains(child)) continue;
-		// 	child.QueueFree();
-		// }
-
-		// foreach (var point in points)
-		// {
-		// 	curve.AddPoint(point + _center);
-		// }
 	}
+	
 
 	private static int AbsoluteCeiling(float i)
 	{

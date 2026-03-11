@@ -11,6 +11,9 @@ public partial class OperationArea2D(OperationArea2D.Section section) : Area2D
     public static int intersections = 0;
     private const string FailMethod = "Failure";
     private const string SuccessMethod = "Success";
+    public Color color = Colors.Aquamarine;
+    
+    
     
     public enum Section
     {
@@ -85,7 +88,7 @@ public partial class OperationArea2D(OperationArea2D.Section section) : Area2D
 
             var colors = new Godot.Collections.Array<Color>();
             colors.Resize(polygon.Length);
-            colors.Fill(new Color(Colors.Aquamarine));
+            colors.Fill(color);
             RenderingServer.CanvasItemAddPolygon(canvasItem, polygon, colors.ToArray());
             // https://github.com/NovaDC/Godot-DrawnArea2D/blob/main/addons/drawn_area_2d/drawn_area_2d.gd#L47
         }
