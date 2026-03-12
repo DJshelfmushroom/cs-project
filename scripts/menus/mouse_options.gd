@@ -33,6 +33,8 @@ func prepare_buttons():
 		set_black_to_base()
 	if (SaveManager.level < 9):
 		set_silver_to_base()
+	if (!Achievements.check_achievement_completed(3) && !Achievements.check_achievement_completed(4)):
+		set_quick_to_base()
 
 func place_set():
 	if (check_mouse_cursor() == "red"):
@@ -48,7 +50,7 @@ func place_set():
 		$Set.position = Vector2($Silver_Mouse.position.x + 85, $Silver_Mouse.position.y + 140)
 		$Set.show()
 	elif (check_mouse_cursor() == "quick"):
-		$Set.position = Vector2($Silver_Mouse.position.x + 85, $Silver_Mouse.position.y + 140)
+		$Set.position = Vector2($Quick_Mouse.position.x + 85, $Quick_Mouse.position.y + 140)
 		$Set.show()
 	else:
 		$Set.hide()
@@ -63,6 +65,9 @@ func set_black_to_base():
 func set_silver_to_base():
 	$Silver_Mouse.text = "Unlocks at Level 9"
 	$Silver_Mouse.disabled = true
+func set_quick_to_base():
+	$Quick_Mouse.text = "Unlocks after completing speedrunner achievements"
+	$Quick_Mouse.disabled = true
 
 func _on_red_mouse_pressed() -> void:
 	SaveManager.arrow = red_arrow

@@ -72,7 +72,7 @@ func load_data():
 		color = "red"
 		completedAchievements = []
 
-func _input(event):
+func _input(_event):
 	if (Utils.GetDebug()):
 		if (Input.is_key_pressed(Key.KEY_SHIFT) && Input.is_key_pressed(Key.KEY_D) && Input.is_key_pressed(Key.KEY_C)):
 			if (deleted == false):
