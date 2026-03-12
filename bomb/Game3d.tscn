@@ -26,6 +26,7 @@
 [ext_resource type="Script" uid="uid://blgp7xfn1j5te" path="res://bomb/explosion.cs" id="19_osgfx"]
 [ext_resource type="Texture2D" uid="uid://cnu8l7hiepbgb" path="res://backdrop.jpg" id="23_okahj"]
 [ext_resource type="Shader" uid="uid://2jq6vc2upjw2" path="res://the sun.tres" id="24_ddge8"]
+[ext_resource type="Texture2D" uid="uid://3vt22rc6qe61" path="res://citrus_orchard_puresky_4k.exr" id="26_dsxht"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f726v"]
 transparency = 1
@@ -147,15 +148,15 @@ scale_curve = SubResource("CurveTexture_8d7bq")
 
 [sub_resource type="QuadMesh" id="QuadMesh_ddge8"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_imkj6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4f8ie"]
 shader = ExtResource("24_ddge8")
-shader_parameter/xy_offset = Vector2(1.945, 0)
-shader_parameter/RotationAngle = 4.18
-shader_parameter/Image = ExtResource("23_okahj")
-shader_parameter/Intensity = 1.6650000790875
+shader_parameter/xy_offset = Vector2(0, 0)
+shader_parameter/RotationAngle = 0.0
+shader_parameter/Image = ExtResource("26_dsxht")
+shader_parameter/Intensity = 0.0
 
 [sub_resource type="Sky" id="Sky_ddge8"]
-sky_material = SubResource("ShaderMaterial_imkj6")
+sky_material = SubResource("ShaderMaterial_4f8ie")
 
 [sub_resource type="Environment" id="Environment_okahj"]
 background_mode = 2

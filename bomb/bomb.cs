@@ -172,17 +172,12 @@ public partial class bomb : Node3D
 
 		Transform = transform;
 
-		// After rotating, push the camera straight back along the bomb→camera
-		// direction if a corner swung into it. This keeps the camera centred on
-		// the bomb — no sideways drift.
 		var camera = GetNode<Camera3D>("../Camera3D");
 		Aabb localAabb = GetMergedLocalAabb();
 
-		// Direction from bomb to camera, in both world and local space.
 		Vector3 dir = (camera.GlobalPosition - GlobalPosition).Normalized();
-		Vector3 localDir = GlobalTransform.Basis.Inverse() * dir; // basis is orthonormal → lengths preserved
+		Vector3 localDir = GlobalTransform.Basis.Inverse() * dir;
 
-		// How far along localDir does the AABB surface lie from the bomb's local origin?
 		float exitDist = RayAabbExitDistance(localAabb, Vector3.Zero, localDir);
 		float minDist = exitDist + camera.Near * 3f;
 
