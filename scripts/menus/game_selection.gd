@@ -35,6 +35,8 @@ var disable_first = false
 var current_puzzles = []
 var completed_puzzles = 0
 var animation_countdown = 0
+var animation_duration = 240
+var shader_mat : ShaderMaterial
 
 var num_puzzles = 7
 
@@ -45,7 +47,9 @@ var once = false
 
 
 
+
 func _ready() -> void:
+	shader_mat = $"WorldEnvironment".get_environment().get_sky().get_material()
 	weight = SaveManager.level + 5
 	for c in $bomb_instance/Games.get_children():
 		c.visible = false
@@ -96,16 +100,21 @@ func _process(_delta: float) -> void:
 	var local_puzzles_completed = 0 # yes I hate this name too
 	for puzzle in current_puzzles:
 		if puzzle.completed:
-			local_puzzles_completed += 1	
+			local_puzzles_completed += 1
 	if local_puzzles_completed > completed_puzzles:
 		var cancel := current_puzzles.any(func(p): return p.id == 7 && !p.completed)
 		# fire puzzle completed logic
 		completed_puzzles = local_puzzles_completed
 		animation_countdown = animation_duration if !cancel else 0
 	if animation_countdown > 0:
-		var current_offset:Vector2 = $"WorldEnvironment".get_environment().get_sky().get_material().get_shader_parameter("xy_offset")
-		$"WorldEnvironment".get_environment().get_sky().get_material().set_shader_parameter("xy_offset", Vector2(0, current_offset.y + (1/60.0)))
+		var current_offset:Vector2 = shader_mat.get_shader_parameter("xy_offset")
+		var current_angle:float = shader_mat.get_shader_parameter("RotationAngle")
+		shader_mat.set_shader_parameter("xy_offset", Vector2(0, current_offset.y + (1.0/animation_duration)))
+		shader_mat.set_shader_parameter("RotationAngle", current_angle + (2*PI)/animation_duration)
 		animation_countdown -= 1
+	else:
+		shader_mat.set_shader_parameter("xy_offset", Vector2(0, 0))
+		shader_mat.set_shader_parameter("RotationAngle", 0)
 	if (fix == false):
 		if (puzzles_completed() && !failed):
 			if (once == false):
