@@ -51,6 +51,12 @@ func load_mouse_info(file):
 	elif (color == "silver"):
 		arrow = load("res://assets/cursor/Silver_RedWire_Cursor.png")
 		hand = load("res://assets/cursor/Silver_RedWire_Hand.png")
+	elif (color == "quick"):
+		arrow = load("res://assets/cursor/Quick_RedWire_Cursor.png")
+		hand = load("res://assets/cursor/Quick_RedWire_Hand.png")
+	elif (color == "glitched"):
+		arrow = load("res://assets/cursor/Glitched_RedWire_Cursor.png")
+		hand = load("res://assets/cursor/Glitched_RedWire_Hand.png")
 	else:
 		pass
 

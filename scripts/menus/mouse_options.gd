@@ -15,6 +15,9 @@ var silver_hand = preload("res://assets/cursor/Silver_RedWire_Hand.png")
 var quick_arrow = preload("res://assets/cursor/Quick_RedWire_Cursor.png")
 var quick_hand = preload("res://assets/cursor/Quick_RedWire_Hand.png")
 
+var glitched_arrow = preload("res://assets/cursor/Glitched_RedWire_Cursor.png")
+var glitched_hand = preload("res://assets/cursor/Glitched_RedWire_Hand.png")
+
 var mouse_cursor = null
 
 
@@ -51,6 +54,9 @@ func place_set():
 		$Set.show()
 	elif (check_mouse_cursor() == "quick"):
 		$Set.position = Vector2($Quick_Mouse.position.x + 85, $Quick_Mouse.position.y + 140)
+		$Set.show()
+	elif (check_mouse_cursor() == "glitched"):
+		$Set.position = Vector2($Glitched_Mouse.position.x + 85, $Glitched_Mouse.position.y + 140)
 		$Set.show()
 	else:
 		$Set.hide()
@@ -114,6 +120,14 @@ func _on_quick_mouse_pressed() -> void:
 	place_set()
 	SaveManager.save()
 
-
+func _on_glitched_mouse_pressed() -> void:
+	SaveManager.arrow = glitched_arrow
+	SaveManager.hand  = glitched_hand
+	SaveManager.color = "glitched"
+	
+	$CustomCursor.set_mouse_cursor(glitched_arrow, glitched_hand, "glitched")
+	place_set()
+	SaveManager.save()
+	
 func _on_back_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")

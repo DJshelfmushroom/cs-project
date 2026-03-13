@@ -142,6 +142,7 @@ func _process(_delta: float) -> void:
 			if (disable_consequence()) && !disable_first:
 				strikes = 3
 				failed = true
+				Achievements.completed_achievement("Don't disable the puzzle")
 			break
 
 func puzzles_completed():
