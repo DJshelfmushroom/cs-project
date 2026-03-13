@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://1bqj0d1bbj3c"]
 
 [ext_resource type="Script" uid="uid://c12ur810twi0b" path="res://scripts/ui/layout/button_pos.gd" id="1_58i0q"]
-[ext_resource type="Script" uid="uid://dgyse4nbyam63" path="res://reflex_puzzle_3d.gd" id="1_paxyd"]
+[ext_resource type="Script" uid="uid://dgyse4nbyam63" path="res://scripts/puzzles/reflex_puzzle_3d.gd" id="1_paxyd"]
 [ext_resource type="PackedScene" uid="uid://c4pwgpjrmtysv" path="res://scenes/components/memory_button_3d.tscn" id="2_f8dat"]
 [ext_resource type="FontFile" uid="uid://0my668ilbos5" path="res://assets/fonts/DS-DIGI.TTF" id="4_hcldi"]
 [ext_resource type="PackedScene" uid="uid://cbcrfgck1oggo" path="res://scenes/components/screen_3d.tscn" id="4_pwbcx"]

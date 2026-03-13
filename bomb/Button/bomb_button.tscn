@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cak5kd0dgl4ot" path="res://bomb/Button/Models/BombButton.glb" id="1_bmgfu"]
 [ext_resource type="ArrayMesh" uid="uid://bqjcbt3da4cr3" path="res://bomb/Button/Models/bombButtonMesh.tres" id="2_2bjmg"]
 
-[node name="BombButton" instance=ExtResource("1_bmgfu")]
+[node name="BombButton" unique_id=1410655010 instance=ExtResource("1_bmgfu")]
 
-[node name="Cube" parent="." index="0"]
+[node name="Cube" parent="." index="0" unique_id=754226898]
 mesh = ExtResource("2_2bjmg")

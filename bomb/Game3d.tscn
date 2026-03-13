@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dke5f875oy13r" path="res://scenes/puzzles/colors_puzzle_3d.tscn" id="11_8nerw"]
 [ext_resource type="PackedScene" uid="uid://ok3cku68k8sl" path="res://scenes/puzzles/switches_puzzle_3d.tscn" id="12_kfs2p"]
 [ext_resource type="Material" uid="uid://bpyrxdtjblchr" path="res://bomb/Materials/Mat_Flare00.tres" id="12_oc1ei"]
-[ext_resource type="Texture2D" uid="uid://cbk131m5nl33b" path="res://GAP_EasyExplosions_Textures/Flare00.PNG" id="12_p0es4"]
+[ext_resource type="Texture2D" uid="uid://cbk131m5nl33b" path="res://explosion_textures/Flare00.PNG" id="12_p0es4"]
 [ext_resource type="PackedScene" uid="uid://c4xsv4n3rm3go" path="res://scenes/puzzles/yes_no_puzzle_3d.tscn" id="13_8d7bq"]
 [ext_resource type="Script" uid="uid://bjuoa1be3dlqx" path="res://bomb/CameraControl.cs" id="13_un6j2"]
 [ext_resource type="PackedScene" uid="uid://dc4bmkfln20f1" path="res://scenes/puzzles/target_puzzle_3d.tscn" id="14_dsxht"]
