@@ -43,12 +43,12 @@ func _on_mouse_exited():
 
 func _on_button_pressed():
 	facing_out = false
-	$"../../.."._on_but_pressed($"../..".index)
+	$"../../.."._on_but_pressed($"../..".num)
 		
 	
 	
 func _on_button_released():
 	facing_out = true
-	$"../../.."._on_but_released($"../..".index)
+	$"../../.."._on_but_released($"../..".num)
 	
 	#$"..".transform = $"..".transform.scaled(Vector3(1,1,-1))

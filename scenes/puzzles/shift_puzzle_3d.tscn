@@ -8,6 +8,7 @@
 script = ExtResource("1_d8she")
 
 [node name="Screen3D" parent="." unique_id=2104374075 instance=ExtResource("1_8t0p4")]
+visible = false
 
 [node name="ShiftButton3D" parent="." unique_id=832842744 instance=ExtResource("3_7icl6")]
 visible = false
