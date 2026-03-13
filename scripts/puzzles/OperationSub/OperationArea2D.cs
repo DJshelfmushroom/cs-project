@@ -1,8 +1,7 @@
 using System;
 using System.Linq;
 using Godot;
-using Godot.NativeInterop;
-using static csproject.scripts.core.Utils;
+using static csproject.scripts.core.Utils.Logger;
 
 namespace csproject.scripts.puzzles.OperationSub;
 
@@ -49,7 +48,7 @@ public partial class OperationArea2D(OperationArea2D.Section section) : Area2D
                 ((Operation)GetParent()).Success();
             } catch (Exception)
             {
-                Log("OperationArea not child of Operation. Please don't do this. It's not made for this.", this, "ERROR");
+                Log("OperationArea not child of Operation. Please don't do this. It's not made for this.", this, LogType.Error);
             }
             return;
         }
@@ -62,11 +61,11 @@ public partial class OperationArea2D(OperationArea2D.Section section) : Area2D
                 ((Operation)GetParent()).Failure();
             } catch (Exception)
             {
-                Log("OperationArea not child of Operation. Please don't do this. It's not made for this.", this, "ERROR");
+                Log("OperationArea not child of Operation. Please don't do this. It's not made for this.", this, LogType.Error);
             }
         } else if (intersections < 0)
         {
-            Log("Operation intersection error. (OperationArea line 40)", this, "ERROR");
+            Log("Operation intersection error. (OperationArea line 40)", this, LogType.Error);
         }
     }
 

@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using csproject.scripts.core;
 using csproject.scripts.puzzles.OperationSub;
-using csproject.scripts.ui.roltateAxis;
+using static csproject.scripts.core.Utils.Logger;
 using Godot;
-using Side = csproject.scripts.ui.roltateAxis.Side;
 
 // ReSharper disable ReturnValueOfPureMethodIsNotUsed
 
@@ -28,7 +25,7 @@ public partial class Operation : Node
 		base._UnhandledInput(@event);
 		if (@event.IsActionPressed("key_x"))
 		{
-			Utils.Log("refresh",  this, color: "green");
+			Log("refresh",  this, color: LogColors.GREEN);
 			GenerateLine();
 		}
 	}
@@ -37,6 +34,7 @@ public partial class Operation : Node
 	{
 		OperationPath2D operation = new OperationPath2D(new Vector2(500, 500), new Vector2(500, 500),
 			15,new Vector2(50, 200), this);
+		operation:
 		foreach (Node child in GetChildren())
 		{
 			RemoveChild(child);
@@ -45,28 +43,27 @@ public partial class Operation : Node
 
 		// try
 		// {
-		operation:
+		
 		if (operation.GenerateCurve())
 		{
 			goto place;
 		}
 		else
 		{
-			Utils.Log("uh oh", this, "ERROR");
+			Log("uh oh (rerunning)", this, LogType.Error);
 			goto operation;
 		}
 		place:
-		Utils.Log("Passed", this, color: "green");
+		Log("Passed", this, color: LogColors.GREEN);
 	}
 	
 	public void Success()
 	{
-		Utils.Log("Success", this, color: "green");
+		Log("Success", this, color: LogColors.GREEN);
 	}
 	
 	public void Failure()
 	{
-		Utils.Log("Failure", this, "ERROR");
 	}
 }
 
@@ -121,8 +118,8 @@ class OperationPath2D(
 						 || dir.IsEqualApprox(prevDir)
 						 );
 				
-				Utils.Log($"i: {i}", owner);
-				Utils.Log($"point list len: {points.Count}", owner);
+				// Utils.Log($"i: {i}", owner);
+				// Utils.Log($"point list len: {points.Count}", owner);
 				var newPoint = dir * pointDist + points[i - 1];
 				var polyline = Geometry2D.OffsetPolyline([points[i - 1], newPoint], 5, endType: Geometry2D.PolyEndType.Joined);
 				if (polyline.Count == 0) continue; 
@@ -161,7 +158,7 @@ class OperationPath2D(
 				attempts++;
 				if (ray.IsColliding())
 				{
-					Utils.Log($"Collision: {((Node2D)ray.GetCollider()).Name}, position: {ray.GetCollisionPoint()}", owner);
+					// Utils.Log($"Collision: {((Node2D)ray.GetCollider()).Name}, position: {ray.GetCollisionPoint()}", owner);
 					if (ray.GetCollider() is Area2D && owner.GetChildren().Contains(ray.GetCollider()))
 					{
 						area.QueueFree();
@@ -176,8 +173,10 @@ class OperationPath2D(
 						continue;
 					}
 				}
-				Utils.Log($"attempts: {attempts}", owner, color: "blue");
+				// Utils.Log($"attempts: {attempts}", owner, color: "blue");
 				points.Add(newPoint);
+				Log($"i: {i}", owner);
+				Log($"points: {points.Count}", owner);
 				prevDir = dir;
 				owner.RemoveChild(ray);
 				ray.QueueFree();
