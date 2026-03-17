@@ -190,7 +190,7 @@ class OperationPath2D(
 	
 
 	private static int AbsoluteCeiling(float i)
-	{
+	{    
 		return (int)(Math.Sign(i) * Math.Ceiling(MathF.Abs(i)));
 	}
 }

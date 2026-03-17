@@ -1,11 +1,11 @@
-extends Node
+class_name save_manager extends Node
 
 var save_path : String = "user://save_data.save"
 
 
 var pack1owned : int = 0
 var level : int = 0
-var totalxp : int = 0
+static var totalxp : int = 0
 
 var arrow
 var hand

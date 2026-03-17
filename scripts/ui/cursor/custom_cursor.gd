@@ -21,13 +21,28 @@ func set_mouse_cursor(arrow, hand, color):
 
 func fix_mouse():
 	var viewport = get_viewport()
-	var mouse_position = viewport.get_mouse_position()
-	var offscreen = Vector2(-100, -100)
+	var mouse_position = get_global_mouse_position()
 	
+	const screen_size_offset = 100
+	var screen_size = get_viewport_transform().get_scale() + Vector2(screen_size_offset, screen_size_offset)
+	var offscreen = Vector2(screen_size.x, screen_size.y)
+	Utils.LogGD("position: " + str(mouse_position) + ", offscreen: " + str(offscreen), self)
+	
+	Utils.LogGD("vp: " + str(viewport.get_mouse_position()), self)
+	Utils.LogGD("wd: " + str(get_window().get_mouse_position()), self)
+	Utils.LogGD("global: " + str(get_global_mouse_position()), self)
+	Utils.LogGD("local: " + str(get_local_mouse_position()), self)
+	Input.warp_mouse(mouse_position)
+	#await get_tree().process_frame
 	Input.warp_mouse(offscreen)
-	await get_tree().process_frame
+	#await get_tree().process_frame
 	$Loading.show()
 	Input.warp_mouse(mouse_position)
+	Utils.LogGD("warped: " + str(get_global_mouse_position()), self)
+	Input.warp_mouse(get_viewport_rect().size / 2.0)
+	Utils.LogGD("warped: " + str(get_global_mouse_position()), self)
+	Input.warp_mouse(mouse_position)
+	Utils.LogGD("warped: " + str(get_global_mouse_position()), self)
 	await get_tree().process_frame
 	$Loading.hide()
 

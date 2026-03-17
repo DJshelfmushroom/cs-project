@@ -11,7 +11,7 @@ public partial class Utils : Node
 	private static bool _debug = true;
 	private static readonly string[] LogBlacklist = [""]; // paths that aren't to be logged 
 
-	public class Logger
+	public static class Logger
 	{
 		public enum LogType
 		{
@@ -119,6 +119,11 @@ public partial class Utils : Node
 		}
 	}
 
+	public static void LogGD(string message, Node source)
+	{
+		Logger.LogGD(message, source);
+	}
+
 	/// <summary>
 	/// 
 	/// </summary>
@@ -169,6 +174,33 @@ public partial class Utils : Node
 			Logger.Log("This is a debug message", LogMessage, Logger.LogType.Debug, Logger.LogColors.YELLOW);
 			Logger.Log("This is an error message", LogMessage, Logger.LogType.Error, Logger.LogColors.RED);
 			Logger.Log("This is a warning message", LogMessage, Logger.LogType.Warning, Logger.LogColors.ORANGE);
+		}
+	}
+
+	public override void _UnhandledInput(InputEvent @event)
+	{
+		base._UnhandledInput(@event);
+		DebugFeatures.hotkey(@event);
+	}
+
+	static class DebugFeatures
+	{
+		private const string LogMessage = "DebugFeatures";
+
+		static Script SaveManager = ResourceLoader.Load<Script>("res://scripts/core/save_manager.gd");
+		static void AddXp(int amount)
+		{
+			SaveManager.Set("totalxp", (int) SaveManager.Get("totalxp") + amount);
+			Logger.Log($"giving {amount} xp, total: {SaveManager.Get("totalxp")}", LogMessage, Logger.LogType.Debug, Logger.LogColors.GREEN);
+			
+		}
+
+		public static void hotkey(InputEvent @event)
+		{
+			if (@event.IsActionPressed("debug_hotkey_1")){
+				AddXp(100);
+				Logger.Log("hotkey worked", LogMessage, Logger.LogType.Debug, Logger.LogColors.GREEN);
+			}
 		}
 	}
 }
