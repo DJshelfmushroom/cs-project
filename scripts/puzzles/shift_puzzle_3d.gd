@@ -13,6 +13,9 @@ var button_scene = preload("res://scenes/components/shift_button_3d.tscn")
 var colors = [Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW]
 
 func _ready() -> void:
+	$Screen3D.set_size(2,1.2)
+	$Screen3D.position = Vector3(-0.475,-0.5, 0.001)
+	
 	for y in range(-1,2):
 		for x in range(-3,0):
 			positions.append(Vector3(x / 4.0, y / 4.0, 0.002))
@@ -70,9 +73,11 @@ func _process(_delta: float) -> void:
 		but2 = null
 	if win:
 		completed = true
+		$Label3D.modulate = Color.GREEN
 		for b in buttons:
 			b.disabled = true
-			b.set_color(Color.GREEN)
+	
+	
 		
 func is_adjacent(a, b):
 	var diff = abs(a - b)
@@ -86,7 +91,6 @@ func is_adjacent(a, b):
 	return false
 
 func _on_but_pressed(num : int):
-	# Find the actual pressed button by its num
 	var pressed_button = null
 	for b in buttons:
 		if b.num == num:
@@ -94,9 +98,8 @@ func _on_but_pressed(num : int):
 			break
 
 	if pressed_button == null:
-		return # safety check
+		return
 
-	# Find the empty position
 	var emptypos = -1
 	for p in range(allpositions.size()):
 		var occupied = false
@@ -107,11 +110,10 @@ func _on_but_pressed(num : int):
 		if not occupied:
 			emptypos = p
 			break
-
-	# Move the button if it's adjacent to the empty space
+			
 	if is_adjacent(emptypos, pressed_button.pos):
 		pressed_button.pos = emptypos
 		pressed_button.position = allpositions[emptypos]
 	
-func _on_but_released(num : int):
+func _on_but_released(_num : int):
 	pass

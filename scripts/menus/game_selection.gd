@@ -3,11 +3,12 @@ extends Node3D
 var puzzles = [preload("res://scenes/puzzles/puzzle_one_3d.tscn"), preload("res://scenes/puzzles/puzzle_two_3d.tscn"), preload("res://scenes/puzzles/simon_puzzle_3d.tscn"),
 preload("res://scenes/puzzles/reflex_puzzle_3d.tscn"), preload("res://scenes/puzzles/numerle_puzzle_3d.tscn"), preload("res://scenes/puzzles/segment_puzzle_3d.tscn"), 
 preload("res://scenes/puzzles/disable_puzzle_3d.tscn"), preload("res://scenes/puzzles/colors_puzzle_3d.tscn"), preload("res://scenes/puzzles/switches_puzzle_3d.tscn"),
-preload("res://scenes/puzzles/yes_no_puzzle_3d.tscn"), preload("res://scenes/puzzles/target_puzzle_3d.tscn"), preload("res://scenes/puzzles/track_puzzle_3d.tscn")]
+preload("res://scenes/puzzles/yes_no_puzzle_3d.tscn"), preload("res://scenes/puzzles/target_puzzle_3d.tscn"), preload("res://scenes/puzzles/track_puzzle_3d.tscn"), 
+preload("res://scenes/puzzles/shift_puzzle_3d.tscn")]
 
-var puzzle_scales = [0.45,0.4,0.5,0.5,0.4,0.35,0.2,0.6,0.08,0.17,0.2,0.2]
+var puzzle_scales = [0.45,0.4,0.5,0.5,0.4,0.35,0.2,0.6,0.08,0.17,0.2,0.2,0.25]
 
-var puzzle_weights = [2,4,3,3,2,2,1,3,2,4,3,3] #Value of how hard/time-consuming each puzzle is, will eventually be used to determine what puzzles you get
+var puzzle_weights = [2,4,3,3,2,2,1,3,2,4,3,3,6] #Value of how hard/time-consuming each puzzle is, will eventually be used to determine what puzzles you get
 
 var possible_positions = [
 	Vector3(0.5,0.25,0.5),Vector3(0.5,0.25,-0.5),Vector3(0.5,-0.25,0.5),Vector3(0.5,-0.25,-0.5),

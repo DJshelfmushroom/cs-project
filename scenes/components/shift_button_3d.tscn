@@ -4,11 +4,7 @@
 [ext_resource type="Script" uid="uid://ca5uyd60rde4p" path="res://scripts/components/shift_button_3d.gd" id="1_pxqrg"]
 [ext_resource type="FontFile" uid="uid://0my668ilbos5" path="res://assets/fonts/DS-DIGI.TTF" id="2_pxqrg"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pwd0j"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_ypbtm"]
-material = SubResource("StandardMaterial3D_pwd0j")
+[sub_resource type="PlaneMesh" id="PlaneMesh_pxqrg"]
 size = Vector2(0.25, 0.25)
 orientation = 2
 
@@ -19,7 +15,7 @@ size = Vector3(0.25, 0.25, 0.03)
 script = ExtResource("1_pxqrg")
 
 [node name="button" type="MeshInstance3D" parent="." unique_id=369203742]
-mesh = SubResource("PlaneMesh_ypbtm")
+mesh = SubResource("PlaneMesh_pxqrg")
 
 [node name="Area" type="Area3D" parent="button" unique_id=994867921]
 script = ExtResource("1_cupth")
