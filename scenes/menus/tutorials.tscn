@@ -18,7 +18,7 @@ offset_top = 40.0
 offset_right = 1230.0
 offset_bottom = 140.0
 theme_override_font_sizes/font_size = 60
-text = "TUTORIALS:"
+text = "Puzzle Descriptions:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -27,100 +27,100 @@ layout_mode = 0
 offset_left = 450.0
 offset_top = 150.0
 offset_right = 902.0
-offset_bottom = 300.0
+offset_bottom = 275.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
-text = "Equation Puzzle Tutorial"
+text = "Equation Puzzle Description"
 
 [node name="Puzzle2TutorialButton" type="Button" parent="." unique_id=1702153204]
 layout_mode = 0
 offset_left = 950.0
 offset_top = 150.0
 offset_right = 1402.0
-offset_bottom = 300.0
+offset_bottom = 275.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
-text = "Memory Puzzle Tutorial"
+text = "Memory Puzzle Description"
 
 [node name="Puzzle3TutorialButton" type="Button" parent="." unique_id=1259683025]
 layout_mode = 0
 offset_left = 450.0
-offset_top = 325.0
+offset_top = 300.0
 offset_right = 902.0
-offset_bottom = 475.0
+offset_bottom = 425.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
-text = "Simon Puzzle Tutorial"
+text = "Simon Puzzle Description"
 
 [node name="Puzzle4TutorialButton" type="Button" parent="." unique_id=1531921206]
 layout_mode = 0
 offset_left = 950.0
-offset_top = 325.0
+offset_top = 300.0
 offset_right = 1402.0
-offset_bottom = 475.0
+offset_bottom = 425.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
-text = "Reflex Puzzle Tutorial"
+text = "Reflex Puzzle Description"
 
 [node name="Puzzle5TutorialButton" type="Button" parent="." unique_id=1211510790]
 layout_mode = 0
 offset_left = 450.0
-offset_top = 500.0
+offset_top = 450.0
 offset_right = 902.0
-offset_bottom = 650.0
+offset_bottom = 575.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
-text = "Numerle Puzzle Tutorial"
+text = "Numerle Puzzle Description"
 
 [node name="Puzzle6TutorialButton" type="Button" parent="." unique_id=1516122093]
 layout_mode = 0
 offset_left = 950.0
-offset_top = 500.0
+offset_top = 450.0
 offset_right = 1402.0
-offset_bottom = 650.0
+offset_bottom = 575.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
-text = "Segment Puzzle Tutorial"
+text = "Segment Puzzle Description"
 
 [node name="Puzzle7TutorialButton" type="Button" parent="." unique_id=1297284989]
 layout_mode = 0
 offset_left = 450.0
-offset_top = 675.0
+offset_top = 600.0
 offset_right = 902.0
-offset_bottom = 825.0
+offset_bottom = 725.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
-text = "Disable Puzzle Tutorial"
+text = "Disable Puzzle Description"
 
 [node name="Puzzle8TutorialButton" type="Button" parent="." unique_id=226502825]
 layout_mode = 0
 offset_left = 950.0
-offset_top = 675.0
+offset_top = 600.0
 offset_right = 1402.0
-offset_bottom = 825.0
+offset_bottom = 725.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
-text = "Colors Puzzle Tutorial"
+text = "Colors Puzzle Description"
 
 [node name="Puzzle9TutorialButton" type="Button" parent="." unique_id=1250116568]
 layout_mode = 0
 offset_left = 450.0
-offset_top = 850.0
+offset_top = 750.0
 offset_right = 902.0
-offset_bottom = 1000.0
+offset_bottom = 875.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
-text = "Switches Puzzle Tutorial"
+text = "Switches Puzzle Description"
 
 [node name="Puzzle10TutorialButton" type="Button" parent="." unique_id=66791437]
 layout_mode = 0
 offset_left = 950.0
-offset_top = 850.0
+offset_top = 750.0
 offset_right = 1402.0
-offset_bottom = 1000.0
+offset_bottom = 875.0
 mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 40
-text = "True/False Puzzle Tutorial"
+theme_override_font_sizes/font_size = 38
+text = "True/False Puzzle Description"
 
 [node name="BackButton" type="Button" parent="." unique_id=471234110]
 layout_mode = 1

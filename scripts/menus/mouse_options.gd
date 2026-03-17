@@ -19,6 +19,8 @@ var glitched_arrow = preload("res://assets/cursor/Glitched_RedWire_Cursor.png")
 var glitched_hand = preload("res://assets/cursor/Glitched_RedWire_Hand.png")
 
 var mouse_cursor = null
+var x_factor = 85
+var y_factor = 120
 
 
 func _ready():
@@ -41,22 +43,22 @@ func prepare_buttons():
 
 func place_set():
 	if (check_mouse_cursor() == "red"):
-		$Set.position = Vector2($Red_Mouse.position.x + 85, $Red_Mouse.position.y + 140)
+		$Set.position = Vector2($Red_Mouse.position.x + x_factor, $Red_Mouse.position.y + y_factor)
 		$Set.show()
 	elif (check_mouse_cursor() == "green"):
-		$Set.position = Vector2($Green_Mouse.position.x + 85, $Green_Mouse.position.y + 140)
+		$Set.position = Vector2($Green_Mouse.position.x + x_factor, $Green_Mouse.position.y + y_factor)
 		$Set.show()
 	elif (check_mouse_cursor() == "black"):
-		$Set.position = Vector2($Black_Mouse.position.x + 85, $Black_Mouse.position.y + 140)
+		$Set.position = Vector2($Black_Mouse.position.x + x_factor, $Black_Mouse.position.y + y_factor)
 		$Set.show()
 	elif (check_mouse_cursor() == "silver"):
-		$Set.position = Vector2($Silver_Mouse.position.x + 85, $Silver_Mouse.position.y + 140)
+		$Set.position = Vector2($Silver_Mouse.position.x + x_factor, $Silver_Mouse.position.y + y_factor)
 		$Set.show()
 	elif (check_mouse_cursor() == "quick"):
-		$Set.position = Vector2($Quick_Mouse.position.x + 85, $Quick_Mouse.position.y + 140)
+		$Set.position = Vector2($Quick_Mouse.position.x + x_factor, $Quick_Mouse.position.y + y_factor)
 		$Set.show()
 	elif (check_mouse_cursor() == "glitched"):
-		$Set.position = Vector2($Glitched_Mouse.position.x + 85, $Glitched_Mouse.position.y + 140)
+		$Set.position = Vector2($Glitched_Mouse.position.x + x_factor, $Glitched_Mouse.position.y + y_factor)
 		$Set.show()
 	else:
 		$Set.hide()

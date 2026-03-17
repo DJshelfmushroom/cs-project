@@ -12,62 +12,73 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cu73m")
 
+[node name="Mouse Cursors" type="Label" parent="." unique_id=938950049]
+layout_mode = 0
+offset_left = 700.0
+offset_top = 40.0
+offset_right = 1300.0
+offset_bottom = 140.0
+theme_override_font_sizes/font_size = 60
+text = "Mouse Cursors:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Red_Mouse" type="Button" parent="." unique_id=1419029016]
 layout_mode = 0
-offset_left = 500.0
-offset_top = 450.0
-offset_right = 800.0
-offset_bottom = 550.0
+offset_left = 350.0
+offset_top = 300.0
+offset_right = 650.0
+offset_bottom = 400.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Red Cursor"
 
 [node name="Green_Mouse" type="Button" parent="." unique_id=1393783912]
 layout_mode = 0
-offset_left = 875.0
-offset_top = 450.0
-offset_right = 1175.0
-offset_bottom = 550.0
+offset_left = 350.0
+offset_top = 475.0
+offset_right = 650.0
+offset_bottom = 575.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Green Cursor"
 
 [node name="Black_Mouse" type="Button" parent="." unique_id=1438418172]
 layout_mode = 0
-offset_left = 1240.0
-offset_top = 450.0
-offset_right = 1540.0
-offset_bottom = 550.0
+offset_left = 350.0
+offset_top = 650.0
+offset_right = 650.0
+offset_bottom = 750.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Black Cursor"
 
 [node name="Silver_Mouse" type="Button" parent="." unique_id=1051565119]
 layout_mode = 0
-offset_left = 873.0
-offset_top = 610.0
-offset_right = 1173.0
-offset_bottom = 710.0
+offset_left = 850.0
+offset_top = 300.0
+offset_right = 1150.0
+offset_bottom = 400.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Silver Cursor"
 
 [node name="Quick_Mouse" type="Button" parent="." unique_id=1658754592]
 layout_mode = 0
-offset_left = 875.0
-offset_top = 760.0
-offset_right = 1175.0
-offset_bottom = 860.0
+offset_left = 850.0
+offset_top = 800.0
+offset_right = 1150.0
+offset_bottom = 900.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Quick Cursor"
 
 [node name="Glitched_Mouse" type="Button" parent="." unique_id=1172027532]
 layout_mode = 0
-offset_left = 1240.0
-offset_top = 610.0
-offset_right = 1540.0
-offset_bottom = 710.0
+offset_left = 850.0
+offset_top = 475.0
+offset_right = 1150.0
+offset_bottom = 575.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Glitched Cursor"
