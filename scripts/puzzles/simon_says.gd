@@ -20,6 +20,7 @@ var GameStart2 = false
 var completed = false
 var setup = false
 var practice = true
+var started = false
 
 var FirstTime = 1
 
@@ -33,17 +34,17 @@ func _ready():
 		var button3inst = button_scene.instantiate()
 		var button4inst = button_scene.instantiate()
 		button1inst.name = "Button"
-		button1inst.position = Vector3(-0.3, 0.2, 0.02)
-		button1inst.disabled = true
+		button1inst.position = Vector3(-0.175, 0.2, 0.02)
+		button1inst.disabled = false
 		button2inst.name = "Button2"
-		button2inst.position = Vector3(0.05, 0.2, 0.02)
-		button2inst.disabled = true
+		button2inst.position = Vector3(0.175, 0.2, 0.02)
+		button2inst.disabled = false
 		button3inst.name = "Button3"
-		button3inst.position = Vector3(-0.3, -0.15, 0.02)
-		button3inst.disabled = true
+		button3inst.position = Vector3(-0.175, -0.15, 0.02)
+		button3inst.disabled = false
 		button4inst.name = "Button4"
-		button4inst.position = Vector3(0.05, -0.15, 0.02)
-		button4inst.disabled = true
+		button4inst.position = Vector3(0.175, -0.15, 0.02)
+		button4inst.disabled = false
 		add_child(button1inst)
 		add_child(button2inst)
 		add_child(button3inst)
@@ -55,7 +56,7 @@ func _ready():
 		$Button3.set_color(Color.AQUA)
 		$StartGameButton.num = 0
 		setup = true
-	_Buttons_Disabled()
+	#_Buttons_Disabled()
 	if GameStart2 == true:
 		await _Game_Over_Check()
 		_Buttons_Disabled()
@@ -71,7 +72,7 @@ func _ready():
 				GameStart = false	
 				_Player_Input()
 			else:
-				await _Win_Animation()
+				_Win_Animation()
 				completed = true
 
 	
@@ -200,63 +201,67 @@ func _Win_Animation():
 
 
 func _on_but_pressed(num : int) -> void:
-	if num == 1:
-		if AwaitingInputs == true:
-			ButtonsPressed.append(0)
-		$Button.off()
-		if ButtonsPressed.size() == Pattern.size():
-			_Buttons_Off()
-			if ButtonsPressed == Pattern:
-				Pattern.clear()
-				ButtonsPressed.clear()
-				_ready()
-			else:
-				GameOver = true
-				_ready()
-	elif num == 2:
-		if AwaitingInputs == true:
-			ButtonsPressed.append(1)
-		$Button2.off()
-		if ButtonsPressed.size() == Pattern.size():
-			_Buttons_Off()
-			if ButtonsPressed == Pattern:
-				Pattern.clear()
-				ButtonsPressed.clear()
-				_ready()
-			else:
-				GameOver = true
-				_ready()
-	elif num == 3:
-		if AwaitingInputs == true:
-			ButtonsPressed.append(2)
-		$Button3.off()
-		if ButtonsPressed.size() == Pattern.size():
-			_Buttons_Off()
-			if ButtonsPressed == Pattern:
-				Pattern.clear()
-				ButtonsPressed.clear()
-				_ready()
-			else:
-				GameOver = true
-				_ready()
-	elif num == 4:
-		if AwaitingInputs == true:
-			ButtonsPressed.append(3)
-		$Button4.off()
-		if ButtonsPressed.size() == Pattern.size():
-			_Buttons_Off()
-			if ButtonsPressed == Pattern:
-				Pattern.clear()
-				ButtonsPressed.clear()
-				_ready()
-			else:
-				GameOver = true
-				_ready()
-	else:
+	if !started:
 		if !$"../../..".failed:
+			started = true
 			GameStart2 = true
 			$StartGameButton.disabled = true
 			_ready()
+	
+	else:
+		if num == 1:
+			if AwaitingInputs == true:
+				ButtonsPressed.append(0)
+			$Button.off()
+			if ButtonsPressed.size() == Pattern.size():
+				_Buttons_Off()
+				if ButtonsPressed == Pattern:
+					Pattern.clear()
+					ButtonsPressed.clear()
+					_ready()
+				else:
+					GameOver = true
+					_ready()
+		elif num == 2:
+			if AwaitingInputs == true:
+				ButtonsPressed.append(1)
+			$Button2.off()
+			if ButtonsPressed.size() == Pattern.size():
+				_Buttons_Off()
+				if ButtonsPressed == Pattern:
+					Pattern.clear()
+					ButtonsPressed.clear()
+					_ready()
+				else:
+					GameOver = true
+					_ready()
+		elif num == 3:
+			if AwaitingInputs == true:
+				ButtonsPressed.append(2)
+			$Button3.off()
+			if ButtonsPressed.size() == Pattern.size():
+				_Buttons_Off()
+				if ButtonsPressed == Pattern:
+					Pattern.clear()
+					ButtonsPressed.clear()
+					_ready()
+				else:
+					GameOver = true
+					_ready()
+		elif num == 4:
+			if AwaitingInputs == true:
+				ButtonsPressed.append(3)
+			$Button4.off()
+			if ButtonsPressed.size() == Pattern.size():
+				_Buttons_Off()
+				if ButtonsPressed == Pattern:
+					Pattern.clear()
+					ButtonsPressed.clear()
+					_ready()
+				else:
+					GameOver = true
+					_ready()
+		
 			
 func _on_but_released(_num : int):
 	pass

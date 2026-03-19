@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" uid="uid://r84is6g21j8q" path="res://scripts/puzzles/even_odd_puzzle_3d.gd" id="1_x6dsd"]
 [ext_resource type="PackedScene" uid="uid://bgfgng0ta202l" path="res://scenes/components/colors_button_3d.tscn" id="2_0wpts"]
+[ext_resource type="PackedScene" uid="uid://bdbe3skaontxt" path="res://scenes/components/colors_button_3d_2.tscn" id="2_baicd"]
 
 [node name="ColorsPuzzle3D" type="Node3D" unique_id=1215706253]
 script = ExtResource("1_x6dsd")
 
-[node name="CB3D0" parent="." unique_id=143485016 instance=ExtResource("2_0wpts")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, 0.1, 0)
+[node name="CB3D0" parent="." unique_id=321046945 instance=ExtResource("2_baicd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.032249093, 0.1, 0)
 
 [node name="CB3D1" parent="." unique_id=235958918 instance=ExtResource("2_0wpts")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14, -0.2, 0)

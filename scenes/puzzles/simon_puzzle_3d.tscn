@@ -7,5 +7,6 @@
 script = ExtResource("1_6dpfr")
 
 [node name="StartGameButton" parent="." unique_id=122910079 instance=ExtResource("3_k8xbm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39574212, 0, 0.009)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.396, 0.02, 0.009)
+visible = false
 skeleton = NodePath("")

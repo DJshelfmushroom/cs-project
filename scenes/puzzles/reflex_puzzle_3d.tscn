@@ -6,8 +6,8 @@
 [ext_resource type="FontFile" uid="uid://0my668ilbos5" path="res://assets/fonts/DS-DIGI.TTF" id="4_hcldi"]
 [ext_resource type="PackedScene" uid="uid://cbcrfgck1oggo" path="res://scenes/components/screen_3d.tscn" id="4_pwbcx"]
 [ext_resource type="PackedScene" uid="uid://caapg5wn513l5" path="res://scenes/components/button_3d.tscn" id="5_aet4m"]
-[ext_resource type="Script" uid="uid://fq0oosq08fsj" path="res://scenes/puzzles/progress_label.gd" id="7_7vj4h"]
-[ext_resource type="Script" uid="uid://op5nqfuy38di" path="res://scenes/puzzles/progress_bar_progress.gd" id="8_5pkql"]
+[ext_resource type="Script" path="res://scenes/puzzles/progress_label.gd" id="7_7vj4h"]
+[ext_resource type="Script" path="res://scenes/puzzles/progress_bar_progress.gd" id="8_5pkql"]
 
 [node name="ReflexPuzzle3D" type="Node3D" unique_id=1784130657]
 script = ExtResource("1_paxyd")
@@ -18,6 +18,7 @@ pixel_size = 0.0025
 text = "UP"
 font = ExtResource("4_hcldi")
 font_size = 75
+outline_size = 0
 
 [node name="Down" type="Label3D" parent="." unique_id=1578632275]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.002)
@@ -26,6 +27,7 @@ pixel_size = 0.0025
 text = "DOWN"
 font = ExtResource("4_hcldi")
 font_size = 75
+outline_size = 0
 
 [node name="Left" type="Label3D" parent="." unique_id=1160077475]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.002)
@@ -34,6 +36,7 @@ pixel_size = 0.0025
 text = "LEFT"
 font = ExtResource("4_hcldi")
 font_size = 75
+outline_size = 0
 
 [node name="Right" type="Label3D" parent="." unique_id=2039157526]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.002)
@@ -42,6 +45,7 @@ pixel_size = 0.0025
 text = "RIGHT"
 font = ExtResource("4_hcldi")
 font_size = 75
+outline_size = 0
 
 [node name="StartButton" parent="." unique_id=303994183 instance=ExtResource("2_f8dat")]
 transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0, 0.002)
@@ -61,6 +65,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.962, 0.61, 0.002)
 pixel_size = 0.0025
 text = "#"
 font_size = 55
+outline_size = 0
 
 [node name="EndScreen" type="Label3D" parent="." unique_id=217815367]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.002)
@@ -68,12 +73,14 @@ visible = false
 pixel_size = 0.0025
 font = ExtResource("4_hcldi")
 font_size = 60
+outline_size = 0
 
 [node name="Score" type="Label3D" parent="." unique_id=920407733]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.115, 0.002)
 visible = false
 pixel_size = 0.0025
 font_size = 45
+outline_size = 0
 
 [node name="RedWireButton" type="Button" parent="." unique_id=642265193]
 visible = false

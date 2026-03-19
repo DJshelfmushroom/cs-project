@@ -12,7 +12,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if points >= 10:
 		$TargetButton3D.disabled = true
-		$TargetButton3D.position = Vector3(0, 0, 0.002)
 		$TargetButton3D.set_color(Color.GREEN)
 		completed = true
 		
@@ -33,9 +32,10 @@ func _on_but_pressed(num : int):
 	if points == 0:
 		$Timer.start(5.0)
 	points += 1
-	var x = randf_range(-0.75,0.75)
-	var y = randf_range(-0.57,0.57)
-	$TargetButton3D.position = Vector3(x, y, 0.002)
+	if points < 10:
+		var x = randf_range(-0.75,0.75)
+		var y = randf_range(-0.57,0.57)
+		$TargetButton3D.position = Vector3(x, y, 0.002)
 
 func _on_but_released(num : int):
 	pass

@@ -15,7 +15,7 @@ theme_override_font_sizes/font_size = 60
 text = "Colors Puzzle:
 In this puzzle, you will see 3 colored buttons. For instructions referring to the \"color 
 order\", assume the order to be Red, Blue, Green, Yellow. 
-First button: If red is present, press the top button. Otherwise, press the blue button.
+First button: If red is present, press the square button. Otherwise, press the blue button.
 Second button: If the first button you pressed was Red or Green, press the button 1 
 space forward in the color order. Otherwise, press the button 1 space backward in the 
 color order. If this button is not present, press the button 1 space in the opposite 
