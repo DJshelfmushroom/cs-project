@@ -83,6 +83,16 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Glitched Cursor"
 
+[node name="Inverted_Mouse" type="Button" parent="." unique_id=92243846]
+layout_mode = 0
+offset_left = 850.0
+offset_top = 650.0
+offset_right = 1150.0
+offset_bottom = 750.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Inverted Cursor"
+
 [node name="Set" type="Label" parent="." unique_id=1803000527]
 visible = false
 layout_mode = 0
@@ -111,4 +121,5 @@ text = "Back"
 [connection signal="pressed" from="Silver_Mouse" to="." method="_on_silver_mouse_pressed"]
 [connection signal="pressed" from="Quick_Mouse" to="." method="_on_quick_mouse_pressed"]
 [connection signal="pressed" from="Glitched_Mouse" to="." method="_on_glitched_mouse_pressed"]
+[connection signal="pressed" from="Inverted_Mouse" to="." method="_on_inverted_mouse_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

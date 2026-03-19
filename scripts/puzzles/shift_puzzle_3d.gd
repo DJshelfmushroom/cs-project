@@ -33,6 +33,7 @@ func _ready() -> void:
 			if buttoninst.position == allpositions2[p]:
 				buttoninst.pos = p
 		positions2.remove_at(rand)
+		@warning_ignore("integer_division")
 		buttoninst.set_color(colors[b / 2])
 		buttoninst.num = b
 		buttoninst.disabled = true
@@ -47,6 +48,7 @@ func _ready() -> void:
 			if buttoninst.position == allpositions[p]:
 				buttoninst.pos = p
 		positions.remove_at(rand)
+		@warning_ignore("integer_division")
 		buttoninst.set_color(colors[b / 2])
 		buttoninst.num = b
 		buttons.append(buttoninst)

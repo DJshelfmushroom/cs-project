@@ -18,6 +18,9 @@ var quick_hand = preload("res://assets/cursor/Quick_RedWire_Hand.png")
 var glitched_arrow = preload("res://assets/cursor/Glitched_RedWire_Cursor.png")
 var glitched_hand = preload("res://assets/cursor/Glitched_RedWire_Hand.png")
 
+var inverted_arrow = preload("res://assets/cursor/Inverted_RedWire_Cursor.png")
+var inverted_hand = preload("res://assets/cursor/Inverted_RedWire_Hand.png")
+
 var mouse_cursor = null
 var x_factor = 85
 var y_factor = 120
@@ -40,6 +43,8 @@ func prepare_buttons():
 		set_silver_to_base()
 	if (!Achievements.check_achievement_completed(3) && !Achievements.check_achievement_completed(4)):
 		set_quick_to_base()
+	if (SaveManager.level < 10):
+		set_inverted_to_base()
 
 func place_set():
 	if (check_mouse_cursor() == "red"):
@@ -60,6 +65,9 @@ func place_set():
 	elif (check_mouse_cursor() == "glitched"):
 		$Set.position = Vector2($Glitched_Mouse.position.x + x_factor, $Glitched_Mouse.position.y + y_factor)
 		$Set.show()
+	elif (check_mouse_cursor() == "inverted"):
+		$Set.position = Vector2($Inverted_Mouse.position.x + x_factor, $Inverted_Mouse.position.y + y_factor)
+		$Set.show()
 	else:
 		$Set.hide()
 	
@@ -76,6 +84,9 @@ func set_silver_to_base():
 func set_quick_to_base():
 	$Quick_Mouse.text = "Unlocks after completing speedrunner achievements"
 	$Quick_Mouse.disabled = true
+func set_inverted_to_base():
+	$Inverted_Mouse.text = "Unlocks at Level 10"
+	$Inverted_Mouse.disabled = true
 
 func _on_red_mouse_pressed() -> void:
 	SaveManager.arrow = red_arrow
@@ -128,6 +139,15 @@ func _on_glitched_mouse_pressed() -> void:
 	SaveManager.color = "glitched"
 	
 	$CustomCursor.set_mouse_cursor(glitched_arrow, glitched_hand, "glitched")
+	place_set()
+	SaveManager.save()
+	
+func _on_inverted_mouse_pressed() -> void:
+	SaveManager.arrow = inverted_arrow
+	SaveManager.hand  = inverted_hand
+	SaveManager.color = "inverted"
+	
+	$CustomCursor.set_mouse_cursor(inverted_arrow, inverted_hand, "inverted")
 	place_set()
 	SaveManager.save()
 	

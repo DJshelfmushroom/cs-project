@@ -30,6 +30,9 @@ func fix_mouse():
 	const screen_size_offset = 100
 	var screen_size = get_viewport_transform().get_scale() + Vector2(screen_size_offset, screen_size_offset)
 	var offscreen = Vector2(screen_size.x, screen_size.y)
+	if (mouse_position.x < offscreen.x) || (mouse_position.y < offscreen.y): #when running the game
+		await get_tree().process_frame
+		mouse_position = Vector2(get_viewport_rect().size.x / 2, get_viewport_rect().size.y / 2)
 	Utils.LogGD("position: " + str(mouse_position) + ", offscreen: " + str(offscreen), self)
 	
 	Utils.LogGD("wd: " + str(get_window().get_mouse_position()), self)
