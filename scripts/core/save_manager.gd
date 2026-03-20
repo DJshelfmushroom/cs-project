@@ -88,6 +88,8 @@ func _input(_event):
 				if FileAccess.file_exists(save_path):
 					DirAccess.remove_absolute(save_path)
 					deleted = true
+			Utils.LogGD("Deleting save data", self)
+				
 	#if (Input.is_key_pressed(Key.KEY_SHIFT) && Input.is_key_pressed(Key.KEY_D) && Input.is_key_pressed(Key.KEY_C)):
 	#	print("check")
 

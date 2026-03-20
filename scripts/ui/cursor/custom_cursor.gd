@@ -15,7 +15,7 @@ func set_mouse_cursor(arrow, hand, color):
 	Input.set_custom_mouse_cursor(this_arrow, Input.CURSOR_ARROW, Vector2(12,2))
 	Input.set_custom_mouse_cursor(this_hand, Input.CURSOR_POINTING_HAND, Vector2(12,2))
 	
-	fix_mouse()
+	fix_mouse_test()
 	#Utils.LogGD("Mouse cursor changed", self) # if this is unwelcome you can change it
 
 
@@ -40,30 +40,27 @@ func fix_mouse():
 
 func fix_mouse_test():
 	var viewport = get_viewport()
-	var viewport_width : Vector2 = Vector2(viewport.size) / Vector2(1920, 1080)
-	Utils.LogGD("width: " + str(viewport_width), self)
-	var window_size = get_window().get_screen_transform().get_scale()
-	var mouse_position = get_global_mouse_position() * viewport_width
+	var viewport_scale : Vector2 = Vector2(viewport.size) / Vector2(1920, 1080)
+	var window_scale = get_window().get_screen_transform().get_scale()
+	var window_size = window_scale * Vector2(1920, 1080)
+	var edge_size = (Vector2(viewport.size)- window_size) / 2
+	#Utils.LogGD("window: " + str(window_size) + " viewport: " + str(viewport.size), self)
+	#Utils.LogGD("Edge size: " + str(edge_size), self)
+	var mouse_position = (get_global_mouse_position()) * window_scale + edge_size
 	
-	Utils.LogGD("window scale:" + str(window_size), self)
 	const screen_size_offset = 100
-	var screen_size = get_viewport_transform().get_scale() + Vector2(screen_size_offset, screen_size_offset)
+	var screen_size = window_size + Vector2(screen_size_offset, screen_size_offset)
 	var offscreen = Vector2(screen_size.x, screen_size.y)
-	if (mouse_position.x < offscreen.x) || (mouse_position.y < offscreen.y): #when running the game
-		await get_tree().process_frame
-		mouse_position = Vector2(get_viewport_rect().size.x / 2, get_viewport_rect().size.y / 2)
-	Utils.LogGD("position: " + str(mouse_position) + ", offscreen: " + str(offscreen), self)
-	
+
 	Utils.LogGD("wd: " + str(get_window().get_mouse_position()), self)
 	Input.warp_mouse(mouse_position)
 	#await get_tree().process_frame
 	Input.warp_mouse(offscreen)
-
-	$Loading.show()
+	#$Loading.show()
 	Input.warp_mouse(mouse_position)
 	Utils.LogGD("warped: " + str(get_global_mouse_position()), self)
-	await get_tree().process_frame
-	$Loading.hide()
+	#await get_tree().process_frame
+	#$Loading.hide()
 
 
 func get_mouse_arrow():
