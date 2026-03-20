@@ -21,6 +21,25 @@ func set_mouse_cursor(arrow, hand, color):
 
 func fix_mouse():
 	var viewport = get_viewport()
+	var mouse_position = viewport.get_mouse_position()
+	const screen_size_offset = 100
+	var offscreen = Vector2(get_viewport_rect().size.x + screen_size_offset, get_viewport_rect().size.y + screen_size_offset)
+	
+	if (mouse_position.x > offscreen.x) || (mouse_position.y > offscreen.y): #when running the game
+		await get_tree().process_frame
+		mouse_position = Vector2(get_viewport_rect().size.x / 2, get_viewport_rect().size.y / 2)
+	
+	Input.warp_mouse(offscreen)
+	$Loading.show()
+	await get_tree().process_frame
+	Input.warp_mouse(mouse_position)
+	await get_tree().process_frame
+	$Loading.hide()
+	
+	
+
+func fix_mouse_test():
+	var viewport = get_viewport()
 	var viewport_width : Vector2 = Vector2(viewport.size) / Vector2(1920, 1080)
 	Utils.LogGD("width: " + str(viewport_width), self)
 	var window_size = get_window().get_screen_transform().get_scale()
