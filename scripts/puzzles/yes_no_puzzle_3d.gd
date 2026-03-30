@@ -50,8 +50,8 @@ func _on_but_pressed(_num : int):
 		else:
 			var color = $Label3D.modulate
 			$Label3D.modulate = Color.RED
-			await get_tree().create_timer(1.0).timeout
 			$"../../..".strikes += 1
+			await get_tree().create_timer(1.0).timeout
 			$Label3D.modulate = color
 			nums = []
 			currentletters = []

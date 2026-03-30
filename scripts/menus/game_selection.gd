@@ -45,7 +45,8 @@ var default_rot : float
 # for the glass break
 var broken = false
 
-var num_puzzles = 7
+var num_puzzles = 13
+
 
 var weight = 0
 
