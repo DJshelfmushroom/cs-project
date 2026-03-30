@@ -33,11 +33,15 @@ var allcompleted = false
 var fix = false
 var disable_first = false
 
+# BS Animation vars
 var current_puzzles = []
 var completed_puzzles = 0
 var animation_countdown = 0
 var animation_duration = 240
 var shader_mat : ShaderMaterial
+var default_xy : Vector2
+var default_rot : float
+
 # for the glass break
 var broken = false
 
@@ -52,7 +56,10 @@ var once = false
 
 
 func _ready() -> void:
+	# BS Animation assignment
 	shader_mat = $"WorldEnvironment".get_environment().get_sky().get_material()
+	default_xy = shader_mat.get_shader_parameter("xy_offset")
+	default_rot = shader_mat.get_shader_parameter("RotationAngle")
 	weight = SaveManager.level + 5
 	for c in $bomb_instance/Games.get_children():
 		c.visible = false
@@ -101,6 +108,13 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	# loop through all puzzles, count completed
 	var local_puzzles_completed = 0 # yes I hate this name too
+	default_xy += Vector2(0.00, 0) if animation_countdown == 0 else Vector2(0, 0)
+	var env : WorldEnvironment = $"WorldEnvironment"
+	env.environment.sky_rotation = $"bomb_instance".GetBombRotation()
+	shader_mat.set_shader_parameter("xy_offset", default_xy)
+	Utils.LogGD("Default: " + str(default_xy), self)
+	Utils.LogGD("Value: " + str(shader_mat.get_shader_parameter("xy_offset")), self)
+	default_xy = Vector2(wrapf(default_xy.x, 0, 1), wrapf(default_xy.y, 0, 1))
 	for puzzle in current_puzzles:
 		if puzzle.completed:
 			local_puzzles_completed += 1
@@ -116,8 +130,8 @@ func _process(_delta: float) -> void:
 		shader_mat.set_shader_parameter("RotationAngle", current_angle + (2*PI)/animation_duration)
 		animation_countdown -= 1
 	else:
-		shader_mat.set_shader_parameter("xy_offset", Vector2(0, 0))
-		shader_mat.set_shader_parameter("RotationAngle", 0)
+		shader_mat.set_shader_parameter("xy_offset", default_xy)
+		shader_mat.set_shader_parameter("RotationAngle", default_rot)
 	
 	if(!broken):
 		if(strikes > 0):

@@ -152,8 +152,8 @@ scale_curve = SubResource("CurveTexture_8d7bq")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4f8ie"]
 shader = ExtResource("24_ddge8")
-shader_parameter/xy_offset = Vector2(0, 0)
 shader_parameter/RotationAngle = 0.0
+shader_parameter/xy_offset = Vector2(0.34, 0)
 shader_parameter/Image = ExtResource("26_dsxht")
 shader_parameter/Intensity = 0.0
 
@@ -162,7 +162,9 @@ sky_material = SubResource("ShaderMaterial_4f8ie")
 
 [sub_resource type="Environment" id="Environment_okahj"]
 background_mode = 2
+background_energy_multiplier = 0.37
 sky = SubResource("Sky_ddge8")
+sdfgi_energy = 4.66
 
 [node name="Bomb" type="Node3D" unique_id=279824733]
 script = ExtResource("1_2mi53")
