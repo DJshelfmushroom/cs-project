@@ -15,11 +15,11 @@ func set_mouse_cursor(arrow, hand, color):
 	Input.set_custom_mouse_cursor(this_arrow, Input.CURSOR_ARROW, Vector2(12,2))
 	Input.set_custom_mouse_cursor(this_hand, Input.CURSOR_POINTING_HAND, Vector2(12,2))
 	
-	fix_mouse_test()
+	fix_mouse()
 	#Utils.LogGD("Mouse cursor changed", self) # if this is unwelcome you can change it
 
 
-func fix_mouse():
+func fix_mouse_test():
 	var viewport = get_viewport()
 	var mouse_position = viewport.get_mouse_position()
 	const screen_size_offset = 100
@@ -38,7 +38,7 @@ func fix_mouse():
 	
 	
 
-func fix_mouse_test():
+func fix_mouse():
 	var viewport = get_viewport()
 	var viewport_scale : Vector2 = Vector2(viewport.size) / Vector2(1920, 1080)
 	var window_scale = get_window().get_screen_transform().get_scale()

@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using static csproject.scripts.core.Utils.Logger;
 
 namespace csproject.scripts.ui.roltateAxis;
 
@@ -129,6 +130,9 @@ public partial class Roltateaxis : Node3D
 			BombNode.Call(Node3D.MethodName.LookAtFromPosition, Vector3.Zero, side.Position.Rotated(Vector3.Down, Single.Pi * 3 / 2)); 
 			BombNode.Rotate(Vector3.Up, Single.Pi * 2);
 		}
+		// Utils.Logger.Log	
+		Log("Rotation: " + BombNode.RotationDegrees, this);
+		
 		BombNode.Position = new Vector3(0, 0.667f, 0);
 	}
 

@@ -73,6 +73,7 @@ class OperationPath2D(
 	int pointCount,
 	Vector2 pointSpaceRange,
 	Node owner,
+	float lineWidth = 5,
 	OperationPath2D.StartPoint startPoint = OperationPath2D.StartPoint.BottomLeft)
 {
 	private readonly Vector2 _center = center;
@@ -109,6 +110,13 @@ class OperationPath2D(
 			// curve_roll:
 			do
 			{
+				attempts++;
+				if (attempts > AttemptThreshold)
+				{
+					// throw new StackOverflowException("");
+					return false;
+				}
+				
 				do
 				{
 					int d1 = random.Next(0, 3) - 1;
@@ -121,7 +129,15 @@ class OperationPath2D(
 				// Utils.Log($"i: {i}", owner);
 				// Utils.Log($"point list len: {points.Count}", owner);
 				var newPoint = dir * pointDist + points[i - 1];
-				var polyline = Geometry2D.OffsetPolyline([points[i - 1], newPoint], 5, endType: Geometry2D.PolyEndType.Joined);
+				
+				if (newPoint.X > _size.X / 2 || newPoint.X < 0 - _size.X / 2 ||
+					newPoint.Y >  _size.Y / 2 || newPoint.Y < 0 - _size.Y / 2)
+				{
+					Log("out of bounds", owner);
+					continue;
+				}
+				
+				var polyline = Geometry2D.OffsetPolyline([points[i - 1], newPoint], lineWidth, endType: Geometry2D.PolyEndType.Joined);
 				if (polyline.Count == 0) continue; 
 				var collision = new CollisionPolygon2D();
 				collision.Polygon = polyline.ToArray().First();
@@ -136,17 +152,23 @@ class OperationPath2D(
 					color = Colors.Coral;
 				}
 				else lineSection = OperationArea2D.Section.Middle;
-
+				
 				var area = new OperationArea2D(lineSection);
 				area.color = color;
 				area.AddChild(collision);
 				owner.AddChild(area);
 				area.InputPickable = true;
 				area.QueueRedraw();
+
+				var rayOffset = Vector2.Zero;
+				Log("Ray section", owner);
+				raycast:
+				Log("Ray offset: " + rayOffset, owner);
+				
 				var ray = new RayCast2D();
-				ray.GlobalPosition = points[i - 1];
+				ray.GlobalPosition = points[i - 1] + rayOffset;
 				// ray.Position = Vector2.Zero;
-				ray.TargetPosition = newPoint - points[i - 1];
+				ray.TargetPosition = newPoint - points[i - 1] + rayOffset;
 				// Utils.Log($"pos: {ray.GlobalPosition}, targ: {ray.TargetPosition}", owner);
 				ray.CollideWithBodies = false;
 				ray.CollideWithAreas = true;
@@ -155,7 +177,7 @@ class OperationPath2D(
 				ray.HitFromInside = false;
 				owner.AddChild(ray);
 				ray.ForceRaycastUpdate();
-				attempts++;
+				// attempts++;
 				if (ray.IsColliding())
 				{
 					// Utils.Log($"Collision: {((Node2D)ray.GetCollider()).Name}, position: {ray.GetCollisionPoint()}", owner);
@@ -164,15 +186,22 @@ class OperationPath2D(
 						area.QueueFree();
 						// ray.QueueFree();
 						// i--;
-						if (attempts > AttemptThreshold)
-						{
-							// throw new StackOverflowException("");
-							return false;
-						}
-
 						continue;
 					}
 				}
+				
+				var rayShift = InvertVec2(dir) * lineWidth/2;
+				if (rayOffset == Vector2.Zero)
+				{
+					rayOffset = rayShift;
+					goto raycast;
+				}
+				if (rayOffset == rayShift)
+				{
+					rayOffset = -rayShift;
+					goto raycast;
+				}
+
 				// Utils.Log($"attempts: {attempts}", owner, color: "blue");
 				points.Add(newPoint);
 				Log($"i: {i}", owner);
@@ -187,7 +216,12 @@ class OperationPath2D(
 		}
 		return true;
 	}
-	
+
+
+	private static Vector2 InvertVec2(Vector2 vec)
+	{
+		return new Vector2(vec.Y, vec.X);
+	}
 
 	private static int AbsoluteCeiling(float i)
 	{    

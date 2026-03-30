@@ -1,8 +1,10 @@
+#define DEBUG 
+// #undef DEBUG
+
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Godot;
-
 namespace csproject.scripts.core;
 
 [GlobalClass]
@@ -87,11 +89,14 @@ public partial class Utils : Node
 		public static void Log(string message, string source, LogType logType = LogType.Debug,
 			LogColors color = LogColors.YELLOW)
 		{
+			
+#if DEBUG
 			string type = LogTypeLookup[logType];
 
 			//TODO implement path blacklist
 			//TODO integrate better with Godot
-			if (!_debug) return;
+				
+			
 			StringBuilder output = new StringBuilder();
 			output.Append($"[{type}@");
 			if (source == null)
@@ -111,6 +116,7 @@ public partial class Utils : Node
 			}
 
 			GD.PrintRich("[color=" + GetLogColorString(color) + "]", output.ToString(), "[/color]");
+#endif
 		}
 
 		public static void LogGD(string message, Node source)
@@ -159,13 +165,14 @@ public partial class Utils : Node
 				throw new NotImplementedException();
 		}
 	}
-
+#if DEBUG
 	public override void _Ready()
 	{
-		if (!_debug) return;
 		var debug = new DebugScripts();
 		debug.TestColorLogging();
 	}
+#endif
+	
 	class DebugScripts
 	{
 		private const string LogMessage = "DebugScript";
