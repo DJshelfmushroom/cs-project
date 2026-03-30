@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://baq643x0wad0k" path="res://scenes/puzzles/shift_puzzle_3d.tscn" id="16_73cp6"]
 [ext_resource type="Script" uid="uid://bwsbcc1ccrmyh" path="res://scripts/ui/roltateAxis/Roltateaxis.cs" id="16_osgfx"]
 [ext_resource type="Script" uid="uid://blgp7xfn1j5te" path="res://bomb/explosion.cs" id="19_osgfx"]
+[ext_resource type="Texture2D" uid="uid://bsmsqywoaj4wo" path="res://glass.png" id="23_d16ca"]
 [ext_resource type="Texture2D" uid="uid://cnu8l7hiepbgb" path="res://backdrop.jpg" id="23_okahj"]
 [ext_resource type="Shader" uid="uid://2jq6vc2upjw2" path="res://the sun.tres" id="24_ddge8"]
 [ext_resource type="Texture2D" uid="uid://3vt22rc6qe61" path="res://citrus_orchard_puresky_4k.exr" id="26_dsxht"]
@@ -292,6 +293,12 @@ offset_left = 93.0
 offset_top = 1494.0
 offset_right = 1324.6399
 offset_bottom = 2297.3599
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1552253338]
+visible = false
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("23_d16ca")
 
 [node name="vfx_explosion" type="Node3D" parent="." unique_id=1234027106]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.005)

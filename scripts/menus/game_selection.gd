@@ -38,6 +38,8 @@ var completed_puzzles = 0
 var animation_countdown = 0
 var animation_duration = 240
 var shader_mat : ShaderMaterial
+# for the glass break
+var broken = false
 
 var num_puzzles = 7
 
@@ -116,6 +118,11 @@ func _process(_delta: float) -> void:
 	else:
 		shader_mat.set_shader_parameter("xy_offset", Vector2(0, 0))
 		shader_mat.set_shader_parameter("RotationAngle", 0)
+	
+	if(!broken):
+		if(strikes > 0):
+			$"TextureRect".visible = true;
+			broken = true
 	if (fix == false):
 		if (puzzles_completed() && !failed):
 			if (once == false):
