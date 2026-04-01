@@ -224,7 +224,7 @@ class OperationPath2D(
 		{
 			if (child is OperationArea2D)
 			{
-				((Node2D)child).Position += _center;
+				((Node2D)child).Position += new Vector2(500, 400);
 			}
 		}
 			

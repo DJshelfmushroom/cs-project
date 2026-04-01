@@ -1,32 +1,38 @@
 [gd_scene format=3 uid="uid://e8ghkvx30l1i"]
 
+[ext_resource type="Script" uid="uid://pa02a0hdtqo2" path="res://scripts/puzzles/OperationSub/Operation3d.cs" id="1_c1owo"]
 [ext_resource type="PackedScene" uid="uid://db4doj1fu8vqs" path="res://scenes/puzzles/operation.tscn" id="2_c1owo"]
+[ext_resource type="PackedScene" uid="uid://cbcrfgck1oggo" path="res://scenes/components/screen_3d.tscn" id="3_dsryg"]
 
-[sub_resource type="Environment" id="Environment_c1owo"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_dsryg"]
+viewport_path = NodePath("MeshInstance3D/SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_c1owo"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dsryg"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_we3od"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_c1owo")
+albedo_texture = SubResource("ViewportTexture_dsryg")
+heightmap_enabled = true
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_we3od"]
-material = SubResource("StandardMaterial3D_dsryg")
+[sub_resource type="QuadMesh" id="QuadMesh_dsryg"]
+material = SubResource("StandardMaterial3D_we3od")
 
 [node name="Operation3d" type="Node3D" unique_id=469409953]
+script = ExtResource("1_c1owo")
 
-[node name="SubViewport" type="SubViewport" parent="." unique_id=1539530111]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=45214304]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_dsryg")
+
+[node name="SubViewport" type="SubViewport" parent="MeshInstance3D" unique_id=1539530111]
+transparent_bg = true
 physics_object_picking = true
 physics_object_picking_sort = true
 physics_object_picking_first_only = true
+render_target_update_mode = 4
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport" unique_id=163539861]
-environment = SubResource("Environment_c1owo")
+[node name="Operation" parent="MeshInstance3D/SubViewport" unique_id=1217318325 instance=ExtResource("2_c1owo")]
 
-[node name="Operation" parent="SubViewport/WorldEnvironment" unique_id=1217318325 instance=ExtResource("2_c1owo")]
+[node name="Screen3D" parent="." unique_id=53339724 instance=ExtResource("3_dsryg")]
+transform = Transform3D(2.1, 0, 0, 0, -8.742278e-08, 1, 0, -2, -4.371139e-08, -1, -0.011936069, 1)
 
-[node name="Camera2D" type="Camera2D" parent="SubViewport/WorldEnvironment" unique_id=1398590523]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=45214304]
-mesh = SubResource("PlaneMesh_we3od")
+[node name="Camera3D" type="Camera3D" parent="." unique_id=217851066]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.3655483, 0)
