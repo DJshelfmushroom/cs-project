@@ -137,7 +137,7 @@ func _process(_delta: float) -> void:
 		shader_mat.set_shader_parameter("RotationAngle", default_rot)
 	
 	if(!broken):
-		if(strikes > 0):
+		if(strikes >= 3):
 			$"TextureRect".visible = true;
 			broken = true
 	if (fix == false):

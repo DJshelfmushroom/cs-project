@@ -228,6 +228,12 @@ light_energy = 1.66
 light_indirect_energy = 2.967
 light_angular_distance = 6.3
 
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1552253338]
+visible = false
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("23_d16ca")
+
 [node name="StrikesLabel" type="Label" parent="." unique_id=752173838]
 offset_left = 1550.0
 offset_right = 1950.0
@@ -295,12 +301,6 @@ offset_left = 93.0
 offset_top = 1494.0
 offset_right = 1324.6399
 offset_bottom = 2297.3599
-
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1552253338]
-visible = false
-offset_right = 1920.0
-offset_bottom = 1080.0
-texture = ExtResource("23_d16ca")
 
 [node name="vfx_explosion" type="Node3D" parent="." unique_id=1234027106]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.005)
