@@ -26,6 +26,7 @@ size = Vector2(1.6, 0.9)
 material = ExtResource("9_euy4r")
 text = "RedWire"
 font = ExtResource("8_50h1w")
+depth = 0.02
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uxao6"]
 albedo_color = Color(0.34901962, 0, 0, 1)
@@ -34,6 +35,7 @@ albedo_color = Color(0.34901962, 0, 0, 1)
 material = SubResource("StandardMaterial3D_uxao6")
 text = "RedWire"
 font = ExtResource("8_50h1w")
+depth = 0.02
 
 [node name="MainMenu" type="Node3D" unique_id=205204580]
 script = ExtResource("1_7vrkn")
@@ -190,10 +192,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.58704317)
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D" unique_id=1913016778]
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="Camera3D" unique_id=1569273055]
-transform = Transform3D(0.9619228, -0.026832897, -0.27200094, 0, 0.9951693, -0.098173484, 0.27332127, 0.094435304, 0.95727605, 0, 0.13253787, -0.2363131)
+transform = Transform3D(0.9658833, -0.031034233, -0.25711167, 0.10271768, 0.95727247, 0.2703303, 0.23773642, -0.28751743, 0.92780125, 0, 0.09181553, -0.2363131)
 
 [node name="Label3D" type="MeshInstance3D" parent="." unique_id=952230966]
-transform = Transform3D(0.99979514, 0.003496812, -0.019931342, -0.0080691045, 0.9721536, -0.23420462, 0.018557373, 0.2343175, 0.9719835, -0.0003000684, 0.18463331, 0.11837244)
+transform = Transform3D(0.98103195, 0.028095357, -0.19179878, -0.058786113, 0.9859649, -0.15625753, 0.1847168, 0.16456875, 0.9689157, -0.010882098, 0.19331399, 0.11837244)
 mesh = SubResource("TextMesh_3w8rc")
 
 [node name="Label3D2" type="MeshInstance3D" parent="Label3D" unique_id=835166591]
