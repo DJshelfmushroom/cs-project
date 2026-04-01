@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using csproject.scripts.puzzles.OperationSub;
 using static csproject.scripts.core.Utils.Logger;
+using csproject.scripts.core;
 using Godot;
+using Microsoft.VisualBasic.CompilerServices;
+using Utils = csproject.scripts.core.Utils;
 
 // ReSharper disable ReturnValueOfPureMethodIsNotUsed
 
@@ -11,7 +14,7 @@ namespace csproject.scripts.puzzles;
 
 public partial class Operation : Node
 {
-	public const int id = 13; // to reference in GDScript
+	public const int id = 14; // to reference in GDScript
 	
 	// private OperationPath2D _operation;
 	public override void _Ready()
@@ -19,7 +22,7 @@ public partial class Operation : Node
 		GenerateLine();
 		
 	}
-
+#if DEBUG
 	public override void _UnhandledInput(InputEvent @event)
 	{
 		base._UnhandledInput(@event);
@@ -29,6 +32,7 @@ public partial class Operation : Node
 			GenerateLine();
 		}
 	}
+#endif
 
 	private void GenerateLine() 
 	{
@@ -64,6 +68,7 @@ public partial class Operation : Node
 	
 	public void Failure()
 	{
+		Utils.GetBombNode(this).Call("Strike");
 	}
 }
 
@@ -214,6 +219,15 @@ class OperationPath2D(
 				break;
 			} while (true);
 		}
+
+		foreach (Node child in owner.GetChildren())
+		{
+			if (child is OperationArea2D)
+			{
+				((Node2D)child).Position += _center;
+			}
+		}
+			
 		return true;
 	}
 

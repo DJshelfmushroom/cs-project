@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://e8ghkvx30l1i"]
+
+[ext_resource type="PackedScene" uid="uid://db4doj1fu8vqs" path="res://scenes/puzzles/operation.tscn" id="2_c1owo"]
+
+[sub_resource type="Environment" id="Environment_c1owo"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_c1owo"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dsryg"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_c1owo")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_we3od"]
+material = SubResource("StandardMaterial3D_dsryg")
+
+[node name="Operation3d" type="Node3D" unique_id=469409953]
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1539530111]
+physics_object_picking = true
+physics_object_picking_sort = true
+physics_object_picking_first_only = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport" unique_id=163539861]
+environment = SubResource("Environment_c1owo")
+
+[node name="Operation" parent="SubViewport/WorldEnvironment" unique_id=1217318325 instance=ExtResource("2_c1owo")]
+
+[node name="Camera2D" type="Camera2D" parent="SubViewport/WorldEnvironment" unique_id=1398590523]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=45214304]
+mesh = SubResource("PlaneMesh_we3od")

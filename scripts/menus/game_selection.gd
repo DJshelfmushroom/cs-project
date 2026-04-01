@@ -53,7 +53,9 @@ var weight = 0
 var timeleft = 0
 var once = false
 
-
+func Strike() -> void:
+	Utils.LogGD("strike", self)
+	strikes += 1;
 
 
 func _ready() -> void:

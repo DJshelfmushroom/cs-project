@@ -251,4 +251,5 @@ public partial class bomb : Node3D
 		if (tMax < 0f || tMin > tMax) return 0f;
 		return tMax; // far intersection — the exit face
 	}
+	
 }

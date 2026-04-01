@@ -12,7 +12,21 @@ public partial class Utils : Node
 {
 	private static bool _debug = true;
 	private static readonly string[] LogBlacklist = [""]; // paths that aren't to be logged 
-
+	
+	public static Node GetBombNode(Node caller)
+	{
+		try
+		{
+			Node node = caller.GetTree().CurrentScene.GetNode("Bomb");
+			return node;
+		}
+		catch (Exception e)
+		{
+			Logger.Log(e.ToString(), caller, Logger.LogType.Error);
+			throw;
+		}
+	} 
+	
 	public static class Logger
 	{
 		public enum LogType
@@ -210,4 +224,5 @@ public partial class Utils : Node
 			}
 		}
 	}
+	
 }
