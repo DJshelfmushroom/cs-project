@@ -66,9 +66,9 @@ text = "Silver Cursor"
 [node name="Quick_Mouse" type="Button" parent="." unique_id=1658754592]
 layout_mode = 0
 offset_left = 850.0
-offset_top = 800.0
+offset_top = 825.0
 offset_right = 1150.0
-offset_bottom = 900.0
+offset_bottom = 925.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Quick Cursor"
