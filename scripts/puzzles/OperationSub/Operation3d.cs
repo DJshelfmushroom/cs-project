@@ -8,8 +8,8 @@ public partial class Operation3d : Node3D
 	#if CAMERA
 	public override void _Ready()
 	{
-		var camera = new Camera3D();
-		AddChild(camera);
+		// var camera = new Camera3D();
+		// AddChild(camera);
 	}
 	#endif
 }

@@ -41,9 +41,11 @@ public partial class Operation : Node
 		operation:
 		foreach (Node child in GetChildren())
 		{
-			RemoveChild(child);
+			if (child is OperationArea2D) {
+				RemoveChild(child);
 			child.QueueFree();
 		}
+	}
 
 		// try
 		// {

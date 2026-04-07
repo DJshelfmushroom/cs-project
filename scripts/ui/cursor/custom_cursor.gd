@@ -40,7 +40,7 @@ func fix_mouse_test():
 
 func fix_mouse():
 	var viewport = get_viewport()
-	var viewport_scale : Vector2 = Vector2(viewport.size) / Vector2(1920, 1080)
+	#var viewport_scale : Vector2 = Vector2(viewport.size) / Vector2(1920, 1080)
 	var window_scale = get_window().get_screen_transform().get_scale()
 	var window_size = window_scale * Vector2(1920, 1080)
 	var edge_size = (Vector2(viewport.size)- window_size) / 2
