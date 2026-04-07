@@ -111,12 +111,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	# loop through all puzzles, count completed
 	var local_puzzles_completed = 0 # yes I hate this name too
-	default_xy += Vector2(0.00, 0) if animation_countdown == 0 else Vector2(0, 0)
+	default_xy += Vector2(0.00001, 0) if animation_countdown == 0 else Vector2(0, 0)
 	var env : WorldEnvironment = $"WorldEnvironment"
 	env.environment.sky_rotation = $"bomb_instance".GetBombRotation()
 	shader_mat.set_shader_parameter("xy_offset", default_xy)
-	Utils.LogGD("Default: " + str(default_xy), self)
-	Utils.LogGD("Value: " + str(shader_mat.get_shader_parameter("xy_offset")), self)
 	default_xy = Vector2(wrapf(default_xy.x, 0, 1), wrapf(default_xy.y, 0, 1))
 	for puzzle in current_puzzles:
 		if puzzle.completed:

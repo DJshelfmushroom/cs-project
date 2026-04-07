@@ -27,7 +27,7 @@
 [ext_resource type="Script" uid="uid://blgp7xfn1j5te" path="res://bomb/explosion.cs" id="19_osgfx"]
 [ext_resource type="Texture2D" uid="uid://bsmsqywoaj4wo" path="res://glass.png" id="23_d16ca"]
 [ext_resource type="Texture2D" uid="uid://cnu8l7hiepbgb" path="res://backdrop.jpg" id="23_okahj"]
-[ext_resource type="Shader" uid="uid://2jq6vc2upjw2" path="res://the sun.tres" id="24_ddge8"]
+[ext_resource type="Shader" uid="uid://4pradrmwh4mg" path="res://sky_panorama.gdshader" id="24_ddge8"]
 [ext_resource type="Texture2D" uid="uid://3vt22rc6qe61" path="res://citrus_orchard_puresky_4k.exr" id="26_dsxht"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f726v"]
@@ -152,10 +152,10 @@ scale_curve = SubResource("CurveTexture_8d7bq")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4f8ie"]
 shader = ExtResource("24_ddge8")
+shader_parameter/Image = ExtResource("26_dsxht")
 shader_parameter/RotationAngle = 0.0
 shader_parameter/xy_offset = Vector2(0.34, 0)
-shader_parameter/Image = ExtResource("26_dsxht")
-shader_parameter/Intensity = 0.0
+shader_parameter/Intensity = 1.0
 
 [sub_resource type="Sky" id="Sky_ddge8"]
 sky_material = SubResource("ShaderMaterial_4f8ie")

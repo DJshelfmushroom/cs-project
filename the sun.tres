@@ -16,6 +16,8 @@ default_value = 1.0
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_lvjfo"]
 parameter_name = "Image"
 texture_type = 1
+texture_filter = 3
+texture_repeat = 1
 
 [sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_lvjfo"]
 output_port_for_preview = 0
