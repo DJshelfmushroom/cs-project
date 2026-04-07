@@ -46,7 +46,7 @@ func _on_timer_timeout():
 		$TrackButton3D.set_color(Color.GREEN)
 		completed = true
 
-func _on_but_pressed(num : int):
+func _on_but_pressed(_num : int):
 	if !$"../../..".failed:
 		start = true
 		$TrackButton3D.disabled = true
@@ -54,7 +54,7 @@ func _on_but_pressed(num : int):
 		randy = randf_range(-0.0025,0.0025)
 		randx = randf_range(-0.003,0.003)
 
-func _on_but_released(num : int):
+func _on_but_released(_num : int):
 	pass
 	
 func _on_hover():

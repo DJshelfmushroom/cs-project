@@ -28,7 +28,7 @@ func  _on_timer_timeout():
 		$TargetButton3D.set_color(Color(color))
 		$TargetButton3D.disabled = false
 
-func _on_but_pressed(num : int):
+func _on_but_pressed(_num : int):
 	if points == 0:
 		$Timer.start(5.0)
 	points += 1
@@ -37,5 +37,5 @@ func _on_but_pressed(num : int):
 		var y = randf_range(-0.57,0.57)
 		$TargetButton3D.position = Vector3(x, y, 0.002)
 
-func _on_but_released(num : int):
+func _on_but_released(_num : int):
 	pass
