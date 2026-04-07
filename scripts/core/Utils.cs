@@ -10,7 +10,9 @@ namespace csproject.scripts.core;
 [GlobalClass]
 public partial class Utils : Node
 {
-	private static bool _debug = true;
+	
+	private static bool _debug = false;
+	
 	private static readonly string[] LogBlacklist = [""]; // paths that aren't to be logged 
 	
 	public static Node GetBombNode(Node caller)
@@ -182,6 +184,7 @@ public partial class Utils : Node
 #if DEBUG
 	public override void _Ready()
 	{
+		_debug = true;
 		var debug = new DebugScripts();
 		debug.TestColorLogging();
 	}
