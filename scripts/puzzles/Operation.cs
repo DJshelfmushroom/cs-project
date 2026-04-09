@@ -99,35 +99,17 @@ class OperationPath2D(
 	
 	// generates a curve that also happens to render if you treat it correctly. 
 	public bool GenerateCurve()
-	private Vector2 GetStartPoint(Vector2? border = null)
 	{
-		if (border == null) border = _size;
-		
-		switch(startPoint)
-		{
-			case StartPoint.TopLeft:
-				return _center - border.Value;
-			case StartPoint.TopRight:
-				return _center + new Vector2(border.Value.X, -border.Value.Y);
-			case StartPoint.BottomLeft:
-				return _center + new Vector2(-border.Value.X, border.Value.Y);
-			case StartPoint.BottomRight:
-				return _center + border.Value;
-			default:
-				return new(0, 0);
-		}
-	}
-	public Curve2D GenerateCurve()
-	{
+		var startChildren = owner.GetChildren();
 		Curve2D curve = new Curve2D();
-		var points = new List<Vector2> { GetStartPoint() - _center };
+		var points = new List<Vector2> { new(0, 0) };
 		Random random = new Random();
 		int rBottom = (int) pointSpaceRange.X;
 		int rRange = Math.Abs((int)pointSpaceRange.Y - (int)pointSpaceRange.X);
 		var prevDir = new Vector2(0, 0);
 		int attempts = 0;
 		int i = 1;
-		while (i < pointCount) //TODO figure out a way to optimize, implement startpoint
+		while (i < pointCount) //TODO make size work, figure out a way to optimize, implement startpoint, patch infinite looping
 		{
 			int pointDist = (int)(rRange * random.NextSingle() + rBottom);
 			Vector2 dir;
