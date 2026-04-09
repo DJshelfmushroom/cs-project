@@ -5,6 +5,9 @@ func _ready() -> void:
 	
 func _process(_delta : float) -> void:
 	scale = Vector2(0.01,0.01)
+	
+func start_timer(time : int) -> void:
+	$Timer.start(time)
 
 func stop_timer() -> void:
 	$Timer.stop()

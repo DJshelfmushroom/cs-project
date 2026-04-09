@@ -9,8 +9,8 @@ preload("res://scenes/puzzles/shift_puzzle_3d.tscn")]
 
 var puzzle_scales = [0.45,0.4,0.5,0.5,0.4,0.35,0.2,0.6,0.08,0.17,0.2,0.2,0.25]
 
-var puzzle_weights = [2,4,3,3,2,2,1,3,2,4,3,3,6] #Value of how hard/time-consuming each puzzle is, will eventually be used to determine what puzzles you get
-var weights_left =   [2,4,3,3,2,2,1,3,2,4,3,3,6]
+var puzzle_weights = [2,4,3,4,2,2,1,3,2,4,3,3,8] #Value of how hard/time-consuming each puzzle is, will eventually be used to determine what puzzles you get
+var weights_left =   [2,4,3,3,2,2,1,3,2,4,3,3,8]
 
 var possible_positions = [
 	Vector3(0.5,0.25,0.5),Vector3(0.5,0.25,-0.5),Vector3(0.5,-0.25,0.5),Vector3(0.5,-0.25,-0.5),
@@ -47,10 +47,9 @@ var default_rot : float
 # for the glass break
 var broken = false
 
-var num_puzzles = 13
-
 
 var weight = SaveManager.level * 2 + 5
+
 
 var timeleft = 0
 var once = false
@@ -62,64 +61,80 @@ func Strike() -> void:
 
 
 func _ready() -> void:
-	# BS Animation assignment
 	shader_mat = $"WorldEnvironment".get_environment().get_sky().get_material()
 	default_xy = shader_mat.get_shader_parameter("xy_offset")
 	default_rot = shader_mat.get_shader_parameter("RotationAngle")
+
 	for c in $bomb_instance/Games.get_children():
 		c.visible = false
-	while weight > 0 && current_puzzles.size() < 20: 
+
+	while current_weight < weight && current_puzzles.size() < 20: 
 		var cont = false
+
 		for w in weights_left:
-			if w < weight:
+			if w <= weight - current_weight:
 				cont = true
+				break
+
 		if !cont:
 			break
-		var p = randi_range(0,puzzles.size() - 1)
-		if !(p == 6 && weight != 1):
-			
-			var matchh = false
-			if !current_puzzles.is_empty():
+
+		var valid_indices = []
+		for i in range(puzzles.size()):
+			if puzzle_weights[i] <= weight - current_weight:
+				var matchh = false
 				for k in current_puzzles:
-					if k.id == p + 1:
+					if k.id == i + 1:
 						matchh = true
-			if !matchh:
-				var rand
-				var unique = false
-				while !unique:
-					unique = true
-					rand = randi_range(0,possible_positions.size() - 1)
-					for puzzle in current_puzzles:
-						if puzzle.position == possible_positions[rand]:
-							unique = false
-					if rand < 4 and unique:
-						puzzles_on_front += 1
-					if puzzles_on_front < 3 and rand > 3:
-						unique = false
-					
-				if 	puzzle_weights[p] <= weight:
-					var puzzle_inst = puzzles[p].instantiate()
-					puzzle_inst.position = possible_positions[rand]
-					puzzle_inst.scale = Vector3(puzzle_scales[p],puzzle_scales[p],puzzle_scales[p])
-					if rand < 4:
-						puzzle_inst.rotation = rotations[0]
-					elif rand < 8:
-						puzzle_inst.rotation = rotations[1]
-					elif rand < 12:
-						puzzle_inst.rotation = rotations[2]
-					elif rand < 16:
-						puzzle_inst.rotation = rotations[3]
-					elif rand < 18:
-						puzzle_inst.rotation = rotations[4]
-					else:
-						puzzle_inst.rotation = rotations[5]
-					$bomb_instance/Games.add_child(puzzle_inst)
-					current_puzzles.append(puzzle_inst)
-					weights_left.remove_at(p)
-					weight -= puzzle_weights[p]
-					current_weight += puzzle_weights[p]
-		
+						break
+				if !matchh:
+					valid_indices.append(i)
+
+		if valid_indices.is_empty():
+			break
+
+		var p = valid_indices.pick_random()
+
+		var rand
+		var unique = false
+		while !unique:
+			unique = true
+			rand = randi_range(0,possible_positions.size() - 1)
+
+			for puzzle in current_puzzles:
+				if puzzle.position == possible_positions[rand]:
+					unique = false
+
+			if rand < 4 and unique:
+				puzzles_on_front += 1
+			if puzzles_on_front < 3 and rand > 3:
+				unique = false
+
+		var puzzle_inst = puzzles[p].instantiate()
+		puzzle_inst.position = possible_positions[rand]
+		puzzle_inst.scale = Vector3(puzzle_scales[p],puzzle_scales[p],puzzle_scales[p])
+
+		if rand < 4:
+			puzzle_inst.rotation = rotations[0]
+		elif rand < 8:
+			puzzle_inst.rotation = rotations[1]
+		elif rand < 12:
+			puzzle_inst.rotation = rotations[2]
+		elif rand < 16:
+			puzzle_inst.rotation = rotations[3]
+		elif rand < 18:
+			puzzle_inst.rotation = rotations[4]
+		else:
+			puzzle_inst.rotation = rotations[5]
+
+		$bomb_instance/Games.add_child(puzzle_inst)
+		current_puzzles.append(puzzle_inst)
+
+		weights_left.erase(puzzle_weights[p])
+		current_weight += puzzle_weights[p]
+
 	strikes = 0
+	$TimerNode.start_timer(weight * 4)
 
 func _process(_delta: float) -> void:
 	# loop through all puzzles, count completed
@@ -212,8 +227,8 @@ func _on_back_button_up() -> void:
 			SaveManager.pack1owned += 2
 		else:
 			SaveManager.pack1owned += 1
-		SaveManager.totalxp += current_weight * 2
+		SaveManager.totalxp += current_weight * 2 * (1 + timeleft / (weight * 3)) + 5 * (3 - strikes)
 	else:
-		SaveManager.totalxp += 10
+		SaveManager.totalxp += current_weight / 2
 	SaveManager.save()
 	get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
