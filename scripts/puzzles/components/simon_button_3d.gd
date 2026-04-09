@@ -43,16 +43,17 @@ func _ready() -> void:
 	yellow_material.emission_enabled = true
 	yellow_material.emission = Color.YELLOW
 	yellow_material.emission_energy = 2.0
+
+	orange_material.albedo_color = Color(1.0, 0.5, 0)
+	orange_material.emission_enabled = true
+	orange_material.emission = Color.ORANGE
+	orange_material.emission_energy = 2.0
 	
-	purple_material.albedo_color = Color(1.0, 0, 1.0)
+	purple_material.albedo_color = Color(0.5, 0, 1)
 	purple_material.emission_enabled = true
 	purple_material.emission = Color.PURPLE
 	purple_material.emission_energy = 2.0
 	
-	orange_material.albedo_color = Color(0.35, 1.0, 0.5)
-	orange_material.emission_enabled = true
-	orange_material.emission = Color.ORANGE
-	orange_material.emission_energy = 2.0
 
 	off()
 

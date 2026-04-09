@@ -1,58 +1,159 @@
 extends Node3D
 
+var id = 14
+
 var completed = false
 var started = false
 var colorsFlashing = false
-var Button1Color = null
-var Button2Color = null
+var Color1 = null
+var Color2 = null
+var colorList = []
+var buttonsPressed = []
 
 func _ready():
+	yes_Press()
 	started = false
 	$Button3D.num = 1
 	$Button3D2.num = 2
-	Button1Color = randi_range(0, 5)
-	Button2Color = randi_range(0, 5)
-	if Button2Color == Button1Color:
-		while Button2Color == Button1Color:
-			Button2Color = randi_range(0, 5)
+	$Button3D3.num = 3
+	Color1 = randi_range(0, 5)
+	Color2 = randi_range(0, 5)
+	if Color2 == Color1:
+		while Color2 == Color2:
+			Color2 = randi_range(0, 5)
+	colorList.append(Color1)
+	colorList.append(Color2)
 	
-func flash_Button1():
-	print(Button1Color)
-	if Button1Color == 0:
+func flash_Color1():
+	print(Color1)
+	if Color1 == 0:
 		$Button3D.set_color(Color.RED)
-	if Button1Color == 1:
-		$Button3D.set_color(Color.ORANGE)	
-	if Button1Color == 2:
-		$Button3D.set_color(Color.YELLOW)	
-	if Button1Color == 3:
-		$Button3D.set_color(Color.GREEN)	
-	if Button1Color == 4:
-		$Button3D.set_color(Color.BLUE)	
-	if Button1Color == 5:
-		$Button3D.set_color(Color.PURPLE)
-
-func flash_Button2():
-	if Button2Color == 0:
 		$Button3D2.set_color(Color.RED)
-	if Button2Color == 1:
-		$Button3D2.set_color(Color.ORANGE)	
-	if Button2Color == 2:
+	elif Color1 == 1:
+		$Button3D.set_color(Color.ORANGE)
+		$Button3D2.set_color(Color.ORANGE)		
+	elif Color1 == 2:
+		$Button3D.set_color(Color.YELLOW)	
 		$Button3D2.set_color(Color.YELLOW)	
-	if Button2Color == 3:
+	elif Color1 == 3:
+		$Button3D.set_color(Color.GREEN)
 		$Button3D2.set_color(Color.GREEN)	
-	if Button2Color == 4:
-		$Button3D2.set_color(Color.BLUE)	
-	if Button2Color == 5:
+	elif Color1 == 4:
+		$Button3D.set_color(Color.BLUE)	
+		$Button3D2.set_color(Color.BLUE)
+	elif Color1 == 5:
+		$Button3D.set_color(Color.PURPLE)
 		$Button3D2.set_color(Color.PURPLE)
+	await get_tree().create_timer(0.8).timeout
+	$Button3D.off()
+	$Button3D2.off()
 	
-#func reset_button_color():
-	
-func _on_but_pressed(num : int) -> void:
-	if num == 1:
-		if started == false:
-			started = true
-			flash_Button1()
-			#await get_tree().create_timer(0.4).timeout
 		
+func flash_Color2():
+	print(Color2)
+	if Color2 == 0:
+		$Button3D.set_color(Color.RED)
+		$Button3D2.set_color(Color.RED)
+	elif Color2 == 1:
+		$Button3D.set_color(Color.ORANGE)
+		$Button3D2.set_color(Color.ORANGE)		
+	elif Color2 == 2:
+		$Button3D.set_color(Color.YELLOW)	
+		$Button3D2.set_color(Color.YELLOW)	
+	elif Color2 == 3:
+		$Button3D.set_color(Color.GREEN)
+		$Button3D2.set_color(Color.GREEN)	
+	elif Color2 == 4:
+		$Button3D.set_color(Color.BLUE)	
+		$Button3D2.set_color(Color.BLUE)
+	elif Color2 == 5:
+		$Button3D.set_color(Color.PURPLE)
+		$Button3D2.set_color(Color.PURPLE)
+	await get_tree().create_timer(0.8).timeout
+	$Button3D.off()
+	$Button3D2.off()
+	
+func no_Press():
+	$Button3D.ignore_hover = true
+	$Button3D2.ignore_hover = true
+	$Button3D.disabled = true
+	$Button3D2.disabled = true
+	$Button3D3.disabled = true
+	
+func yes_Press():
+	$Button3D.ignore_hover = false
+	$Button3D2.ignore_hover = false
+	$Button3D.disabled = false
+	$Button3D2.disabled = false
+	$Button3D3.disabled = false
+	
+func is_Odd(number):
+	if number % 2 == 0:
+		return false
+	else:
+		return true
+
+func check_for_outcome():
+	if !is_Odd(colorList[0]) && !is_Odd(colorList[1]): #two primary colors
+		if buttonsPressed[0] == 0 && buttonsPressed[1] == 0:
+			win()
+		else:
+			lose()
+	elif is_Odd(colorList[0]) && is_Odd(colorList[1]): #two secondary colors
+		if buttonsPressed[0] == 1 && buttonsPressed[1] == 1:
+			win()
+		else:
+			lose()
+	elif !is_Odd(colorList[0]) && is_Odd(colorList[1]): #primary color, secondary color
+		if buttonsPressed[0] == 0 && buttonsPressed[1] == 1:
+			win()
+		else:
+			lose()
+	elif is_Odd(colorList[0]) && !is_Odd(colorList[1]): #secondary color, primary color
+		if buttonsPressed[0] == 1 && buttonsPressed[1] == 0:
+			win()
+		else:
+			lose()
+	
+func win():
+	$Button3D.set_color(Color.GREEN)
+	$Button3D2.set_color(Color.GREEN)
+	await get_tree().create_timer(0.2).timeout
+	$Button3D.off()
+	$Button3D2.off()
+	await get_tree().create_timer(0.2).timeout
+	$Button3D.set_color(Color.GREEN)
+	$Button3D2.set_color(Color.GREEN)
+	completed = true
+	no_Press()
+
+func lose():
+	$Button3D.set_color(Color.RED)
+	$Button3D2.set_color(Color.RED)
+	await get_tree().create_timer(0.2).timeout
+	$Button3D.off()
+	$Button3D2.off()
+	await get_tree().create_timer(0.2).timeout
+	$Button3D.set_color(Color.RED)
+	$Button3D2.set_color(Color.RED)
+	no_Press()
+
+func _on_but_pressed(num : int) -> void:
+	if started == false:
+		started = true
+		no_Press()
+		await flash_Color1()
+		await flash_Color2()
+		yes_Press()
+	else:
+		if buttonsPressed.size() < 2:
+			if num == 1:
+				buttonsPressed.append(0)
+			if num == 2:
+				buttonsPressed.append(1)
+		else:
+			check_for_outcome()
+				
+
 func _on_but_released(_num : int):
 	pass
