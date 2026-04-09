@@ -36,7 +36,7 @@ public partial class Operation : Node
 
 	private void GenerateLine() 
 	{
-		OperationPath2D operation = new OperationPath2D(new Vector2(500, 500), new Vector2(500, 500),
+		OperationPath2D operation = new OperationPath2D(new Vector2(250, 250), new Vector2(500, 500),
 			15,new Vector2(50, 200), this);
 		operation:
 		foreach (Node child in GetChildren())
@@ -44,8 +44,8 @@ public partial class Operation : Node
 			if (child is OperationArea2D) {
 				RemoveChild(child);
 			child.QueueFree();
+			}
 		}
-	}
 
 		// try
 		// {
@@ -81,11 +81,11 @@ class OperationPath2D(
 	Vector2 pointSpaceRange,
 	Node owner,
 	float lineWidth = 5,
-	OperationPath2D.StartPoint startPoint = OperationPath2D.StartPoint.BottomLeft)
+	OperationPath2D.StartPoint startPoint = OperationPath2D.StartPoint.TopLeft)
 {
 	private readonly Vector2 _center = center;
-	private Vector2 _size = size;
 	private StartPoint _startPoint = startPoint;
+	private Vector2 _size = size;
 	private const int AttemptThreshold = 50;
 
 	public enum StartPoint
@@ -96,13 +96,33 @@ class OperationPath2D(
 		BottomRight
 	}
 	
+	private Vector2 GetStartPoint(Vector2? border = null)
+	{
+		if (border == null) border = _size / 2;
+		
+		switch(startPoint)
+		{
+			case StartPoint.TopLeft:
+				return center - border.Value;
+			case StartPoint.TopRight:
+				return center + new Vector2(border.Value.X, - border.Value.Y);
+			case StartPoint.BottomLeft:
+				return center + new Vector2(-border.Value.X, border.Value.Y);
+			case StartPoint.BottomRight:
+				return center + border.Value;
+			default:
+				return new(0, 0);
+		}
+	}
 	
 	// generates a curve that also happens to render if you treat it correctly. 
 	public bool GenerateCurve()
 	{
 		var startChildren = owner.GetChildren();
-		Curve2D curve = new Curve2D();
-		var points = new List<Vector2> { new(0, 0) };
+		Log((GetStartPoint()) + "", owner);
+		
+		var points = new List<Vector2> { (GetStartPoint() - _center) };
+		
 		Random random = new Random();
 		int rBottom = (int) pointSpaceRange.X;
 		int rRange = Math.Abs((int)pointSpaceRange.Y - (int)pointSpaceRange.X);
@@ -226,7 +246,7 @@ class OperationPath2D(
 		{
 			if (child is OperationArea2D)
 			{
-				((Node2D)child).Position += new Vector2(500, 400);
+				((Node2D)child).Position += _center;
 			}
 		}
 			
