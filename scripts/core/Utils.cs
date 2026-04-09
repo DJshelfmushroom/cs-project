@@ -27,8 +27,13 @@ public partial class Utils : Node
 			Logger.Log(e.ToString(), caller, Logger.LogType.Error);
 			throw;
 		}
-	} 
-	
+	}
+
+	public static Vector2 InvertVec2(Vector2 vec)
+	{
+		return new Vector2(vec.Y, vec.X);
+	}
+
 	public static class Logger
 	{
 		public enum LogType
@@ -94,6 +99,7 @@ public partial class Utils : Node
 		/// <param name="message">The string to print</param>
 		/// <param name="source">Should be `this` (.NET) or `self` (gdscript) in most cases. Just used for name. Set to null for `General`</param>
 		/// <param name="type">Use if you want a different note `Debug` by default</param>
+		/// <param name="logType"></param>
 		/// <param name="color">Change the color of the message with BBCode format (eg. "yellow", "red")</param>
 		public static void Log(string message, Node source, LogType logType = LogType.Debug,
 			LogColors color = LogColors.YELLOW)

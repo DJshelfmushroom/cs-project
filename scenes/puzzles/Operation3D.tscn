@@ -1,30 +1,18 @@
 [gd_scene format=3 uid="uid://e8ghkvx30l1i"]
 
 [ext_resource type="Script" uid="uid://pa02a0hdtqo2" path="res://scripts/puzzles/OperationSub/Operation3d.cs" id="1_c1owo"]
-[ext_resource type="PackedScene" uid="uid://db4doj1fu8vqs" path="res://scenes/puzzles/operation.tscn" id="2_c1owo"]
-[ext_resource type="Script" uid="uid://kfysxdam006n" path="res://scripts/puzzles/OperationSub/mesh_instance_3d.gd" id="2_we3od"]
-[ext_resource type="PackedScene" uid="uid://cbcrfgck1oggo" path="res://scenes/components/screen_3d.tscn" id="3_dsryg"]
+[ext_resource type="Script" uid="uid://5v1i01ikvek1" path="res://scripts/puzzles/Operation.cs" id="2_c1owo"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_dsryg"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_w0axl"]
 viewport_path = NodePath("MeshInstance3D/SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_we3od"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c1owo"]
 resource_local_to_scene = true
-transparency = 1
-shading_mode = 0
-albedo_color = Color(0.37036446, 0.3703645, 0.37036446, 1)
-albedo_texture = SubResource("ViewportTexture_dsryg")
-heightmap_enabled = true
+albedo_texture = SubResource("ViewportTexture_w0axl")
 
-[sub_resource type="QuadMesh" id="QuadMesh_dsryg"]
-material = SubResource("StandardMaterial3D_we3od")
-
-[sub_resource type="Environment" id="Environment_dsryg"]
-background_mode = 3
-background_energy_multiplier = 16.0
-
-[sub_resource type="World3D" id="World3D_we3od"]
-environment = SubResource("Environment_dsryg")
+[sub_resource type="BoxMesh" id="BoxMesh_dsryg"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_c1owo")
 
 [node name="Operation3d" type="Node3D" unique_id=469409953]
 script = ExtResource("1_c1owo")
@@ -33,30 +21,19 @@ script = ExtResource("1_c1owo")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.8379046, 0)
 current = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=45214304]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
-mesh = SubResource("QuadMesh_dsryg")
-script = ExtResource("2_we3od")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1398944453]
+transform = Transform3D(1.0231185, 0, 0, 0, -4.472193e-08, 1.0231185, 0, -1.0231185, -4.472193e-08, 0, -0.69148123, 0)
+mesh = SubResource("BoxMesh_dsryg")
 
-[node name="SubViewport" type="SubViewport" parent="MeshInstance3D" unique_id=1539530111]
-world_3d = SubResource("World3D_we3od")
-transparent_bg = true
-physics_object_picking = true
-physics_object_picking_sort = true
-physics_object_picking_first_only = true
-render_target_update_mode = 4
+[node name="SubViewport" type="SubViewport" parent="MeshInstance3D" unique_id=867375941]
 
-[node name="Camera3D" type="Camera3D" parent="MeshInstance3D/SubViewport" unique_id=1202355878]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.3655483, 0)
+[node name="Camera2D" type="Camera2D" parent="MeshInstance3D/SubViewport" unique_id=1757969975]
+zoom = Vector2(0.6, 0.6)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="MeshInstance3D/SubViewport/Camera3D" unique_id=1327141815]
+[node name="CanvasLayer" type="CanvasLayer" parent="MeshInstance3D/SubViewport/Camera2D" unique_id=668345827]
+script = ExtResource("2_c1owo")
 
-[node name="Label" type="Label" parent="MeshInstance3D/SubViewport/Camera3D/CanvasLayer" unique_id=988268714]
+[node name="Label" type="Label" parent="MeshInstance3D/SubViewport/Camera2D/CanvasLayer" unique_id=1147909141]
 offset_right = 40.0
 offset_bottom = 16.0
-text = "hi"
-
-[node name="Screen3D" parent="." unique_id=53339724 instance=ExtResource("3_dsryg")]
-transform = Transform3D(2.1, 0, 0, 0, -8.742278e-08, 1, 0, -2, -4.371139e-08, -1, -0.011936069, 1)
-
-[node name="Operation" parent="." unique_id=1217318325 instance=ExtResource("2_c1owo")]
+text = "hi hello"
