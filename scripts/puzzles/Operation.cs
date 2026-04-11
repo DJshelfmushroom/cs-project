@@ -9,24 +9,50 @@ using Array = Godot.Collections.Array;
 using Utils = csproject.scripts.core.Utils;
 
 // ReSharper disable ReturnValueOfPureMethodIsNotUsed
+// ReSharper disable InconsistentNaming
 
-namespace csproject.scripts.puzzles;
+namespace csproject.scripts.puzzles; 
 
-public partial class Operation : Node
+/*
+ 
+ This script is a mess because I was learning  while writing it. I don't feel like rewriting it but surely that couldn't be too difficult.
+ 
+ */
+
+public partial class Operation : Node3D
 {
-	public const int id = 14; // to reference in GDScript
-	
+	[Export]
+	public int Id = 14; // to reference in GDScript
+
+	[ExportGroup("Puzzle Settings")] 
+	[Export] public Vector2 Center = new (350, 350);
+	[Export] public Vector2 Size = new (500,500);
+	[Export] public OperationPath2D.StartPoint startPoint = OperationPath2D.StartPoint.Bottom_Left;
+	[Export] public float Line_Width = 5f;
+
+	[ExportSubgroup("Segment Colors")] 
+	[Export] public Color First_Segment = Colors.YellowGreen;
+	[Export] public Color Middle_Segment = Colors.Aquamarine;
+	[Export] public Color Last_Segment = Colors.Red;
+
+	[ExportSubgroup("Advanced")]
+	[Export] public float Point_Spacing_Range_Min = 50;
+	[Export] public float Point_Spacing_Range_Max = 100;
+	[Export] public ushort Segment_Count = 20;
+	[Export] public uint Attempt_Threshold = 50;
+	[Export] public float Space_Buffer = 3f;
+
 	// private OperationPath2D _operation;
 	public override void _Ready()
 	{
+		Log(GetParent().ToString(),  this);
 		GenerateLine();
-		
 	}
 #if DEBUG
 	public override void _UnhandledInput(InputEvent @event)
 	{
 		base._UnhandledInput(@event);
-		if (@event.IsActionPressed("key_x"))
+		if (@event.IsActionPressed("key_x") && GetParent() is Window)
 		{
 			Log("refresh",  this, color: LogColors.GREEN);
 			GenerateLine();
@@ -36,12 +62,21 @@ public partial class Operation : Node
 
 	private void GenerateLine() 
 	{
-		OperationPath2D operation = new OperationPath2D(new Vector2(350, 350), new Vector2(500, 500), 
-			20,new Vector2(50, 100), this, startPoint:OperationPath2D.StartPoint.BottomLeft);
+		OperationPath2D operation = new OperationPath2D(
+			Center,
+			Size, 
+			Segment_Count,
+			new (Point_Spacing_Range_Min, Point_Spacing_Range_Max),
+			this,
+			Line_Width,
+			startPoint,
+			Space_Buffer,
+			(int)Attempt_Threshold);
+		operation.colors = [First_Segment, Middle_Segment, Last_Segment];
 		operation:
 		foreach (Node child in GetChildren())
 		{
-			if (child is OperationArea2D) {
+			if (child is OperationArea2D || child.Name.Equals("Area3DContainer")) {
 				RemoveChild(child);
 				child.QueueFree();
 			}
@@ -50,18 +85,14 @@ public partial class Operation : Node
 		// try
 		// {
 		
-		if (operation.GenerateCurve())
+		if (!operation.GenerateCurve())
 		{
-			goto place;
-		}
-		else
-		{
-			Log("uh oh (rerunning)", this, LogType.Error);
+			// Log("uh oh (rerunning)", this, LogType.Error);
 			goto operation;
 		}
-		place:
-		Log("Passed", this, color: LogColors.GREEN);
+		// Log("Passed", this, color: LogColors.GREEN);
 		var area3DContainer = new Node3D();
+		area3DContainer.Name = "Area3DContainer";
 		AddChild(area3DContainer);
 		foreach (var operationArea2D in operation.GetAreas())
 		{
@@ -75,15 +106,55 @@ public partial class Operation : Node
 			// }
 			poly3D.Depth = 10;
 			poly3D.Position = new Vector3(operationArea2D.Position.X, operationArea2D.Position.Y, 0);
-			var area3D = new Area3D();
+			var area3D = new OperationArea3D(operationArea2D.GetSection());
 			area3D.AddChild(poly3D);
 			Array<Vector3> vertices = new Array<Vector3>();
 			var polygon = poly3D.Polygon;
 
+			#region Area3DMesh
+			// facing out
 			foreach (var num in new [] {0,1,2,2,3,0})
 			{
-				vertices.Add(Vec23(polygon[num]));
+				vertices.Add(Vec23(polygon[num] + operation.GetCenter(), poly3D.Depth/2));
 			}
+			// back faces (sort of unnecessary)
+			foreach (var num in new [] {0,1,2,2,3,0})
+			{
+				vertices.Add(Vec23(polygon[num] + operation.GetCenter(), poly3D.Depth/-2));
+			}
+			
+			// long sides
+			// top
+			vertices.Add(Vec23(polygon[1] + operation.GetCenter(), poly3D.Depth/2));
+			vertices.Add(Vec23(polygon[0] + operation.GetCenter(), poly3D.Depth/2));
+			vertices.Add(Vec23(polygon[0] + operation.GetCenter(), poly3D.Depth/-2));
+			vertices.Add(Vec23(polygon[1] + operation.GetCenter(), poly3D.Depth/2));
+			vertices.Add(Vec23(polygon[1] + operation.GetCenter(), poly3D.Depth/-2));
+			vertices.Add(Vec23(polygon[0] + operation.GetCenter(), poly3D.Depth/-2));
+			// bottom
+			vertices.Add(Vec23(polygon[3] + operation.GetCenter(), poly3D.Depth/2));
+			vertices.Add(Vec23(polygon[2] + operation.GetCenter(), poly3D.Depth/2));
+			vertices.Add(Vec23(polygon[2] + operation.GetCenter(), poly3D.Depth/-2));
+			vertices.Add(Vec23(polygon[3] + operation.GetCenter(), poly3D.Depth/2));
+			vertices.Add(Vec23(polygon[3] + operation.GetCenter(), poly3D.Depth/-2));
+			vertices.Add(Vec23(polygon[2] + operation.GetCenter(), poly3D.Depth/-2));
+			
+			// small ends
+			// left side
+			vertices.Add(Vec23(polygon[1] + operation.GetCenter(), poly3D.Depth/2));
+			vertices.Add(Vec23(polygon[2] + operation.GetCenter(), poly3D.Depth/2));
+			vertices.Add(Vec23(polygon[2] + operation.GetCenter(), poly3D.Depth/-2));
+			vertices.Add(Vec23(polygon[1] + operation.GetCenter(), poly3D.Depth/2));
+			vertices.Add(Vec23(polygon[1] + operation.GetCenter(), poly3D.Depth/-2));
+			vertices.Add(Vec23(polygon[2] + operation.GetCenter(), poly3D.Depth/-2));
+			// right side
+			vertices.Add(Vec23(polygon[0] + operation.GetCenter(), poly3D.Depth/2));
+			vertices.Add(Vec23(polygon[3] + operation.GetCenter(), poly3D.Depth/2));
+			vertices.Add(Vec23(polygon[3] + operation.GetCenter(), poly3D.Depth/-2));
+			vertices.Add(Vec23(polygon[0] + operation.GetCenter(), poly3D.Depth/2));
+			vertices.Add(Vec23(polygon[0] + operation.GetCenter(), poly3D.Depth/-2));
+			vertices.Add(Vec23(polygon[3] + operation.GetCenter(), poly3D.Depth/-2));
+			
 
 			var mesh = new MeshInstance3D();
 			var arrayMesh = new ArrayMesh();
@@ -92,9 +163,18 @@ public partial class Operation : Node
 			arrays[(int)Mesh.ArrayType.Vertex] = vertices.ToArray();
 			arrayMesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
 			mesh.Mesh = arrayMesh;
+			#endregion
 
 			var material = new StandardMaterial3D();
+			material.CullMode = BaseMaterial3D.CullModeEnum.Disabled;
 			material.AlbedoColor = operationArea2D.color;
+			material.RenderPriority = 1;
+			if (operationArea2D.GetSection() == OperationArea2D.Section.Middle)
+			{
+				material.RenderPriority = 0;
+			}
+
+			material.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
 			var meshTexture = new MeshTexture();
 			meshTexture.Mesh = mesh.Mesh;
 			material.AlbedoTexture = meshTexture;
@@ -104,6 +184,15 @@ public partial class Operation : Node
 			area3D.AddChild(mesh);
 			
 			area3DContainer.AddChild(area3D);
+		}
+
+		foreach (var child in GetChildren())
+		{
+			if (child is Area2D)
+			{
+				RemoveChild(child);
+				child.QueueFree();
+			}
 		}
 	}
 
@@ -123,44 +212,44 @@ public partial class Operation : Node
 	}
 }
 
-class OperationPath2D(
+public class OperationPath2D(
 	Vector2 center,
 	Vector2 size,
 	int pointCount,
 	Vector2 pointSpaceRange,
 	Node owner,
 	float lineWidth = 5,
-	OperationPath2D.StartPoint startPoint = OperationPath2D.StartPoint.TopLeft)
+	OperationPath2D.StartPoint startPoint = OperationPath2D.StartPoint.Top_Left,
+	float minSpacing = 3,
+	int attemptThreshold = 50
+	)
 {
-	private readonly Vector2 _center = center;
-	private StartPoint _startPoint = startPoint;
-	private Vector2 _size = size;
-	private const int AttemptThreshold = 50;
 	private Array<OperationArea2D> _areas = new Array<OperationArea2D>();
-	
+	public Color[] colors = [Colors.Green, Colors.Aqua, Colors.Red];
 	public Array<OperationArea2D> GetAreas() => _areas;
-
+	public Vector2 GetCenter() => center;
+	
 	public enum StartPoint
 	{
-		TopLeft,
-		TopRight,
-		BottomLeft,
-		BottomRight
+		Top_Left,
+		Top_Right,
+		Bottom_Left,
+		Bottom_Right
 	}
 	
 	private Vector2 GetStartPoint(Vector2? border = null)
 	{
-		if (border == null) border = _size / 2;
+		if (border == null) border = size / 2;
 		
 		switch(startPoint)
 		{
-			case StartPoint.TopLeft:
+			case StartPoint.Top_Left:
 				return center - border.Value;
-			case StartPoint.TopRight:
+			case StartPoint.Top_Right:
 				return center + new Vector2(border.Value.X, - border.Value.Y);
-			case StartPoint.BottomLeft:
+			case StartPoint.Bottom_Left:
 				return center + new Vector2(-border.Value.X, border.Value.Y);
-			case StartPoint.BottomRight:
+			case StartPoint.Bottom_Right:
 				return center + border.Value;
 			default:
 				return new(0, 0);
@@ -170,15 +259,15 @@ class OperationPath2D(
 	// generates a curve that also happens to render if you treat it correctly. 
 	public bool GenerateCurve()
 	{
-		foreach (var kid in owner.GetChildren())
-		{
-			owner.RemoveChild(kid);
-			kid.QueueFree();
-		}
+		// foreach (var kid in owner.GetChildren())
+		// {
+		// 	owner.RemoveChild(kid);
+		// 	kid.QueueFree();
+		// }
 		var startChildren = owner.GetChildren();
 		// Log(GetStartPoint() + "", owner);
 		
-		var points = new List<Vector2> { (GetStartPoint() - _center) };
+		var points = new List<Vector2> { (GetStartPoint() - center) };
 		
 		Random random = new Random();
 		int rBottom = (int) pointSpaceRange.X;
@@ -195,7 +284,7 @@ class OperationPath2D(
 			do
 			{
 				attempts++;
-				if (attempts > AttemptThreshold)
+				if (attempts > attemptThreshold)
 				{
 					// throw new StackOverflowException("");
 					return false;
@@ -214,8 +303,8 @@ class OperationPath2D(
 				// Utils.Log($"point list len: {points.Count}", owner);
 				var newPoint = dir * pointDist + points[i - 1];
 				
-				if (newPoint.X > _size.X / 2 || newPoint.X < 0 - _size.X / 2 ||
-					newPoint.Y >  _size.Y / 2 || newPoint.Y < 0 - _size.Y / 2)
+				if (newPoint.X > size.X / 2 || newPoint.X < 0 - size.X / 2 ||
+					newPoint.Y >  size.Y / 2 || newPoint.Y < 0 - size.Y / 2)
 				{
 					// Log("out of bounds", owner);
 					continue;
@@ -226,14 +315,14 @@ class OperationPath2D(
 				var collision = new CollisionPolygon2D();
 				collision.Polygon = polyline.ToArray().First();
 				OperationArea2D.Section lineSection;
-				var color = Colors.Aquamarine;
+				var color = colors[1];
 				if (i == 1) 
 				{lineSection = OperationArea2D.Section.First;
-					color = Colors.GreenYellow;
+					color = colors[0];
 				}
 				else if (i == pointCount - 1) 
 				{lineSection = OperationArea2D.Section.Last;
-					color = Colors.Coral;
+					color = colors[2];
 				}
 				else lineSection = OperationArea2D.Section.Middle;
 				
@@ -252,7 +341,7 @@ class OperationPath2D(
 				var ray = new RayCast2D();
 				ray.GlobalPosition = points[i - 1] + rayOffset;
 				// ray.Position = Vector2.Zero;
-				ray.TargetPosition = newPoint - points[i - 1] + rayOffset;
+				ray.TargetPosition = newPoint - points[i - 1] + rayOffset + (minSpacing * dir);
 				// Utils.Log($"pos: {ray.GlobalPosition}, targ: {ray.TargetPosition}", owner);
 				ray.CollideWithBodies = false;
 				ray.CollideWithAreas = true;
@@ -277,7 +366,7 @@ class OperationPath2D(
 				}
 				owner.RemoveChild(ray);
 				ray.QueueFree();
-				var rayShift = InvertVec2(dir) * lineWidth;
+				var rayShift = InvertVec2(dir) * (lineWidth + minSpacing);
 				if (rayOffset == Vector2.Zero)
 				{
 					rayOffset = rayShift;
@@ -307,7 +396,7 @@ class OperationPath2D(
 		{
 			if (child is Node2D)
 			{
-				((Node2D)child).Position += _center;
+				((Node2D)child).Position += center;
 			}
 
 			if (child is OperationArea2D)

@@ -1,43 +1,7 @@
 [gd_scene format=3 uid="uid://e8ghkvx30l1i"]
 
-[ext_resource type="Script" uid="uid://pa02a0hdtqo2" path="res://scripts/puzzles/OperationSub/Operation3d.cs" id="1_c1owo"]
 [ext_resource type="Script" uid="uid://5v1i01ikvek1" path="res://scripts/puzzles/Operation.cs" id="2_c1owo"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_w0axl"]
-viewport_path = NodePath("MeshInstance3D/SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c1owo"]
-resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_w0axl")
-
-[sub_resource type="BoxMesh" id="BoxMesh_dsryg"]
-resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_c1owo")
-
 [node name="Operation3d" type="Node3D" unique_id=469409953]
-script = ExtResource("1_c1owo")
-
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1472895148]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.8379046, 0)
-current = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1398944453]
-transform = Transform3D(1.0231185, 0, 0, 0, -4.472193e-08, 1.0231185, 0, -1.0231185, -4.472193e-08, 0, -0.69148123, 0)
-mesh = SubResource("BoxMesh_dsryg")
-
-[node name="SubViewport" type="SubViewport" parent="MeshInstance3D" unique_id=867375941]
-size = Vector2i(1920, 1080)
-
-[node name="Camera2D" type="Camera2D" parent="MeshInstance3D/SubViewport" unique_id=1757969975]
-zoom = Vector2(0.6, 0.6)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="MeshInstance3D/SubViewport/Camera2D" unique_id=668345827]
 script = ExtResource("2_c1owo")
-
-[node name="Label" type="Label" parent="MeshInstance3D/SubViewport/Camera2D/CanvasLayer" unique_id=1147909141]
-offset_right = 40.0
-offset_bottom = 16.0
-text = "hi hello"
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1258296111]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5752554, 0.25856453, 0)
+Center = Vector2(0, 0)

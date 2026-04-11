@@ -101,7 +101,7 @@ public partial class OperationArea2D(OperationArea2D.Section section) : Area2D
 		}
 	}
 }
-
+#if false
 public partial class OperationArea3D : Area3D // just do this from scratch atp
 {
 	public OperationArea3D FromOperationArea2D(OperationArea2D original)
@@ -167,3 +167,4 @@ public partial class OperationArea3D : Area3D // just do this from scratch atp
 		}
 	}
 }
+#endif
