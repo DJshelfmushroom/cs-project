@@ -19,14 +19,19 @@ public partial class Utils : Node
 	{
 		try
 		{
-			Node node = caller.GetTree().CurrentScene.GetNode("Bomb");
-			return node;
+			// Node node = caller.GetTree().CurrentScene.GetNode("Bomb");
+			// if (node.Name != "Bomb") throw new Exception();
+			// else
+			// {
+			// 	return node;
+			// }
+			throw new Exception();
 		}
 		catch (Exception e)
 		{
-			Logger.Log(e.ToString(), caller, Logger.LogType.Error);
-			throw;
+			return caller.GetTree().CurrentScene;
 		}
+		return caller.GetTree().CurrentScene;
 	}
 
 	public static Vector2 InvertVec2(Vector2 vec)

@@ -103,63 +103,65 @@ public partial class Operation : Node3D
 			var poly = operationArea2D.GetCollisionPoly();
 			var poly3D = new CollisionPolygon3D();
 			poly3D.Polygon = poly.Polygon;
-			// Log("break", this, color: LogColors.GREEN);
-			// foreach (var str in poly.Polygon)
-			// {
-			// 	Log(str.ToString(), this);
-			// }
+			//Log("break", this, color: LogColors.GREEN);
+			//foreach (var str in poly.Polygon)
+			//{
+				//Log(str.ToString(), this);
+			//}
 			poly3D.Depth = Depth;
 			poly3D.Position = new Vector3(operationArea2D.Position.X, operationArea2D.Position.Y, 0);
 			var area3D = new OperationArea3D(operationArea2D.GetSection());
 			area3D.AddChild(poly3D);
 			Array<Vector3> vertices = new Array<Vector3>();
 			var polygon = poly3D.Polygon;
-
+	
 			#region Area3DMesh
+
+			float depthPos = poly3D.Depth;
+			float depthNeg = 0; 
 			// facing out
 			foreach (var num in new [] {0,1,2,2,3,0})
 			{
-				vertices.Add(Vec23(polygon[num] + operation.GetCenter(), poly3D.Depth/2));
+				vertices.Add(Vec23(polygon[num] + operation.GetCenter(), depthPos));
 			}
 			// back faces (sort of unnecessary)
 			foreach (var num in new [] {0,1,2,2,3,0})
 			{
-				vertices.Add(Vec23(polygon[num] + operation.GetCenter(), poly3D.Depth/-2));
+				vertices.Add(Vec23(polygon[num] + operation.GetCenter(), depthNeg));
 			}
 			
 			// long sides
 			// top
-			vertices.Add(Vec23(polygon[1] + operation.GetCenter(), poly3D.Depth/2));
-			vertices.Add(Vec23(polygon[0] + operation.GetCenter(), poly3D.Depth/2));
-			vertices.Add(Vec23(polygon[0] + operation.GetCenter(), poly3D.Depth/-2));
-			vertices.Add(Vec23(polygon[1] + operation.GetCenter(), poly3D.Depth/2));
-			vertices.Add(Vec23(polygon[1] + operation.GetCenter(), poly3D.Depth/-2));
-			vertices.Add(Vec23(polygon[0] + operation.GetCenter(), poly3D.Depth/-2));
+			vertices.Add(Vec23(polygon[1] + operation.GetCenter(), depthPos));
+			vertices.Add(Vec23(polygon[0] + operation.GetCenter(), depthPos));
+			vertices.Add(Vec23(polygon[0] + operation.GetCenter(), depthNeg));
+			vertices.Add(Vec23(polygon[1] + operation.GetCenter(), depthPos));
+			vertices.Add(Vec23(polygon[1] + operation.GetCenter(), depthNeg));
+			vertices.Add(Vec23(polygon[0] + operation.GetCenter(), depthNeg));
 			// bottom
-			vertices.Add(Vec23(polygon[3] + operation.GetCenter(), poly3D.Depth/2));
-			vertices.Add(Vec23(polygon[2] + operation.GetCenter(), poly3D.Depth/2));
-			vertices.Add(Vec23(polygon[2] + operation.GetCenter(), poly3D.Depth/-2));
-			vertices.Add(Vec23(polygon[3] + operation.GetCenter(), poly3D.Depth/2));
-			vertices.Add(Vec23(polygon[3] + operation.GetCenter(), poly3D.Depth/-2));
-			vertices.Add(Vec23(polygon[2] + operation.GetCenter(), poly3D.Depth/-2));
+			vertices.Add(Vec23(polygon[3] + operation.GetCenter(), depthPos));
+			vertices.Add(Vec23(polygon[2] + operation.GetCenter(), depthPos));
+			vertices.Add(Vec23(polygon[2] + operation.GetCenter(), depthNeg));
+			vertices.Add(Vec23(polygon[3] + operation.GetCenter(), depthPos));
+			vertices.Add(Vec23(polygon[3] + operation.GetCenter(), depthNeg));
+			vertices.Add(Vec23(polygon[2] + operation.GetCenter(), depthNeg));
 			
 			// small ends
 			// left side
-			vertices.Add(Vec23(polygon[1] + operation.GetCenter(), poly3D.Depth/2));
-			vertices.Add(Vec23(polygon[2] + operation.GetCenter(), poly3D.Depth/2));
-			vertices.Add(Vec23(polygon[2] + operation.GetCenter(), poly3D.Depth/-2));
-			vertices.Add(Vec23(polygon[1] + operation.GetCenter(), poly3D.Depth/2));
-			vertices.Add(Vec23(polygon[1] + operation.GetCenter(), poly3D.Depth/-2));
-			vertices.Add(Vec23(polygon[2] + operation.GetCenter(), poly3D.Depth/-2));
+			vertices.Add(Vec23(polygon[1] + operation.GetCenter(), depthPos));
+			vertices.Add(Vec23(polygon[2] + operation.GetCenter(), depthPos));
+			vertices.Add(Vec23(polygon[2] + operation.GetCenter(), depthNeg));
+			vertices.Add(Vec23(polygon[1] + operation.GetCenter(), depthPos));
+			vertices.Add(Vec23(polygon[1] + operation.GetCenter(), depthNeg));
+			vertices.Add(Vec23(polygon[2] + operation.GetCenter(), depthNeg));
 			// right side
-			vertices.Add(Vec23(polygon[0] + operation.GetCenter(), poly3D.Depth/2));
-			vertices.Add(Vec23(polygon[3] + operation.GetCenter(), poly3D.Depth/2));
-			vertices.Add(Vec23(polygon[3] + operation.GetCenter(), poly3D.Depth/-2));
-			vertices.Add(Vec23(polygon[0] + operation.GetCenter(), poly3D.Depth/2));
-			vertices.Add(Vec23(polygon[0] + operation.GetCenter(), poly3D.Depth/-2));
-			vertices.Add(Vec23(polygon[3] + operation.GetCenter(), poly3D.Depth/-2));
+			vertices.Add(Vec23(polygon[0] + operation.GetCenter(), depthPos));
+			vertices.Add(Vec23(polygon[3] + operation.GetCenter(), depthPos));
+			vertices.Add(Vec23(polygon[3] + operation.GetCenter(), depthNeg));
+			vertices.Add(Vec23(polygon[0] + operation.GetCenter(), depthPos));
+			vertices.Add(Vec23(polygon[0] + operation.GetCenter(), depthNeg));
+			vertices.Add(Vec23(polygon[3] + operation.GetCenter(), depthNeg));
 			
-
 			var mesh = new MeshInstance3D();
 			var arrayMesh = new ArrayMesh();
 			Array arrays = [];
@@ -178,6 +180,7 @@ public partial class Operation : Node3D
 				material.RenderPriority = 1;
 			}
 
+			material.ShadingMode = BaseMaterial3D.ShadingModeEnum.Unshaded;
 			material.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
 			var meshTexture = new MeshTexture();
 			meshTexture.Mesh = mesh.Mesh;

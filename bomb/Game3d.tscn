@@ -25,7 +25,6 @@
 [ext_resource type="PackedScene" uid="uid://baq643x0wad0k" path="res://scenes/puzzles/shift_puzzle_3d.tscn" id="16_73cp6"]
 [ext_resource type="Script" uid="uid://bwsbcc1ccrmyh" path="res://scripts/ui/roltateAxis/Roltateaxis.cs" id="16_osgfx"]
 [ext_resource type="PackedScene" uid="uid://e8ghkvx30l1i" path="res://scenes/puzzles/Operation3D.tscn" id="17_lriyw"]
-[ext_resource type="Script" uid="uid://pa02a0hdtqo2" path="res://scripts/puzzles/OperationSub/Operation3d.cs" id="18_y6gmb"]
 [ext_resource type="Script" uid="uid://blgp7xfn1j5te" path="res://bomb/explosion.cs" id="19_osgfx"]
 [ext_resource type="Texture2D" uid="uid://bsmsqywoaj4wo" path="res://glass.png" id="23_d16ca"]
 [ext_resource type="Texture2D" uid="uid://cnu8l7hiepbgb" path="res://backdrop.jpg" id="23_okahj"]
@@ -214,7 +213,7 @@ transform = Transform3D(-8.742278e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.742278e-09
 [node name="ShiftPuzzle3D" parent="bomb_instance/Games" unique_id=79543864 instance=ExtResource("16_73cp6")]
 
 [node name="Operation3D" parent="bomb_instance/Games" unique_id=469409953 instance=ExtResource("17_lriyw")]
-script = ExtResource("18_y6gmb")
+script = null
 metadata/completed = false
 
 [node name="PlugLocs" type="Node3D" parent="." unique_id=628909958]

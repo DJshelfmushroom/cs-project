@@ -1,11 +1,12 @@
 ﻿using System.Dynamic;
+using csproject.scripts.core;
 using Godot;
 
 namespace csproject.scripts.puzzles.OperationSub;
 
 public partial class OperationArea3D(OperationArea2D.Section section) : Area3D
 {
-    private static ushort _intersections = 0;
+    private static short _intersections = 0;
     private Operation _operation;
     private static bool _strikeOut = false;
 
@@ -26,8 +27,10 @@ public partial class OperationArea3D(OperationArea2D.Section section) : Area3D
 
     public override void _MouseEnter()
     {
+        Utils.SetCursor(Utils.CursorState.Hand);
+        _intersections++;
         base._MouseEnter();
-        if (_intersections == 0 && section != OperationArea2D.Section.First)
+        if (_intersections == 1 && section != OperationArea2D.Section.First)
         {
             _strikeOut = true;
             _operation.Failure();
@@ -39,32 +42,36 @@ public partial class OperationArea3D(OperationArea2D.Section section) : Area3D
             _strikeOut = false;
         }
 
-        _intersections++;
+        
     }
 
     public override void _MouseExit()
     {
+        Utils.SetCursor(Utils.CursorState.Arrow);
         base._MouseExit();
+        // Utils.Logger.Log($"intersections: {_intersections}, Section: {section}, Strikeout: {_strikeOut}", this);
         _intersections--;
-        if (section == OperationArea2D.Section.Last)
-        {
-            if (_strikeOut)
-            {
-                // for (int i = 0; i < 3; i++)
-                // {
-                //     _operation.Failure();
-                // }
-                return;
-            }
-
-            _operation.Success();
-            return;
-        }
-
-        if (_intersections <= 0)
+        if (_strikeOut)
         {
             _operation.Failure();
+            _strikeOut = false;
+            return;
         }
+        // Utils.Logger.Log("1", this);
+        // Utils.Logger.Log($"intersections: {_intersections}, Section: {section}, Strikeout: {_strikeOut}", this);
+        if (_intersections <= 0 && section != OperationArea2D.Section.First)
+        {
+            _operation.Failure();
+            return;
+        }
+        // Utils.Logger.Log("2", this);
+        // Utils.Logger.Log($"intersections: {_intersections}, Section: {section}, Strikeout: {_strikeOut}", this);
+        if (section == OperationArea2D.Section.Last)
+        {
+            _operation.Success();
+        }
+
+       
         
     }
 }
