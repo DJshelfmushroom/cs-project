@@ -7,6 +7,7 @@ public partial class OperationArea3D(OperationArea2D.Section section) : Area3D
 {
     private static ushort _intersections = 0;
     private Operation _operation;
+    private static bool _strikeOut = false;
 
     public override void _Ready()
     {
@@ -28,9 +29,16 @@ public partial class OperationArea3D(OperationArea2D.Section section) : Area3D
         base._MouseEnter();
         if (_intersections == 0 && section != OperationArea2D.Section.First)
         {
+            _strikeOut = true;
             _operation.Failure();
             return;
         }
+
+        if (section == OperationArea2D.Section.First)
+        {
+            _strikeOut = false;
+        }
+
         _intersections++;
     }
 
@@ -40,6 +48,15 @@ public partial class OperationArea3D(OperationArea2D.Section section) : Area3D
         _intersections--;
         if (section == OperationArea2D.Section.Last)
         {
+            if (_strikeOut)
+            {
+                // for (int i = 0; i < 3; i++)
+                // {
+                //     _operation.Failure();
+                // }
+                return;
+            }
+
             _operation.Success();
             return;
         }

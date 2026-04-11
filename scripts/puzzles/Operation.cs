@@ -21,14 +21,12 @@ namespace csproject.scripts.puzzles;
 
 public partial class Operation : Node3D
 {
-	[Export]
-	public int Id = 14; // to reference in GDScript
-
 	[ExportGroup("Puzzle Settings")] 
-	[Export] public Vector2 Center = new (350, 350);
+	[Export] public Vector2 Center = new (0, 0);
 	[Export] public Vector2 Size = new (500,500);
 	[Export] public OperationPath2D.StartPoint startPoint = OperationPath2D.StartPoint.Bottom_Left;
 	[Export] public float Line_Width = 5f;
+	[Export] public float Depth = 10f;
 
 	[ExportSubgroup("Segment Colors")] 
 	[Export] public Color First_Segment = Colors.YellowGreen;
@@ -41,11 +39,17 @@ public partial class Operation : Node3D
 	[Export] public ushort Segment_Count = 20;
 	[Export] public uint Attempt_Threshold = 50;
 	[Export] public float Space_Buffer = 3f;
-
+	
+	[ExportSubgroup("Don't Change")]
+	[Export]
+	public int id { get; set; } = 14; // to reference in GDScript
+	[Export]
+	public bool completed { get; set; } = false;
+	
 	// private OperationPath2D _operation;
 	public override void _Ready()
 	{
-		Log(GetParent().ToString(),  this);
+		// Log(GetParent().ToString(),  this);
 		GenerateLine();
 	}
 #if DEBUG
@@ -104,7 +108,7 @@ public partial class Operation : Node3D
 			// {
 			// 	Log(str.ToString(), this);
 			// }
-			poly3D.Depth = 10;
+			poly3D.Depth = Depth;
 			poly3D.Position = new Vector3(operationArea2D.Position.X, operationArea2D.Position.Y, 0);
 			var area3D = new OperationArea3D(operationArea2D.GetSection());
 			area3D.AddChild(poly3D);
@@ -171,7 +175,7 @@ public partial class Operation : Node3D
 			material.RenderPriority = 1;
 			if (operationArea2D.GetSection() == OperationArea2D.Section.Middle)
 			{
-				material.RenderPriority = 0;
+				material.RenderPriority = 1;
 			}
 
 			material.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
@@ -203,11 +207,13 @@ public partial class Operation : Node3D
 
 	public void Success()
 	{
-		Log("Success", this, color: LogColors.GREEN);
+		//Log("Success", this, color: LogColors.GREEN);
+		completed = true;
 	}
 	
 	public void Failure()
 	{
+		//Log("Failure", this, color: LogColors.RED);
 		Utils.GetBombNode(this).Call("Strike");
 	}
 }

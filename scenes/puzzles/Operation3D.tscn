@@ -1,7 +1,14 @@
 [gd_scene format=3 uid="uid://e8ghkvx30l1i"]
 
+[ext_resource type="PackedScene" uid="uid://cbcrfgck1oggo" path="res://scenes/components/screen_3d.tscn" id="1_c1owo"]
 [ext_resource type="Script" uid="uid://5v1i01ikvek1" path="res://scripts/puzzles/Operation.cs" id="2_c1owo"]
 
-[node name="Operation3d" type="Node3D" unique_id=469409953]
+[node name="Operation3D" type="Node3D" unique_id=469409953]
 script = ExtResource("2_c1owo")
-Center = Vector2(0, 0)
+metadata/id = 14
+
+[node name="Screen3D" parent="." unique_id=1984545930 instance=ExtResource("1_c1owo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.475, -0.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=725958336]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.1280887)
