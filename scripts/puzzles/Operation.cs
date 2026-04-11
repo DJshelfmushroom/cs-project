@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using csproject.scripts.puzzles.OperationSub;
 using static csproject.scripts.core.Utils.Logger;
-using csproject.scripts.core;
 using Godot;
-using Microsoft.VisualBasic.CompilerServices;
+using Godot.Collections;
+using Array = Godot.Collections.Array;
 using Utils = csproject.scripts.core.Utils;
 
 // ReSharper disable ReturnValueOfPureMethodIsNotUsed
@@ -36,14 +36,14 @@ public partial class Operation : Node
 
 	private void GenerateLine() 
 	{
-		OperationPath2D operation = new OperationPath2D(new Vector2(250, 250), new Vector2(500, 500),
-			15,new Vector2(50, 200), this);
+		OperationPath2D operation = new OperationPath2D(new Vector2(350, 350), new Vector2(500, 500), 
+			20,new Vector2(50, 100), this, startPoint:OperationPath2D.StartPoint.BottomLeft);
 		operation:
 		foreach (Node child in GetChildren())
 		{
 			if (child is OperationArea2D) {
 				RemoveChild(child);
-			child.QueueFree();
+				child.QueueFree();
 			}
 		}
 
@@ -61,8 +61,57 @@ public partial class Operation : Node
 		}
 		place:
 		Log("Passed", this, color: LogColors.GREEN);
+		var area3DContainer = new Node3D();
+		AddChild(area3DContainer);
+		foreach (var operationArea2D in operation.GetAreas())
+		{
+			var poly = operationArea2D.GetCollisionPoly();
+			var poly3D = new CollisionPolygon3D();
+			poly3D.Polygon = poly.Polygon;
+			// Log("break", this, color: LogColors.GREEN);
+			// foreach (var str in poly.Polygon)
+			// {
+			// 	Log(str.ToString(), this);
+			// }
+			poly3D.Depth = 10;
+			poly3D.Position = new Vector3(operationArea2D.Position.X, operationArea2D.Position.Y, 0);
+			var area3D = new Area3D();
+			area3D.AddChild(poly3D);
+			Array<Vector3> vertices = new Array<Vector3>();
+			var polygon = poly3D.Polygon;
+
+			foreach (var num in new [] {0,1,2,2,3,0})
+			{
+				vertices.Add(Vec23(polygon[num]));
+			}
+
+			var mesh = new MeshInstance3D();
+			var arrayMesh = new ArrayMesh();
+			Array arrays = [];
+			arrays.Resize((int)Mesh.ArrayType.Max);
+			arrays[(int)Mesh.ArrayType.Vertex] = vertices.ToArray();
+			arrayMesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
+			mesh.Mesh = arrayMesh;
+
+			var material = new StandardMaterial3D();
+			material.AlbedoColor = operationArea2D.color;
+			var meshTexture = new MeshTexture();
+			meshTexture.Mesh = mesh.Mesh;
+			material.AlbedoTexture = meshTexture;
+			
+			mesh.MaterialOverride = material;
+			mesh.Position = Vector3.Zero;
+			area3D.AddChild(mesh);
+			
+			area3DContainer.AddChild(area3D);
+		}
 	}
-	
+
+	private Vector3 Vec23(Vector2 vec2, float depth = 0)
+	{
+		return new Vector3(vec2.X, vec2.Y, depth);
+	}
+
 	public void Success()
 	{
 		Log("Success", this, color: LogColors.GREEN);
@@ -87,6 +136,9 @@ class OperationPath2D(
 	private StartPoint _startPoint = startPoint;
 	private Vector2 _size = size;
 	private const int AttemptThreshold = 50;
+	private Array<OperationArea2D> _areas = new Array<OperationArea2D>();
+	
+	public Array<OperationArea2D> GetAreas() => _areas;
 
 	public enum StartPoint
 	{
@@ -118,8 +170,13 @@ class OperationPath2D(
 	// generates a curve that also happens to render if you treat it correctly. 
 	public bool GenerateCurve()
 	{
+		foreach (var kid in owner.GetChildren())
+		{
+			owner.RemoveChild(kid);
+			kid.QueueFree();
+		}
 		var startChildren = owner.GetChildren();
-		Log((GetStartPoint()) + "", owner);
+		// Log(GetStartPoint() + "", owner);
 		
 		var points = new List<Vector2> { (GetStartPoint() - _center) };
 		
@@ -129,7 +186,7 @@ class OperationPath2D(
 		var prevDir = new Vector2(0, 0);
 		int attempts = 0;
 		int i = 1;
-		while (i < pointCount) //TODO make size work, figure out a way to optimize, implement startpoint, patch infinite looping
+		while (i < pointCount) 
 		{
 			int pointDist = (int)(rRange * random.NextSingle() + rBottom);
 			Vector2 dir;
@@ -160,7 +217,7 @@ class OperationPath2D(
 				if (newPoint.X > _size.X / 2 || newPoint.X < 0 - _size.X / 2 ||
 					newPoint.Y >  _size.Y / 2 || newPoint.Y < 0 - _size.Y / 2)
 				{
-					Log("out of bounds", owner);
+					// Log("out of bounds", owner);
 					continue;
 				}
 				
@@ -182,15 +239,15 @@ class OperationPath2D(
 				
 				var area = new OperationArea2D(lineSection);
 				area.color = color;
-				area.AddChild(collision);
+				area.SetCollisionPoly(collision);
 				owner.AddChild(area);
 				area.InputPickable = true;
 				area.QueueRedraw();
 
 				var rayOffset = Vector2.Zero;
-				Log("Ray section", owner);
+				// Log("Ray section", owner);
 				raycast:
-				Log("Ray offset: " + rayOffset, owner);
+				// Log("Ray offset: " + rayOffset, owner);
 				
 				var ray = new RayCast2D();
 				ray.GlobalPosition = points[i - 1] + rayOffset;
@@ -210,14 +267,17 @@ class OperationPath2D(
 					// Utils.Log($"Collision: {((Node2D)ray.GetCollider()).Name}, position: {ray.GetCollisionPoint()}", owner);
 					if (ray.GetCollider() is Area2D && owner.GetChildren().Contains(ray.GetCollider()))
 					{
+						owner.RemoveChild(area);
 						area.QueueFree();
-						// ray.QueueFree();
+						owner.RemoveChild(ray);
+						ray.QueueFree();
 						// i--;
 						continue;
 					}
 				}
-				
-				var rayShift = InvertVec2(dir) * lineWidth/2;
+				owner.RemoveChild(ray);
+				ray.QueueFree();
+				var rayShift = InvertVec2(dir) * lineWidth;
 				if (rayOffset == Vector2.Zero)
 				{
 					rayOffset = rayShift;
@@ -225,31 +285,37 @@ class OperationPath2D(
 				}
 				if (rayOffset == rayShift)
 				{
-					rayOffset = -rayShift;
+					rayOffset = -1 * rayShift;
 					goto raycast;
 				}
 
 				// Utils.Log($"attempts: {attempts}", owner, color: "blue");
 				points.Add(newPoint);
-				Log($"i: {i}", owner);
-				Log($"points: {points.Count}", owner);
+				// Log($"i: {i}", owner);
+				// Log($"points: {points.Count}", owner);
 				prevDir = dir;
-				owner.RemoveChild(ray);
-				ray.QueueFree();
+				// owner.RemoveChild(ray);
+				// ray.QueueFree();
 				i++;
 				attempts = 0;
 				break;
 			} while (true);
 		}
 
-		foreach (Node child in owner.GetChildren())
+		var endChildren = owner.GetChildren().Except(startChildren);
+		foreach (Node child in endChildren)
 		{
-			if (child is OperationArea2D)
+			if (child is Node2D)
 			{
 				((Node2D)child).Position += _center;
 			}
-		}
+
+			if (child is OperationArea2D)
+			{
+				_areas.Add((OperationArea2D)child);
+			}
 			
+		}
 		return true;
 	}
 

@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://5v1i01ikvek1" path="res://scripts/puzzles/Operation.cs" id="1_ag8f0"]
 
-[node name="Operation" type="CanvasLayer" unique_id=797916308]
+[node name="Operation" type="Node3D" unique_id=169873692]
 script = ExtResource("1_ag8f0")
