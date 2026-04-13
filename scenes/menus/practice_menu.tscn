@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfb0xkkb6nprd"]
+[gd_scene format=3 uid="uid://dfb0xkkb6nprd"]
 
 [ext_resource type="Script" uid="uid://4bm7yoweh8x6" path="res://scripts/menus/practice_menu.gd" id="1_r1lkr"]
-[ext_resource type="Script" uid="uid://he7c8cfk0sdy" path="res://scripts/menus/puzzle_button.gd" id="2_d0x0j"]
+[ext_resource type="Script" uid="uid://c5qfwi4cim5kh" path="res://scripts/menus/PuzzleButton.cs" id="2_r1lkr"]
 
-[node name="PracticeMenu" type="Control"]
+[node name="PracticeMenu" type="Control" unique_id=795439325]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r1lkr")
 
-[node name="StartButton" type="Button" parent="."]
+[node name="StartButton" type="Button" parent="." unique_id=108697927]
 layout_mode = 0
 offset_left = 810.0
 offset_top = 700.0
@@ -21,7 +21,7 @@ offset_bottom = 780.0
 theme_override_font_sizes/font_size = 35
 text = "START"
 
-[node name="PuzzleButton" type="Button" parent="."]
+[node name="PuzzleButton" type="Button" parent="." unique_id=1628502377]
 layout_mode = 0
 offset_left = 760.0
 offset_top = 580.0
@@ -29,9 +29,9 @@ offset_right = 1160.0
 offset_bottom = 680.0
 theme_override_font_sizes/font_size = 50
 text = "PUZZLE"
-script = ExtResource("2_d0x0j")
+script = ExtResource("2_r1lkr")
 
-[node name="BackButton" type="Button" parent="."]
+[node name="BackButton" type="Button" parent="." unique_id=47186815]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.040000003

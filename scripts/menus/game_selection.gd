@@ -53,6 +53,7 @@ var weight = SaveManager.level * 2 + 5
 var timeleft = 0
 var once = false
 var current_weight = 0
+var is_practice = false
 
 func Strike() -> void:
 	Utils.LogGD("strike", self)
@@ -70,6 +71,21 @@ func _ready() -> void:
 
 	for c in $bomb_instance/Games.get_children():
 		c.visible = false
+		
+	# Special practice mode handling
+	if (SaveManager.practice):
+		SaveManager.practice = false
+		is_practice = true
+		var p = SaveManager.practice_puzzle_index
+		var puzzle: Node3D = puzzles[p].instantiate()
+		puzzle.position = possible_positions[0]  # front-face slot
+		puzzle.scale = Vector3(puzzle_scales[p], puzzle_scales[p], puzzle_scales[p])
+		puzzle.rotation = rotations[0]
+		$"bomb_instance/Games".add_child(puzzle)
+		current_puzzles.append(puzzle)
+		strikes = 0
+		$ReturnButton.visible = true
+		return
 
 	while current_weight < weight && current_puzzles.size() < 20: 
 		var cont = false
@@ -182,7 +198,7 @@ func _process(_delta: float) -> void:
 	else:
 		fix = false
 		
-	if (strikes >= 3 || ($TimerNode/Timer.time_left <= 0 && !allcompleted)):
+	if (strikes >= 3 || (!is_practice && $TimerNode/Timer.time_left <= 0 && !allcompleted)):
 		$StrikesLabel.add_theme_color_override("font_color", "red")
 		$TimerNode/Timer/TimeLabel.add_theme_color_override("font_color", "red")
 		failed = true
@@ -224,14 +240,15 @@ func check_for_achievements():
 
 
 func _on_back_button_up() -> void:
-	if (allcompleted):
-		var rand = randi_range(1,10)
-		if rand == 10:
-			SaveManager.pack1owned += 2
+	if !is_practice:
+		if (allcompleted):
+			var rand = randi_range(1,10)
+			if rand == 10:
+				SaveManager.pack1owned += 2
+			else:
+				SaveManager.pack1owned += 1
+			SaveManager.totalxp += current_weight * 2 * (1 + timeleft / (weight * 3)) + 5 * (3 - strikes)
 		else:
-			SaveManager.pack1owned += 1
-		SaveManager.totalxp += current_weight * 2 * (1 + timeleft / (weight * 3)) + 5 * (3 - strikes)
-	else:
-		SaveManager.totalxp += current_weight / 2
-	SaveManager.save()
+			SaveManager.totalxp += current_weight / 2
+		SaveManager.save()
 	get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
