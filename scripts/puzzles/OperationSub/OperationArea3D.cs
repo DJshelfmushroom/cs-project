@@ -27,13 +27,15 @@ public partial class OperationArea3D(OperationArea2D.Section section) : Area3D
 
     public override void _MouseEnter()
     {
+        base._MouseEnter();
         Utils.SetCursor(Utils.CursorState.Hand);
         _intersections++;
-        base._MouseEnter();
+        if (!Input.IsActionPressed("ui_mouse_left_button")) return;
+        
         if (_intersections == 1 && section != OperationArea2D.Section.First)
         {
             _strikeOut = true;
-            _operation.Failure();
+            // _operation.Failure();
             return;
         }
 
@@ -47,31 +49,30 @@ public partial class OperationArea3D(OperationArea2D.Section section) : Area3D
 
     public override void _MouseExit()
     {
-        Utils.SetCursor(Utils.CursorState.Arrow);
         base._MouseExit();
+        if (!Input.IsActionPressed("ui_mouse_left_button")) return;
+        Utils.SetCursor(Utils.CursorState.Arrow);
         // Utils.Logger.Log($"intersections: {_intersections}, Section: {section}, Strikeout: {_strikeOut}", this);
         _intersections--;
         if (_strikeOut)
         {
             _operation.Failure();
             _strikeOut = false;
-            return;
         }
-        // Utils.Logger.Log("1", this);
-        // Utils.Logger.Log($"intersections: {_intersections}, Section: {section}, Strikeout: {_strikeOut}", this);
-        if (_intersections <= 0 && section != OperationArea2D.Section.First)
+        else
         {
-            _operation.Failure();
-            return;
-        }
-        // Utils.Logger.Log("2", this);
-        // Utils.Logger.Log($"intersections: {_intersections}, Section: {section}, Strikeout: {_strikeOut}", this);
-        if (section == OperationArea2D.Section.Last)
-        {
-            _operation.Success();
+            if (section == OperationArea2D.Section.Last)
+            {
+                _operation.Success();
+            }
+            else
+            {
+                if (_intersections <= 0 && section != OperationArea2D.Section.First)
+                {
+                    _operation.Failure();
+                }
+            }
         }
 
-       
-        
     }
 }
