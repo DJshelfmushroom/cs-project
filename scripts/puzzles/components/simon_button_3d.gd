@@ -4,6 +4,8 @@ var disabled = false
 var num = 0
 var ignore_hover = true
 var color : Color
+var text = ""
+var size = 350
 
 var default_material: StandardMaterial3D
 var red_material: StandardMaterial3D
@@ -78,3 +80,11 @@ func on() -> void:
 
 func off() -> void:
 	$ColorOutline.material_override = default_material
+	
+func set_text(new_text : String):
+	text = new_text
+	$button/Label3D.text = new_text
+	
+func text_size(new_size):
+	size = new_size
+	$button/Label3D.font_size = new_size

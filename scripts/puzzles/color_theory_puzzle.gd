@@ -1,6 +1,6 @@
 extends Node3D
 
-var id = 14
+var id = 15
 
 var completed = false
 var started = false
@@ -11,11 +11,15 @@ var colorList = []
 var buttonsPressed = []
 
 func _ready():
-	yes_Press()
 	started = false
 	$Button3D.num = 1
 	$Button3D2.num = 2
-	$Button3D3.num = 3
+	$Button3D.set_text("P")
+	$Button3D.text_size(250)
+	$Button3D2.set_text("S")
+	$Button3D2.text_size(250)
+	colorList.clear()
+	buttonsPressed.clear()
 	Color1 = randi_range(0, 5)
 	Color2 = randi_range(0, 5)
 	if Color2 == Color1:
@@ -23,9 +27,9 @@ func _ready():
 			Color2 = randi_range(0, 5)
 	colorList.append(Color1)
 	colorList.append(Color2)
+	yes_Press()
 	
 func flash_Color1():
-	print(Color1)
 	if Color1 == 0:
 		$Button3D.set_color(Color.RED)
 		$Button3D2.set_color(Color.RED)
@@ -50,7 +54,6 @@ func flash_Color1():
 	
 		
 func flash_Color2():
-	print(Color2)
 	if Color2 == 0:
 		$Button3D.set_color(Color.RED)
 		$Button3D2.set_color(Color.RED)
@@ -78,14 +81,12 @@ func no_Press():
 	$Button3D2.ignore_hover = true
 	$Button3D.disabled = true
 	$Button3D2.disabled = true
-	$Button3D3.disabled = true
 	
 func yes_Press():
 	$Button3D.ignore_hover = false
 	$Button3D2.ignore_hover = false
 	$Button3D.disabled = false
 	$Button3D2.disabled = false
-	$Button3D3.disabled = false
 	
 func is_Odd(number):
 	if number % 2 == 0:
@@ -137,6 +138,8 @@ func lose():
 	$Button3D.set_color(Color.RED)
 	$Button3D2.set_color(Color.RED)
 	no_Press()
+	$"../../..".strikes += 1
+	_ready()
 
 func _on_but_pressed(num : int) -> void:
 	if started == false:
@@ -146,13 +149,18 @@ func _on_but_pressed(num : int) -> void:
 		await flash_Color2()
 		yes_Press()
 	else:
-		if buttonsPressed.size() < 2:
+		if !$"../../..".failed:
 			if num == 1:
 				buttonsPressed.append(0)
+				if buttonsPressed.size() >= 2:
+					no_Press()
+					check_for_outcome()
 			if num == 2:
 				buttonsPressed.append(1)
-		else:
-			check_for_outcome()
+				if buttonsPressed.size() >= 2:
+					no_Press()
+					check_for_outcome()
+			
 				
 
 func _on_but_released(_num : int):

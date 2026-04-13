@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bbs1m8qk80u72" path="res://scripts/puzzles/components/simon_button_3d.gd" id="1_4u1h0"]
 [ext_resource type="PackedScene" uid="uid://okm8q0m3g8ry" path="res://scenes/components/button.blend" id="2_fwa7l"]
 [ext_resource type="Script" uid="uid://3f8sojmo78eh" path="res://scripts/components/button_area_3d.gd" id="3_yokv4"]
+[ext_resource type="FontFile" uid="uid://d3y7shqhxu6sv" path="res://assets/fonts/Urban Shadow Sans Serif.otf" id="4_fwa7l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5jgh7"]
 size = Vector3(0.25, 0.25, 0.03)
@@ -21,6 +22,14 @@ script = ExtResource("1_4u1h0")
 
 [node name="button" parent="." unique_id=1911447855 instance=ExtResource("2_fwa7l")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Label3D" type="Label3D" parent="button" unique_id=714123156]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.012, -0.01, -0.012)
+pixel_size = 0.0005
+modulate = Color(0.19607843, 0.19607843, 0.19607843, 1)
+font = ExtResource("4_fwa7l")
+font_size = 350
+outline_size = 0
 
 [node name="Area3D" type="Area3D" parent="button" unique_id=1081729927]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
