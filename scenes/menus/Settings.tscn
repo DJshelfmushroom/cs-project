@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bf4l7hlq1hx7n"]
+
+[ext_resource type="Script" uid="uid://f2ablx0oaxho" path="res://scripts/ui/layout/container.gd" id="1_dpcdt"]
+[ext_resource type="PackedScene" uid="uid://tnxumru84hbs" path="res://scenes/menus/main_menu.tscn" id="2_ep3y0"]
+[ext_resource type="PackedScene" uid="uid://qg2w22tgahh7" path="res://scenes/menus/SettingsSub/Video Settings.tscn" id="3_1yi0m"]
+[ext_resource type="PackedScene" uid="uid://ibqpqqbvpvpa" path="res://scenes/menus/SettingsSub/Graphics Settings.tscn" id="4_pm5e4"]
+[ext_resource type="PackedScene" uid="uid://cbjxl2ywi6djs" path="res://scenes/menus/SettingsSub/Game Settings.tscn" id="5_lgbdl"]
+[ext_resource type="PackedScene" uid="uid://bl35vwy3n0mc5" path="res://scenes/menus/SettingsSub/Audio Settings.tscn" id="6_twlt4"]
+[ext_resource type="PackedScene" uid="uid://y3y1qxv5awxc" path="res://scenes/menus/SettingsSub/Åbout.tscn" id="7_cc6f7"]
+
+[node name="Settings" type="Control" unique_id=1504911516]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_dpcdt")
+margin_y = 100.0
+button_values = Dictionary[StringName, PackedScene]({
+&"About": ExtResource("7_cc6f7"),
+&"Advanced Graphics Settings": ExtResource("4_pm5e4"),
+&"Audio Settings": ExtResource("6_twlt4"),
+&"Back to Menu": ExtResource("2_ep3y0"),
+&"Game Settings": ExtResource("5_lgbdl"),
+&"Video Settings": ExtResource("3_1yi0m")
+})

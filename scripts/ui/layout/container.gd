@@ -1,3 +1,4 @@
+class_name Containter
 extends Control
 # place objects
 
@@ -8,19 +9,23 @@ var SCREEN_HEIGHT : float
 var abs_max_height : float
 
 var children : Array[Button]
+var scenes : Array[Resource]
 
-enum butValTypes { MENU, SETTINGS, RETURN }
+#enum butValTypes { MENU, SETTINGS, RETURN }
 
-const butVals : Dictionary = {
-	butValTypes.MENU: "Main Menu",
-	butValTypes.SETTINGS: "Settings",
-	butValTypes.RETURN: "Return to Game"
-}
+#const butVals : Dictionary = {
+	#butValTypes.MENU: "Quit",
+	#butValTypes.SETTINGS: "Settings",
+	#butValTypes.RETURN: "Back"
+#}
+
+@export var button_values : Dictionary[StringName, PackedScene]
 
 func createChildren() -> void :
 	var buttons : Array[String] = []
-	for key in butVals.keys():
-		buttons.append(butVals.get(key))
+	#for key in butVals.keys():
+		#buttons.append(butVals.get(key))
+	buttons.append_array(button_values.keys())
 	for i in range(len(buttons)):
 		var child : Button = Button.new()
 		child.text = buttons[i]
@@ -32,6 +37,9 @@ func createChildren() -> void :
 
 func _ready() -> void:
 	#SceneManager.ChangeScene(self, "res://scenes/menus/main_menu.tscn")
+	for i in button_values.values():
+		Utils.LogGD(str(i), self)
+		scenes.append(load(str(i)))
 	createChildren()
 	margin_y += BUTTON_HEIGHT/2.0
 	SCREEN_HEIGHT = get_viewport_rect().size.y
@@ -41,15 +49,18 @@ func _ready() -> void:
 		child.position.x = get_viewport_rect().get_center().x
 		child.position.y = (( abs_max_height / len(children) * (i+0) ) +  margin_y)
 		child.position -= child.size / 2
+		Utils.LogGD("Created child at: " + str(child.position), self);
 		child.pressed.connect(menu_press.bind(child.name))
 
 func menu_press(but: StringName) -> void:
 	#print(but)
-	var butIsVal = func (val : butValTypes) -> bool:
-		return but == butVals.get(val)
-	if butIsVal.call(butValTypes.MENU):
-		SceneManager.ChangeScene(self, "res://scenes/menus/main_menu.tscn")
-	elif butIsVal.call(butValTypes.RETURN):
-		SceneManager.ReturnToScene(self)
-	elif butIsVal.call(butValTypes.SETTINGS):
-		SceneManager.ChangeScene(self, "res://scenes/menus/pause_menu.tscn")
+	#var butIsVal = func (val : butValTypes) -> bool:
+		#return but == butVals.get(val)
+	#if butIsVal.call(butValTypes.MENU):
+		#SceneManager.ChangeScene(self, "res://scenes/menus/main_menu.tscn")
+	#elif butIsVal.call(butValTypes.RETURN):
+		#SceneManager.ReturnToScene(self)
+	#elif butIsVal.call(butValTypes.SETTINGS):
+		#SceneManager.ChangeScene(self, "res://scenes/menus/pause_menu.tscn")
+	SceneManager.ChangeScene(self, button_values.get(but).resource_path)
+	#get_tree().change_scene_to_file(button_values.get(but).resource_path)

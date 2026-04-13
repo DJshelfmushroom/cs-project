@@ -24,3 +24,8 @@ func _on_mouse_options_button_pressed() -> void:
 
 func _on_achievements_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menus/Achievements.tscn")
+
+
+func _on_settings_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/menus/Settings.tscn");
+	pass # Replace with function body.
