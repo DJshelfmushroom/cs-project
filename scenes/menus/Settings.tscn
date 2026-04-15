@@ -21,3 +21,4 @@ button_values = Dictionary[StringName, PackedScene]({
 &"Game Settings": ExtResource("5_lgbdl"),
 &"Video Settings": ExtResource("3_1yi0m")
 })
+button_order = Array[int]([4, 2, 3, 5, 0, 1])

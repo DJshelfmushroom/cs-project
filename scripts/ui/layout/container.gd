@@ -20,6 +20,7 @@ var scenes : Array[Resource]
 #}
 
 @export var button_values : Dictionary[StringName, PackedScene]
+@export var button_order : Array[int]
 
 func createChildren() -> void :
 	var buttons : Array[String] = []
@@ -28,7 +29,7 @@ func createChildren() -> void :
 	buttons.append_array(button_values.keys())
 	for i in range(len(buttons)):
 		var child : Button = Button.new()
-		child.text = buttons[i]
+		child.text = buttons[button_order[i]]
 		child.name = child.text
 		child.add_theme_font_size_override("font_size", 96)
 		self.add_child(child)
@@ -53,14 +54,4 @@ func _ready() -> void:
 		child.pressed.connect(menu_press.bind(child.name))
 
 func menu_press(but: StringName) -> void:
-	#print(but)
-	#var butIsVal = func (val : butValTypes) -> bool:
-		#return but == butVals.get(val)
-	#if butIsVal.call(butValTypes.MENU):
-		#SceneManager.ChangeScene(self, "res://scenes/menus/main_menu.tscn")
-	#elif butIsVal.call(butValTypes.RETURN):
-		#SceneManager.ReturnToScene(self)
-	#elif butIsVal.call(butValTypes.SETTINGS):
-		#SceneManager.ChangeScene(self, "res://scenes/menus/pause_menu.tscn")
 	SceneManager.ChangeScene(self, button_values.get(but).resource_path)
-	#get_tree().change_scene_to_file(button_values.get(but).resource_path)
