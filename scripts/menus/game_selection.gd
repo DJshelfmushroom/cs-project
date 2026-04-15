@@ -29,6 +29,7 @@ var rotations = [
 var puzzles_on_front = 0
 
 var strikes
+var finalstrikes
 var failed = false
 var allcompleted = false
 var fix = false
@@ -47,7 +48,7 @@ var default_rot : float
 var broken = false
 
 
-var weight = SaveManager.level * 2 + 5
+var weight = SaveManager.level * 2 + 4
 
 
 var timeleft = 0
@@ -153,7 +154,7 @@ func _ready() -> void:
 		current_weight += puzzle_weights[p]
 
 	strikes = 0
-	$TimerNode.start_timer(weight * 4)
+	$TimerNode.start_timer(weight * 2.5 + 10)
 
 func _process(_delta: float) -> void:
 	# loop through all puzzles, count completed
@@ -194,6 +195,7 @@ func _process(_delta: float) -> void:
 			$TimerNode/Timer/TimeLabel.add_theme_color_override("font_color", "green")
 			$StrikesLabel.add_theme_color_override("font_color", "green")
 			allcompleted = true
+			finalstrikes = strikes
 			$RedWireButton.visible = true
 	else:
 		fix = false
@@ -247,7 +249,7 @@ func _on_back_button_up() -> void:
 				SaveManager.pack1owned += 2
 			else:
 				SaveManager.pack1owned += 1
-			SaveManager.totalxp += current_weight * 2 * (1 + timeleft / (weight * 3)) + 5 * (3 - strikes)
+			SaveManager.totalxp += current_weight * 2 * (1 + timeleft / (weight * 3)) + 5 * (3 - finalstrikes)
 		else:
 			SaveManager.totalxp += current_weight / 2
 		SaveManager.save()

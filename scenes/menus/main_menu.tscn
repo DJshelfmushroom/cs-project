@@ -7,7 +7,9 @@
 [ext_resource type="Script" uid="uid://c7iwdg7snkt5n" path="res://scripts/menus/lvl_label.gd" id="4_imvie"]
 [ext_resource type="Script" uid="uid://d3hm7i2w7dbg" path="res://scripts/menus/xp_label.gd" id="5_ng0o5"]
 [ext_resource type="Script" uid="uid://ctopr804dfmky" path="res://scripts/menus/xp_bar_progress.gd" id="6_ng0o5"]
+[ext_resource type="Script" uid="uid://c8qm8vqgnop4n" path="res://scenes/menus/xpbutton.gd" id="7_bre17"]
 [ext_resource type="FontFile" uid="uid://d3y7shqhxu6sv" path="res://assets/fonts/Urban Shadow Sans Serif.otf" id="8_50h1w"]
+[ext_resource type="Script" uid="uid://cu88knsorvjyj" path="res://scenes/menus/xpbutton2.gd" id="8_88kup"]
 [ext_resource type="Material" uid="uid://bsn18sj4p0ebm" path="res://bomb/Button/flakingPaint.tres" id="9_euy4r"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_bre17"]
@@ -182,6 +184,26 @@ offset_bottom = 1005.0
 color = Color(0.39215687, 0.78431374, 1, 1)
 script = ExtResource("6_ng0o5")
 
+[node name="xpbutton1" type="Button" parent="Control" unique_id=1131962921]
+layout_mode = 0
+offset_left = 253.0
+offset_top = 853.0
+offset_right = 353.0
+offset_bottom = 961.0
+theme_override_font_sizes/font_size = 100
+text = "+"
+script = ExtResource("7_bre17")
+
+[node name="xpbutton2" type="Button" parent="Control" unique_id=1017480025]
+layout_mode = 0
+offset_left = 366.0
+offset_top = 851.0
+offset_right = 466.0
+offset_bottom = 942.0
+theme_override_font_sizes/font_size = 100
+text = "-"
+script = ExtResource("8_88kup")
+
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1126621304]
 handle_input_locally = false
 size = Vector2i(1920, 1080)
@@ -219,3 +241,5 @@ skeleton = NodePath("../..")
 [connection signal="pressed" from="Control/MouseOptionsButton" to="." method="_on_mouse_options_button_pressed"]
 [connection signal="pressed" from="Control/AchievementsButton" to="." method="_on_achievements_button_pressed"]
 [connection signal="pressed" from="Control/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Control/xpbutton1" to="Control/xpbutton1" method="_on_pressed"]
+[connection signal="pressed" from="Control/xpbutton2" to="Control/xpbutton2" method="_on_pressed"]
