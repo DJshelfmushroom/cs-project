@@ -18,12 +18,14 @@ func _ready():
 	$Button3D.text_size(250)
 	$Button3D2.set_text("S")
 	$Button3D2.text_size(250)
+	$Button3D.off()
+	$Button3D2.off()
 	colorList.clear()
 	buttonsPressed.clear()
 	Color1 = randi_range(0, 5)
 	Color2 = randi_range(0, 5)
 	if Color2 == Color1:
-		while Color2 == Color2:
+		while Color2 == Color1:
 			Color2 = randi_range(0, 5)
 	colorList.append(Color1)
 	colorList.append(Color2)

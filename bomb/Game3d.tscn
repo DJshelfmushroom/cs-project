@@ -218,7 +218,7 @@ visible = false
 script = null
 metadata/completed = false
 
-[node name="Rainbow Puzzle" parent="bomb_instance/Games" unique_id=801326223 instance=ExtResource("18_y6gmb")]
+[node name="Color Theory Puzzle" parent="bomb_instance/Games" unique_id=801326223 instance=ExtResource("18_y6gmb")]
 transform = Transform3D(-0.005689753, 0, -0.9999838, 0, 1, 0, 0.9999838, 0, -0.005689753, -0.5356956, 0, 0)
 
 [node name="PlugLocs" type="Node3D" parent="." unique_id=628909958]
