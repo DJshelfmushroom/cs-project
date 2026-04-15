@@ -212,8 +212,27 @@ public partial class Operation : Node3D
 	{
 		//Log("Success", this, color: LogColors.GREEN);
 		completed = true;
+		
 	}
-	
+
+	private Array<Color> SetColors(Color color)
+	{
+		var colors = new Array<Color>();
+		foreach (var child in GetChild<Node3D>(1).GetChildren())
+		{
+			foreach (var kid in child.GetChildren())
+			{
+				if (kid is MeshInstance3D meshInstance)
+				{
+					var material = meshInstance.GetActiveMaterial(0) as StandardMaterial3D;
+					material.AlbedoColor = color;
+					meshInstance.MaterialOverride = material;
+				}
+			}
+		}
+		return null;
+	}
+
 	public void Failure()
 	{
 		//Log("Failure", this, color: LogColors.RED);

@@ -50,7 +50,7 @@ func _ready() -> void:
 		child.position.x = get_viewport_rect().get_center().x
 		child.position.y = (( abs_max_height / len(children) * (i+0) ) +  margin_y)
 		child.position -= child.size / 2
-		Utils.LogGD("Created child at: " + str(child.position), self);
+		#Utils.LogGD("Created child at: " + str(child.position), self);
 		child.pressed.connect(menu_press.bind(child.name))
 
 func menu_press(but: StringName) -> void:
