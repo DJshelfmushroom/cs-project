@@ -35,7 +35,7 @@ Use `await get_tree().create_timer(1.0).timeout` or local state flags to prevent
 ---
 
 ## Step 3 — Register in `game_selection.gd`
-Four parallel arrays must all get a new entry **at the same index**:
+Three parallel arrays must all get a new entry **at the same index**:
 
 ```gdscript
 var puzzles = [
@@ -45,7 +45,6 @@ var puzzles = [
 
 var puzzle_scales  = [..., 0.5]  # how big it appears on the bomb
 var puzzle_weights = [..., 3  ]  # how often it's picked (higher = more frequent)
-var weights_left   = [..., 3  ]  # starts equal to puzzle_weights
 ```
 
 > **Index = ID - 1.** The puzzle at index 0 is id 1.
@@ -71,7 +70,6 @@ var puzzle_names = [
 | `puzzles` | `game_selection.gd` | scene preload |
 | `puzzle_scales` | `game_selection.gd` | float (size on bomb) |
 | `puzzle_weights` | `game_selection.gd` | int (spawn frequency) |
-| `weights_left` | `game_selection.gd` | same as weight |
 | `puzzle_names` | `puzzle_button.gd` | display string |
 
-All five must have the same length. A mismatch won't error immediately — it'll silently cause wrong puzzles to load or the practice menu to break.
+All four must have the same length. A mismatch won't error immediately — it'll silently cause wrong puzzles to load or the practice menu to break.

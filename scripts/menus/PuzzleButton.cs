@@ -16,7 +16,7 @@ public partial class PuzzleButton : Button
 	private Control parent;
 	public override void _Ready()
 	{
-		this.Pressed += OnButtonPressed;
+		this.GuiInput += OnButtonPressed;
 		parent = this.GetParent<Control>();
 	}
 
@@ -25,15 +25,15 @@ public partial class PuzzleButton : Button
 		this.Text = puzzleNames[(int)parent.Get("selected_puzzle")];
 	}
 
-	private void OnButtonPressed()
+	private void OnButtonPressed(InputEvent @event)
 	{
-		if ((int)parent.Get("selected_puzzle") < puzzleNames.Length - 1)
+		if (@event is InputEventMouseButton mouseEvent && @event.IsPressed())
 		{
-			parent.Set("selected_puzzle", (int)parent.Get("selected_puzzle") + 1);
-		}
-		else
-		{
-			parent.Set("selected_puzzle", 0);
+			int current = (int)parent.Get("selected_puzzle");
+			if (mouseEvent.ButtonIndex == MouseButton.Left)
+				parent.Set("selected_puzzle", (current + 1) % puzzleNames.Length);
+			else if (mouseEvent.ButtonIndex == MouseButton.Right)
+				parent.Set("selected_puzzle", (current - 1 + puzzleNames.Length) % puzzleNames.Length);
 		}
 	}
 }
