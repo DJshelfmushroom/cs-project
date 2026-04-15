@@ -19,6 +19,8 @@ var score = 0
 @onready var timer = $Timer
 #@onready var screen_size = get_viewport().get_visible_rect()
 var completed = false
+var longmode = false
+var scoreToWin = 20
 
 func set_start_button():
 	$StartButton.set_text("START")
@@ -35,6 +37,9 @@ func set_start_button():
 	#$RestartButton3D.num = 1
 
 func _ready():
+	scoreToWin = 20
+	if longmode == true:
+		scoreToWin = 30
 	set_start_button()
 	#set_restart_button()
 	$EndScreen.hide()
@@ -107,7 +112,7 @@ func _process(_delta: float):
 				processinstruction = null
 				awaitingInputs = false
 				_startGame()
-	if score >= 20:
+	if score >= scoreToWin:
 		win()	
 				
 func _process_instruction(key):

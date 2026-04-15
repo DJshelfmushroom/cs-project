@@ -11,15 +11,47 @@ var b1 = null
 var b2 = null
 var thisfailed = false
 var practice = true
+var longmode = false
 	
 func _ready() -> void:
 	completed = false
 	$MemoryButton3D.visible = false
-	$Screen3D.position = Vector3(-0.067, -0.14, 0.002)
-	$Screen3D.set_size(5.1,3.9)
+	if longmode == true:
+		nums.append_array([7,7,8,8])
+		$Screen3D.position = Vector3(-0.067, -0.28, 0.002)
+		$Screen3D.set_size(5.1,5.1)
+		hard_setup()
+	else:
+		$Screen3D.position = Vector3(-0.067, -0.14, 0.002)
+		$Screen3D.set_size(5.1,3.9)
+		normal_setup()
+		
+
+		
+func normal_setup():
 	var index = 0
 	var y = -2.773
 	for i in range(3):
+		var x = -4
+		for j in range(4):
+			var buttoninst = button_scene.instantiate()
+			add_child(buttoninst)
+			buttoninst.position = Vector3(x / 10.0, y / -10.0, 0.003)
+			buttoninst.index = index
+			buttoninst.set_text("")
+			buttons.append(buttoninst)
+			x += 3
+			index += 1
+		y += 3
+	for button in buttons:
+		var rand = gen.randi_range(0,nums.size() - 1)
+		button.num = nums[rand]
+		nums.remove_at(rand)
+		
+func hard_setup():
+	var index = 0
+	var y = -2.773
+	for i in range(4):
 		var x = -4
 		for j in range(4):
 			var buttoninst = button_scene.instantiate()

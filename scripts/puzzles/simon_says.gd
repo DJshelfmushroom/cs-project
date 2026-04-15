@@ -21,11 +21,15 @@ var completed = false
 var setup = false
 var practice = true
 var started = false
+var longmode = false
 
 var FirstTime = 1
 
 
 func _ready():
+	var cap = 3
+	if longmode == true:
+		cap = 5
 	if FirstTime == 1:
 		FirstTime = 0
 	if !setup:
@@ -62,7 +66,7 @@ func _ready():
 		_Buttons_Disabled()
 		if GameOver == false:
 			Level = Level + 1
-			if (Level < 3):
+			if (Level < cap):
 				for x in range(0, Level + 3):
 					Pattern.append(Colors.pick_random())
 					
@@ -74,6 +78,9 @@ func _ready():
 			else:
 				_Win_Animation()
 				completed = true
+
+
+
 
 	
 func _play_Pattern():
