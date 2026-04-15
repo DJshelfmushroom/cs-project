@@ -10,7 +10,7 @@ var Color2 = null
 var Color3 = null
 var colorList = []
 var buttonsPressed = []
-var longmode = true
+var longmode = false
 
 func _ready():
 	started = false
