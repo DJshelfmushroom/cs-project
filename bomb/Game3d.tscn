@@ -155,7 +155,7 @@ scale_curve = SubResource("CurveTexture_8d7bq")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4f8ie"]
 shader = ExtResource("24_ddge8")
 shader_parameter/Image = ExtResource("29_d16ca")
-shader_parameter/RotationAngle = 0.0
+shader_parameter/RotationAngle = 2.19
 shader_parameter/xy_offset = Vector2(0.34, 0)
 shader_parameter/Intensity = 1.0
 

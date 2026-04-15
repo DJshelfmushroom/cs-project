@@ -172,14 +172,14 @@ func _process(_delta: float) -> void:
 		completed_puzzles = local_puzzles_completed
 		animation_countdown = 0 if cancel else animation_duration
 	if animation_countdown > 0:
-		var current_offset:Vector2 = shader_mat.get_shader_parameter("xy_offset")
+		#var current_offset:Vector2 = shader_mat.get_shader_parameter("xy_offset")
 		var current_angle:float = shader_mat.get_shader_parameter("RotationAngle")
-		shader_mat.set_shader_parameter("xy_offset", Vector2(0, current_offset.y + (1.0/animation_duration)))
+		#shader_mat.set_shader_parameter("xy_offset", Vector2(current_offset.x, current_offset.y + (1.0/animation_duration)))
 		shader_mat.set_shader_parameter("RotationAngle", current_angle + (2*PI)/animation_duration)
 		animation_countdown -= 1
-	else:
-		shader_mat.set_shader_parameter("xy_offset", default_xy)
-		shader_mat.set_shader_parameter("RotationAngle", default_rot)
+	#else:
+		#shader_mat.set_shader_parameter("xy_offset", default_xy)
+		#shader_mat.set_shader_parameter("RotationAngle", default_rot)
 	
 	if(!broken):
 		if(strikes >= 3):
