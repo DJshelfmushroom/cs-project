@@ -30,6 +30,7 @@ Achievements="*uid://de3yj11gujba4"
 [debug_draw_3d]
 
 settings/addon_root_folder="res://addons/debug_draw_3d"
+settings/updates/check_for_updates=false
 
 [display]
 
