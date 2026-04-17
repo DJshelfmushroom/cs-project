@@ -1,23 +1,23 @@
-[gd_scene format=3 uid="uid://1ngtcimmehdi"]
+[gd_scene format=3 uid="uid://duogrl3ndqmo"]
 
-[ext_resource type="Script" uid="uid://byhb4ivqov6s3" path="res://scripts/Tutorial Scripts/puzzle_tutorial.gd" id="1_42xkd"]
-[ext_resource type="Script" uid="uid://bbi5g3r8nkyow" path="res://scripts/Tutorial Scripts/back_button_tutorial.gd" id="2_h07aq"]
+[ext_resource type="Script" uid="uid://byhb4ivqov6s3" path="res://scripts/Tutorial Scripts/puzzle_tutorial.gd" id="1_l78kb"]
+[ext_resource type="Script" uid="uid://bbi5g3r8nkyow" path="res://scripts/Tutorial Scripts/back_button_tutorial.gd" id="2_f1qcp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3vyhl"]
 font_size = 46
 
-[node name="Puzzle7Tutorial" type="Label" unique_id=887672500]
+[node name="Puzzle11Tutorial" type="Label" unique_id=887672500]
 offset_left = 120.0
 offset_top = 345.0
 offset_right = 1795.0
 offset_bottom = 542.0
 theme_override_font_sizes/font_size = 60
-text = "Disable Puzzle:
-When this puzzle appears on the bomb, it needs to be completed before all other puzzles.
-Completing another puzzle before it will result in a game over. To complete this puzzle, you 
-simply need to type the phrase \"Disable_Defense\", and hit enter to submit it."
+text = "Target Puzzle:
+This Puzzle has a blue dot in the center of the screen, similar to the track puzzle. To beat this
+puzzle, you will need to click on the button multiple times in a row. If you wait too long
+in-between clicks, you will get a strike."
 label_settings = SubResource("LabelSettings_3vyhl")
-script = ExtResource("1_42xkd")
+script = ExtResource("1_l78kb")
 
 [node name="BackButton" type="Button" parent="." unique_id=1111421169]
 layout_mode = 1
@@ -33,6 +33,6 @@ offset_bottom = 576.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 30
 text = "BACK TO TUTORIALS"
-script = ExtResource("2_h07aq")
+script = ExtResource("2_f1qcp")
 
 [connection signal="button_up" from="BackButton" to="." method="_on_back_button_up"]

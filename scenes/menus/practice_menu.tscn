@@ -18,6 +18,7 @@ offset_left = 810.0
 offset_top = 700.0
 offset_right = 1110.0
 offset_bottom = 780.0
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 35
 text = "START"
 
@@ -27,6 +28,7 @@ offset_left = 760.0
 offset_top = 580.0
 offset_right = 1160.0
 offset_bottom = 680.0
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 50
 button_mask = 3
 text = "PUZZLE"
@@ -43,6 +45,7 @@ offset_left = 126.8
 offset_top = 872.0
 offset_right = 376.8
 offset_bottom = 942.0
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 30
 text = "BACK"
 

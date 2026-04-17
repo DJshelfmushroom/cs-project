@@ -41,3 +41,15 @@ func _on_puzzle_9_tutorial_button_pressed() -> void:
 
 func _on_puzzle_10_tutorial_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/puzzles/tutorials/puzzle_10_tutorial.tscn")
+
+
+func _on_puzzle_11_tutorial_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/puzzles/tutorials/puzzle_11_tutorial.tscn")
+
+
+func _on_puzzle_12_tutorial_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/puzzles/tutorials/puzzle_12_tutorial.tscn")
+
+
+func _on_puzzle_13_tutorial_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/puzzles/tutorials/puzzle_13_tutorial.tscn")

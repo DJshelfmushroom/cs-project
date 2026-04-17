@@ -6,7 +6,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_3vyhl"]
 font_size = 46
 
-[node name="Puzzle6Tutorial" type="Label" unique_id=887672500]
+[node name="Puzzle9Tutorial" type="Label" unique_id=887672500]
 offset_left = 120.0
 offset_top = 345.0
 offset_right = 1795.0

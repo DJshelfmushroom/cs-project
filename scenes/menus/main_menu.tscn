@@ -9,7 +9,8 @@
 [ext_resource type="Script" uid="uid://ctopr804dfmky" path="res://scripts/menus/xp_bar_progress.gd" id="6_ng0o5"]
 [ext_resource type="Script" uid="uid://c8qm8vqgnop4n" path="res://scenes/menus/xpbutton.gd" id="7_bre17"]
 [ext_resource type="FontFile" uid="uid://d3y7shqhxu6sv" path="res://assets/fonts/Urban Shadow Sans Serif.otf" id="8_50h1w"]
-[ext_resource type="Script" uid="uid://cu88knsorvjyj" path="res://scenes/menus/xpbutton2.gd" id="8_88kup"]
+[ext_resource type="Script" uid="uid://4gopny6qo5r6" path="res://scenes/menus/xpbutton2.gd" id="8_88kup"]
+[ext_resource type="Script" uid="uid://cu88knsorvjyj" path="res://scenes/menus/xpbutton3.gd" id="9_88kup"]
 [ext_resource type="Material" uid="uid://bsn18sj4p0ebm" path="res://bomb/Button/flakingPaint.tres" id="9_euy4r"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_bre17"]
@@ -78,7 +79,7 @@ offset_right = 1042.6
 offset_bottom = 992.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 30
-text = "TUTORIALS"
+text = "INSTRUCTIONS"
 script = ExtResource("2_jix8l")
 metadata/pos = Vector2(810, 900)
 
@@ -191,6 +192,7 @@ offset_left = 253.0
 offset_top = 853.0
 offset_right = 353.0
 offset_bottom = 961.0
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 100
 text = "+"
 script = ExtResource("7_bre17")
@@ -202,9 +204,21 @@ offset_left = 366.0
 offset_top = 851.0
 offset_right = 466.0
 offset_bottom = 942.0
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 100
 text = "-"
 script = ExtResource("8_88kup")
+
+[node name="xpbutton3" type="Button" parent="Control" unique_id=525638144]
+layout_mode = 0
+offset_left = 478.0
+offset_top = 851.0
+offset_right = 578.0
+offset_bottom = 959.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 80
+text = "0"
+script = ExtResource("9_88kup")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1126621304]
 handle_input_locally = false
@@ -245,3 +259,4 @@ skeleton = NodePath("../..")
 [connection signal="pressed" from="Control/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="Control/xpbutton1" to="Control/xpbutton1" method="_on_pressed"]
 [connection signal="pressed" from="Control/xpbutton2" to="Control/xpbutton2" method="_on_pressed"]
+[connection signal="pressed" from="Control/xpbutton3" to="Control/xpbutton3" method="_on_pressed"]

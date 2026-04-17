@@ -11,8 +11,12 @@ var Color3 = null
 var colorList = []
 var buttonsPressed = []
 var longmode = false
+var cap = 2
 
 func _ready():
+	cap = 2
+	if longmode == true:
+		cap = 3
 	started = false
 	$Button3D.num = 1
 	$Button3D2.num = 2
@@ -39,7 +43,7 @@ func _ready():
 func longer_setup():
 	Color3 = randi_range(0, 5)
 	if Color3 == Color2 || Color3 == Color1:
-		while Color3 == Color2 && Color3 == Color1:
+		while Color3 == Color2 || Color3 == Color1:
 			Color3 = randi_range(0, 5)
 	colorList.append(Color3)
 	
@@ -171,27 +175,27 @@ func check_for_outcome_hard():
 			win()
 		else:
 			lose()
-	elif is_Odd(colorList[0]) && !is_Odd(colorList[1] && is_Odd(colorList[2])): #secondary color, primary color, secondary color
+	elif is_Odd(colorList[0]) && !is_Odd(colorList[1]) && is_Odd(colorList[2]): #secondary color, primary color, secondary color
 		if buttonsPressed[0] == 1 && buttonsPressed[1] == 0 && buttonsPressed[2] == 1:
 			win()
 		else:
 			lose()
-	elif !is_Odd(colorList[0]) && !is_Odd(colorList[1] && is_Odd(colorList[2])): #primary color, primary color, secondary color
+	elif !is_Odd(colorList[0]) && !is_Odd(colorList[1]) && is_Odd(colorList[2]): #primary color, primary color, secondary color
 		if buttonsPressed[0] == 0 && buttonsPressed[1] == 0 && buttonsPressed[2] == 1:
 			win()
 		else:
 			lose()
-	elif !is_Odd(colorList[0]) && is_Odd(colorList[1] && is_Odd(colorList[2])): #primary color, secondary color, secondary color
+	elif !is_Odd(colorList[0]) && is_Odd(colorList[1]) && is_Odd(colorList[2]): #primary color, secondary color, secondary color
 		if buttonsPressed[0] == 0 && buttonsPressed[1] == 1 && buttonsPressed[2] == 1:
 			win()
 		else:
 			lose()
-	elif is_Odd(colorList[0]) && !is_Odd(colorList[1] && !is_Odd(colorList[2])): #secondary color, primary color, primary color
+	elif is_Odd(colorList[0]) && !is_Odd(colorList[1]) && !is_Odd(colorList[2]): #secondary color, primary color, primary color
 		if buttonsPressed[0] == 1 && buttonsPressed[1] == 0 && buttonsPressed[2] == 0:
 			win()
 		else:
 			lose()
-	elif is_Odd(colorList[0]) && is_Odd(colorList[1] && !is_Odd(colorList[2])): #secondary color, secondary color, primary color
+	elif is_Odd(colorList[0]) && is_Odd(colorList[1]) && !is_Odd(colorList[2]): #secondary color, secondary color, primary color
 		if buttonsPressed[0] == 1 && buttonsPressed[1] == 1 && buttonsPressed[2] == 0:
 			win()
 		else:
@@ -236,7 +240,7 @@ func _on_but_pressed(num : int) -> void:
 		if !$"../../..".failed:
 			if num == 1:
 				buttonsPressed.append(0)
-				if buttonsPressed.size() >= 2:
+				if buttonsPressed.size() >= cap:
 					no_Press()
 					if longmode == true:
 						check_for_outcome_hard()
@@ -244,14 +248,13 @@ func _on_but_pressed(num : int) -> void:
 						check_for_outcome()
 			if num == 2:
 				buttonsPressed.append(1)
-				if buttonsPressed.size() >= 2:
+				if buttonsPressed.size() >= cap:
 					no_Press()
 					if longmode == true:
 						check_for_outcome_hard()
 					else:
 						check_for_outcome()
-			
-				
+
 
 func _on_but_released(_num : int):
 	pass
