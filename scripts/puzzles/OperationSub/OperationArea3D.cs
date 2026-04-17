@@ -1,6 +1,9 @@
 ﻿using System.Dynamic;
+using System.Threading.Tasks;
 using csproject.scripts.core;
 using Godot;
+using static csproject.scripts.puzzles.OperationSub.OperationArea2D.Section;
+using static csproject.scripts.core.Utils.Logger;
 
 namespace csproject.scripts.puzzles.OperationSub;
 
@@ -8,7 +11,7 @@ public partial class OperationArea3D(OperationArea2D.Section section) : Area3D
 {
     private static short _intersections = 0;
     private Operation _operation;
-    private static bool _strikeOut = false;
+    private static bool _playing = false;
 
     public override void _Ready()
     {
@@ -25,54 +28,100 @@ public partial class OperationArea3D(OperationArea2D.Section section) : Area3D
         }
     }
 
-    public override void _MouseEnter()
+    /*
+    public override void _UnhandledInput(InputEvent @event)
     {
-        base._MouseEnter();
-        Utils.SetCursor(Utils.CursorState.Hand);
-        _intersections++;
-        if (!Input.IsActionPressed("ui_mouse_left_button")) return;
-        
-        if (_intersections == 1 && section != OperationArea2D.Section.First)
+        base._UnhandledInput(@event);
+        if (@event is InputEventMouse mouseEvent)
         {
-            _strikeOut = true;
-            // _operation.Failure();
-            return;
-        }
-
-        if (section == OperationArea2D.Section.First)
-        {
-            _strikeOut = false;
-        }
-
-        
-    }
-
-    public override void _MouseExit()
-    {
-        base._MouseExit();
-        if (!Input.IsActionPressed("ui_mouse_left_button")) return;
-        Utils.SetCursor(Utils.CursorState.Arrow);
-        // Utils.Logger.Log($"intersections: {_intersections}, Section: {section}, Strikeout: {_strikeOut}", this);
-        _intersections--;
-        if (_strikeOut)
-        {
-            _operation.Failure();
-            _strikeOut = false;
-        }
-        else
-        {
-            if (section == OperationArea2D.Section.Last)
+            if (mouseEvent.IsActionPressed("ui_mouse_left_button") && _intersections > 0)
             {
-                _operation.Success();
+                Strike();
+                Utils.SetCursor(Utils.CursorState.Hand);
             }
             else
             {
-                if (_intersections <= 0 && section != OperationArea2D.Section.First)
-                {
-                    _operation.Failure();
-                }
+                Utils.SetCursor(Utils.CursorState.Arrow);
             }
         }
+    }
+    */
 
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        base._UnhandledInput(@event);
+        if (@event is InputEventMouse mouseEvent)
+        {
+            if (mouseEvent.IsActionPressed("ui_mouse_left_button") && _intersections > 0)
+            {
+                
+            }
+        }
+    }
+
+    public override void _MouseEnter()
+    {
+        base._MouseEnter();
+        // Log("1", _operation);
+        _intersections++;
+        
+        if (!Input.IsActionPressed("ui_mouse_left_button") 
+            // && !section.Equals(First)
+            )
+        {
+            _playing = false;
+            return;
+        }
+        Log($"Intersections: {_intersections}, Section: {section}, {_playing} | enter", _operation);
+        // Log("2", _operation);
+        
+        if (_intersections == 1 && !section.Equals(First))
+        {
+            Strike();
+        }
+        else if (section.Equals(First))
+        {
+            // Log("3", _operation);
+            _playing = true;
+        }
+    }
+
+    public override async void _MouseExit()
+    {
+        base._MouseExit();
+        // Log("1e", _operation);
+        _intersections--;
+
+        await ToSignal(GetTree().CreateTimer(1f), SceneTreeTimer.SignalName.Timeout);
+        
+        if (!Input.IsActionPressed("ui_mouse_left_button"))
+        {
+            if (_playing)
+            {
+                Strike();
+            }
+
+            return;
+        }
+        Log($"Intersections: {_intersections}, Section: {section}, {_playing} | exit", _operation);
+        // Log("2e", _operation);
+       
+        if (section.Equals(Last) && _playing)
+        {
+            Log("vic", _operation);
+            _operation.Success();
+        } else if (_intersections == 0 
+                   && !section.Equals(First)
+                   )
+        {
+            Log("los", _operation);
+            Strike();
+        }
+    }
+
+    private void Strike()
+    {
+        if (_playing) _operation.Failure();
+        _playing = false;
     }
 }
