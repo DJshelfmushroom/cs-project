@@ -25,8 +25,7 @@ func _ready() -> void:
 	$Screen3D.set_size(2,1)
 	$Screen3D.position = Vector3(0.07, 0.32, 0.001)
 	for x in range(2):
-		var gen = RandomNumberGenerator.new()
-		var rand = gen.randi_range(0, allnums.size() - 1)
+		var rand = randi_range(0, allnums.size() - 1)
 		nums.append(allnums[rand])
 		allnums.remove_at(rand)
 	$NumsLabel.text = str(nums[0]) + " | " + str(nums[1])
@@ -35,13 +34,8 @@ func _ready() -> void:
 		for y in range(segments[nums[1]].size()):
 			if segments[nums[0]][x] == segments[nums[1]][y]:
 				answer.append(segments[nums[0]][x])
-	buttons.append(get_node("SB3D0"))
-	buttons.append(get_node("SB3D1"))
-	buttons.append(get_node("SB3D2"))
-	buttons.append(get_node("SB3D3"))
-	buttons.append(get_node("SB3D4"))
-	buttons.append(get_node("SB3D5"))
-	buttons.append(get_node("SB3D6"))
+	for i in range(7):
+		buttons.append(get_node("SB3D" + str(i)))
 	for x in range(7):
 		buttons[x].num = x
 		

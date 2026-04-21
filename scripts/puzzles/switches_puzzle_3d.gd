@@ -57,6 +57,7 @@ func _ready() -> void:
 			
 		
 func _process(_delta: float) -> void:
+	if (completed): return
 	if current.size() == answer.size():
 		var win = true
 		for x in range(answer.size()):

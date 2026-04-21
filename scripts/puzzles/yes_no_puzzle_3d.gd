@@ -3,7 +3,7 @@ extends Node3D
 var id = 10
 
 var completed = false
-var letters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
 var currentletters = []
 var nums = []
 var yes = false

@@ -22,8 +22,7 @@ func _ready() -> void:
 	$Screen3D.position = Vector3(-0.112,0.19,0.001)
 	for x in range(3):
 		labels[x].text = ""
-		var gen = RandomNumberGenerator.new()
-		var rand = gen.randi_range(0,nums.size() - 1)
+		var rand = randi_range(0,nums.size() - 1)
 		answer.append(nums[rand])
 		nums.remove_at(rand)
 		
