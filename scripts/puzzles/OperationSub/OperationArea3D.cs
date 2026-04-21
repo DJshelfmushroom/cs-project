@@ -117,13 +117,13 @@ public partial class OperationArea3D(OperationArea2D.Section section) : Area3D
         if (_intersections == 0 && _playing)
         {
             Log("los", _operation);
-            Strike();
+            CallDeferred(nameof(Strike));
         }
     }
 
     private void Strike()
     {
-        if (_playing) _operation.Failure();
+        if (_playing && _intersections == 0) _operation.Failure();
         _playing = false;
     }
 }
