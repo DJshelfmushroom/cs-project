@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://csv2d2f3da74n"]
+
+[ext_resource type="Script" uid="uid://bcko1l34824y1" path="res://scripts/puzzles/shift_puzzle_3d_easy.gd" id="1_mwgjh"]
+[ext_resource type="PackedScene" uid="uid://cbcrfgck1oggo" path="res://scenes/components/screen_3d.tscn" id="1_tfb21"]
+[ext_resource type="PackedScene" uid="uid://dl1myi1c3cti8" path="res://scenes/components/shift_button_3d.tscn" id="2_mwgjh"]
+[ext_resource type="FontFile" uid="uid://0my668ilbos5" path="res://assets/fonts/DS-DIGI.TTF" id="3_lov2w"]
+
+[node name="ShiftPuzzle3DE" type="Node3D" unique_id=807220896]
+script = ExtResource("1_mwgjh")
+
+[node name="Screen3D" parent="." unique_id=2033408862 instance=ExtResource("1_tfb21")]
+
+[node name="ShiftButton3D" parent="." unique_id=832842744 instance=ExtResource("2_mwgjh")]
+visible = false
+
+[node name="Label3D" type="Label3D" parent="." unique_id=1871453323]
+transform = Transform3D(-4.371139e-08, 2, 0, -1, -8.742278e-08, 0, 0, 0, 1, 0.08958843, -0.437, 0.002)
+pixel_size = 0.0005
+outline_modulate = Color(1, 1, 1, 1)
+text = "|"
+font = ExtResource("3_lov2w")
+font_size = 1000
+outline_size = 0
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=777068391]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.353982)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D" unique_id=1264140978]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.9531589)
