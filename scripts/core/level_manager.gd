@@ -11,6 +11,9 @@ func _ready() -> void:
 			y *= 2
 			
 func _process(_delta: float) -> void:
+	while SaveManager.level > 0 and current_xp < 0:
+		SaveManager.level -= 1
+	
 	var i = 0
 	for x in range(0,SaveManager.level + 1):
 		i += level_xp_requirements[x]
