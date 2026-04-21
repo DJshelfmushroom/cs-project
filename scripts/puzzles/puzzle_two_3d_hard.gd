@@ -3,7 +3,7 @@ extends Node3D
 var id = 2
 
 var completed
-var nums = [1,1,2,2,3,3,4,4,5,5,6,6]
+var nums = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12]
 var buttons = []
 var button_scene = preload("res://scenes/components/memory_button_3d.tscn")
 var gen = RandomNumberGenerator.new()
@@ -11,22 +11,21 @@ var b1 = null
 var b2 = null
 var thisfailed = false
 var practice = true
+
 	
 func _ready() -> void:
 	completed = false
 	$MemoryButton3D.visible = false
 	$Screen3D.position = Vector3(-0.067, -0.14, 0.002)
-	$Screen3D.set_size(5.1,3.9)
-	normal_setup()
+	$Screen3D.set_size(8,5.5)
+	hard_setup()
 		
-
-		
-func normal_setup():
+func hard_setup():
 	var index = 0
-	var y = -2.773
-	for i in range(3):
-		var x = -4
-		for j in range(4):
+	var y = -4.3
+	for i in range(4):
+		var x = -7
+		for j in range(6):
 			var buttoninst = button_scene.instantiate()
 			add_child(buttoninst)
 			buttoninst.position = Vector3(x / 10.0, y / -10.0, 0.003)
@@ -51,8 +50,8 @@ func _process(_delta: float) -> void:
 		completed = true
 		for button in buttons:
 			button.set_color(Color.GREEN)
-	if $"../../..".failed:
-		thisfailed = true
+	#if $"../../..".failed:
+		#thisfailed = true
 
 func _on_but_pressed(_b : int):
 	pass

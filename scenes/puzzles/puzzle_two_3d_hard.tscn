@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://xqdxh57ssnmc"]
+
+[ext_resource type="Script" uid="uid://lljxq2nc5g33" path="res://scripts/puzzles/puzzle_two_3d_hard.gd" id="1_4q0c8"]
+[ext_resource type="PackedScene" uid="uid://c4pwgpjrmtysv" path="res://scenes/components/memory_button_3d.tscn" id="2_gaoi7"]
+[ext_resource type="PackedScene" uid="uid://cbcrfgck1oggo" path="res://scenes/components/screen_3d.tscn" id="3_2iw0c"]
+
+[node name="PuzzleTwo3DH" type="Node3D" unique_id=532594094]
+script = ExtResource("1_4q0c8")
+
+[node name="MemoryButton3D" parent="." unique_id=303994183 instance=ExtResource("2_gaoi7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+
+[node name="Screen3D" parent="." unique_id=694307040 instance=ExtResource("3_2iw0c")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.45, -0.3921696, 0)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1724693190]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.184708)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D" unique_id=554219151]

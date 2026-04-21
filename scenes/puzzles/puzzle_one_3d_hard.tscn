@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://do8rxicwlgfya"]
+
+[ext_resource type="Script" uid="uid://b6mbofv8yr4ed" path="res://scripts/puzzles/puzzle_one_3d_hard.gd" id="1_vdgj2"]
+[ext_resource type="FontFile" uid="uid://0my668ilbos5" path="res://assets/fonts/DS-DIGI.TTF" id="2_f73us"]
+[ext_resource type="Script" uid="uid://bkwlhwlnp6nci" path="res://scripts/components/equation_label_hard.gd" id="3_vdgj2"]
+[ext_resource type="Script" uid="uid://bdynmi3hy1d86" path="res://scenes/puzzles/num_1.gd" id="4_1aefx"]
+[ext_resource type="PackedScene" uid="uid://d1r0aghq7lunl" path="res://scenes/components/numpad_3d.tscn" id="5_oqflc"]
+[ext_resource type="PackedScene" uid="uid://cbcrfgck1oggo" path="res://scenes/components/screen_3d.tscn" id="6_1lp17"]
+
+[node name="PuzzleOne3DH" type="Node3D" unique_id=156461013]
+script = ExtResource("1_vdgj2")
+
+[node name="EquationLabel" type="Label3D" parent="." unique_id=104445208]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.33, 0.04, 0.002)
+pixel_size = 0.0005
+modulate = Color(0.98039216, 0.39215687, 0, 1)
+text = "x  + y  + Z  = _
+x > y > z
+"
+font = ExtResource("2_f73us")
+font_size = 350
+script = ExtResource("3_vdgj2")
+
+[node name="AnswerLabel" type="Label3D" parent="EquationLabel" unique_id=876951180]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.050000012, -0.29671872, 0)
+pixel_size = 0.0005
+modulate = Color(0.98039216, 0.39215687, 0, 1)
+text = "x =   , y =   , z = "
+font = ExtResource("2_f73us")
+font_size = 300
+
+[node name="Num1" type="Label3D" parent="EquationLabel/AnswerLabel" unique_id=633331391]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21946749, 0.002993226, 0)
+pixel_size = 0.0005
+font = ExtResource("2_f73us")
+font_size = 350
+script = ExtResource("4_1aefx")
+
+[node name="Num2" type="Label3D" parent="EquationLabel/AnswerLabel" unique_id=343788976]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12935898, 0.003168106, 0)
+pixel_size = 0.0005
+font = ExtResource("2_f73us")
+font_size = 350
+script = ExtResource("4_1aefx")
+
+[node name="Num3" type="Label3D" parent="EquationLabel/AnswerLabel" unique_id=2027741851]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.47659385, 0.003168106, 0)
+pixel_size = 0.0005
+font = ExtResource("2_f73us")
+font_size = 350
+script = ExtResource("4_1aefx")
+
+[node name="Numpad3D" parent="." unique_id=230872471 instance=ExtResource("5_oqflc")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0.4104553, 0.14707284, 0.002)
+
+[node name="Screen3D" parent="." unique_id=1367608243 instance=ExtResource("6_1lp17")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.43330288, -0.55237395, 0)
