@@ -102,7 +102,11 @@ public partial class Operation : Node3D
 		{
 			var poly = operationArea2D.GetCollisionPoly();
 			var poly3D = new CollisionPolygon3D();
-			poly3D.Polygon = poly.Polygon;
+			var extPolyline = Geometry2D.OffsetPolyline(
+				[operationArea2D.SegmentFrom, operationArea2D.SegmentTo],
+				Line_Width,
+				endType: Geometry2D.PolyEndType.Square);
+			poly3D.Polygon = extPolyline.Count > 0 ? extPolyline[0] : poly.Polygon;
 			//Log("break", this, color: LogColors.GREEN);
 			//foreach (var str in poly.Polygon)
 			//{
@@ -169,6 +173,7 @@ public partial class Operation : Node3D
 			arrays[(int)Mesh.ArrayType.Vertex] = vertices.ToArray();
 			arrayMesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
 			mesh.Mesh = arrayMesh;
+			mesh.SetPosition(mesh.Position + new Vector3(0, 0, depthPos));
 			#endregion
 
 			var material = new StandardMaterial3D();
@@ -356,6 +361,8 @@ public class OperationPath2D(
 				
 				var area = new OperationArea2D(lineSection);
 				area.color = color;
+				area.SegmentFrom = points[i - 1];
+				area.SegmentTo = newPoint;
 				area.SetCollisionPoly(collision);
 				owner.AddChild(area);
 				area.InputPickable = true;

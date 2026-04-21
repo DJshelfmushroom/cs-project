@@ -29,6 +29,9 @@ public partial class OperationArea2D(OperationArea2D.Section section) : Area2D
 		Last
 	}
 	
+	public Vector2 SegmentFrom { get; set; }
+	public Vector2 SegmentTo { get; set; }
+
 	public Section GetSection() => section;
 
 	public override void _MouseEnter()

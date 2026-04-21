@@ -61,13 +61,11 @@ public partial class OperationArea3D(OperationArea2D.Section section) : Area3D
 
     public override void _MouseEnter()
     {
-        base._MouseEnter();
+        //base._MouseEnter();
         // Log("1", _operation);
         _intersections++;
         
-        if (!Input.IsActionPressed("ui_mouse_left_button") 
-            // && !section.Equals(First)
-            )
+        if (!Input.IsActionPressed("ui_mouse_left_button")/* && !section.Equals(First) */)
         {
             _playing = false;
             return;
@@ -75,7 +73,7 @@ public partial class OperationArea3D(OperationArea2D.Section section) : Area3D
         Log($"Intersections: {_intersections}, Section: {section}, {_playing} | enter", _operation);
         // Log("2", _operation);
         
-        if (_intersections == 1 && !section.Equals(First))
+        if (_intersections == 1 && !section.Equals(First) && !_playing)
         {
             Strike();
         }
@@ -86,13 +84,11 @@ public partial class OperationArea3D(OperationArea2D.Section section) : Area3D
         }
     }
 
-    public override async void _MouseExit()
+    public override void _MouseExit()
     {
-        base._MouseExit();
+        //base._MouseExit();
         // Log("1e", _operation);
         _intersections--;
-
-        await ToSignal(GetTree().CreateTimer(1f), SceneTreeTimer.SignalName.Timeout);
         
         if (!Input.IsActionPressed("ui_mouse_left_button"))
         {
@@ -110,9 +106,15 @@ public partial class OperationArea3D(OperationArea2D.Section section) : Area3D
         {
             Log("vic", _operation);
             _operation.Success();
-        } else if (_intersections == 0 
-                   && !section.Equals(First)
-                   )
+        } else if (_intersections == 0 && !section.Equals(First))
+        {
+            CallDeferred(nameof(CheckLos));
+        }
+    }
+
+    private void CheckLos()
+    {
+        if (_intersections == 0 && _playing)
         {
             Log("los", _operation);
             Strike();
