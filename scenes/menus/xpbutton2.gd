@@ -5,5 +5,4 @@ func _ready() -> void:
 		self.show()
 
 func _on_pressed() -> void:
-	SaveManager.totalxp = 0
-	SaveManager.level = 0
+	SaveManager.totalxp -= 100

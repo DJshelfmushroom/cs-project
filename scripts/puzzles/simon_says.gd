@@ -57,7 +57,7 @@ func _ready():
 		$Button2.num = 2
 		$Button3.num = 3
 		$Button4.num = 4
-		$Button3.set_color(Color.AQUA)
+		#$Button3.set_color(Color.AQUA)
 		$StartGameButton.num = 0
 		setup = true
 	#_Buttons_Disabled()
