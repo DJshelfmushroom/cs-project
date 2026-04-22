@@ -2,13 +2,14 @@
 
 [ext_resource type="Script" uid="uid://csrxv43ak27pn" path="res://scripts/menus/VideoSettings.cs" id="1_yupdq"]
 
-[node name="VideoSettings" type="Container" unique_id=1655285964]
+[node name="VideoSettings" type="Container" unique_id=1655285964 node_paths=PackedStringArray("Features")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yupdq")
+Features = {}
 
 [node name="Container" type="Control" parent="." unique_id=1907424302]
 layout_mode = 2
@@ -17,11 +18,3 @@ layout_mode = 2
 layout_mode = 0
 offset_right = 53.4375
 offset_bottom = 24.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Container" unique_id=393365143]
-layout_mode = 0
-offset_left = -7.0
-offset_top = -19.0
-offset_right = 62.0
-offset_bottom = -3.0
-text = "Resolution"
