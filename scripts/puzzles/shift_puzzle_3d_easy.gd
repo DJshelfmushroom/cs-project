@@ -7,18 +7,18 @@ var allpositions = []
 var positions = []
 var buttons = []
 var button_scene = preload("res://scenes/components/shift_button_3d.tscn")
-var colors = [Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW]
+var colors = [Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.WEB_PURPLE, Color.DARK_ORANGE, Color.HOT_PINK]
 
 func _ready() -> void:
-	$Screen3D.set_size(1.1,1.1)
+	$Screen3D.set_size(1.6,1.1)
 	$Screen3D.position = Vector3(-0.475,-0.53, 0.001)
 	
 	for y in range(-1,2):
-		for x in range(-1,2):
+		for x in range(-2,3):
 			positions.append(Vector3(x / 4.0, y / 4.0, 0.002))
 			allpositions.append(Vector3(x / 4.0, y / 4.0, 0.002))
 		
-	for b in range(8):
+	for b in range(14):
 		var buttoninst = button_scene.instantiate()
 		var rand = randi_range(0,positions.size() - 1)
 		buttoninst.position = positions[rand]
@@ -36,7 +36,7 @@ func _process(_delta: float) -> void:
 	var win = true
 	var pos1
 	var pos2
-	for i in range(0,8,2):
+	for i in range(0,14,2):
 		for x in range(allpositions.size()):
 			if allpositions[x] == buttons[i].position:
 				pos1 = x
@@ -54,15 +54,10 @@ func _process(_delta: float) -> void:
 	
 		
 func is_adjacent(a, b):
+	var width = 5
 	var diff = abs(a - b)
 
-	if diff == 1 and a / 3 == b / 3:
-		return true
-
-	if diff == 3:
-		return true
-
-	return false
+	return (diff == 1 and a / width == b / width) or diff == width
 
 func _on_but_pressed(num : int):
 	var pressed_button = null
