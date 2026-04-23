@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://w1460yvebgfj"]
+
+[ext_resource type="Script" uid="uid://d4fk6kncxp0mi" path="res://scripts/puzzles/target_puzzle_3d_hard.gd" id="1_uajc8"]
+[ext_resource type="PackedScene" uid="uid://bo7k58g1h7syg" path="res://scenes/components/target_button_3d.tscn" id="2_p46dd"]
+[ext_resource type="Script" uid="uid://cevjj0wjpqyea" path="res://scenes/components/target_button_3d.gd" id="3_0md62"]
+[ext_resource type="PackedScene" uid="uid://cbcrfgck1oggo" path="res://scenes/components/screen_3d.tscn" id="4_ajaf6"]
+
+[node name="TargetPuzzle3DH" type="Node3D" unique_id=1739271415]
+script = ExtResource("1_uajc8")
+
+[node name="TargetButton3D" parent="." unique_id=1886688341 instance=ExtResource("2_p46dd")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0.002)
+
+[node name="TargetButton3D2" parent="." unique_id=372823650 instance=ExtResource("2_p46dd")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0.002)
+script = ExtResource("3_0md62")
+
+[node name="Timer" type="Timer" parent="." unique_id=840845585]
+
+[node name="Screen3D" parent="." unique_id=2028593738 instance=ExtResource("4_ajaf6")]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

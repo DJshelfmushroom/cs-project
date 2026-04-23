@@ -14,6 +14,9 @@ var green_material: StandardMaterial3D
 var yellow_material: StandardMaterial3D
 var orange_material: StandardMaterial3D
 var purple_material: StandardMaterial3D
+var pink_material: StandardMaterial3D
+var aquamarine_material: StandardMaterial3D
+var white_material: StandardMaterial3D
 
 func _ready() -> void:
 	default_material = StandardMaterial3D.new()
@@ -23,6 +26,9 @@ func _ready() -> void:
 	yellow_material = StandardMaterial3D.new()
 	orange_material = StandardMaterial3D.new()
 	purple_material = StandardMaterial3D.new()
+	pink_material = StandardMaterial3D.new()
+	aquamarine_material = StandardMaterial3D.new()
+	white_material = StandardMaterial3D.new()
 
 	default_material.albedo_color = Color(0.83, 0.83, 0.83)
 
@@ -56,7 +62,21 @@ func _ready() -> void:
 	purple_material.emission = Color.PURPLE
 	purple_material.emission_energy = 2.0
 	
+	pink_material.albedo_color = Color(1, 0, 1)
+	pink_material.emission_enabled = true
+	pink_material.emission = Color.PINK
+	pink_material.emission_energy = 2.0
+	
+	aquamarine_material.albedo_color = Color(0.4, 1, 0.8)
+	aquamarine_material.emission_enabled = true
+	aquamarine_material.emission = Color.AQUAMARINE
+	aquamarine_material.emission_energy = 2.0
 
+	white_material.albedo_color = Color(1, 1, 1)
+	white_material.emission_enabled = true
+	white_material.emission = Color.WHITE
+	white_material.emission_energy = 2.0
+	
 	off()
 
 func set_color(new_color : Color) -> void:
@@ -74,6 +94,12 @@ func set_color(new_color : Color) -> void:
 		$ColorOutline.material_override = orange_material
 	elif new_color == Color.PURPLE:
 		$ColorOutline.material_override = purple_material
+	elif new_color == Color.PINK:
+		$ColorOutline.material_override = pink_material
+	elif new_color == Color.AQUAMARINE:
+		$ColorOutline.material_override = aquamarine_material
+	elif new_color == Color.WHITE:
+		$ColorOutline.material_override = white_material
 
 func on() -> void:
 	set_color(color)

@@ -22,7 +22,7 @@
 [ext_resource type="Script" uid="uid://bjuoa1be3dlqx" path="res://bomb/CameraControl.cs" id="13_un6j2"]
 [ext_resource type="PackedScene" uid="uid://dc4bmkfln20f1" path="res://scenes/puzzles/target_puzzle_3d.tscn" id="14_dsxht"]
 [ext_resource type="PackedScene" uid="uid://b7g2vfs6nph28" path="res://scenes/puzzles/track_puzzle_3d.tscn" id="15_dsxht"]
-[ext_resource type="PackedScene" uid="uid://baq643x0wad0k" path="res://scenes/puzzles/shift_puzzle_3d.tscn" id="16_73cp6"]
+[ext_resource type="PackedScene" uid="uid://baq643x0wad0k" path="res://scenes/puzzles/Hard Puzzles/shift_puzzle_3d.tscn" id="16_73cp6"]
 [ext_resource type="Script" uid="uid://bwsbcc1ccrmyh" path="res://scripts/ui/roltateAxis/Roltateaxis.cs" id="16_osgfx"]
 [ext_resource type="PackedScene" uid="uid://e8ghkvx30l1i" path="res://scenes/puzzles/Operation3D.tscn" id="17_lriyw"]
 [ext_resource type="PackedScene" uid="uid://cwxltsfvtfcer" path="res://scenes/puzzles/color_theory_puzzle.tscn" id="18_y6gmb"]
