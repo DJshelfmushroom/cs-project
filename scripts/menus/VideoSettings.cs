@@ -1,9 +1,9 @@
 using System;
-using System.Diagnostics;
-using System.Reflection.Metadata;
+using System.Diagnostics; 
 using Godot;
 using Godot.Collections;
 using static csproject.scripts.core.Utils.Logger;
+using static Godot.DisplayServer;
 
 namespace csproject.scripts.menus;
 
@@ -32,10 +32,11 @@ public partial class VideoSettings : Control
 		FrameCap // linedit or optionbutton
 	}
 	
-	enum FullscreenOptions
+	public enum FullscreenOptions
 	{
 		Windowed,
-		Borderless
+		Borderless,
+		Fullscreen
 	}
 
 	public override void _Ready()
@@ -54,49 +55,85 @@ public partial class VideoSettings : Control
 					if (controlNode is LineEdit lineEdit)
 					{
 						lineEdit.Text = GetWindow().Size.Y + "";
-						lineEdit.TextSubmitted += text => SetResolution(height:text.ToInt());
+						lineEdit.TextSubmitted += text =>
+						{ 
+							SetResolution(height: text.ToInt());
+							// CallDeferred(nameof(SetResolution), [-1, text.ToInt()]);
+						};
 						lineEdit.SetMeta("editing", false);
-						lineEdit.EditingToggled += editing => { lineEdit.SetMeta("editing", editing); };
+						lineEdit.EditingToggled += editing =>
+						{
+							lineEdit.SetMeta("editing", editing);
+							// if (editing) lineEdit.SetMeta("editValue", lineEdit.Text);
+						};
 					}
 					break;
 				case ControlFeatures.ResolutionW:
 					if (controlNode is LineEdit lineEdit1)
 					{
 						lineEdit1.Text = GetWindow().Size.X + "";
-						lineEdit1.TextSubmitted += text => SetResolution(text.ToInt()); 
+						lineEdit1.TextSubmitted += text =>
+						{
+							SetResolution(text.ToInt());
+							// CallDeferred(nameof(SetResolution), [text.ToInt()]);
+						}; 
 						lineEdit1.SetMeta("editing", false);
-						lineEdit1.EditingToggled += editing => { lineEdit1.SetMeta("editing", editing); };
+						lineEdit1.EditingToggled += editing =>
+						{
+							lineEdit1.SetMeta("editing", editing);
+							// if (editing) lineEdit1.SetMeta("editValue", lineEdit1.Text);
+						};
 					}
 					break;
 				case ControlFeatures.Fullscreen:
-					
+					if (controlNode is OptionButton fullscreenButton)
+					{
+						foreach (var fullscreenOption in Enum.GetValues(typeof(FullscreenOptions)))
+						{
+							fullscreenButton.AddItem(fullscreenOption.ToString());
+						}
+
+						fullscreenButton.Text = "Fullscreen Mode";
+						fullscreenButton.ItemSelected += index =>
+						{
+							SetFullscreen((FullscreenOptions)Enum.GetValues(typeof(FullscreenOptions)).GetValue(index)!);
+						};
+					}
+
 					break;
 				case ControlFeatures.VSync:
+					if (controlNode is OptionButton vsyncButton)
+					{
+						foreach (var vsyncMode in Enum.GetValues(typeof(VSyncMode)))
+						{
+							vsyncButton.AddItem(vsyncMode.ToString());
+						}
+						vsyncButton.Text = "VSync Mode";
+						vsyncButton.ItemSelected += index =>
+						{
+							SetVSync((VSyncMode)Enum.GetValues(typeof(FullscreenOptions)).GetValue(index)!);
+						};
+					}
 					break;
 				case ControlFeatures.FrameCap:
+					if (controlNode is LineEdit frameCap)
+					{
+						//TODO Look at Resolution features for a base (You can use SetFrameCap)
+					}
+
 					break;
 			}
 		}
 	}
 
-	public override void _PhysicsProcess(double delta)
+	public override void _Process(double delta)
 	{
-		base._PhysicsProcess(delta);
+		base._Process(delta);
 		foreach (var (controlNodePath, feature) in Features)
 		{
 			var controlNode = GetNode(controlNodePath);
 			switch (feature)
 			{
-				// case ControlFeatures.Fullscreen:
-				// 	if (controlNode is OptionButton optionButton)
-				// 	{
-				// 		optionButton.Selected = GetWindow().Borderless ? 1 : 0;
-				// 		optionButton.ItemSelected += index =>
-				// 		{
-				// 			GetWindow().Borderless = index == 1;
-				// 		};
-				// 	}
-				// 	break;
 				case ControlFeatures.ResolutionH:
 					if (!controlNode.GetMeta("editing").AsBool())
 						((LineEdit)controlNode).Text = GetWindow().Size.Y.ToString();
@@ -114,9 +151,9 @@ public partial class VideoSettings : Control
 	{
 		Log($"Changing res: width? {width != null}", this);
 		Window window = GetWindow();
-		if (width == null)
+		if (width is null or < 0)
 		{
-			if (height == null)
+			if (height is null or < 0)
 			{
 				Log("Can't set resolution with no values",this, LogType.Error);
 				throw new Exception();
@@ -130,7 +167,38 @@ public partial class VideoSettings : Control
 			Debug.Assert(width != null, nameof(width) + " != null");
 			window.Size = new Vector2I((int)width, window.Size.Y);
 		}
-		
+	}
+
+	public void SetFullscreen(FullscreenOptions mode)
+	{
+		switch (mode)
+		{
+			case FullscreenOptions.Windowed:
+				GetWindow().Borderless = false;
+				GetWindow().Mode = Window.ModeEnum.Windowed;
+				GetWindow().Unresizable = true;
+				break;
+			case FullscreenOptions.Borderless:
+				GetWindow().Borderless = true;
+				GetWindow().Mode = Window.ModeEnum.Maximized;
+				GetWindow().Unresizable = true;
+				break;
+			case FullscreenOptions.Fullscreen:
+				GetWindow().Mode = Window.ModeEnum.ExclusiveFullscreen;
+				break;
+			default:
+				throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
+		}
+	}
+
+	public static void SetVSync(VSyncMode mode)
+	{
+		WindowSetVsyncMode(mode);
+	}
+
+	public static void SetFrameCap(int frameCap)
+	{
+		Engine.MaxFps = frameCap;
 	}
 
 }

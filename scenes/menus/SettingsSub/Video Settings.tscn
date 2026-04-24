@@ -12,7 +12,9 @@ grow_vertical = 2
 script = ExtResource("1_yupdq")
 Features = {
 NodePath("ResY"): 1,
-NodePath("ResX"): 0
+NodePath("ResX"): 0,
+NodePath("OptionButton"): 2,
+NodePath("VSync"): 3
 }
 
 [node name="ResY" type="LineEdit" parent="." unique_id=1404004683]
@@ -28,3 +30,20 @@ offset_left = 10.0
 offset_top = 81.0
 offset_right = 63.4375
 offset_bottom = 105.0
+
+[node name="Fullscreen" type="OptionButton" parent="." unique_id=1663807767]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.017
+anchor_bottom = 0.019000001
+offset_left = 260.0
+offset_top = 73.0
+offset_right = 259.36
+offset_bottom = 72.479996
+
+[node name="VSync" type="OptionButton" parent="." unique_id=1457887440]
+layout_mode = 0
+offset_left = 364.0
+offset_top = 77.0
+offset_right = 396.0
+offset_bottom = 97.0
