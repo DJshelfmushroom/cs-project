@@ -8,7 +8,7 @@ preload("res://scenes/puzzles/shift_puzzle_3d_easy.tscn"), preload("res://scenes
 
 
 var puzzle_scales = [0.45,0.4,0.5,0.5,0.4,0.35,0.2,0.6,0.08,0.17,0.2,0.2,0.25,0.00075, 0.6]
-var puzzle_weights = [2,5,5,4,2,3,1,3,2,4,3,3,5,5,2] #Value of how hard/time-consuming each puzzle is, will eventually be used to determine what puzzles you get
+var puzzle_weights = [2,5,5,4,2,3,1,3,2,4,3,3,6,5,2] #Value of how hard/time-consuming each puzzle is, will eventually be used to determine what puzzles you get
 var weights_left = puzzle_weights.duplicate()
 
 var possible_positions = [

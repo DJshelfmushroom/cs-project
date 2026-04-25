@@ -2,6 +2,7 @@ extends Node3D
 
 func _ready() -> void:
 	$Control/CustomCursor.set_mouse_cursor(SaveManager.arrow, SaveManager.hand, SaveManager.color)
+	SaveManager.save()
 	if (SaveManager.level >= 5):
 		Achievements.completed_achievement("Reached Level 5")
 

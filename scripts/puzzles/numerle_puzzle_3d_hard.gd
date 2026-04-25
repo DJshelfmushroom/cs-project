@@ -13,7 +13,7 @@ var completed = false
 var practice = true
 var just_entered = false
 var phase = 0
-var colors = [Color.RED, Color.BLUE, Color.YELLOW]
+var colors = [Color.RED, Color.CYAN, Color.MAGENTA]
 
 func _ready() -> void:
 	labels.append(get_node("Label1"))
@@ -41,55 +41,11 @@ func _ready() -> void:
 		nums.remove_at(rand)
 	answer2 = answer.duplicate()
 	answer2.shuffle()
-		
-#func _process(_delta: float) -> void:
-		#if labels[selected].text == str(answer[selected]):
-			#if selected != 5:
-				#selected += 1
-			#else:
-				#selected = 0
-		#var wrong = false
-		#for x in range(6):
-			#if labels[x].text != str(answer[x]):
-				#wrong = true
-		#if !wrong:
-			#completed = true
-			#for x in range(6):
-				#blanks[x].modulate = Color.WHITE
-		#for x in range(6):
-			#if labels[x].text == str(answer[x]):
-				#labels[x].modulate = Color.GREEN
-				#for y in range(6):
-					#if y != x and labels[y].text == str(answer[x]):
-						#labels[y].modulate = Color.WHITE
-			#else:
-				#for y in range(6):
-					#if labels[x].text == str(answer[y]):
-						#labels[x].modulate = Color.YELLOW
-						#for z in range(6):
-							#if y != x and labels[y].text == labels[x].text:
-								#if str(answer[y]) != labels[y].text:
-									#labels[y].modulate = Color.WHITE
-								#else:
-									#labels[x].modulate = Color.WHITE
-		#if selected != 0 and !completed:
-			#blanks[selected].modulate = Color.ORANGE
-			#blanks[selected - 1].modulate = Color.WHITE
-			#blanks[selected + 1].modulate = Color.WHITE
-		#elif !completed:
-			#blanks[0].modulate = Color.ORANGE
-			#blanks[1].modulate = Color.WHITE
-			#blanks[2].modulate = Color.WHITE
-			#blanks[3].modulate = Color.WHITE
-			#blanks[4].modulate = Color.WHITE
-			#blanks[5].modulate = Color.WHITE
-			#
-			#
 	
 
 func _on_button_pressed(num : int):
 	
-	if !completed: #and !$"../../..".failed:
+	if !completed and !$"../../..".failed:
 		for b in blanks:
 			b.modulate = Color.WHITE
 		if num != 10:
@@ -150,6 +106,8 @@ func _on_button_pressed(num : int):
 					completed = true
 					for b in blanks:
 						b.modulate = Color.GREEN
+					for l in labels:
+						l.modulate = Color.GREEN
 				
 			
 				
