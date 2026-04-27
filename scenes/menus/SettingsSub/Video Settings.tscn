@@ -14,7 +14,9 @@ Features = {
 NodePath("ResY"): 1,
 NodePath("ResX"): 0,
 NodePath("VSync"): 3,
-NodePath("Fullscreen"): 2
+NodePath("Fullscreen"): 2,
+NodePath("BackButton"): 5,
+NodePath("FrameCap"): 4
 }
 
 [node name="ResY" type="LineEdit" parent="." unique_id=1404004683]
@@ -47,3 +49,18 @@ offset_left = 364.0
 offset_top = 77.0
 offset_right = 396.0
 offset_bottom = 97.0
+
+[node name="BackButton" type="Button" parent="." unique_id=1298013099]
+layout_mode = 0
+offset_left = 257.0
+offset_top = 150.0
+offset_right = 304.0
+offset_bottom = 187.0
+text = "FRAP"
+
+[node name="FrameCap" type="LineEdit" parent="." unique_id=312567977]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 172.0
+offset_right = 177.4375
+offset_bottom = 196.0

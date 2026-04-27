@@ -7,7 +7,7 @@ using static Godot.DisplayServer;
 
 namespace csproject.scripts.menus;
 
-public partial class VideoSettings : Control
+public partial class VideoSettings : Control //TODO: add ui options
 {
 	
 	/*
@@ -29,7 +29,8 @@ public partial class VideoSettings : Control
 		// PresetResolution, //OptionButton
 		Fullscreen, //optionbutton
 		VSync, //optionbutton
-		FrameCap // linedit or optionbutton
+		FrameCap, // linedit or optionbutton
+		BackButton //button
 	}
 	
 	public enum FullscreenOptions
@@ -96,7 +97,7 @@ public partial class VideoSettings : Control
 						fullscreenButton.Text = "Fullscreen Mode";
 						fullscreenButton.ItemSelected += index =>
 						{
-							SetFullscreen((FullscreenOptions)Enum.GetValues(typeof(FullscreenOptions)).GetValue(index)!);
+							SetFullscreen((FullscreenOptions)index);
 						};
 					}
 
@@ -111,7 +112,7 @@ public partial class VideoSettings : Control
 						vsyncButton.Text = "VSync Mode";
 						vsyncButton.ItemSelected += index =>
 						{
-							SetVSync((VSyncMode)Enum.GetValues(typeof(FullscreenOptions)).GetValue(index)!);
+							SetVSync((VSyncMode)index);
 						};
 					}
 					break;
@@ -119,6 +120,22 @@ public partial class VideoSettings : Control
 					if (controlNode is LineEdit frameCap)
 					{
 						//TODO Look at Resolution features for a base (You can use SetFrameCap)
+						frameCap.Text = Engine.MaxFps + "";
+						frameCap.TextSubmitted += text => { SetFrameCap(text.ToInt()); };
+					}
+					break;
+				case ControlFeatures.BackButton:
+					// Log("gack to nmenu " + controlNode.GetType(), this);
+					if (controlNode is Godot.Button button)
+					{
+						// Log("gack to nmenu", this);
+						button.Pressed += () =>
+						{
+							// Log("gack to nmenu", this);
+							GetTree().ChangeSceneToFile("res://scenes/menus/Settings.tscn");
+							// SceneManager.ReturnToScene(this);
+							// Call(nameof(SceneManager.ReturnToScene), [this]);
+						};
 					}
 
 					break;
@@ -177,7 +194,7 @@ public partial class VideoSettings : Control
 			case FullscreenOptions.Windowed:
 				GetWindow().Borderless = false;
 				GetWindow().Mode = Window.ModeEnum.Windowed;
-				GetWindow().Unresizable = true;
+				GetWindow().Unresizable = false;
 				break;
 			case FullscreenOptions.Borderless:
 				GetWindow().Borderless = true;
