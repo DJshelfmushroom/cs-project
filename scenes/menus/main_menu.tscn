@@ -240,11 +240,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.58704317)
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="Camera3D" unique_id=1569273055]
 transform = Transform3D(0.9658833, -0.031034233, -0.25711167, 0.10271768, 0.95727247, 0.2703303, 0.23773642, -0.28751743, 0.92780125, 0, 0.09181553, -0.2363131)
 
-[node name="Label3D" type="MeshInstance3D" parent="." unique_id=952230966]
+[node name="RedWireLabel" type="MeshInstance3D" parent="." unique_id=952230966]
 transform = Transform3D(0.98103195, 0.028095357, -0.19179878, -0.058786113, 0.9859649, -0.15625753, 0.1847168, 0.16456875, 0.9689157, -0.010882098, 0.19331399, 0.11837244)
 mesh = SubResource("TextMesh_3w8rc")
 
-[node name="Label3D2" type="MeshInstance3D" parent="Label3D" unique_id=835166591]
+[node name="Label3D2" type="MeshInstance3D" parent="RedWireLabel" unique_id=835166591]
 mesh = SubResource("TextMesh_vr0hv")
 skeleton = NodePath("../..")
 

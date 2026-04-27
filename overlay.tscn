@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bvt24xl5qltec"]
+
+[ext_resource type="Script" uid="uid://05ernvd5k8am" path="res://Overlay.cs" id="1_nv86q"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nv86q"]
+font_color = Color(0.38222647, 0.9721393, 0, 1)
+
+[node name="Overlay" type="Control" unique_id=7764157]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_nv86q")
+
+[node name="FPSLabel" type="Label" parent="." unique_id=1160373382]
+layout_mode = 0
+offset_left = 1856.0
+offset_top = 1055.0
+offset_right = 1937.0
+offset_bottom = 1088.0
+text = "xxxx FPS"
+label_settings = SubResource("LabelSettings_nv86q")

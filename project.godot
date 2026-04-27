@@ -26,6 +26,7 @@ SaveManager="*res://scripts/core/save_manager.gd"
 LevelManager="*res://scripts/core/level_manager.gd"
 Utils="*uid://dl3rmlya0gn8f"
 Achievements="*uid://de3yj11gujba4"
+Overlay="*uid://bvt24xl5qltec"
 
 [debug_draw_3d]
 

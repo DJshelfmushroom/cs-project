@@ -10,3 +10,5 @@
 *.app
 
 *.blend1
+
+.claude/
