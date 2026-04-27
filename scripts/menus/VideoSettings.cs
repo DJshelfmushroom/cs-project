@@ -171,6 +171,7 @@ public partial class VideoSettings : Control
 
 	public void SetFullscreen(FullscreenOptions mode)
 	{
+		Log($"fullscreen: {mode.ToString()}", this);
 		switch (mode)
 		{
 			case FullscreenOptions.Windowed:

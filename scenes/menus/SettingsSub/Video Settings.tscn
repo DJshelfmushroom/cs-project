@@ -13,8 +13,8 @@ script = ExtResource("1_yupdq")
 Features = {
 NodePath("ResY"): 1,
 NodePath("ResX"): 0,
-NodePath("OptionButton"): 2,
-NodePath("VSync"): 3
+NodePath("VSync"): 3,
+NodePath("Fullscreen"): 2
 }
 
 [node name="ResY" type="LineEdit" parent="." unique_id=1404004683]
