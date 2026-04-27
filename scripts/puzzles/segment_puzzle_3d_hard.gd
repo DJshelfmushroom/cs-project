@@ -26,6 +26,10 @@ func _ready() -> void:
 	$Screen3D.position = Vector3(0.055, 0.32, 0.001)
 	var works = false
 	while !works:
+		buttons = []
+		nums = []
+		answer = []
+		on = []
 		for x in range(6):
 			var rand = randi_range(0, allnums.size() - 1)
 			nums.append(allnums[rand])

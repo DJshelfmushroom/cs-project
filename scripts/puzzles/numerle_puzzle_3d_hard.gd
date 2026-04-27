@@ -12,25 +12,17 @@ var nums = [1,2,3,4,5,6,7,8,9]
 var completed = false
 var practice = true
 var just_entered = false
+var just_switched = false
 var phase = 0
 var colors = [Color.RED, Color.CYAN, Color.MAGENTA]
 
 func _ready() -> void:
-	labels.append(get_node("Label1"))
-	labels.append(get_node("Label2"))
-	labels.append(get_node("Label3"))
-	labels.append(get_node("Label4"))
-	labels.append(get_node("Label5"))
-	labels.append(get_node("Label6"))
-	blanks.append(get_node("BlankLabel1"))
-	blanks.append(get_node("BlankLabel2"))
-	blanks.append(get_node("BlankLabel3"))
-	blanks.append(get_node("BlankLabel4"))
-	blanks.append(get_node("BlankLabel5"))
-	blanks.append(get_node("BlankLabel6"))
-	bigblanks.append(get_node("BlankLabel7"))
-	bigblanks.append(get_node("BlankLabel8"))
-	bigblanks.append(get_node("BlankLabel9"))
+	for x in range(6):
+		labels.append(get_node("Label" + str(x+1)))
+	for x in range(6):
+		blanks.append(get_node("BlankLabel" + str(x+1)))
+	for x in range(3):
+		bigblanks.append(get_node("BlankLabel" + str(x+7)))
 	$Screen3D.set_size(4.4,1.4)
 	$Screen3D.position = Vector3(-0.122,0.2,0.001)
 	blanks[0].modulate = Color.ORANGE
@@ -45,7 +37,7 @@ func _ready() -> void:
 
 func _on_button_pressed(num : int):
 	
-	if !completed and !$"../../..".failed:
+	if !completed: #and !$"../../..".failed:
 		for b in blanks:
 			b.modulate = Color.WHITE
 		if num != 10:
@@ -86,18 +78,27 @@ func _on_button_pressed(num : int):
 						phase_completed = false
 				if phase_completed:
 					phase += 1
+					just_switched = true
 			if phase == 1:
-				just_entered = true
-				selected = 0
-				for x in range(6):
-					for y in range(6):
-						if labels[y].text == str(answer2[x]):
-							blanks[y].modulate = colors[x / 2]
-				for z in range(0,6,2):
-					if labels[z].text == str(answer2[z]) && labels[z+1].text == str(answer2[z+1]):
-						bigblanks[z / 2].modulate = Color.GREEN
-					elif labels[z].text == str(answer2[z+1]) && labels[z+1].text == str(answer2[z]):
-						bigblanks[z / 2].modulate = Color.YELLOW
+				var cont = true
+				for l in labels:
+					if l.text == "":
+						cont = false
+				if cont or just_switched:
+					just_switched = false
+					just_entered = true
+					selected = 0
+					for x in range(6):
+						for y in range(6):
+							if labels[y].text == str(answer2[x]):
+								blanks[y].modulate = colors[x / 2]
+					for z in range(0,6,2):
+						if labels[z].text == str(answer2[z]) && labels[z+1].text == str(answer2[z+1]):
+							bigblanks[z / 2].modulate = Color.GREEN
+						elif labels[z].text == str(answer2[z+1]) && labels[z+1].text == str(answer2[z]):
+							bigblanks[z / 2].modulate = Color.YELLOW
+						else:
+							bigblanks[z / 2].modulate = Color.WHITE
 				var phase2_completed = true
 				for z in range(6):
 					if labels[z].text != str(answer2[z]):
