@@ -29,19 +29,19 @@ func set_start_button():
 	$StartButton/button/Label3D.pixel_size = 0.00025
 	$StartButton.num = 0
 	
-#func set_restart_button():
-	#$RestartButton3D.set_text("Restart?")
-	#$RestartButton3D/button/Label3D.modulate = Color.WHITE
-	#$RestartButton3D/button/Label3D.font_size = 220
-	#$RestartButton3D/button/Label3D.pixel_size = 0.00025
-	#$RestartButton3D.num = 1
+func set_restart_button():
+	$RestartButton3D.set_text("RESTART?")
+	$RestartButton3D/button/Label3D.modulate = Color.WHITE
+	$RestartButton3D/button/Label3D.font_size = 220
+	$RestartButton3D/button/Label3D.pixel_size = 0.00025
+	$RestartButton3D.num = 1
 
 func _ready():
 	scoreToWin = 20
 	if longmode == true:
 		scoreToWin = 30
 	set_start_button()
-	#set_restart_button()
+	set_restart_button()
 	$EndScreen.hide()
 	$Score.hide()
 	$RestartButton3D.hide()
@@ -51,31 +51,46 @@ func _ready():
 	reset_labels()
 	#set_label_Size()
 	place_labels()
-	#prepare_timer()
+	prepare_timer()
 	score = 0
 	$Screen3D.position = Vector3(-0.117, -0.117, 0.001)
 	$Screen3D.set_size(4,3)
 	
 	
+func setup_fix():
+	set_start_button()
+	set_restart_button()
+	$EndScreen.hide()
+	$Score.hide()
+	$RestartButton3D.hide()
+	$Time.hide()
+	$StartButton.show()
+	hideLabels()
+	reset_labels()
+	place_labels()
+	prepare_timer()
+	score = 0
+	$Screen3D.position = Vector3(-0.117, -0.117, 0.001)
+	$Screen3D.set_size(4,3)
 	
 #func set_label_Size():
 #	for x in Labels:
 #		x.size = Vector2(300, 260)
 	
-#func prepare_timer():
-	#timer.wait_time = 13
-	#timer.one_shot = true
+func prepare_timer():
+	timer.wait_time = 11
+	timer.one_shot = true
 	
 func _process(_delta: float):
 	#if (completed && practice):
 	#	$RedWireButton.visible = true
 		
 	
-	#if (time_left() >= 0):
-		#if (time_left() >= 10):
-			#$Time.text = str(time_left())
-		#if (time_left() < 10):
-			#$Time.text = "0" + str(time_left())
+	if (time_left() >= 0):
+		if (time_left() >= 10):
+			$Time.text = str(time_left())
+		if (time_left() < 10):
+			$Time.text = "0" + str(time_left())
 	if awaitingInputs:
 		if processinstruction == keys.up:
 			
@@ -112,9 +127,15 @@ func _process(_delta: float):
 				processinstruction = null
 				awaitingInputs = false
 				_startGame()
-	if score >= scoreToWin:
-		win()	
-				
+	if GameStart:
+		if score >= scoreToWin || time_left() <= 0:
+			hideLabels()
+			$Time.hide()
+			if score < scoreToWin:
+				lose()
+			else:
+				win()	
+			
 func _process_instruction(key):
 	processinstruction = key
 
@@ -147,17 +168,17 @@ func _startGame():
 	reset_labels()
 	place_labels()
 	begin()
-	#$Time.show()
+	$Time.show()
 	if GameStart and !completed:
 		label = Labels.pick_random()
 		label.show()
 		checkKeys = true
 	#if (time_left() <= 0):
-		#hideLabels()
-		#if (score >= 16):
-			#win()
-		#else:
-			#lose()
+	#	hideLabels()
+	#	if (score >= 16):
+	#		win()
+	#	else:
+	#		lose()
 
 func _unhandled_input(event):
 		if !checkKeys or completed or $"../../..".failed:
@@ -206,7 +227,7 @@ func flash_colors(keyShown, keyClicked):
 	else:
 		label.modulate = Color.RED
 		score -= 1
-		$"../../..".strikes += 1
+		#$"../../..".strikes += 1
 	#print(score)
 	
 func hideLabels():
@@ -225,9 +246,13 @@ func _on_but_pressed(num : int) -> void:
 			_startGame()
 	if num == 1:
 		if !$"../../..".failed:
-			_ready()
+			$"../../..".strikes += 1
+			print ("Added strike")
+			setup_fix()
+			print("Hid restart")
 			$StartButton.hide()
 			$StartButton.disabled = true
+			print("Hid start")
 			GameStart = true
 			timer.start()
 			_startGame()
@@ -241,17 +266,18 @@ func win():
 	await get_tree().create_timer(0.5).timeout
 	hideLabels()
 	
-	#$Score.text = "Score: " + str(score)
-	#$Score.show()
+	$Score.text = "Score: " + str(score)
+	$Score.show()
 	
-#func lose():
-	#$EndScreen.text = "You Lost"
-	#$EndScreen.show()
-	#$"../../..".strikes += 1
-	#await get_tree().create_timer(0.5).timeout
-	#$Score.text = "Score: " + str(score)
-	#$Score.show()
-	#$RestartButton3D.show()
+func lose():
+	$EndScreen.text = "TEST FAILED"
+	$EndScreen.modulate = Color.RED
+	$EndScreen.show()
+	await get_tree().create_timer(0.5).timeout
+	$Score.text = "Score: " + str(score)
+	$Score.show()
+	GameStart = false
+	$RestartButton3D.show()
 
 
 #func _on_restart_button_pressed() -> void:

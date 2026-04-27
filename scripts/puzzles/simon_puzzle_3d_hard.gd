@@ -12,9 +12,9 @@ var Color4 = 3
 var Color5 = 4
 var Color6 = 5
 var Color7 = 6
-var Color8 = 7
+var color8 = 7
 var Color9 = 8
-var Colors = [Color1, Color2, Color3, Color4, Color5, Color6, Color7, Color8, Color9]
+var Colors = [Color1, Color2, Color3, Color4, Color5, Color6, Color7, color8, Color9]
 var Pattern = [] 
 var GameOver = false
 var PatternPlaying = false
@@ -136,7 +136,7 @@ func _play_Pattern():
 			$Button6.set_color(Color.PURPLE)
 		if Pattern[x] == Color7:
 			$Button7.set_color(Color.PINK)
-		if Pattern[x] == Color8:
+		if Pattern[x] == color8:
 			$Button8.set_color(Color.AQUAMARINE)
 		if Pattern[x] == Color9:
 			$Button9.set_color(Color.WHITE)
