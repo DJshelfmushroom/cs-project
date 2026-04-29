@@ -52,8 +52,8 @@ func flash_Color1():
 		$Button3D.set_color(Color.RED)
 		$Button3D2.set_color(Color.RED)
 	elif Color1 == 1:
-		$Button3D.set_color(Color.DARK_ORANGE)
-		$Button3D2.set_color(Color.DARK_ORANGE)		
+		$Button3D.set_color(Color.ORANGE)
+		$Button3D2.set_color(Color.ORANGE)		
 	elif Color1 == 2:
 		$Button3D.set_color(Color.YELLOW)	
 		$Button3D2.set_color(Color.YELLOW)	

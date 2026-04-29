@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://dxqm5a3g44nab"]
+
+[ext_resource type="Script" uid="uid://r76ilsbu60y6" path="res://scripts/puzzles/segment_puzzle_3d_hard.gd" id="1_8qq5n"]
+[ext_resource type="PackedScene" uid="uid://c28hneqi1mrrq" path="res://scenes/components/segment_button_3d.tscn" id="2_28vcp"]
+[ext_resource type="FontFile" uid="uid://0my668ilbos5" path="res://assets/fonts/DS-DIGI.TTF" id="3_8w6e3"]
+[ext_resource type="PackedScene" uid="uid://cbcrfgck1oggo" path="res://scenes/components/screen_3d.tscn" id="4_36dbh"]
+
+[node name="SegmentPuzzle3DH" type="Node3D" unique_id=513318284]
+script = ExtResource("1_8qq5n")
+
+[node name="SB3D0" parent="." unique_id=754785337 instance=ExtResource("2_28vcp")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.047052234, 0.22, 0)
+
+[node name="SB3D1" parent="." unique_id=840592122 instance=ExtResource("2_28vcp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11294776, 0.06, 0)
+
+[node name="SB3D2" parent="." unique_id=478592191 instance=ExtResource("2_28vcp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11294776, -0.25, 0)
+
+[node name="SB3D3" parent="." unique_id=308914176 instance=ExtResource("2_28vcp")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.047052234, -0.4, 0)
+
+[node name="SB3D4" parent="." unique_id=1552280923 instance=ExtResource("2_28vcp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20705225, -0.25, 0)
+
+[node name="SB3D5" parent="." unique_id=900016118 instance=ExtResource("2_28vcp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20705225, 0.06, 0)
+
+[node name="SB3D6" parent="." unique_id=1200915676 instance=ExtResource("2_28vcp")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.047052234, -0.09, 0)
+
+[node name="SB3D7" parent="." unique_id=1550863088 instance=ExtResource("2_28vcp")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.41773537, 0.22, 0)
+
+[node name="SB3D8" parent="." unique_id=996099834 instance=ExtResource("2_28vcp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57773536, 0.06, 0)
+
+[node name="SB3D9" parent="." unique_id=60204303 instance=ExtResource("2_28vcp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57773536, -0.25, 0)
+
+[node name="SB3D10" parent="." unique_id=405927355 instance=ExtResource("2_28vcp")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.41773537, -0.4, 0)
+
+[node name="SB3D11" parent="." unique_id=2023803574 instance=ExtResource("2_28vcp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25773537, -0.25, 0)
+
+[node name="SB3D12" parent="." unique_id=1633387110 instance=ExtResource("2_28vcp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25773537, 0.06, 0)
+
+[node name="SB3D13" parent="." unique_id=1093453665 instance=ExtResource("2_28vcp")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.41773537, -0.09, 0)
+
+[node name="NumsLabel" type="Label3D" parent="." unique_id=1922240060]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18, 0.45, 0.002)
+pixel_size = 0.0005
+modulate = Color(0.98039216, 0.39215687, 0, 1)
+text = "0 | 0"
+font = ExtResource("3_8w6e3")
+font_size = 400
+
+[node name="Screen3D" parent="." unique_id=716753309 instance=ExtResource("4_36dbh")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
