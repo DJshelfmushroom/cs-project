@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d1den5xkkefe6"]
+
+[ext_resource type="Script" uid="uid://dpi1vxfc8lmeb" path="res://scripts/puzzles/colors_puzzle_3d_hard.gd" id="1_3kw0q"]
+[ext_resource type="PackedScene" uid="uid://bdbe3skaontxt" path="res://scenes/components/colors_button_3d_2.tscn" id="2_0o5bx"]
+[ext_resource type="PackedScene" uid="uid://bgfgng0ta202l" path="res://scenes/components/colors_button_3d.tscn" id="3_cjess"]
+
+[node name="ColorsPuzzle3DH" type="Node3D" unique_id=926660318]
+script = ExtResource("1_3kw0q")
+
+[node name="CB3D0" parent="." unique_id=1904573626 instance=ExtResource("2_0o5bx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.032249093, 0.1, 0)
+
+[node name="CB3D1" parent="." unique_id=143485016 instance=ExtResource("3_cjess")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14, -0.2, 0)
+
+[node name="CB3D2" parent="." unique_id=2126865665 instance=ExtResource("3_cjess")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, -0.2, 0)
