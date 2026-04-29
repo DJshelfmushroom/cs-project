@@ -5,24 +5,23 @@ var completedAchievements = []
 
 
 func completed_achievement(achievementName):
-	var achievement = allAchievements.find(achievementName)
 	if !completedAchievements.has(achievementName):
-		completedAchievements.append(allAchievements[achievement])
+		completedAchievements.append(achievementName)
 		SaveManager.save()
-	else:
-		pass
-	
+
 
 func check_achievement_completed(num):
+	if num < 0 or num >= allAchievements.size():
+		return false
 	var thisAchievement = allAchievements[num]
-	if allAchievements.has(thisAchievement) && completedAchievements.has(thisAchievement):
-		return true
-	else:
-		return false	
+	return completedAchievements.has(thisAchievement)
 
 
 func load_achievements(savedAchievements):
-	completedAchievements = savedAchievements
+	if savedAchievements is Array:
+		completedAchievements = savedAchievements
+	else:
+		completedAchievements = []
 	
 
 func clear_achievements(): #used for testing
