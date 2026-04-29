@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c12ur810twi0b" path="res://scripts/ui/layout/button_pos.gd" id="1_58i0q"]
 [ext_resource type="Script" uid="uid://dgyse4nbyam63" path="res://scripts/puzzles/reflex_puzzle_3d.gd" id="1_paxyd"]
 [ext_resource type="PackedScene" uid="uid://c4pwgpjrmtysv" path="res://scenes/components/memory_button_3d.tscn" id="2_f8dat"]
+[ext_resource type="PackedScene" uid="uid://caapg5wn513l5" path="res://scenes/components/button_3d.tscn" id="4_5pkql"]
 [ext_resource type="FontFile" uid="uid://0my668ilbos5" path="res://assets/fonts/DS-DIGI.TTF" id="4_hcldi"]
 [ext_resource type="PackedScene" uid="uid://cbcrfgck1oggo" path="res://scenes/components/screen_3d.tscn" id="4_pwbcx"]
 [ext_resource type="Script" uid="uid://fq0oosq08fsj" path="res://scenes/puzzles/progress_label.gd" id="7_7vj4h"]
@@ -50,9 +51,14 @@ outline_size = 0
 transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0, 0.002)
 skeleton = NodePath("")
 
-[node name="RestartButton3D" parent="." unique_id=1174339791 instance=ExtResource("2_f8dat")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0.004)
+[node name="RestartButton3Dpause" parent="." unique_id=819273714 instance=ExtResource("2_f8dat")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0.008)
+visible = false
 skeleton = NodePath("")
+
+[node name="RestartButton3D" parent="." unique_id=960169264 instance=ExtResource("4_5pkql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0.008)
+skeleton = NodePath("../RestartButton3Dpause")
 
 [node name="Timer" type="Timer" parent="." unique_id=562176720]
 wait_time = 10.0
