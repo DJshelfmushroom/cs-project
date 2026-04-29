@@ -1,14 +1,32 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class explosion : Node
 {
 	int frame = 0;
 	bool hasExploded = false;
+	private string[] sounds;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-
+		var dir = DirAccess.Open("res://explosions");
+		var	soundList = new List<string>();
+		if (dir != null)
+		{
+			dir.ListDirBegin();
+			string fileName = dir.GetNext();
+			while (fileName != "")
+			{
+				if (!dir.CurrentIsDir() && !fileName.StartsWith("."))
+				{
+					soundList.Add("res://explosions/" + fileName);
+				}
+				fileName = dir.GetNext();
+			}
+			dir.ListDirEnd();
+		}
+		sounds = soundList.ToArray();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,9 +44,9 @@ public partial class explosion : Node
 				}
 				AudioStreamPlayer explosionSound = new AudioStreamPlayer();
 				GetNode<Node3D>("../bomb_instance").Hide();
-				explosionSound.Stream = GD.Load<AudioStreamWav>("res://explosion.wav");
+				explosionSound.Stream = GD.Load<AudioStreamWav>(sounds[new Random().Next(sounds.Length)]);
 				GetParent().AddChild(explosionSound);
-				explosionSound.Playing = true;
+				explosionSound.Play();
 				explosionSound.Connect("finished", Callable.From(() => explosionSound.QueueFree()));
 			}
 		}

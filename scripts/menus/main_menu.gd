@@ -10,7 +10,12 @@ func _on_play_button_up() -> void:
 	get_tree().change_scene_to_file("res://bomb/Game3d.tscn")
 
 func _on_tutorials_button_up() -> void:
+	var sound = AudioStreamPlayer.new()
+	sound.set_stream(load("res://silence_please.mp3"))
+	get_tree().root.add_child(sound)
+	sound.play()
 	get_tree().change_scene_to_file("res://scenes/menus/tutorials.tscn")
+	sound.finished.connect(sound.queue_free)
 
 
 func _on_packs_button_button_up() -> void:

@@ -186,6 +186,7 @@ color = Color(0.39215687, 0.78431374, 1, 1)
 script = ExtResource("6_ng0o5")
 
 [node name="xpbutton1" type="Button" parent="Control" unique_id=1131962921]
+visible = false
 layout_mode = 0
 offset_left = 253.0
 offset_top = 853.0
@@ -197,6 +198,7 @@ text = "+"
 script = ExtResource("7_bre17")
 
 [node name="xpbutton2" type="Button" parent="Control" unique_id=1017480025]
+visible = false
 layout_mode = 0
 offset_left = 366.0
 offset_top = 851.0
@@ -208,6 +210,7 @@ text = "-"
 script = ExtResource("9_88kup")
 
 [node name="xpbutton3" type="Button" parent="Control" unique_id=525638144]
+visible = false
 layout_mode = 0
 offset_left = 478.0
 offset_top = 851.0
