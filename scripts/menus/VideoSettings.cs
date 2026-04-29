@@ -133,8 +133,7 @@ public partial class VideoSettings : Control //TODO: add ui options
 						{
 							// Log("gack to nmenu", this);
 							GetTree().ChangeSceneToFile("res://scenes/menus/Settings.tscn");
-							// SceneManager.ReturnToScene(this);
-							// Call(nameof(SceneManager.ReturnToScene), [this]);
+
 						};
 					}
 

@@ -1,6 +1,7 @@
 class_name save_manager extends Node
 
-var save_path : String = "user://save_data.save"
+const save_path : String = "user://save_data.save"
+# TODO: add settings_path
 
 
 var pack1owned : int = 0
@@ -29,11 +30,17 @@ func save():
 	file.store_var(totalxp)
 	save_mouse_info(file)
 	completedAchievements = file.store_var(Achievements.completedAchievements)
+	file.close();
 	
 	
 func save_mouse_info(file):
 	file.store_var(color)
 	
+
+static func write(variable:Variant): #TODO: make this work (How does it get read?)
+	var file = FileAccess.open(save_path, FileAccess.WRITE);
+	file.store_var(variable);
+	file.close();
 
 func load_mouse_info(file):
 	var loaded_color = file.get_var()
