@@ -2,6 +2,8 @@ class_name save_manager extends Node
 
 const save_path : String = "user://save_data.save"
 # TODO: add settings_path
+const settings_path : String = "user://settings.sav"
+const delim : String = "|"
 
 
 var pack1owned : int = 0
@@ -19,6 +21,8 @@ var practice: bool = false
 var practice_puzzle_index: int = 0
 
 func _ready() -> void:
+	if !FileAccess.file_exists(settings_path):
+		FileAccess.
 	load_data()
 
 
@@ -32,15 +36,30 @@ func save():
 	completedAchievements = file.store_var(Achievements.completedAchievements)
 	file.close();
 	
-	
+
 func save_mouse_info(file):
 	file.store_var(color)
 	
 
-static func write(variable:Variant): #TODO: make this work (How does it get read?)
-	var file = FileAccess.open(save_path, FileAccess.WRITE);
-	file.store_var(variable);
+static func write_setting(name:StringName, value:Variant) -> bool: #TODO: make this work (How does it get read?)
+	var file = FileAccess.open(settings_path, FileAccess.WRITE);
+	file.store_line(name + ':' + str(value) + delim);
 	file.close();
+	return file != null;
+
+static func read_setting(name:StringName, ignore_upper:bool = false) -> String: #string
+	#var file = FileAccess.open(settings_path, FileAccess.READ);
+	var file : String = FileAccess.get_file_as_string(settings_path);
+	var index;
+	if ignore_upper:
+		index = file.findn(name);
+	else:
+		index = file.find(name);
+	if index == -1:
+		return "null";
+	index = file.find(":",index);
+	file = file.substr(index, file.find(delim, index));
+	return file;
 
 func load_mouse_info(file):
 	var loaded_color = file.get_var()
