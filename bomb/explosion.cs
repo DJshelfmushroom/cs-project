@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using csproject.scripts.core;
 
 public partial class explosion : Node
 {
@@ -18,7 +19,7 @@ public partial class explosion : Node
 			string fileName = dir.GetNext();
 			while (fileName != "")
 			{
-				if (!dir.CurrentIsDir() && !fileName.StartsWith("."))
+				if (!dir.CurrentIsDir() && !fileName.StartsWith(".") && !fileName.EndsWith(".import"))
 				{
 					soundList.Add("res://explosions/" + fileName);
 				}

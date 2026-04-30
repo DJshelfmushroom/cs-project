@@ -29,6 +29,6 @@ func _on_beat_game_under_60_mouse_entered() -> void:
 func _on_beat_game_under_60_mouse_exited() -> void:
 	$"Achievement Buttons/BeatGameUnder60/RapidText".hide()
 func _on_dont_disable_puzzle_mouse_entered() -> void:
-	$"Achievement Buttons/Don'tDisablePuzzle/ForgetText".show()
+	$"Achievement Buttons/DontDisablePuzzle/ForgetText".show()
 func _on_dont_disable_puzzle_mouse_exited() -> void:
-	$"Achievement Buttons/Don'tDisablePuzzle/ForgetText".hide()
+	$"Achievement Buttons/DontDisablePuzzle/ForgetText".hide()

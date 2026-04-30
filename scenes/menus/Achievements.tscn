@@ -110,7 +110,7 @@ theme_override_font_sizes/font_size = 38
 text = "Beat a round in under 
 a minute"
 
-[node name="Don\'tDisablePuzzle" type="Button" parent="Achievement Buttons" unique_id=265469284]
+[node name="DontDisablePuzzle" type="Button" parent="Achievement Buttons" unique_id=265469284]
 layout_mode = 0
 offset_left = 376.0
 offset_top = 248.0
@@ -119,7 +119,7 @@ offset_bottom = 343.0
 theme_override_font_sizes/font_size = 40
 text = "Forgot About Me?"
 
-[node name="ForgetText" type="Label" parent="Achievement Buttons/Don\'tDisablePuzzle" unique_id=22230069]
+[node name="ForgetText" type="Label" parent="Achievement Buttons/DontDisablePuzzle" unique_id=22230069]
 visible = false
 layout_mode = 0
 offset_left = 350.0
@@ -137,5 +137,5 @@ doing the disable puzzle"
 [connection signal="mouse_exited" from="Achievement Buttons/BeatGameUnder90" to="." method="_on_beat_game_under_90_mouse_exited"]
 [connection signal="mouse_entered" from="Achievement Buttons/BeatGameUnder60" to="." method="_on_beat_game_under_60_mouse_entered"]
 [connection signal="mouse_exited" from="Achievement Buttons/BeatGameUnder60" to="." method="_on_beat_game_under_60_mouse_exited"]
-[connection signal="mouse_entered" from="Achievement Buttons/Don\'tDisablePuzzle" to="." method="_on_dont_disable_puzzle_mouse_entered"]
-[connection signal="mouse_exited" from="Achievement Buttons/Don\'tDisablePuzzle" to="." method="_on_dont_disable_puzzle_mouse_exited"]
+[connection signal="mouse_entered" from="Achievement Buttons/DontDisablePuzzle" to="." method="_on_dont_disable_puzzle_mouse_entered"]
+[connection signal="mouse_exited" from="Achievement Buttons/DontDisablePuzzle" to="." method="_on_dont_disable_puzzle_mouse_exited"]
