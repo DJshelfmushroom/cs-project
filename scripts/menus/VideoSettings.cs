@@ -1,5 +1,6 @@
 using System;
-using System.Diagnostics; 
+using System.Diagnostics;
+using csproject.scripts.core;
 using Godot;
 using Godot.Collections;
 using static csproject.scripts.core.Utils.Logger;
@@ -22,7 +23,7 @@ public partial class VideoSettings : Control //TODO: add ui options
 
 	[Export] public Dictionary<NodePath, ControlFeatures> Features;
 	
-	public enum ControlFeatures
+	public enum ControlFeatures // add stretch mode? (would have to change the mouse cursor changing part maybe [or it uses the viewport? idk])
 	{
 		ResolutionW, //linedit
 		ResolutionH, //linedit
@@ -44,101 +45,114 @@ public partial class VideoSettings : Control //TODO: add ui options
 	{
 		// base._Ready();
 		Log(Features.ToString(), this);
-			
+
 		foreach (var (controlNodePath, feature) in Features)
 		{
 			var controlNode = GetNode(controlNodePath);
 			Log($"Feature: {feature}", this);
 			Log($"Control: {controlNode}", this);
-			switch (feature)
-			{
-				case ControlFeatures.ResolutionH:
-					if (controlNode is LineEdit lineEdit)
-					{
-						lineEdit.Text = GetWindow().Size.Y + "";
-						lineEdit.TextSubmitted += text =>
-						{ 
-							SetResolution(height: text.ToInt());
-							// CallDeferred(nameof(SetResolution), [-1, text.ToInt()]);
-						};
-						lineEdit.SetMeta("editing", false);
-						lineEdit.EditingToggled += editing =>
-						{
-							lineEdit.SetMeta("editing", editing);
-							// if (editing) lineEdit.SetMeta("editValue", lineEdit.Text);
-						};
-					}
-					break;
-				case ControlFeatures.ResolutionW:
-					if (controlNode is LineEdit lineEdit1)
-					{
-						lineEdit1.Text = GetWindow().Size.X + "";
-						lineEdit1.TextSubmitted += text =>
-						{
-							SetResolution(text.ToInt());
-							// CallDeferred(nameof(SetResolution), [text.ToInt()]);
-						}; 
-						lineEdit1.SetMeta("editing", false);
-						lineEdit1.EditingToggled += editing =>
-						{
-							lineEdit1.SetMeta("editing", editing);
-							// if (editing) lineEdit1.SetMeta("editValue", lineEdit1.Text);
-						};
-					}
-					break;
-				case ControlFeatures.Fullscreen:
-					if (controlNode is OptionButton fullscreenButton)
-					{
-						foreach (var fullscreenOption in Enum.GetValues(typeof(FullscreenOptions)))
-						{
-							fullscreenButton.AddItem(fullscreenOption.ToString());
-						}
+			ConfigureFeature(feature, controlNode);
+		}
+	}
 
-						fullscreenButton.Text = "Fullscreen Mode";
-						fullscreenButton.ItemSelected += index =>
-						{
-							SetFullscreen((FullscreenOptions)index);
-						};
-					}
+	private void SaveSetting(StringName setting, Variant value)
+	{
+		Script saveManager = Utils.GetSaveManager();
+		saveManager.Callv("write_setting", [setting, value]);
+	}
 
-					break;
-				case ControlFeatures.VSync:
-					if (controlNode is OptionButton vsyncButton)
+	private Variant ReadSetting(StringName setting)
+	{
+		// return Callv()
+		return Variant.CreateFrom(setting);
+	}
+
+	private void ConfigureFeature(ControlFeatures feature, Node controlNode)
+	{
+		switch (feature)
+		{
+			case ControlFeatures.ResolutionH:
+				if (controlNode is LineEdit lineEdit)
+				{
+					lineEdit.Text = GetWindow().Size.Y + "";
+					lineEdit.TextSubmitted += text =>
+					{ 
+						SetResolution(height: text.ToInt());
+						// CallDeferred(nameof(SetResolution), [-1, text.ToInt()]);
+					};
+					lineEdit.SetMeta("editing", false);
+					lineEdit.EditingToggled += editing =>
 					{
-						foreach (var vsyncMode in Enum.GetValues(typeof(VSyncMode)))
-						{
-							vsyncButton.AddItem(vsyncMode.ToString());
-						}
-						vsyncButton.Text = "VSync Mode";
-						vsyncButton.ItemSelected += index =>
-						{
-							SetVSync((VSyncMode)index);
-						};
-					}
-					break;
-				case ControlFeatures.FrameCap:
-					if (controlNode is LineEdit frameCap)
+						lineEdit.SetMeta("editing", editing);
+						// if (editing) lineEdit.SetMeta("editValue", lineEdit.Text);
+					};
+				}
+				break;
+			case ControlFeatures.ResolutionW:
+				if (controlNode is LineEdit lineEdit1)
+				{
+					lineEdit1.Text = GetWindow().Size.X + "";
+					lineEdit1.TextSubmitted += text =>
 					{
-						//TODO Look at Resolution features for a base (You can use SetFrameCap)
-						frameCap.Text = Engine.MaxFps + "";
-						frameCap.TextSubmitted += text => { SetFrameCap(text.ToInt()); };
+						SetResolution(text.ToInt());
+						// CallDeferred(nameof(SetResolution), [text.ToInt()]);
+					}; 
+					lineEdit1.SetMeta("editing", false);
+					lineEdit1.EditingToggled += editing =>
+					{
+						lineEdit1.SetMeta("editing", editing);
+						// if (editing) lineEdit1.SetMeta("editValue", lineEdit1.Text);
+					};
+				}
+				break;
+			case ControlFeatures.Fullscreen:
+				if (controlNode is OptionButton fullscreenButton)
+				{
+					foreach (var fullscreenOption in Enum.GetValues(typeof(FullscreenOptions)))
+					{
+						fullscreenButton.AddItem(fullscreenOption.ToString());
 					}
-					break;
-				case ControlFeatures.BackButton:
-					// Log("gack to nmenu " + controlNode.GetType(), this);
-					if (controlNode is Godot.Button button)
+					fullscreenButton.Text = "Fullscreen Mode";
+					fullscreenButton.ItemSelected += index =>
+					{
+						SetFullscreen((FullscreenOptions)index);
+					};
+				}
+				break;
+			case ControlFeatures.VSync:
+				if (controlNode is OptionButton vsyncButton)
+				{
+					foreach (var vsyncMode in Enum.GetValues(typeof(VSyncMode)))
+					{
+						vsyncButton.AddItem(vsyncMode.ToString());
+					}
+					vsyncButton.Text = "VSync Mode";
+					vsyncButton.ItemSelected += index =>
+					{
+						SetVSync((VSyncMode)index);
+					};
+				}
+				break;
+			case ControlFeatures.FrameCap:
+				if (controlNode is LineEdit frameCap)
+				{
+					//TODO Look at Resolution features for a base (You can use SetFrameCap)
+					frameCap.Text = Engine.MaxFps + "";
+					frameCap.TextSubmitted += text => { SetFrameCap(text.ToInt()); };
+				}
+				break;
+			case ControlFeatures.BackButton:
+				// Log("gack to nmenu " + controlNode.GetType(), this);
+				if (controlNode is Godot.Button button)
+				{
+					// Log("gack to nmenu", this);
+					button.Pressed += () =>
 					{
 						// Log("gack to nmenu", this);
-						button.Pressed += () =>
-						{
-							// Log("gack to nmenu", this);
-							GetTree().ChangeSceneToFile("res://scenes/menus/Settings.tscn");
-
-						};
-					}
-
-					break;
-			}
+						GetTree().ChangeSceneToFile("res://scenes/menus/Settings.tscn");
+					};
+				}
+				break;
 		}
 	}
 

@@ -14,7 +14,11 @@ public partial class Utils : Node
 	private static bool _debug = false;
 	
 	private static readonly string[] LogBlacklist = [""]; // paths that aren't to be logged 
-	
+	private static readonly Script SaveManager = ResourceLoader.Load<Script>("res://scripts/core/save_manager.gd");
+
+	public static Script GetSaveManager() => SaveManager;
+
+
 	public static Node GetBombNode(Node caller)
 	{
 		try

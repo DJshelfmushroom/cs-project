@@ -21,8 +21,6 @@ var practice: bool = false
 var practice_puzzle_index: int = 0
 
 func _ready() -> void:
-	if !FileAccess.file_exists(settings_path):
-		FileAccess.
 	load_data()
 
 
