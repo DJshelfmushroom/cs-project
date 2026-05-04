@@ -32,3 +32,11 @@ func _on_dont_disable_puzzle_mouse_entered() -> void:
 	$"Achievement Buttons/DontDisablePuzzle/ForgetText".show()
 func _on_dont_disable_puzzle_mouse_exited() -> void:
 	$"Achievement Buttons/DontDisablePuzzle/ForgetText".hide()
+func _on_dynamic_duo_mouse_entered() -> void:
+	$"Achievement Buttons/DynamicDuo/DynamicDuoText".show()
+func _on_dynamic_duo_mouse_exited() -> void:
+	$"Achievement Buttons/DynamicDuo/DynamicDuoText".hide()
+func _on_of_a_kind_mouse_entered() -> void:
+	$"Achievement Buttons/3OfAKind/3OfAKindText".show()
+func _on_of_a_kind_mouse_exited() -> void:
+	$"Achievement Buttons/3OfAKind/3OfAKindText".hide()

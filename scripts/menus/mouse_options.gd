@@ -21,6 +21,9 @@ var glitched_hand = preload("res://assets/cursor/Glitched_RedWire_Hand.png")
 var inverted_arrow = preload("res://assets/cursor/Inverted_RedWire_Cursor.png")
 var inverted_hand = preload("res://assets/cursor/Inverted_RedWire_Hand.png")
 
+var inverse_arrow = preload("res://assets/cursor/Inverse_RedWire_Cursor.png")
+var inverse_hand = preload("res://assets/cursor/Inverse_RedWire_Hand.png")
+
 var mouse_cursor = null
 var x_factor = 85
 var y_factor = 120
@@ -45,6 +48,8 @@ func prepare_buttons():
 		set_quick_to_base()
 	if (SaveManager.level < 10):
 		set_inverted_to_base()
+	if (SaveManager.level < 15):
+		set_inverse_to_base()
 
 func place_set():
 	if (check_mouse_cursor() == "red"):
@@ -68,6 +73,9 @@ func place_set():
 	elif (check_mouse_cursor() == "inverted"):
 		$Set.position = Vector2($Inverted_Mouse.position.x + x_factor, $Inverted_Mouse.position.y + y_factor)
 		$Set.show()
+	elif (check_mouse_cursor() == "inverse"):
+		$Set.position = Vector2($Inverse_Mouse.position.x + x_factor, $Inverse_Mouse.position.y + y_factor)
+		$Set.show()
 	else:
 		$Set.hide()
 	
@@ -87,6 +95,9 @@ func set_quick_to_base():
 func set_inverted_to_base():
 	$Inverted_Mouse.text = "Unlocks at Level 10"
 	$Inverted_Mouse.disabled = true
+func set_inverse_to_base():
+	$Inverse_Mouse.text = "Unlocks at Level 15"
+	$Inverse_Mouse.disabled = true
 
 func _on_red_mouse_pressed() -> void:
 	SaveManager.arrow = red_arrow
@@ -151,5 +162,14 @@ func _on_inverted_mouse_pressed() -> void:
 	place_set()
 	SaveManager.save()
 	
+func _on_inverse_mouse_pressed() -> void:
+	SaveManager.arrow = inverse_arrow
+	SaveManager.hand  = inverse_hand
+	SaveManager.color = "inverse"
+	
+	$CustomCursor.set_mouse_cursor(inverse_arrow, inverse_hand, "inverse")
+	place_set()
+	SaveManager.save()
+
 func _on_back_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")

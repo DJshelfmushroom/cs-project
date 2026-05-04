@@ -5,6 +5,10 @@ func _ready() -> void:
 	SaveManager.save()
 	if (SaveManager.level >= 5):
 		Achievements.completed_achievement("Reached Level 5")
+	if (SaveManager.level >= 10):
+		Achievements.completed_achievement("Dynamic Duo")
+	if (SaveManager.level >= 15):
+		Achievements.completed_achievement("Complete the Triumvirate")
 
 func _on_play_button_up() -> void:
 	get_tree().change_scene_to_file("res://bomb/Game3d.tscn")

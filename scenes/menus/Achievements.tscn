@@ -130,6 +130,45 @@ theme_override_font_sizes/font_size = 38
 text = "Complete a puzzle without 
 doing the disable puzzle"
 
+[node name="DynamicDuo" type="Button" parent="Achievement Buttons" unique_id=985277064]
+layout_mode = 0
+offset_top = 368.0
+offset_right = 338.0
+offset_bottom = 463.0
+theme_override_font_sizes/font_size = 40
+text = "Dynamic Duo"
+
+[node name="DynamicDuoText" type="Label" parent="Achievement Buttons/DynamicDuo" unique_id=645560001]
+visible = false
+layout_mode = 0
+offset_left = -318.0
+offset_top = 3.0
+offset_right = -25.0
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 38
+text = "Unlock the Inverted 
+Mouse Cursor"
+
+[node name="3OfAKind" type="Button" parent="Achievement Buttons" unique_id=192691767]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 368.0
+offset_right = 714.0
+offset_bottom = 463.0
+theme_override_font_sizes/font_size = 34
+text = "Complete the Triumvirate"
+
+[node name="3OfAKindText" type="Label" parent="Achievement Buttons/3OfAKind" unique_id=2076727085]
+visible = false
+layout_mode = 0
+offset_left = 350.0
+offset_top = 8.0
+offset_right = 740.0
+offset_bottom = 89.0
+theme_override_font_sizes/font_size = 38
+text = "Unlock the two interchanged 
+mouse cursors"
+
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="mouse_entered" from="Achievement Buttons/ReachedLevel5Button" to="." method="_on_reached_level_5_button_mouse_entered"]
 [connection signal="mouse_exited" from="Achievement Buttons/ReachedLevel5Button" to="." method="_on_reached_level_5_button_mouse_exited"]
@@ -139,3 +178,7 @@ doing the disable puzzle"
 [connection signal="mouse_exited" from="Achievement Buttons/BeatGameUnder60" to="." method="_on_beat_game_under_60_mouse_exited"]
 [connection signal="mouse_entered" from="Achievement Buttons/DontDisablePuzzle" to="." method="_on_dont_disable_puzzle_mouse_entered"]
 [connection signal="mouse_exited" from="Achievement Buttons/DontDisablePuzzle" to="." method="_on_dont_disable_puzzle_mouse_exited"]
+[connection signal="mouse_entered" from="Achievement Buttons/DynamicDuo" to="." method="_on_dynamic_duo_mouse_entered"]
+[connection signal="mouse_exited" from="Achievement Buttons/DynamicDuo" to="." method="_on_dynamic_duo_mouse_exited"]
+[connection signal="mouse_entered" from="Achievement Buttons/3OfAKind" to="." method="_on_of_a_kind_mouse_entered"]
+[connection signal="mouse_exited" from="Achievement Buttons/3OfAKind" to="." method="_on_of_a_kind_mouse_exited"]

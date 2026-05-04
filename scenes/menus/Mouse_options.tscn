@@ -93,6 +93,16 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Inverted Cursor"
 
+[node name="Inverse_Mouse" type="Button" parent="." unique_id=352235974]
+layout_mode = 0
+offset_left = 1350.0
+offset_top = 300.0
+offset_right = 1650.0
+offset_bottom = 400.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Inverse Cursor"
+
 [node name="Set" type="Label" parent="." unique_id=1803000527]
 visible = false
 layout_mode = 0
@@ -122,4 +132,5 @@ text = "Back"
 [connection signal="pressed" from="Quick_Mouse" to="." method="_on_quick_mouse_pressed"]
 [connection signal="pressed" from="Glitched_Mouse" to="." method="_on_glitched_mouse_pressed"]
 [connection signal="pressed" from="Inverted_Mouse" to="." method="_on_inverted_mouse_pressed"]
+[connection signal="pressed" from="Inverse_Mouse" to="." method="_on_inverse_mouse_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

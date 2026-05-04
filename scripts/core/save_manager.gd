@@ -92,6 +92,9 @@ func load_mouse_info(file):
 	elif (color == "inverted"):
 		arrow = load("res://assets/cursor/Inverted_RedWire_Cursor.png")
 		hand = load("res://assets/cursor/Inverted_RedWire_Hand.png")
+	elif (color == "inverse"):
+		arrow = load("res://assets/cursor/Inverse_RedWire_Cursor.png")
+		hand = load("res://assets/cursor/Inverse_RedWire_Hand.png")
 	else:
 		pass
 
