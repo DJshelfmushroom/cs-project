@@ -41,6 +41,11 @@ func save_mouse_info(file):
 
 static func write_setting(name:StringName, value:Variant) -> bool: #TODO: make this work (How does it get read?)
 	var file = FileAccess.open(settings_path, FileAccess.WRITE);
+	if read_setting(name) != "null":
+		file.close();
+		file = file.get_file_as_string(settings_path);
+		file.replace(name + ':' + read_setting(name), name + ':' + str(value));
+		pass
 	file.store_line(name + ':' + str(value) + delim);
 	file.close();
 	return file != null;

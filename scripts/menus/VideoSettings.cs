@@ -41,9 +41,19 @@ public partial class VideoSettings : Control //TODO: add ui options
 		Fullscreen
 	}
 
+	public void StorageTest<T>(int variant)
+	{
+		Log($"Storage Test: {variant}", this);
+		SaveSetting("testSetting", variant);
+		// var type = variant.GetType();
+		Log($"Read back: {ReadSetting<T>("testSetting")}", this);
+		Log($"Variant type: {ReadSetting<T>("testSetting").GetType()}", this);
+	}
+
 	public override void _Ready()
 	{
 		// base._Ready();
+		StorageTest<Vector2>(10);
 		Log(Features.ToString(), this);
 
 		foreach (var (controlNodePath, feature) in Features)
@@ -60,11 +70,13 @@ public partial class VideoSettings : Control //TODO: add ui options
 		Script saveManager = Utils.GetSaveManager();
 		saveManager.Callv("write_setting", [setting, value]);
 	}
-
-	private Variant ReadSetting(StringName setting)
+	
+	private T ReadSetting<T> (StringName setting)
 	{
-		// return Callv()
-		return Variant.CreateFrom(setting);
+		Variant varSetting = Callv("read_setting", [setting]);
+#pragma warning disable GD0302
+		return varSetting.As<T>();
+#pragma warning restore GD0302
 	}
 
 	private void ConfigureFeature(ControlFeatures feature, Node controlNode)
