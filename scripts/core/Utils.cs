@@ -152,7 +152,7 @@ public partial class Utils : Node
 
 		public static void LogGD(string message, Node source)
 		{
-			Log(message, source);
+			Log(message, "source");
 		}
 	}
 

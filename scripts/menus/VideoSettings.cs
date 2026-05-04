@@ -41,7 +41,7 @@ public partial class VideoSettings : Control //TODO: add ui options
 		Fullscreen
 	}
 
-	public void StorageTest<T>(int variant)
+	public void StorageTest<T>(Variant variant)
 	{
 		Log($"Storage Test: {variant}", this);
 		SaveSetting("testSetting", variant);
@@ -53,7 +53,8 @@ public partial class VideoSettings : Control //TODO: add ui options
 	public override void _Ready()
 	{
 		// base._Ready();
-		StorageTest<Vector2>(10);
+		Log($"StrToVar test: {GD.StrToVar("10").VariantType}", this); // no
+		StorageTest<Vector2>(new Vector2(10.1f, 10.1f));
 		Log(Features.ToString(), this);
 
 		foreach (var (controlNodePath, feature) in Features)
@@ -68,12 +69,18 @@ public partial class VideoSettings : Control //TODO: add ui options
 	private void SaveSetting(StringName setting, Variant value)
 	{
 		Script saveManager = Utils.GetSaveManager();
+		if (value.VariantType.ToString().Contains("Vector"))
+		{
+			value = value.VariantType.ToString() + " " + value.ToString();
+		}
+
 		saveManager.Callv("write_setting", [setting, value]);
 	}
 	
 	private T ReadSetting<T> (StringName setting)
 	{
-		Variant varSetting = Callv("read_setting", [setting]);
+		Script saveManager = Utils.GetSaveManager();
+		Variant varSetting = GD.StrToVar(saveManager.Callv("read_setting", [setting, false]).ToString());
 #pragma warning disable GD0302
 		return varSetting.As<T>();
 #pragma warning restore GD0302
