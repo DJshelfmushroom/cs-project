@@ -43,12 +43,9 @@ public partial class explosion : Node
 				{
 					child.Emitting = true;
 				}
-				AudioStreamPlayer explosionSound = new AudioStreamPlayer();
 				GetNode<Node3D>("../bomb_instance").Hide();
-				explosionSound.Stream = GD.Load<AudioStreamWav>(sounds[new Random().Next(sounds.Length)]);
-				GetParent().AddChild(explosionSound);
-				explosionSound.Play();
-				explosionSound.Connect("finished", Callable.From(() => explosionSound.QueueFree()));
+				Utils.Logger.Log("test", this);
+				SoundManager.PlaySound(sounds[new Random().Next(sounds.Length)]);
 			}
 		}
 	}
