@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1e3ul656h5y"
-path="res://.godot/imported/Inverse_RedWire_Cursor.png-d51394a4d62626bba3666b5fe88472bf.ctex"
+uid="uid://d1y3pp71ecp0q"
+path="res://.godot/imported/Hand_RedWire_Cursor.png-99fd87970b0ca10a8bc1e121c0daa1c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cursor/Inverse_RedWire_Cursor.png"
-dest_files=["res://.godot/imported/Inverse_RedWire_Cursor.png-d51394a4d62626bba3666b5fe88472bf.ctex"]
+source_file="res://assets/cursor/Hand_RedWire_Cursor.png"
+dest_files=["res://.godot/imported/Hand_RedWire_Cursor.png-99fd87970b0ca10a8bc1e121c0daa1c3.ctex"]
 
 [params]
 

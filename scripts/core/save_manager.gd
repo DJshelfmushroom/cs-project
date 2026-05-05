@@ -20,6 +20,8 @@ var deleted = false
 var practice: bool = false
 var practice_puzzle_index: int = 0
 
+var practice_array = []
+
 func _ready() -> void:
 	load_data()
 
@@ -32,6 +34,7 @@ func save():
 	file.store_var(totalxp)
 	save_mouse_info(file)
 	completedAchievements = file.store_var(Achievements.completedAchievements)
+	file.store_var(practice_array)
 	file.close();
 	
 
@@ -106,6 +109,9 @@ func load_mouse_info(file):
 	elif (color == "inverse"):
 		arrow = load("res://assets/cursor/Inverse_RedWire_Cursor.png")
 		hand = load("res://assets/cursor/Inverse_RedWire_Hand.png")
+	elif (color == "hand"):
+		arrow = load("res://assets/cursor/Hand_RedWire_Cursor.png")
+		hand = load("res://assets/cursor/Hand_RedWire_Hand.png")
 	else:
 		pass
 
@@ -118,6 +124,7 @@ func load_data():
 		totalxp = file.get_var(totalxp)
 		load_mouse_info(file)
 		Achievements.load_achievements(file.get_var())
+		practice_array = file.get_var()
 	else:
 		pack1owned = 0
 		level = 0
@@ -126,6 +133,7 @@ func load_data():
 		hand = load("res://assets/cursor/RedWire_Hand.png")
 		color = "red"
 		completedAchievements = []
+		practice_array = []
 
 func _input(_event):
 	if (Utils.GetDebug()):

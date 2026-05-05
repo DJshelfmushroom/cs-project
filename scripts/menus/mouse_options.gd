@@ -24,6 +24,9 @@ var inverted_hand = preload("res://assets/cursor/Inverted_RedWire_Hand.png")
 var inverse_arrow = preload("res://assets/cursor/Inverse_RedWire_Cursor.png")
 var inverse_hand = preload("res://assets/cursor/Inverse_RedWire_Hand.png")
 
+var hand_arrow = preload("res://assets/cursor/Hand_RedWire_Cursor.png")
+var hand_hand = preload("res://assets/cursor/Hand_RedWire_Hand.png")
+
 var mouse_cursor = null
 var x_factor = 85
 var y_factor = 120
@@ -75,6 +78,9 @@ func place_set():
 		$Set.show()
 	elif (check_mouse_cursor() == "inverse"):
 		$Set.position = Vector2($Inverse_Mouse.position.x + x_factor, $Inverse_Mouse.position.y + y_factor)
+		$Set.show()
+	elif (check_mouse_cursor() == "hand"):
+		$Set.position = Vector2($Hand_Mouse.position.x + x_factor, $Hand_Mouse.position.y + y_factor)
 		$Set.show()
 	else:
 		$Set.hide()
@@ -168,6 +174,15 @@ func _on_inverse_mouse_pressed() -> void:
 	SaveManager.color = "inverse"
 	
 	$CustomCursor.set_mouse_cursor(inverse_arrow, inverse_hand, "inverse")
+	place_set()
+	SaveManager.save()
+
+func _on_hand_mouse_pressed() -> void:
+	SaveManager.arrow = hand_arrow
+	SaveManager.hand  = hand_hand
+	SaveManager.color = "hand"
+	
+	$CustomCursor.set_mouse_cursor(hand_arrow, hand_hand, "hand")
 	place_set()
 	SaveManager.save()
 

@@ -8,4 +8,8 @@ func _on_back_button_pressed() -> void:
 func _on_start_button_pressed() -> void:
 	SaveManager.practice = true
 	SaveManager.practice_puzzle_index = selected_puzzle
+	if !SaveManager.practice_array.has(SaveManager.practice_puzzle_index):
+		SaveManager.practice_array.append(SaveManager.practice_puzzle_index)
+		print(SaveManager.practice_array)
+		SaveManager.save()
 	SceneManager.ChangeScene(self, "res://bomb/Game3d.tscn")
