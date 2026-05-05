@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.Xml;
 using csproject.scripts.core;
 using Godot;
 using Godot.Collections;
@@ -22,6 +23,8 @@ public partial class VideoSettings : Control //TODO: add ui options
 	 */
 
 	[Export] public Dictionary<NodePath, ControlFeatures> Features;
+
+	private static FullscreenOptions fullscreenMode;
 	
 	public enum ControlFeatures // add stretch mode? (would have to change the mouse cursor changing part maybe [or it uses the viewport? idk])
 	{
@@ -31,7 +34,8 @@ public partial class VideoSettings : Control //TODO: add ui options
 		Fullscreen, //optionbutton
 		VSync, //optionbutton
 		FrameCap, // linedit or optionbutton
-		BackButton //button
+		BackButton, //button
+		ApplyButton //button
 	}
 	
 	public enum FullscreenOptions
@@ -41,27 +45,28 @@ public partial class VideoSettings : Control //TODO: add ui options
 		Fullscreen
 	}
 
-	public void StorageTest<T>(Variant variant)
-	{
-		Log($"Storage Test: {variant}", this);
-		SaveSetting("testSetting", variant);
-		// var type = variant.GetType();
-		Log($"Read back: {ReadSetting<T>("testSetting")}", this);
-		Log($"Variant type: {ReadSetting<T>("testSetting").GetType()}", this);
-	}
+	// public void StorageTest<T>(Variant variant)
+	// {
+	// 	Log($"Storage Test: {variant}", this);
+	// 	SaveSetting("testSetting", variant);
+	// 	// var type = variant.GetType();
+	// 	Log($"Read back: {ReadSetting<T>("testSetting")}", this);
+	// 	Log($"Variant type: {ReadSetting<T>("testSetting").GetType()}", this);
+	// }
 
 	public override void _Ready()
 	{
+		LoadSettings();
 		// base._Ready();
-		Log($"StrToVar test: {GD.StrToVar("10").VariantType}", this); // no
-		StorageTest<Vector2>(new Vector2(10.1f, 10.1f));
-		Log(Features.ToString(), this);
+		// Log($"StrToVar test: {GD.StrToVar("10").VariantType}", this); // no
+		// StorageTest<Vector4I>(new Vector4I(10, 10, 10, 12));
+		// Log(Features.ToString(), this);
 
 		foreach (var (controlNodePath, feature) in Features)
 		{
 			var controlNode = GetNode(controlNodePath);
-			Log($"Feature: {feature}", this);
-			Log($"Control: {controlNode}", this);
+			// Log($"Feature: {feature}", this);
+			// Log($"Control: {controlNode}", this);
 			ConfigureFeature(feature, controlNode);
 		}
 	}
@@ -71,7 +76,8 @@ public partial class VideoSettings : Control //TODO: add ui options
 		Script saveManager = Utils.GetSaveManager();
 		if (value.VariantType.ToString().Contains("Vector"))
 		{
-			value = value.VariantType.ToString() + " " + value.ToString();
+			// value = value.VariantType.ToString().Contains("I") ? value.ToString().Remove('I'): value.VariantType.ToString();
+			value = value.VariantType + " " + value;
 		}
 
 		saveManager.Callv("write_setting", [setting, value]);
@@ -82,6 +88,7 @@ public partial class VideoSettings : Control //TODO: add ui options
 		Script saveManager = Utils.GetSaveManager();
 		Variant varSetting = GD.StrToVar(saveManager.Callv("read_setting", [setting, false]).ToString());
 #pragma warning disable GD0302
+		Log($"setting {setting}: {varSetting}, cast: {varSetting.As<T>()}", this);
 		return varSetting.As<T>();
 #pragma warning restore GD0302
 	}
@@ -93,6 +100,8 @@ public partial class VideoSettings : Control //TODO: add ui options
 			case ControlFeatures.ResolutionH:
 				if (controlNode is LineEdit lineEdit)
 				{
+					// GetWindow().Siz = ReadSetting<int>(feature.ToString());
+					// SetResolution(ReadSetting<int>(feature.ToString()));
 					lineEdit.Text = GetWindow().Size.Y + "";
 					lineEdit.TextSubmitted += text =>
 					{ 
@@ -172,6 +181,12 @@ public partial class VideoSettings : Control //TODO: add ui options
 					};
 				}
 				break;
+			case ControlFeatures.ApplyButton:
+				if (controlNode is Godot.Button applyButton)
+				{
+					applyButton.Pressed += WriteSettings;
+				}
+				break;
 		}
 	}
 
@@ -214,7 +229,15 @@ public partial class VideoSettings : Control //TODO: add ui options
 		else
 		{
 			Debug.Assert(width != null, nameof(width) + " != null");
-			window.Size = new Vector2I((int)width, window.Size.Y);
+			
+			if (height != null && height >= 0)
+			{
+				window.Size = new Vector2I((int)width, (int)height);
+			}
+			else
+			{
+				window.Size = new Vector2I((int)width, window.Size.Y);
+			}
 		}
 	}
 
@@ -251,4 +274,21 @@ public partial class VideoSettings : Control //TODO: add ui options
 		Engine.MaxFps = frameCap;
 	}
 
+	private void WriteSettings()
+	{
+		Log("Writing Settings", this);
+		SaveSetting("Resolution", (Vector2)GetWindow().Size);
+		SaveSetting(nameof(ControlFeatures.Fullscreen), (int)fullscreenMode);
+		SaveSetting(nameof(ControlFeatures.FrameCap), Engine.MaxFps);
+		SaveSetting(nameof(ControlFeatures.VSync), (int)WindowGetVsyncMode());
+	}
+
+	public void LoadSettings()
+	{
+		var resolution = ReadSetting<Vector2I>("Resolution");
+		SetResolution(resolution.X, resolution.Y);
+		SetFullscreen((FullscreenOptions)ReadSetting<int>(nameof(ControlFeatures.Fullscreen)));
+		SetFrameCap(ReadSetting<int>(nameof(ControlFeatures.FrameCap)));
+		SetVSync((VSyncMode)ReadSetting<int>(nameof(ControlFeatures.VSync)));
+	}
 }
