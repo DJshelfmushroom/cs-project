@@ -22,11 +22,9 @@ public partial class VideoSettings : Control //TODO: add ui options
 	 * HSeparator
 	 */
 
-	[Export] public Dictionary<NodePath, ControlFeatures> Features;
-
-	private static FullscreenOptions fullscreenMode;
+	[Export] private Dictionary<NodePath, ControlFeatures> Features;
 	
-	public enum ControlFeatures // add stretch mode? (would have to change the mouse cursor changing part maybe [or it uses the viewport? idk])
+	private enum ControlFeatures // add stretch mode? (would have to change the mouse cursor changing part maybe [or it uses the viewport? idk])
 	{
 		ResolutionW, //linedit
 		ResolutionH, //linedit
@@ -58,9 +56,9 @@ public partial class VideoSettings : Control //TODO: add ui options
 	{
 		LoadSettings();
 		// base._Ready();
-		// Log($"StrToVar test: {GD.StrToVar("10").VariantType}", this); // no
-		// StorageTest<Vector4I>(new Vector4I(10, 10, 10, 12));
-		// Log(Features.ToString(), this);
+		Log($"StrToVar test: {GD.StrToVar("10").VariantType}", this); // no
+		StorageTest<Vector2>(new Vector2(10.1f, 10.1f));
+		Log(Features.ToString(), this);
 
 		foreach (var (controlNodePath, feature) in Features)
 		{

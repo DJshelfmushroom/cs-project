@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://bl35vwy3n0mc5"]
 
+[ext_resource type="Script" uid="uid://dr33b1hpyvrjy" path="res://scenes/menus/AudioSettings.cs" id="1_yk77b"]
+
 [node name="AudioSettings" type="Control" unique_id=321069778]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +9,38 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_yk77b")
+Features = Dictionary[NodePath, int]({
+NodePath("BackButton"): 0,
+NodePath("MusicSelect"): 1
+})
+Features = Dictionary[NodePath, int]({
+NodePath("BackButton"): 0,
+NodePath("MusicSelect"): 1
+})
+
+[node name="BackButton" type="Button" parent="." unique_id=1478075451]
+layout_mode = 0
+offset_left = 246.0
+offset_top = 116.0
+offset_right = 293.0
+offset_bottom = 153.0
+text = "FRAP"
+
+[node name="MusicSelect" type="OptionButton" parent="." unique_id=304615017]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 86.0
+offset_right = 290.0
+offset_bottom = 111.0
+item_count = 1
+popup/item_0/text = "Throat Sing"
+popup/item_0/id = 0
+
+[node name="Label" type="Label" parent="." unique_id=483485592]
+layout_mode = 0
+offset_left = 107.0
+offset_top = 68.0
+offset_right = 288.0
+offset_bottom = 84.0
+text = "Music"

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ibqpqqbvpvpa" path="res://scenes/menus/SettingsSub/Graphics Settings.tscn" id="4_pm5e4"]
 [ext_resource type="PackedScene" uid="uid://cbjxl2ywi6djs" path="res://scenes/menus/SettingsSub/Game Settings.tscn" id="5_lgbdl"]
 [ext_resource type="PackedScene" uid="uid://bl35vwy3n0mc5" path="res://scenes/menus/SettingsSub/Audio Settings.tscn" id="6_twlt4"]
-[ext_resource type="PackedScene" uid="uid://y3y1qxv5awxc" path="res://scenes/menus/SettingsSub/Åbout.tscn" id="7_cc6f7"]
+[ext_resource type="PackedScene" uid="uid://y3y1qxv5awxc" path="res://scenes/menus/SettingsSub/About.tscn" id="7_cc6f7"]
 
 [node name="Settings" type="Control" unique_id=1504911516]
 layout_mode = 3

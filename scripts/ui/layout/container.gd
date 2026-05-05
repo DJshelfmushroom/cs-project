@@ -40,7 +40,7 @@ func _ready() -> void:
 	#SceneManager.ChangeScene(self, "res://scenes/menus/main_menu.tscn")
 	for i in button_values.values():
 		#Utils.LogGD(str(i), self)
-		scenes.append(load(str(i)))
+		scenes.append(i)
 	createChildren()
 	margin_y += BUTTON_HEIGHT/2.0
 	SCREEN_HEIGHT = get_viewport_rect().size.y
