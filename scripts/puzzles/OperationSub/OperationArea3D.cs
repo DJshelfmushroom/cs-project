@@ -26,6 +26,10 @@ public partial class OperationArea3D(OperationArea2D.Section section) : Area3D
         {
             QueueFree();
         }
+        if (_intersections > 0)
+        {
+            Utils.SetCursor(Utils.CursorState.Hand);
+        }
     }
 
     /*
@@ -123,6 +127,7 @@ public partial class OperationArea3D(OperationArea2D.Section section) : Area3D
 
     private void Strike()
     {
+        Utils.SetCursor(Utils.CursorState.Arrow);
         if (_playing && _intersections == 0) _operation.Failure();
         _playing = false;
     }

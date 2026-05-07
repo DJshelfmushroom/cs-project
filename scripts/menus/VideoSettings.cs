@@ -42,10 +42,10 @@ public partial class VideoSettings : Control //TODO: add ui options
 		Borderless,
 		Fullscreen
 	}
-
+	private static FullscreenOptions fullscreenMode;
 	// public void StorageTest<T>(Variant variant)
 	// {
-	// 	Log($"Storage Test: {variant}", this);
+	// 	Log($"Storage Test: {variant}", this);	
 	// 	SaveSetting("testSetting", variant);
 	// 	// var type = variant.GetType();
 	// 	Log($"Read back: {ReadSetting<T>("testSetting")}", this);
@@ -78,17 +78,16 @@ public partial class VideoSettings : Control //TODO: add ui options
 			value = value.VariantType + " " + value;
 		}
 
+		// Log($"Writing: {value}", this);
 		saveManager.Callv("write_setting", [setting, value]);
+		
 	}
 	
-	private T ReadSetting<T> (StringName setting)
+	private T ReadSetting<[MustBeVariant] T> (StringName setting)
 	{
 		Script saveManager = Utils.GetSaveManager();
 		Variant varSetting = GD.StrToVar(saveManager.Callv("read_setting", [setting, false]).ToString());
-#pragma warning disable GD0302
-		Log($"setting {setting}: {varSetting}, cast: {varSetting.As<T>()}", this);
 		return varSetting.As<T>();
-#pragma warning restore GD0302
 	}
 
 	private void ConfigureFeature(ControlFeatures feature, Node controlNode)
@@ -98,13 +97,10 @@ public partial class VideoSettings : Control //TODO: add ui options
 			case ControlFeatures.ResolutionH:
 				if (controlNode is LineEdit lineEdit)
 				{
-					// GetWindow().Siz = ReadSetting<int>(feature.ToString());
-					// SetResolution(ReadSetting<int>(feature.ToString()));
 					lineEdit.Text = GetWindow().Size.Y + "";
 					lineEdit.TextSubmitted += text =>
 					{ 
 						SetResolution(height: text.ToInt());
-						// CallDeferred(nameof(SetResolution), [-1, text.ToInt()]);
 					};
 					lineEdit.SetMeta("editing", false);
 					lineEdit.EditingToggled += editing =>
@@ -138,11 +134,12 @@ public partial class VideoSettings : Control //TODO: add ui options
 					{
 						fullscreenButton.AddItem(fullscreenOption.ToString());
 					}
-					fullscreenButton.Text = "Fullscreen Mode";
+					// fullscreenButton.Text = "Fullscreen Mode";
 					fullscreenButton.ItemSelected += index =>
 					{
 						SetFullscreen((FullscreenOptions)index);
 					};
+					fullscreenButton.Selected = (char) fullscreenMode;
 				}
 				break;
 			case ControlFeatures.VSync:
@@ -152,11 +149,12 @@ public partial class VideoSettings : Control //TODO: add ui options
 					{
 						vsyncButton.AddItem(vsyncMode.ToString());
 					}
-					vsyncButton.Text = "VSync Mode";
+					// vsyncButton.Text = "VSync Mode";
 					vsyncButton.ItemSelected += index =>
 					{
 						SetVSync((VSyncMode)index);
 					};
+					vsyncButton.Selected = (char) WindowGetVsyncMode();
 				}
 				break;
 			case ControlFeatures.FrameCap:
@@ -241,6 +239,7 @@ public partial class VideoSettings : Control //TODO: add ui options
 
 	public void SetFullscreen(FullscreenOptions mode)
 	{
+		fullscreenMode = mode;
 		Log($"fullscreen: {mode.ToString()}", this);
 		switch (mode)
 		{
@@ -276,7 +275,7 @@ public partial class VideoSettings : Control //TODO: add ui options
 	{
 		Log("Writing Settings", this);
 		SaveSetting("Resolution", (Vector2)GetWindow().Size);
-		// SaveSetting(nameof(ControlFeatures.Fullscreen), (int)fullscreenMode);
+		SaveSetting(nameof(ControlFeatures.Fullscreen), (int)fullscreenMode);
 		SaveSetting(nameof(ControlFeatures.FrameCap), Engine.MaxFps);
 		SaveSetting(nameof(ControlFeatures.VSync), (int)WindowGetVsyncMode());
 	}

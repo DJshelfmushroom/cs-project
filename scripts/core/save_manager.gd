@@ -1,10 +1,8 @@
 class_name save_manager extends Node
 
 const save_path : String = "user://save_data.save"
-# TODO: add settings_path
 const settings_path : String = "user://settings.sav"
 const delim : String = "|"
-
 
 var pack1owned : int = 0
 var level : int = 0
@@ -42,41 +40,32 @@ func save_mouse_info(file):
 	file.store_var(color)
 	
 
-static func write_setting(setting_name:StringName, value:Variant) -> bool: #TODO: make this work (How does it get read?)
-	print(FileAccess.get_file_as_string(settings_path))
-	#print(1)
+static func write_setting(setting_name:StringName, value:Variant) -> bool:
 	var file_text = FileAccess.get_file_as_string(settings_path);
-	var file = FileAccess.open(settings_path, FileAccess.WRITE);
-	if read_setting(setting_name) != "null":
-		#file.close();
-		file_text.replace(setting_name + ':' + read_setting(setting_name), setting_name + ':' + str(value));
-		#file = FileAccess.open(settings_path, FileAccess.WRITE);
-		file.store_string(file_text);
-		file.close();
-		#print(FileAccess.get_file_as_string(settings_path))
+	#print("file_text_w: ", file_text)
+	if read_setting(setting_name, false) != "null":
+		file_text = file_text.replace(setting_name + ':' + read_setting(setting_name), setting_name + ':' + str(value));
+		var file_r = FileAccess.open(settings_path, FileAccess.WRITE);
+		file_r.store_string(file_text);
+		file_r.close();
 		return true
+	var file = FileAccess.open(settings_path, FileAccess.WRITE);
 	file.store_string(file_text + setting_name + ':' + str(value) + delim);
-	#print(file_text)
-	#print(2)
 	file.close();
 	return file != null;
 
 static func read_setting(setting_name:StringName, ignore_upper:bool = false) -> String: #string
-	#var file = FileAccess.open(settings_path, FileAccess.READ);
-	var file : String = FileAccess.get_file_as_string(settings_path);
+	var file_text = FileAccess.get_file_as_string(settings_path);
 	var index;
 	if ignore_upper:
-		index = file.findn(setting_name);
+		index = file_text.findn(setting_name);
 	else:
-		index = file.find(setting_name);
-	#print("settings index " + str(index));
+		index = file_text.find(setting_name);
 	if index == -1:
 		return "null";
-	index = file.find(":",index);
-	#print("ff: ", file.find(delim, index) - 1, ", len: ", len(file));
-	file = file.substr(index + 1, file.find(delim, index) - (index + 1));
-	#print("file: ", file)
-	return file;
+	index = file_text.find(":",index);
+	file_text = file_text.substr(index + 1, file_text.find(delim, index) - (index + 1));
+	return file_text;
 
 func load_mouse_info(file):
 	var loaded_color = file.get_var()
