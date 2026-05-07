@@ -37,7 +37,6 @@ func _on_play_button_up() -> void:
 	get_tree().change_scene_to_file("res://bomb/Game3d.tscn")
 
 func _on_tutorials_button_up() -> void:
-	SoundManager.PlaySound("res://silence_please.mp3")
 	get_tree().change_scene_to_file("res://scenes/menus/tutorials.tscn")
 
 

@@ -57,7 +57,7 @@ public partial class VideoSettings : Control //TODO: add ui options
 		}
 	}
 
-	private void SaveSetting(StringName setting, Variant value)
+	protected void SaveSetting(StringName setting, Variant value)
 	{
 		Script saveManager = Utils.GetSaveManager();
 		if (value.VariantType.ToString().Contains("Vector"))
@@ -71,7 +71,7 @@ public partial class VideoSettings : Control //TODO: add ui options
 		
 	}
 	
-	private T ReadSetting<[MustBeVariant] T> (StringName setting)
+	protected T ReadSetting<[MustBeVariant] T> (StringName setting)
 	{
 		Script saveManager = Utils.GetSaveManager();
 		Variant varSetting = GD.StrToVar(saveManager.Callv("read_setting", [setting, false]).ToString());
@@ -269,7 +269,7 @@ public partial class VideoSettings : Control //TODO: add ui options
 		SaveSetting(nameof(ControlFeatures.VSync), (int)WindowGetVsyncMode());
 	}
 
-	public void LoadSettings()
+	public virtual void LoadSettings()
 	{
 		var resolution = ReadSetting<Vector2I>("Resolution");
 		SetResolution(resolution.X, resolution.Y);

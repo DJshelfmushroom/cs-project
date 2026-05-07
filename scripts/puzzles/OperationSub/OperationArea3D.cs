@@ -1,4 +1,4 @@
-﻿using System.Dynamic;
+using System.Dynamic;
 using System.Threading.Tasks;
 using csproject.scripts.core;
 using Godot;

@@ -1,8 +1,10 @@
+using csproject.scripts.core;
 using Godot.Collections;
 using csproject.scripts.menus;
 using Godot;
+using System;
 using static csproject.scripts.core.Utils.Logger;
-using VideoSettings = csproject.scripts.menus.settings.VideoSettings;
+using static csproject.SoundManager;
 
 namespace csproject.scripts.menus.settings;
 
@@ -16,14 +18,10 @@ public partial class AudioSettings : VideoSettings
 		MusicSelect
 	}
 
-	private enum Music
-	{
-		throatSing,
-		none
-	}
-
+	
 	public override void _Ready()
 	{
+		LoadSettings();
 		foreach (var (controlNodePath, feature) in Features)
 		{
 			var controlNode = GetNode(controlNodePath);
@@ -45,17 +43,60 @@ public partial class AudioSettings : VideoSettings
 			case ControlFeatures.MusicSelect:
 				if (controlNode is Godot.OptionButton musicSelectButton)
 				{
-					musicSelectButton.ItemSelected += (index) => ChangeMusic((Music)index);
+					musicSelectButton.ItemSelected += (index) => ChangeMusic(GetMusicForIndex(musicSelectButton, index));
+					SelectCurrentMusic(musicSelectButton);
 				}
 				break;
 		}
 	}
 
-	private void ChangeMusic(Music index)
+	private static Music GetMusicForIndex(OptionButton musicSelectButton, long index)
 	{
-		return;
+		var itemIndex = (int)index;
+		if (itemIndex < 0 || itemIndex >= musicSelectButton.ItemCount)
+		{
+			return Music.None;
+		}
+
+		var id = musicSelectButton.GetItemId(itemIndex);
+		return Enum.IsDefined(typeof(Music), id) ? (Music)id : Music.None;
+	}
+
+	private static void SelectCurrentMusic(OptionButton musicSelectButton)
+	{
+		for (var i = 0; i < musicSelectButton.ItemCount; i++)
+		{
+			if (musicSelectButton.GetItemId(i) == (int)SoundManager.NowPlaying)
+			{
+				musicSelectButton.Selected = i;
+				return;
+			}
+		}
+
+		if (musicSelectButton.ItemCount > 0)
+		{
+			musicSelectButton.Selected = 0;
+		}
+	}
+
+	private void ChangeMusic(Music music)
+	{
+		SoundManager.PlayMusic(music);
+		WriteSettings();
 	}
 	public override void _Process(double delta)
 	{
 	}
+	private void WriteSettings()
+	{
+		Log("Writing audio Settings", this);
+		SaveSetting("Music", (int)NowPlaying);
+	}
+
+	public override void LoadSettings()
+	{
+		var savedMusic = ReadSetting<int>("Music");
+		ChangeMusic(Enum.IsDefined(typeof(Music), savedMusic) ? (Music)savedMusic : Music.None);
+	}
+
 }

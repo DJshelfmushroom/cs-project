@@ -22,7 +22,6 @@ var practice_array: Array = []
 
 func _ready() -> void:
 	load_data()
-	SoundManager.PlayMusic("res://throatsing.wav")
 
 func save():
 	deleted = false

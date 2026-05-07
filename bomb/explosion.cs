@@ -45,7 +45,7 @@ public partial class explosion : Node
 				}
 				GetNode<Node3D>("../bomb_instance").Hide();
 				Utils.Logger.Log("test", this);
-				SoundManager.PlaySound(sounds[new Random().Next(sounds.Length)]);
+				csproject.SoundManager.PlaySound(sounds[new Random().Next(sounds.Length)]);
 			}
 		}
 	}
