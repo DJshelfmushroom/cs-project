@@ -2,109 +2,259 @@ extends Node3D
 
 var id = 8
 
-var completed = false
+var circle_scene = preload("res://scenes/components/colors_button_3d.tscn")
+var square_scene = preload("res://scenes/components/colors_button_3d_2.tscn")
+var triangle_scene = preload("res://scenes/components/colors_button_3d_3.tscn")
 var buttons = []
 var combo = []
-var colors = [Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW]
 var pressed = []
+var completed = false
+var shapes = ["circle", "square", "triangle"]
 
-func _ready() -> void:
-	for x in range(3):
-		buttons.append(get_node("CB3D" + str(x)))
-		get_node("CB3D" + str(x)).num = x
-	var gen = RandomNumberGenerator.new()
-	for button in buttons:
-		var rand = gen.randi_range(0,colors.size() - 1)
-		button.set_color(colors[rand])
-		colors.remove_at(rand)
-		
-		
-	if colors[0] != Color.RED:
-		combo.append(0)
+# Positions (top-left, top-right, bottom-right, bottom-left)
+var positions = [
+	Vector3(-0.18,0.18,0),
+	Vector3(0.18,0.18,0),
+	Vector3(0.18,-0.18,0),
+	Vector3(-0.18,-0.18,0)
+]
+
+# Rainbow order (ROYGBP)
+var rainbow = [
+	Color.RED,
+	Color.DARK_ORANGE,
+	Color.YELLOW,
+	Color.GREEN,
+	Color.BLUE,
+	Color.PURPLE
+]
+
+
+func _ready():
+	buttons.clear()
+
+	var available_colors = [
+		Color.RED,
+		Color.DARK_ORANGE,
+		Color.YELLOW,
+		Color.GREEN,
+		Color.BLUE,
+		Color.PURPLE
+	]
+
+	for i in range(4):
+		var shape = shapes[randi_range(0, shapes.size() - 1)]
+
+		var scene
+		match shape:
+			"circle": scene = circle_scene
+			"square": scene = square_scene
+			"triangle": scene = triangle_scene
+
+		var b = scene.instantiate()
+
+		b.num = i
+		b.position = positions[i]
+		b.shape = shape
+
+		# pick unique color
+		var c_index = randi_range(0, available_colors.size() - 1)
+		var color = available_colors[c_index]
+		available_colors.remove_at(c_index)
+
+		add_child(b)
+
+		b.set_color(color)
+
+		buttons.append(b)
+
+	generate_combo()
+
+
+# ========================
+# COMBO GENERATION
+# ========================
+func generate_combo():
+	combo.clear()
+
+	var first = get_first_button()
+	combo.append(first)
+
+	var second = get_second_button(first)
+	combo.append(second)
+
+	var third = get_third_button(second)
+	combo.append(third)
+
+	var seq = get_final_sequence()
+	combo += seq
+
+
+# ========================
+# FIRST BUTTON
+# ========================
+func get_first_button():
+	var sorted = buttons.duplicate()
+
+	sorted.sort_custom(func(a, b):
+		return rainbow.find(a.color) < rainbow.find(b.color)
+	)
+
+	var earliest = sorted[0]
+
+	if earliest.shape == "circle":
+		return sorted[-1].num
 	else:
-		for button in buttons:
-			if button.color == Color.BLUE:
-				combo.append(button.num)
-	
-	
-	if buttons[combo[0]].color == Color.RED:
-		if colors[0] != Color.BLUE:
-			for button in buttons:
-				if button.color == Color.BLUE:
-					combo.append(button.num)
-		else:
-			for button in buttons:
-				if button.color == Color.YELLOW:
-					combo.append(button.num)
-	elif buttons[combo[0]].color == Color.BLUE:
-		if colors[0] != Color.RED:
-			for button in buttons:
-				if button.color == Color.RED:
-					combo.append(button.num)
-		else:
-			for button in buttons:
-				if button.color == Color.GREEN:
-					combo.append(button.num)
-	elif buttons[combo[0]].color == Color.GREEN:
-		if colors[0] != Color.YELLOW:
-			for button in buttons:
-				if button.color == Color.YELLOW:
-					combo.append(button.num)
-		else:
-			for button in buttons:
-				if button.color == Color.BLUE:
-					combo.append(button.num)
-	elif buttons[combo[0]].color == Color.YELLOW:
-		if colors[0] != Color.GREEN:
-			for button in buttons:
-				if button.color == Color.GREEN:
-					combo.append(button.num)
-		else:
-			for button in buttons:
-				if button.color == Color.RED:
-					combo.append(button.num)
-		
-	
-	if colors[0] == Color.RED:
-		for button in buttons:
-			if button.color == Color.BLUE:
-				combo.append(button.num)
-	elif colors[0] == Color.BLUE:
-		for button in buttons:
-			if button.color == Color.GREEN:
-				combo.append(button.num)
-	elif colors[0] == Color.GREEN:
-		for button in buttons:
-			if button.color == Color.YELLOW:
-				combo.append(button.num)
-	elif colors[0] == Color.YELLOW:
-		for button in buttons:
-			if button.color == Color.RED:
-				combo.append(button.num)
-				 
-				
-func _process(_delta: float) -> void:
+		return earliest.num
+
+
+# ========================
+# SECOND BUTTON
+# ========================
+func get_second_button(prev):
+	var prev_button = buttons[prev]
+
+	# count same shape
+	var same_shape = []
+	for b in buttons:
+		if b.shape == prev_button.shape and b.num != prev:
+			same_shape.append(b)
+
+	if same_shape.size() == 1:
+		return same_shape[0].num
+
+	# otherwise rules
+	match prev_button.shape:
+		"circle":
+			return (prev + 1) % 4 # clockwise
+
+		"square":
+			return (prev - 1 + 4) % 4 # counterclockwise
+
+		"triangle":
+			return (prev + 2) % 4 # diagonal
+
+	return 0
+
+
+# ========================
+# THIRD BUTTON
+# ========================
+func get_third_button(prev):
+	var b = buttons[prev]
+	var color = b.color
+
+	var circle_count = count_shape("circle")
+	var square_count = count_shape("square")
+	var triangle_count = count_shape("triangle")
+
+	# helper positions
+	var TL = 0
+	var TR = 1
+	var BR = 2
+	var BL = 3
+
+	if color == Color.RED:
+		if circle_count == 1:
+			return find_shape("circle")
+		return BL
+
+	elif color == Color.DARK_ORANGE: # dark orange
+		if square_count == 1:
+			return find_shape("square")
+		return TL
+
+	elif color == Color.YELLOW:
+		if triangle_count == 1:
+			return find_shape("triangle")
+		return TR
+
+	elif color == Color.GREEN:
+		return BR
+
+	elif color == Color.BLUE:
+		return BL
+
+	else:
+		return TL
+
+
+# ========================
+# FINAL 4 BUTTON SEQUENCE
+# ========================
+func get_final_sequence():
+	var circle_count = count_shape("circle")
+	var square_count = count_shape("square")
+	var triangle_count = count_shape("triangle")
+
+	var TL = 0
+	var TR = 1
+	var BR = 2
+	var BL = 3
+
+	var seq = []
+
+	# check dominance
+	if circle_count > square_count and circle_count > triangle_count:
+		# clockwise
+		seq = [TL, TR, BR, BL]
+
+	elif square_count > circle_count and square_count > triangle_count:
+		# counterclockwise
+		seq = [TL, BL, BR, TR]
+
+	elif triangle_count > circle_count and triangle_count > square_count:
+		# X pattern
+		seq = [TL, BR, TR, BL]
+
+	else:
+		# tie
+		seq = [BR, BR, BR, BR]
+
+	return seq
+
+
+# ========================
+# HELPERS
+# ========================
+func count_shape(shape):
+	var count = 0
+	for b in buttons:
+		if b.shape == shape:
+			count += 1
+	return count
+
+
+func find_shape(shape):
+	for b in buttons:
+		if b.shape == shape:
+			return b.num
+	return 0
+
+
+# ========================
+# GAMEPLAY LOOP
+# ========================
+func _process(_delta):
 	if combo == pressed:
 		completed = true
-		for button in buttons:
-			button.set_color(Color.GREEN)
-	if pressed.size() >= 3 && combo != pressed:
-		$"../../..".strikes += 1
-		pressed = []
-		var c0 = buttons[0].color
-		var c1 = buttons[1].color
-		var c2 = buttons[2].color
-		for button in buttons:
-			button.set_color(Color.RED)
+		for b in buttons:
+			b.set_color(Color.GREEN)
+
+	if pressed.size() >= combo.size() and combo != pressed:
+		#$"../../..".strikes += 1
+		pressed.clear()
+		var prevcolors = []
+		for b in buttons:
+			prevcolors.append(b.color)
+			b.set_color(Color.RED)
 		await get_tree().create_timer(1.0).timeout
-		buttons[0].set_color(c0)
-		buttons[1].set_color(c1)
-		buttons[2].set_color(c2)
-				
-				
-				
-func _on_but_pressed(num : int):
-	if pressed.size() < 3 && !completed && !$"../../..".failed:
+		for b in range(buttons.size()):
+			buttons[b].set_color(prevcolors[b])
+
+
+func _on_but_pressed(num):
+	if !completed: #and !$"../../..".failed:
 		pressed.append(num)
 	
 func _on_but_released(_num : int):
