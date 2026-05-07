@@ -12,6 +12,7 @@ public partial class OperationArea3D(OperationArea2D.Section section) : Area3D
     private static short _intersections = 0;
     private Operation _operation;
     private static bool _playing = false;
+    private Color color;
 
     public override void _Ready()
     {

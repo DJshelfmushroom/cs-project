@@ -216,6 +216,7 @@ public partial class Operation : Node3D
 	public void Success()
 	{
 		//Log("Success", this, color: LogColors.GREEN);
+		//TODO: add color changing animation, sound effect?
 		completed = true;
 		
 	}

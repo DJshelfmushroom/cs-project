@@ -56,7 +56,7 @@ public partial class VideoSettings : Control //TODO: add ui options
 	{
 		LoadSettings();
 		// base._Ready();
-		Log($"StrToVar test: {GD.StrToVar("10").VariantType}", this); // no
+		// Log($"StrToVar test: {GD.StrToVar("10").VariantType}", this); // no
 		// StorageTest<Vector2>(new Vector2(10.1f, 10.1f));
 		Log(Features.ToString(), this);
 
