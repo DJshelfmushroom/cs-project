@@ -57,7 +57,7 @@ public partial class VideoSettings : Control //TODO: add ui options
 		LoadSettings();
 		// base._Ready();
 		Log($"StrToVar test: {GD.StrToVar("10").VariantType}", this); // no
-		StorageTest<Vector2>(new Vector2(10.1f, 10.1f));
+		// StorageTest<Vector2>(new Vector2(10.1f, 10.1f));
 		Log(Features.ToString(), this);
 
 		foreach (var (controlNodePath, feature) in Features)
@@ -276,7 +276,7 @@ public partial class VideoSettings : Control //TODO: add ui options
 	{
 		Log("Writing Settings", this);
 		SaveSetting("Resolution", (Vector2)GetWindow().Size);
-		SaveSetting(nameof(ControlFeatures.Fullscreen), (int)fullscreenMode);
+		// SaveSetting(nameof(ControlFeatures.Fullscreen), (int)fullscreenMode);
 		SaveSetting(nameof(ControlFeatures.FrameCap), Engine.MaxFps);
 		SaveSetting(nameof(ControlFeatures.VSync), (int)WindowGetVsyncMode());
 	}
