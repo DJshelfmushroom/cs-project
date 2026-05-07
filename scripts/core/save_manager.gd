@@ -18,7 +18,7 @@ var deleted = false
 var practice: bool = false
 var practice_puzzle_index: int = 0
 
-var practice_array = []
+var practice_array: Array = []
 
 func _ready() -> void:
 	load_data()

@@ -9,9 +9,9 @@ script = ExtResource("1_8rns3")
 
 [node name="Label" type="Label" parent="." unique_id=423505663]
 layout_mode = 0
-offset_left = 800.0
+offset_left = 760.0
 offset_top = 60.0
-offset_right = 1167.0
+offset_right = 1127.0
 offset_bottom = 131.0
 theme_override_font_sizes/font_size = 70
 text = "Achievements:"
@@ -29,9 +29,9 @@ text = "Back"
 
 [node name="Achievement Buttons" type="Control" parent="." unique_id=1228960276]
 anchors_preset = 0
-offset_left = 520.0
+offset_left = 584.0
 offset_top = 185.0
-offset_right = 560.0
+offset_right = 624.0
 offset_bottom = 225.0
 
 [node name="Test" type="Button" parent="Achievement Buttons" unique_id=2086035408]
@@ -83,13 +83,14 @@ text = "Speedy Diffuser"
 [node name="SpeedText" type="Label" parent="Achievement Buttons/BeatGameUnder90" unique_id=618075039]
 visible = false
 layout_mode = 0
-offset_left = -350.0
+offset_left = -270.0
 offset_top = 6.0
-offset_right = -3.0
-offset_bottom = 98.0
-theme_override_font_sizes/font_size = 38
-text = "Beat a round in under a
- minute and 30 seconds"
+offset_right = -13.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 35
+text = "Beat a round with a
+fourth of your time
+remaining"
 
 [node name="BeatGameUnder60" type="Button" parent="Achievement Buttons" unique_id=1258551453]
 layout_mode = 0
@@ -102,13 +103,14 @@ text = "Rapid Diffuser"
 [node name="RapidText" type="Label" parent="Achievement Buttons/BeatGameUnder60" unique_id=801292244]
 visible = false
 layout_mode = 0
-offset_left = -330.0
+offset_left = -274.0
 offset_top = 8.0
-offset_right = -3.0
-offset_bottom = 91.0
-theme_override_font_sizes/font_size = 38
-text = "Beat a round in under 
-a minute"
+offset_right = -11.0
+offset_bottom = 122.0
+theme_override_font_sizes/font_size = 35
+text = "Beat a round with a 
+third of your time 
+remaining"
 
 [node name="DontDisablePuzzle" type="Button" parent="Achievement Buttons" unique_id=265469284]
 layout_mode = 0

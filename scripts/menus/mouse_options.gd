@@ -53,6 +53,8 @@ func prepare_buttons():
 		set_inverted_to_base()
 	if (SaveManager.level < 15):
 		set_inverse_to_base()
+	if (SaveManager.practice_array.size() < 15):
+		set_hand_to_base()
 
 func place_set():
 	if (check_mouse_cursor() == "red"):
@@ -104,6 +106,9 @@ func set_inverted_to_base():
 func set_inverse_to_base():
 	$Inverse_Mouse.text = "Unlocks at Level 15"
 	$Inverse_Mouse.disabled = true
+func set_hand_to_base():
+	$Hand_Mouse.text = "Secret Cursor"
+	$Hand_Mouse.disabled = true
 
 func _on_red_mouse_pressed() -> void:
 	SaveManager.arrow = red_arrow

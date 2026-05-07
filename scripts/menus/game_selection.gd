@@ -50,7 +50,7 @@ var broken = false
 
 var weight = SaveManager.level * 2 + 4
 
-
+var time
 var timeleft = 0
 var once = false
 var current_weight = 0
@@ -154,7 +154,8 @@ func _ready() -> void:
 		current_weight += puzzle_weights[p]
 
 	strikes = 0
-	$TimerNode.start_timer(weight * 2.5 + 10)
+	time = weight * 2.5 + 10
+	$TimerNode.start_timer(time)
 
 func _process(_delta: float) -> void:
 	# loop through all puzzles, count completed
@@ -235,15 +236,16 @@ func disable_consequence():
 	return false
 
 func check_for_achievements():
-	if timeleft >= 30:
-		Achievements.completed_achievement("Beat game under 1:30")
-	if timeleft >= 60:
-		Achievements.completed_achievement("Beat game under 1:00")
+	if timeleft >= (time / 4):
+		Achievements.completed_achievement("Beat game with fourth left")
+	if timeleft >= (time / 3):
+		Achievements.completed_achievement("Beat game with third left")
 
 
 func _on_back_button_up() -> void:
 	if !is_practice:
 		if (allcompleted):
+			check_for_achievements()
 			var rand = randi_range(1,10)
 			if rand == 10:
 				SaveManager.pack1owned += 2
