@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://e8ghkvx30l1i"]
 
 [ext_resource type="PackedScene" uid="uid://cbcrfgck1oggo" path="res://scenes/components/screen_3d.tscn" id="1_c1owo"]
-[ext_resource type="Script" uid="uid://5v1i01ikvek1" path="res://scripts/puzzles/Operation.cs" id="2_c1owo"]
+[ext_resource type="Script" uid="uid://5v1i01ikvek1" path="res://scripts/puzzles/OperationSub/Operation.cs" id="2_c1owo"]
 
 [node name="Operation3D" type="Node3D" unique_id=469409953]
 script = ExtResource("2_c1owo")

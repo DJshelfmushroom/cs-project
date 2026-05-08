@@ -1,6 +1,8 @@
+class_name main_menu
 extends Node3D
 
 func _ready() -> void:
+	load_settings(self)
 	$Control/CustomCursor.set_mouse_cursor(SaveManager.arrow, SaveManager.hand, SaveManager.color)
 	SaveManager.save()
 	if (SaveManager.level >= 5):
@@ -9,6 +11,27 @@ func _ready() -> void:
 		Achievements.completed_achievement("Dynamic Duo")
 	if (SaveManager.level >= 15):
 		Achievements.completed_achievement("Complete the Triumvirate")
+
+static func load_settings(caller:Node) -> void:
+	var settings_path = "res://scenes/menus/SettingsSub/"
+	var settings_dir = DirAccess.open(settings_path)
+	#Utils.LogGD("settings_dir: " + str(settings_dir), self)
+	var settings_files = settings_dir.get_files()
+	var settings_scripts : Array[PackedScene]
+	for file in settings_files:
+		if !file.contains("Settings") or !file.contains("tscn"):
+			continue
+		var to_path = load(settings_path + "/" + file)
+		settings_scripts.append(to_path)
+	for script in settings_scripts:
+		ResourceLoader.load_threaded_request(script.resource_path)
+		var scene = ResourceLoader.load_threaded_get(script.resource_path)
+		var instantiated = scene.instantiate()
+		instantiated.visible = false
+		caller.add_child(instantiated)
+		caller.remove_child(instantiated)
+		instantiated.queue_free()
+	
 
 func _on_play_button_up() -> void:
 	get_tree().change_scene_to_file("res://bomb/Game3d.tscn")

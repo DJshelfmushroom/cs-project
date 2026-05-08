@@ -9,6 +9,7 @@ using static Godot.DisplayServer;
 
 namespace csproject.scripts.menus;
 
+[GlobalClass]
 public partial class VideoSettings : Control //TODO: add ui options
 {
 	
@@ -58,7 +59,7 @@ public partial class VideoSettings : Control //TODO: add ui options
 		// base._Ready();
 		// Log($"StrToVar test: {GD.StrToVar("10").VariantType}", this); // no
 		// StorageTest<Vector2>(new Vector2(10.1f, 10.1f));
-		Log(Features.ToString(), this);
+		//Log(Features.ToString(), this);
 
 		foreach (var (controlNodePath, feature) in Features)
 		{
@@ -209,7 +210,7 @@ public partial class VideoSettings : Control //TODO: add ui options
 
 	public void SetResolution(int? width = null, int? height = null)
 	{
-		Log($"Changing res: width? {width != null}", this);
+		//Log($"Changing res: width? {width != null}", this);
 		Window window = GetWindow();
 		if (width is null or < 0)
 		{

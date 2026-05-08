@@ -37,6 +37,7 @@ func createChildren() -> void :
 		children.append(child)
 
 func _ready() -> void:
+	main_menu.load_settings(self)
 	#SceneManager.ChangeScene(self, "res://scenes/menus/main_menu.tscn")
 	for i in button_values.values():
 		#Utils.LogGD(str(i), self)

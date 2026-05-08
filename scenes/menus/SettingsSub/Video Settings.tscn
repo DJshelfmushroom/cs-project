@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://qg2w22tgahh7"]
 
-[ext_resource type="Script" uid="uid://csrxv43ak27pn" path="res://scripts/menus/VideoSettings.cs" id="1_yupdq"]
+[ext_resource type="Script" uid="uid://csrxv43ak27pn" path="res://scripts/menus/settings/VideoSettings.cs" id="1_yupdq"]
 
 [node name="VideoSettings" type="Control" unique_id=1249383178]
 layout_mode = 3

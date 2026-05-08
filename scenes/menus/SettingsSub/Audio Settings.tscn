@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bl35vwy3n0mc5"]
 
-[ext_resource type="Script" uid="uid://dr33b1hpyvrjy" path="res://scenes/menus/AudioSettings.cs" id="1_yk77b"]
+[ext_resource type="Script" uid="uid://dr33b1hpyvrjy" path="res://scripts/menus/settings/AudioSettings.cs" id="1_yk77b"]
 
 [node name="AudioSettings" type="Control" unique_id=321069778]
 layout_mode = 3
