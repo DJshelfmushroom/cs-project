@@ -240,6 +240,7 @@ func _process(_delta):
 		completed = true
 		for b in buttons:
 			b.set_color(Color.GREEN)
+			b.disabled = true
 
 	if pressed.size() >= combo.size() and combo != pressed:
 		#$"../../..".strikes += 1
@@ -248,9 +249,11 @@ func _process(_delta):
 		for b in buttons:
 			prevcolors.append(b.color)
 			b.set_color(Color.RED)
+			b.disabled = true
 		await get_tree().create_timer(1.0).timeout
 		for b in range(buttons.size()):
 			buttons[b].set_color(prevcolors[b])
+			buttons[b].disabled = false
 
 
 func _on_but_pressed(num):

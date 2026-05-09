@@ -63,10 +63,10 @@ func _ready() -> void:
 	orange_material.emission = Color.DARK_ORANGE
 	orange_material.emission_energy = 1.0
 	
-	purple_material.albedo_color = Color.PURPLE
+	purple_material.albedo_color = Color.REBECCA_PURPLE
 	purple_material.emission_enabled = true
 	purple_material.emission = Color.PURPLE
-	purple_material.emission_energy = 2.0
+	purple_material.emission_energy = 1.0
 
 
 func set_color(new_color : Color) -> void:
