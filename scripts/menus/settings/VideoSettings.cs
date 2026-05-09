@@ -1,13 +1,12 @@
 using System;
 using System.Diagnostics;
-using System.Xml;
 using csproject.scripts.core;
 using Godot;
 using Godot.Collections;
 using static csproject.scripts.core.Utils.Logger;
 using static Godot.DisplayServer;
 
-namespace csproject.scripts.menus;
+namespace csproject.scripts.menus.settings;
 
 [GlobalClass]
 public partial class VideoSettings : Control //TODO: add ui options
@@ -24,7 +23,7 @@ public partial class VideoSettings : Control //TODO: add ui options
 	 */
 
 	[Export] private Dictionary<NodePath, ControlFeatures> Features;
-	
+
 	private enum ControlFeatures // add stretch mode? (would have to change the mouse cursor changing part maybe [or it uses the viewport? idk])
 	{
 		ResolutionW, //linedit
@@ -36,36 +35,24 @@ public partial class VideoSettings : Control //TODO: add ui options
 		BackButton, //button
 		ApplyButton //button
 	}
-	
+
 	public enum FullscreenOptions
 	{
 		Windowed,
 		Borderless,
 		Fullscreen
 	}
-	private static FullscreenOptions fullscreenMode;
-	// public void StorageTest<T>(Variant variant)
-	// {
-	// 	Log($"Storage Test: {variant}", this);	
-	// 	SaveSetting("testSetting", variant);
-	// 	// var type = variant.GetType();
-	// 	Log($"Read back: {ReadSetting<T>("testSetting")}", this);
-	// 	Log($"Variant type: {ReadSetting<T>("testSetting").GetType()}", this);
-	// }
+	
+	private static FullscreenOptions _fullscreenMode;
+
 
 	public override void _Ready()
 	{
 		LoadSettings();
-		// base._Ready();
-		// Log($"StrToVar test: {GD.StrToVar("10").VariantType}", this); // no
-		// StorageTest<Vector2>(new Vector2(10.1f, 10.1f));
-		//Log(Features.ToString(), this);
 
 		foreach (var (controlNodePath, feature) in Features)
 		{
 			var controlNode = GetNode(controlNodePath);
-			// Log($"Feature: {feature}", this);
-			// Log($"Control: {controlNode}", this);
 			ConfigureFeature(feature, controlNode);
 		}
 	}
@@ -140,7 +127,7 @@ public partial class VideoSettings : Control //TODO: add ui options
 					{
 						SetFullscreen((FullscreenOptions)index);
 					};
-					fullscreenButton.Selected = (char) fullscreenMode;
+					fullscreenButton.Selected = (char) _fullscreenMode;
 				}
 				break;
 			case ControlFeatures.VSync:
@@ -174,7 +161,8 @@ public partial class VideoSettings : Control //TODO: add ui options
 					button.Pressed += () =>
 					{
 						// Log("gack to nmenu", this);
-						GetTree().ChangeSceneToFile("res://scenes/menus/Settings.tscn");
+						// SceneManager.ChangeScene( this,"res://scenes/menus/Settings.tscn");
+						core.SceneManager.ReturnToScene(this);
 					};
 				}
 				break;
@@ -240,7 +228,7 @@ public partial class VideoSettings : Control //TODO: add ui options
 
 	public void SetFullscreen(FullscreenOptions mode)
 	{
-		fullscreenMode = mode;
+		_fullscreenMode = mode;
 		Log($"fullscreen: {mode.ToString()}", this);
 		switch (mode)
 		{
@@ -276,7 +264,7 @@ public partial class VideoSettings : Control //TODO: add ui options
 	{
 		Log("Writing Settings", this);
 		SaveSetting("Resolution", (Vector2)GetWindow().Size);
-		SaveSetting(nameof(ControlFeatures.Fullscreen), (int)fullscreenMode);
+		SaveSetting(nameof(ControlFeatures.Fullscreen), (int)_fullscreenMode);
 		SaveSetting(nameof(ControlFeatures.FrameCap), Engine.MaxFps);
 		SaveSetting(nameof(ControlFeatures.VSync), (int)WindowGetVsyncMode());
 	}
@@ -288,5 +276,14 @@ public partial class VideoSettings : Control //TODO: add ui options
 		SetFullscreen((FullscreenOptions)ReadSetting<int>(nameof(ControlFeatures.Fullscreen)));
 		SetFrameCap(ReadSetting<int>(nameof(ControlFeatures.FrameCap)));
 		SetVSync((VSyncMode)ReadSetting<int>(nameof(ControlFeatures.VSync)));
+	}
+
+	public void LoadDefaults()
+	{
+		var res = ScreenGetUsableRect((int)ScreenPrimary).Size;
+		SetResolution(res.X, res.Y);
+		SetFullscreen(FullscreenOptions.Fullscreen);
+		SetFrameCap(0);
+		SetVSync(VSyncMode.Enabled);
 	}
 }

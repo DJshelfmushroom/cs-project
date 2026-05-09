@@ -55,6 +55,8 @@ static func write_setting(setting_name:StringName, value:Variant) -> bool:
 	return file != null;
 
 static func read_setting(setting_name:StringName, ignore_upper:bool = false) -> String: #string
+	if !FileAccess.file_exists(settings_path):
+		settings_defaults()
 	var file_text = FileAccess.get_file_as_string(settings_path);
 	var index;
 	if ignore_upper:
@@ -66,6 +68,9 @@ static func read_setting(setting_name:StringName, ignore_upper:bool = false) -> 
 	index = file_text.find(":",index);
 	file_text = file_text.substr(index + 1, file_text.find(delim, index) - (index + 1));
 	return file_text;
+
+static func settings_defaults():
+	pass
 
 func load_mouse_info(file):
 	var loaded_color = file.get_var()

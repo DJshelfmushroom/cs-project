@@ -2,8 +2,9 @@ using Godot.Collections;
 using csproject.scripts.menus;
 using Godot;
 using static csproject.scripts.core.Utils.Logger;
+using VideoSettings = csproject.scripts.menus.settings.VideoSettings;
 
-namespace csproject.scenes.menus;
+namespace csproject.scripts.menus.settings;
 
 public partial class AudioSettings : VideoSettings
 {

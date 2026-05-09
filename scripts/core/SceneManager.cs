@@ -1,34 +1,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+// using csproject.scripts
+
+namespace csproject.scripts.core;
 
 public partial class SceneManager : Node
 {
-	private static List<Node> SceneHistory = new List<Node>();
-	private SceneTree _tree;
-	private Node _currentNode;
-
+	private static readonly List<StringName> SceneHistory = new ();
 	
-	public void ChangeScene(Node self, string sceneTo)
+	public static void ChangeScene(Node self, string sceneTo)
 	{
-		_tree = self.GetTree();
-		_currentNode = _tree.CurrentScene;
-		SceneHistory.Add(_currentNode);
-		_tree.ChangeSceneToFile(sceneTo);
-		GD.Print(SceneHistory.ToString());
+		SceneTree tree = self.GetTree();
+		Node currentNode = tree.CurrentScene;
+		SceneHistory.Add(currentNode.SceneFilePath);
+		tree.ChangeSceneToFile(sceneTo);
+		GD.Print(SceneHistory.Last(), " len: ", SceneHistory.Count);
 	}
 
-	public void ReturnToScene(Node self)
+	public static void ReturnToScene(Node self)
 	{
-		GD.Print(SceneHistory.ToString());
+		// GD.Print(_sceneHistory.ToString());
 		// ßSceneHistory.Remove(self);
-		GD.Print(SceneHistory.ToString());
-		_tree = self.GetTree();
-		_currentNode = _tree.CurrentScene;
-		Node goTo = SceneHistory.First();
+		// GD.Print(_sceneHistory.ToString());
+		SceneTree tree = self.GetTree();
+		// Node currentNode = tree.CurrentScene;
+		string goTo = SceneHistory[^1];
 		GD.Print($"sceneFilePath: {goTo}");
-		_tree.ChangeSceneToFile(goTo.SceneFilePath);
+		tree.ChangeSceneToFile(goTo);
+		SceneHistory.RemoveAt(SceneHistory.Count - 1);
+		
 	}
-
-
 }
