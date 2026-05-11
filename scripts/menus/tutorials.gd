@@ -53,3 +53,7 @@ func _on_puzzle_12_tutorial_button_pressed() -> void:
 
 func _on_puzzle_13_tutorial_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/puzzles/tutorials/puzzle_13_tutorial.tscn")
+
+
+func _on_puzzle_14_tutorial_button_pressed() -> void:
+	SceneManager.ChangeScene(self, "res://scenes/puzzles/tutorials/puzzle_14_tutorial.tscn")

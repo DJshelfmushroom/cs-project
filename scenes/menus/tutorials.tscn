@@ -152,6 +152,16 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Shift Puzzle Description"
 
+[node name="Puzzle14TutorialButton" type="Button" parent="." unique_id=1250639928]
+layout_mode = 0
+offset_left = 950.0
+offset_top = 900.0
+offset_right = 1402.0
+offset_bottom = 1000.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Operation Puzzle Description"
+
 [node name="BackButton" type="Button" parent="." unique_id=471234110]
 layout_mode = 1
 anchors_preset = -1
@@ -180,4 +190,5 @@ text = "BACK"
 [connection signal="pressed" from="Puzzle11TutorialButton" to="." method="_on_puzzle_11_tutorial_button_pressed"]
 [connection signal="pressed" from="Puzzle12TutorialButton" to="." method="_on_puzzle_12_tutorial_button_pressed"]
 [connection signal="pressed" from="Puzzle13TutorialButton" to="." method="_on_puzzle_13_tutorial_button_pressed"]
+[connection signal="pressed" from="Puzzle14TutorialButton" to="." method="_on_puzzle_14_tutorial_button_pressed"]
 [connection signal="button_up" from="BackButton" to="." method="_on_back_button_up"]
