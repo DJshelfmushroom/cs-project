@@ -104,6 +104,7 @@ public partial class AudioSettings : VideoSettings
 	public override void LoadDefaults()
 	{
 		NowPlaying = Music.ThroatSing;
+		CallDeferred(nameof(WriteSettings));
 	}
 
 }

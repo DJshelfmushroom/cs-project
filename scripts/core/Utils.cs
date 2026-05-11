@@ -16,9 +16,14 @@ public partial class Utils : Node
 	private static readonly string[] LogBlacklist = [""]; // paths that aren't to be logged 
 	private static readonly Script SaveManager = ResourceLoader.Load<Script>("res://scripts/core/save_manager.gd");
 
+	private static SceneTree Tree;
+	
 	public static Script GetSaveManager() => SaveManager;
 
-
+	public static SceneTree GetSceneTree() => Tree;
+	
+	public static Node GetNodeFromStatic() => Tree.CurrentScene.GetChild(0);
+	
 	public static Node GetBombNode(Node caller)
 	{
 		try
@@ -195,15 +200,34 @@ public partial class Utils : Node
 				throw new NotImplementedException();
 		}
 	}
-#if DEBUG
+
 	public override void _Ready()
 	{
+#if DEBUG
 		_debug = true;
 		var debug = new DebugScripts();
 		debug.TestColorLogging();
-	}
 #endif
-	
+		Tree = GetTree();
+	}
+
+	public override void _Process(double delta)
+	{
+		SetTree();
+	}
+
+	public override void _EnterTree()
+	{
+		base._EnterTree();
+		SetTree();
+		CallDeferred(nameof(SetTree));
+	}
+
+	private void SetTree()
+	{
+		Tree = GetTree();
+	}
+
 	class DebugScripts
 	{
 		private const string LogMessage = "DebugScript";

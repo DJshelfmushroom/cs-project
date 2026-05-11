@@ -49,7 +49,6 @@ public partial class VideoSettings : Control //TODO: add ui options
 	public override void _Ready()
 	{
 		LoadSettings();
-
 		foreach (var (controlNodePath, feature) in Features)
 		{
 			var controlNode = GetNode(controlNodePath);
@@ -162,7 +161,7 @@ public partial class VideoSettings : Control //TODO: add ui options
 					{
 						// Log("gack to nmenu", this);
 						// SceneManager.ChangeScene( this,"res://scenes/menus/Settings.tscn");
-						core.SceneManager.ReturnToScene(this);
+						SceneManager.ReturnToScene(this);
 					};
 				}
 				break;
@@ -199,12 +198,15 @@ public partial class VideoSettings : Control //TODO: add ui options
 	public void SetResolution(int? width = null, int? height = null)
 	{
 		//Log($"Changing res: width? {width != null}", this);
+		// Window window = caller.GetWindow();
+		// Window window = Utils.GetNodeFromStatic().GetWindow();
 		Window window = GetWindow();
+		Log(window.CurrentScreen.ToString(), "VideoSettings", LogType.Debug);
 		if (width is null or < 0)
 		{
 			if (height is null or < 0)
 			{
-				Log("Can't set resolution with no values",this, LogType.Error);
+				Log("Can't set resolution with no values","VideoSettings", LogType.Error);
 				throw new Exception();
 			}
 
@@ -229,21 +231,23 @@ public partial class VideoSettings : Control //TODO: add ui options
 	public void SetFullscreen(FullscreenOptions mode)
 	{
 		_fullscreenMode = mode;
-		Log($"fullscreen: {mode.ToString()}", this);
+		//Log($"fullscreen: {mode.ToString()}", "VideoSettings", LogType.Debug);
+		// Window window = Utils.GetNodeFromStatic().GetWindow();
+		Window window = GetWindow();
 		switch (mode)
 		{
 			case FullscreenOptions.Windowed:
-				GetWindow().Borderless = false;
-				GetWindow().Mode = Window.ModeEnum.Windowed;
-				GetWindow().Unresizable = false;
+				window.Borderless = false;
+				window.Mode = Window.ModeEnum.Windowed;
+				window.Unresizable = false;
 				break;
 			case FullscreenOptions.Borderless:
-				GetWindow().Borderless = true;
-				GetWindow().Mode = Window.ModeEnum.Maximized;
-				GetWindow().Unresizable = true;
+				window.Borderless = true;
+				window.Mode = Window.ModeEnum.Maximized;
+				window.Unresizable = true;
 				break;
 			case FullscreenOptions.Fullscreen:
-				GetWindow().Mode = Window.ModeEnum.ExclusiveFullscreen;
+				window.Mode = Window.ModeEnum.ExclusiveFullscreen;
 				break;
 			default:
 				throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
@@ -280,10 +284,17 @@ public partial class VideoSettings : Control //TODO: add ui options
 
 	public virtual void LoadDefaults()
 	{ 
+		Log("Loading default settings", this);
 		var res = ScreenGetUsableRect((int)ScreenPrimary).Size;
 		SetResolution(res.X, res.Y);
 		SetFullscreen(FullscreenOptions.Fullscreen);
 		SetFrameCap(0);
 		SetVSync(VSyncMode.Enabled);
+		CallDeferred(nameof(WriteSettings));
+	}
+
+	public static void Test()
+	{
+		Log("test", "VideoSettings");
 	}
 }

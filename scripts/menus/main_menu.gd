@@ -15,7 +15,6 @@ func _ready() -> void:
 static func load_settings(caller:Node) -> void:
 	var settings_path = "res://scenes/menus/SettingsSub/"
 	var settings_dir = DirAccess.open(settings_path)
-	#Utils.LogGD("settings_dir: " + str(settings_dir), self)
 	var settings_files = settings_dir.get_files()
 	var settings_scripts : Array[PackedScene]
 	for file in settings_files:
@@ -28,8 +27,8 @@ static func load_settings(caller:Node) -> void:
 		var scene = ResourceLoader.load_threaded_get(script.resource_path)
 		var instantiated = scene.instantiate()
 		instantiated.visible = false
-		caller.add_child(instantiated)
-		caller.remove_child(instantiated)
+		caller.add_child.call_deferred(instantiated)
+		caller.remove_child.call_deferred(instantiated)
 		instantiated.queue_free()
 	
 
