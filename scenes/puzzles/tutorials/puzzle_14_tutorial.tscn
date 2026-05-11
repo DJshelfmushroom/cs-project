@@ -6,14 +6,14 @@
 [sub_resource type="LabelSettings" id="LabelSettings_3vyhl"]
 font_size = 46
 
-[node name="Puzzle13Tutorial" type="Label" unique_id=887672500]
+[node name="Puzzle14Tutorial" type="Label" unique_id=887672500]
 offset_left = 120.0
 offset_top = 345.0
 offset_right = 1795.0
-offset_bottom = 774.0
+offset_bottom = 692.0
 theme_override_font_sizes/font_size = 60
 text = "Operation Puzzle:
-Begin with your cursor off of the \"maze\". Hold left click and move the cursor onto the green \"start\" section. Continue holding left click and make your way through it until you reach the red \"finish\" section. If your mouse leaves the puzzle it will flash red and you will get a strike. This is not the only failure condition. You will fail if you stop holding the left mouse button or if you try to enter without going through the first section. In the case of failure, repeat from the start. The puzzle will flash green upon a successful completion."
+Begin with your cursor off of the \"maze\". Hold left click and move the cursor onto the green \"start\" section. Continue holding left click and make your way through it until you reach the red \"finish\" section. If your mouse leaves the puzzle it will flash red and you will get a strike. Additionally, you will fail if you stop holding the left mouse button or if you try to enter without going through the first section. In the case of failure, repeat from the start. The puzzle will flash green upon a successful completion."
 label_settings = SubResource("LabelSettings_3vyhl")
 autowrap_mode = 2
 script = ExtResource("1_4s6v4")

@@ -21,6 +21,11 @@ var score = 0
 var completed = false
 var longmode = false
 var scoreToWin = 20
+var easter_egg = [0, 0, 1, 1, 2, 3, 2, 3]
+var egg_list = []
+var basket_filled = false
+var key_list = []
+var code_confirmed = false
 
 func set_start_button():
 	$StartButton.set_text("START")
@@ -37,6 +42,8 @@ func set_restart_button():
 	$RestartButton3D.index = 1
 
 func _ready():
+	basket_filled = false
+	code_confirmed = false
 	scoreToWin = 20
 	if longmode == true:
 		scoreToWin = 30
@@ -87,6 +94,9 @@ func _process(_delta: float):
 	#if (completed && practice):
 	#	$RedWireButton.visible = true
 		
+	if basket_filled == true && key_list.size() == 3:
+		if key_list[0] == "B" && key_list[1] == "A" && key_list[2] == "ENTER":
+			code_confirmed = true
 	
 	if (time_left() >= 0):
 		if (time_left() >= 10):
@@ -129,6 +139,34 @@ func _process(_delta: float):
 				processinstruction = null
 				awaitingInputs = false
 				_startGame()
+				
+	if Input.is_action_just_pressed("key_b"):
+			if code_confirmed != true:
+				if basket_filled == true && key_list.size() == 0:
+					key_list.append("B")
+				else:
+					key_list.clear()
+					egg_list.clear()
+					basket_filled = false
+				
+	if Input.is_action_just_pressed("key_a"):
+		if code_confirmed != true:
+			if basket_filled == true && key_list.size() == 1 && key_list[0] == "B":
+				key_list.append("A")
+			else:
+				key_list.clear()
+				egg_list.clear()
+				basket_filled = false
+				
+	if Input.is_action_just_pressed("key_enter"):
+		if code_confirmed != true:
+			if basket_filled == true && key_list.size() == 2 && key_list[0] == "B" && key_list[1] == "A":
+				key_list.append("ENTER")
+			else:
+				key_list.clear()
+				egg_list.clear()
+				basket_filled = false
+				
 	if GameStart:
 		if score >= scoreToWin || time_left() <= 0:
 			hideLabels()
@@ -137,6 +175,8 @@ func _process(_delta: float):
 				lose()
 			else:
 				win()	
+	if code_confirmed == true:
+		Achievements.completed_achievement("It's a me")
 			
 func _process_instruction(key):
 	processinstruction = key
@@ -165,7 +205,20 @@ func begin():
 	awaitingInputs = false
 	keyPressed = null
 	
+func check_egg():
+	if code_confirmed != true:
+		if egg_list.size() > 0 && egg_list.size() < easter_egg.size():
+			var x = 0
+			while x < egg_list.size():
+				if int(egg_list[x]) != int(easter_egg[x]):
+					egg_list.clear()
+					break
+				x += 1
+		elif egg_list.size() == easter_egg.size():
+			basket_filled = true
+
 func _startGame():
+	check_egg()
 	hideLabels()
 	reset_labels()
 	place_labels()
@@ -188,6 +241,8 @@ func _unhandled_input(event):
 
 		if event.is_action_pressed("ui_up"):
 			keyPressed = keys.up
+			if egg_list.size() < easter_egg.size():
+				egg_list.append(keyPressed)
 			checkKeys = false
 			_process_instruction(keyPressed)
 			awaitingInputs = true
@@ -195,6 +250,8 @@ func _unhandled_input(event):
 
 		elif event.is_action_pressed("ui_down"):
 			keyPressed = keys.down
+			if egg_list.size() < easter_egg.size():
+				egg_list.append(keyPressed)
 			checkKeys = false
 			_process_instruction(keyPressed)
 			awaitingInputs = true
@@ -202,6 +259,8 @@ func _unhandled_input(event):
 
 		elif event.is_action_pressed("ui_left"):
 			keyPressed = keys.left
+			if egg_list.size() < easter_egg.size():
+				egg_list.append(keyPressed)
 			checkKeys = false
 			_process_instruction(keyPressed)
 			awaitingInputs = true
@@ -209,10 +268,13 @@ func _unhandled_input(event):
 		
 		elif event.is_action_pressed("ui_right"):
 			keyPressed = keys.right
+			if egg_list.size() < easter_egg.size():
+				egg_list.append(keyPressed)
 			checkKeys = false
 			_process_instruction(keyPressed)
 			awaitingInputs = true
 			flash_colors(Labels.find(label), keyPressed)
+		
 
 
 func check_keys(keyShown, keyClicked):
@@ -249,12 +311,9 @@ func _on_but_pressed(index : int) -> void:
 			_startGame()
 	if index == 1:
 		if !$"../../..".failed:
-			print ("Added strike")
 			setup_fix()
-			print("Hid restart")
 			$StartButton.hide()
 			$StartButton.disabled = true
-			print("Hid start")
 			GameStart = true
 			timer.start()
 			_startGame()
@@ -281,6 +340,9 @@ func lose():
 	if GameStart == true:
 		$"../../..".strikes += 1
 		GameStart = false
+	key_list.clear()
+	egg_list.clear()
+	basket_filled = false
 	$RestartButton3D.show()
 
 

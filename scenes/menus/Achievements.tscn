@@ -171,6 +171,26 @@ theme_override_font_sizes/font_size = 38
 text = "Unlock the two interchanged 
 mouse cursors"
 
+[node name="ItsAMe" type="Button" parent="Achievement Buttons" unique_id=771110189]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 488.0
+offset_right = 714.0
+offset_bottom = 583.0
+theme_override_font_sizes/font_size = 34
+text = "It's A Me"
+
+[node name="ItsAMeText" type="Label" parent="Achievement Buttons/ItsAMe" unique_id=296268820]
+visible = false
+layout_mode = 0
+offset_left = 350.0
+offset_top = 8.0
+offset_right = 740.0
+offset_bottom = 89.0
+theme_override_font_sizes/font_size = 38
+text = "Unlock the two interchanged 
+mouse cursors"
+
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="mouse_entered" from="Achievement Buttons/ReachedLevel5Button" to="." method="_on_reached_level_5_button_mouse_entered"]
 [connection signal="mouse_exited" from="Achievement Buttons/ReachedLevel5Button" to="." method="_on_reached_level_5_button_mouse_exited"]

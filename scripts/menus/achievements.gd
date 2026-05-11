@@ -7,6 +7,9 @@ func _ready() -> void:
 		if Achievements.check_achievement_completed(achievementlistnum):
 			achievement.add_theme_color_override("font_color", "green")
 		achievementlistnum += 1
+	if !Achievements.check_achievement_completed(8):
+		$ItsAMe.text = "Secret Achievement"
+		$ItsAMeText.text = "???"
 
 
 func _on_back_button_pressed() -> void:
