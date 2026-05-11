@@ -17,6 +17,7 @@ public partial class SoundManager : Node
 	
 	public static AudioStreamPlayer MusicPlayer;
 	private static readonly Dictionary<string, AudioStream> _cache = new();
+	private static Music? _pendingMusic = null;
 	
 	public static void PlaySound(string path)
 	{
@@ -46,10 +47,12 @@ public partial class SoundManager : Node
 	{
 		if (!EnsureMusicPlayer())
 		{
-			Utils.Logger.Log("Music player is not ready yet.", "SoundManager");
+			Utils.Logger.Log("Music player is not ready yet. Queuing request.", "SoundManager");
+			_pendingMusic = music;
 			return;
 		}
 
+		if (music == NowPlaying && MusicPlayer.Playing) return;
 		switch (music)
 		{
 			case Music.ThroatSing:
@@ -72,7 +75,7 @@ public partial class SoundManager : Node
 	{
 		if (MusicPlayer != null)
 		{
-			return true;
+			return MusicPlayer.IsInsideTree();
 		}
 
 		if (Engine.GetMainLoop() is not SceneTree tree || tree.Root == null)
@@ -82,8 +85,25 @@ public partial class SoundManager : Node
 
 		MusicPlayer = new AudioStreamPlayer();
 		MusicPlayer.Bus = "Music";
+		MusicPlayer.TreeEntered += OnMusicPlayerTreeEntered;
 		tree.Root.CallDeferred(Node.MethodName.AddChild, MusicPlayer);
-		return true;
+		return false;
+	}
+
+	private static void OnMusicPlayerTreeEntered()
+	{
+		// If there was a pending play request, play it now.
+		if (_pendingMusic.HasValue)
+		{
+			var music = _pendingMusic.Value;
+			_pendingMusic = null;
+			PlayMusic(music);
+		}
+		// Unsubscribe to avoid duplicate handling.
+		if (MusicPlayer != null)
+		{
+			MusicPlayer.TreeEntered -= OnMusicPlayerTreeEntered;
+		}
 	}
 	
 }

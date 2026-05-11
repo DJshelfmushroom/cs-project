@@ -46,7 +46,7 @@ public partial class CameraControl : Camera3D
 
 		// After panning, push the camera back if it clipped into the bomb.
 		// Same radial logic as RotateBomb: stay on the bomb→camera line.
-		bomb bombNode = GetNode<bomb>("../bomb_instance");
+		Bomb bombNode = GetNode<Bomb>("../bomb_instance");
 		v3 dir = (this.GlobalPosition - bombNode.GlobalPosition).Normalized();
 		float exitDist = bombNode.GetMinCameraDistance(dir);
 		float minDist = exitDist + this.Near * 3f;

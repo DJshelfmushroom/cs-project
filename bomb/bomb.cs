@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class bomb : Node3D
+public partial class Bomb : Node3D
 {
 	private PackedScene _plugScene = GD.Load<PackedScene>("res://bomb/plug.tscn");
 

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using csproject.scripts.core;
 
-public partial class explosion : Node
+public partial class Explosion : Node
 {
 	int frame = 0;
 	bool hasExploded = false;

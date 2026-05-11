@@ -278,8 +278,8 @@ public partial class VideoSettings : Control //TODO: add ui options
 		SetVSync((VSyncMode)ReadSetting<int>(nameof(ControlFeatures.VSync)));
 	}
 
-	public void LoadDefaults()
-	{
+	public virtual void LoadDefaults()
+	{ 
 		var res = ScreenGetUsableRect((int)ScreenPrimary).Size;
 		SetResolution(res.X, res.Y);
 		SetFullscreen(FullscreenOptions.Fullscreen);

@@ -31,11 +31,10 @@ public partial class Utils : Node
 			// }
 			throw new Exception();
 		}
-		catch (Exception e)
+		catch (Exception)
 		{
 			return caller.GetTree().CurrentScene;
 		}
-		return caller.GetTree().CurrentScene;
 	}
 
 	public static Vector2 InvertVec2(Vector2 vec)

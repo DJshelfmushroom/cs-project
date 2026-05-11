@@ -10,7 +10,7 @@ namespace csproject.scripts.menus.settings;
 
 public partial class AudioSettings : VideoSettings
 {
-	[Export] private new Dictionary<NodePath, ControlFeatures> Features;
+	[Export] private Dictionary<NodePath, ControlFeatures> Features;
 
 	private enum ControlFeatures
 	{
@@ -25,7 +25,6 @@ public partial class AudioSettings : VideoSettings
 		foreach (var (controlNodePath, feature) in Features)
 		{
 			var controlNode = GetNode(controlNodePath);
-			Log($"Audio Feature: {feature}", this);
 			ConfigureAudioFeature(feature, controlNode);
 		}
 	}
@@ -81,7 +80,10 @@ public partial class AudioSettings : VideoSettings
 
 	private void ChangeMusic(Music music)
 	{
+		Utils.Logger.Log($"Attempting to change music to {music}", this);
 		SoundManager.PlayMusic(music);
+		Utils.Logger.Log($"Music is {NowPlaying}", this);
+		Log($"Player says playing: {MusicPlayer.Playing}", this);
 		WriteSettings();
 	}
 	public override void _Process(double delta)
@@ -89,7 +91,7 @@ public partial class AudioSettings : VideoSettings
 	}
 	private void WriteSettings()
 	{
-		Log("Writing audio Settings", this);
+		Utils.Logger.Log("Writing audio Settings", this);
 		SaveSetting("Music", (int)NowPlaying);
 	}
 
@@ -97,6 +99,11 @@ public partial class AudioSettings : VideoSettings
 	{
 		var savedMusic = ReadSetting<int>("Music");
 		ChangeMusic(Enum.IsDefined(typeof(Music), savedMusic) ? (Music)savedMusic : Music.None);
+	}
+
+	public override void LoadDefaults()
+	{
+		NowPlaying = Music.ThroatSing;
 	}
 
 }
