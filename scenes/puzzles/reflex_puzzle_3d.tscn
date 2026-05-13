@@ -6,7 +6,7 @@
 [ext_resource type="FontFile" uid="uid://0my668ilbos5" path="res://assets/fonts/DS-DIGI.TTF" id="4_hcldi"]
 [ext_resource type="PackedScene" uid="uid://cbcrfgck1oggo" path="res://scenes/components/screen_3d.tscn" id="4_pwbcx"]
 [ext_resource type="Script" uid="uid://fq0oosq08fsj" path="res://scenes/puzzles/progress_label.gd" id="7_7vj4h"]
-[ext_resource type="Script" uid="uid://op5nqfuy38di" path="res://scenes/puzzles/progress_bar_progress.gd" id="8_5pkql"]
+[ext_resource type="Script" path="res://scenes/puzzles/progress_bar_progress.gd" id="8_5pkql"]
 
 [node name="ReflexPuzzle3D" type="Node3D" unique_id=1784130657]
 script = ExtResource("1_paxyd")
@@ -67,7 +67,7 @@ font_size = 55
 outline_size = 0
 
 [node name="EndScreen" type="Label3D" parent="." unique_id=217815367]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.002)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.002)
 visible = false
 pixel_size = 0.0025
 font = ExtResource("4_hcldi")

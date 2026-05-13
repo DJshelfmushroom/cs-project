@@ -13,11 +13,11 @@ func _ready() -> void:
 	$Screen3D.set_size(2,1.6)
 	$Screen3D.position = Vector3(-0.5,-0.5,0.001)
 	
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if start and !$"../../..".failed:
 		
-		$TrackButton3D.position.x += randx
-		$TrackButton3D.position.y += randy
+		$TrackButton3D.position.x += randx * delta * 150
+		$TrackButton3D.position.y += randy * delta * 150
 		
 		if $Timer.time_left <= time:
 			randy = randf_range(-0.0025,0.0025)

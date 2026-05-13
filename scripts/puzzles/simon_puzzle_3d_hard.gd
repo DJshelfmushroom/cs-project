@@ -139,7 +139,7 @@ func _play_Pattern():
 		if Pattern[x] == color8:
 			$Button8.set_color(Color.AQUAMARINE)
 		if Pattern[x] == Color9:
-			$Button9.set_color(Color.WHITE)
+			$Button9.set_color(Color.SADDLE_BROWN)
 			
 		await get_tree().create_timer(0.4).timeout
 		_Buttons_Off()
@@ -314,7 +314,7 @@ func _Win_Animation():
 
 func _on_but_pressed(num : int) -> void:
 	if !started:
-		if !$"../../..".failed:
+		#if !$"../../..".failed:
 			started = true
 			GameStart2 = true
 			$StartGameButton.disabled = true

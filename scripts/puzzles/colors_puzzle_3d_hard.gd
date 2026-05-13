@@ -11,7 +11,7 @@ var pressed = []
 var completed = false
 var shapes = ["circle", "square", "triangle"]
 
-# Positions (top-left, top-right, bottom-right, bottom-left)
+
 var positions = [
 	Vector3(-0.18,0.18,0),
 	Vector3(0.18,0.18,0),
@@ -19,7 +19,7 @@ var positions = [
 	Vector3(-0.18,-0.18,0)
 ]
 
-# Rainbow order (ROYGBP)
+
 var rainbow = [
 	Color.RED,
 	Color.DARK_ORANGE,
@@ -57,7 +57,6 @@ func _ready():
 		b.position = positions[i]
 		b.shape = shape
 
-		# pick unique color
 		var c_index = randi_range(0, available_colors.size() - 1)
 		var color = available_colors[c_index]
 		available_colors.remove_at(c_index)
@@ -71,9 +70,6 @@ func _ready():
 	generate_combo()
 
 
-# ========================
-# COMBO GENERATION
-# ========================
 func generate_combo():
 	combo.clear()
 
@@ -90,9 +86,6 @@ func generate_combo():
 	combo += seq
 
 
-# ========================
-# FIRST BUTTON
-# ========================
 func get_first_button():
 	var sorted = buttons.duplicate()
 
@@ -108,13 +101,9 @@ func get_first_button():
 		return earliest.num
 
 
-# ========================
-# SECOND BUTTON
-# ========================
 func get_second_button(prev):
 	var prev_button = buttons[prev]
 
-	# count same shape
 	var same_shape = []
 	for b in buttons:
 		if b.shape == prev_button.shape and b.num != prev:
@@ -123,23 +112,20 @@ func get_second_button(prev):
 	if same_shape.size() == 1:
 		return same_shape[0].num
 
-	# otherwise rules
+	
 	match prev_button.shape:
 		"circle":
-			return (prev + 1) % 4 # clockwise
+			return (prev + 1) % 4
 
 		"square":
-			return (prev - 1 + 4) % 4 # counterclockwise
+			return (prev - 1 + 4) % 4
 
 		"triangle":
-			return (prev + 2) % 4 # diagonal
+			return (prev + 2) % 4
 
 	return 0
 
 
-# ========================
-# THIRD BUTTON
-# ========================
 func get_third_button(prev):
 	var b = buttons[prev]
 	var color = b.color
@@ -148,7 +134,6 @@ func get_third_button(prev):
 	var square_count = count_shape("square")
 	var triangle_count = count_shape("triangle")
 
-	# helper positions
 	var TL = 0
 	var TR = 1
 	var BR = 2
@@ -159,7 +144,7 @@ func get_third_button(prev):
 			return find_shape("circle")
 		return BL
 
-	elif color == Color.DARK_ORANGE: # dark orange
+	elif color == Color.DARK_ORANGE:
 		if square_count == 1:
 			return find_shape("square")
 		return TL
@@ -179,9 +164,6 @@ func get_third_button(prev):
 		return TL
 
 
-# ========================
-# FINAL 4 BUTTON SEQUENCE
-# ========================
 func get_final_sequence():
 	var circle_count = count_shape("circle")
 	var square_count = count_shape("square")
@@ -194,29 +176,21 @@ func get_final_sequence():
 
 	var seq = []
 
-	# check dominance
 	if circle_count > square_count and circle_count > triangle_count:
-		# clockwise
 		seq = [TL, TR, BR, BL]
 
 	elif square_count > circle_count and square_count > triangle_count:
-		# counterclockwise
 		seq = [TL, BL, BR, TR]
 
 	elif triangle_count > circle_count and triangle_count > square_count:
-		# X pattern
 		seq = [TL, BR, TR, BL]
 
 	else:
-		# tie
 		seq = [BR, BR, BR, BR]
 
 	return seq
 
 
-# ========================
-# HELPERS
-# ========================
 func count_shape(shape):
 	var count = 0
 	for b in buttons:
@@ -232,9 +206,6 @@ func find_shape(shape):
 	return 0
 
 
-# ========================
-# GAMEPLAY LOOP
-# ========================
 func _process(_delta):
 	if combo == pressed:
 		completed = true
@@ -243,7 +214,7 @@ func _process(_delta):
 			b.disabled = true
 
 	if pressed.size() >= combo.size() and combo != pressed:
-		#$"../../..".strikes += 1
+		$"../../..".strikes += 1
 		pressed.clear()
 		var prevcolors = []
 		for b in buttons:
@@ -257,7 +228,7 @@ func _process(_delta):
 
 
 func _on_but_pressed(num):
-	if !completed: #and !$"../../..".failed:
+	if !completed and !$"../../..".failed:
 		pressed.append(num)
 	
 func _on_but_released(_num : int):

@@ -242,7 +242,10 @@ public partial class Operation : Node3D
 	public void Failure()
 	{
 		//Log("Failure", this, color: LogColors.RED);
-		Utils.GetBombNode(this).Call("Strike");
+		if (!completed) 
+		{
+			Utils.GetBombNode(this).Call("Strike");
+		}
 	}
 }
 

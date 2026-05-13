@@ -90,7 +90,7 @@ func prepare_timer():
 		timer.wait_time = 16
 	timer.one_shot = true
 	
-func _process(_delta: float):
+func _process(delta: float):
 	#if (completed && practice):
 	#	$RedWireButton.visible = true
 		
@@ -107,7 +107,7 @@ func _process(_delta: float):
 		if processinstruction == keys.up:
 			
 			if (label_on_screen(label) == true):
-				label.position.y += 0.015
+				label.position.y += 0.015 * delta * 150
 			else:
 				processinstruction = null
 				awaitingInputs = false
@@ -116,7 +116,7 @@ func _process(_delta: float):
 		elif processinstruction == keys.down:
 			
 			if (label_on_screen(label) == true):
-				label.position.y -= 0.015
+				label.position.y -= 0.015 * delta * 150
 			else:
 				processinstruction = null
 				awaitingInputs = false
@@ -125,7 +125,7 @@ func _process(_delta: float):
 		elif processinstruction == keys.left:
 			
 			if (label_on_screen(label) == true):
-				label.position.x -= 0.02
+				label.position.x -= 0.02 * delta * 150
 			else:
 				processinstruction = null
 				awaitingInputs = false
@@ -134,7 +134,7 @@ func _process(_delta: float):
 		elif processinstruction == keys.right:
 			
 			if (label_on_screen(label) == true):
-				label.position.x += 0.02
+				label.position.x += 0.02 * delta * 150
 			else:
 				processinstruction = null
 				awaitingInputs = false
@@ -291,7 +291,7 @@ func flash_colors(keyShown, keyClicked):
 	else:
 		label.modulate = Color.RED
 		score -= 1
-		#$"../../..".strikes += 1
+		$"../../..".strikes += 1
 	#print(score)
 	
 func hideLabels():
@@ -326,9 +326,6 @@ func win():
 	$EndScreen.show()
 	await get_tree().create_timer(0.5).timeout
 	hideLabels()
-	
-	$Score.text = "Score: " + str(score)
-	$Score.show()
 	
 func lose():
 	$EndScreen.text = "TEST FAILED"

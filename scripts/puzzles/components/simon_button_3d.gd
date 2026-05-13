@@ -16,7 +16,7 @@ var orange_material: StandardMaterial3D
 var purple_material: StandardMaterial3D
 var pink_material: StandardMaterial3D
 var aquamarine_material: StandardMaterial3D
-var white_material: StandardMaterial3D
+var brown_material: StandardMaterial3D
 
 func _ready() -> void:
 	default_material = StandardMaterial3D.new()
@@ -28,7 +28,7 @@ func _ready() -> void:
 	purple_material = StandardMaterial3D.new()
 	pink_material = StandardMaterial3D.new()
 	aquamarine_material = StandardMaterial3D.new()
-	white_material = StandardMaterial3D.new()
+	brown_material = StandardMaterial3D.new()
 
 	default_material.albedo_color = Color(0.83, 0.83, 0.83)
 
@@ -52,30 +52,30 @@ func _ready() -> void:
 	yellow_material.emission = Color.YELLOW
 	yellow_material.emission_energy = 2.0
 
-	orange_material.albedo_color = Color(1.0, 0.5, 0)
+	orange_material.albedo_color = Color.DARK_ORANGE
 	orange_material.emission_enabled = true
 	orange_material.emission = Color.ORANGE
-	orange_material.emission_energy = 2.0
+	orange_material.emission_energy = 1.0
 	
-	purple_material.albedo_color = Color(0.5, 0, 1)
+	purple_material.albedo_color = Color.REBECCA_PURPLE
 	purple_material.emission_enabled = true
 	purple_material.emission = Color.PURPLE
-	purple_material.emission_energy = 2.0
+	purple_material.emission_energy = 1.0
 	
-	pink_material.albedo_color = Color(1, 0, 1)
+	pink_material.albedo_color = Color.HOT_PINK
 	pink_material.emission_enabled = true
-	pink_material.emission = Color.PINK
+	pink_material.emission = Color.DEEP_PINK
 	pink_material.emission_energy = 2.0
 	
-	aquamarine_material.albedo_color = Color(0.4, 1, 0.8)
+	aquamarine_material.albedo_color = Color.CYAN
 	aquamarine_material.emission_enabled = true
-	aquamarine_material.emission = Color.AQUAMARINE
+	aquamarine_material.emission = Color.CYAN
 	aquamarine_material.emission_energy = 2.0
 
-	white_material.albedo_color = Color(1, 1, 1)
-	white_material.emission_enabled = true
-	white_material.emission = Color.WHITE
-	white_material.emission_energy = 2.0
+	brown_material.albedo_color = Color.SADDLE_BROWN
+	brown_material.emission_enabled = true
+	brown_material.emission = Color.SADDLE_BROWN
+	brown_material.emission_energy = 1.0
 	
 	off()
 
@@ -98,8 +98,8 @@ func set_color(new_color : Color) -> void:
 		$ColorOutline.material_override = pink_material
 	elif new_color == Color.AQUAMARINE:
 		$ColorOutline.material_override = aquamarine_material
-	elif new_color == Color.WHITE:
-		$ColorOutline.material_override = white_material
+	elif new_color == Color.SADDLE_BROWN:
+		$ColorOutline.material_override = brown_material
 
 func on() -> void:
 	set_color(color)

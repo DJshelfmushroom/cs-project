@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dqqgpbuw6odjn"]
+[gd_scene format=3 uid="uid://cxf2nthln1kmr"]
 
 [ext_resource type="Script" uid="uid://b342e4hawq5sb" path="res://scripts/puzzles/reflex_puzzle_hard.gd" id="1_e5nqi"]
 [ext_resource type="FontFile" uid="uid://0my668ilbos5" path="res://assets/fonts/DS-DIGI.TTF" id="2_we5kc"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://caapg5wn513l5" path="res://scenes/components/button_3d.tscn" id="4_qk76x"]
 [ext_resource type="Script" uid="uid://c12ur810twi0b" path="res://scripts/ui/layout/button_pos.gd" id="5_63h72"]
 [ext_resource type="PackedScene" uid="uid://cbcrfgck1oggo" path="res://scenes/components/screen_3d.tscn" id="6_mxv4g"]
-[ext_resource type="Script" path="res://scenes/puzzles/progress_label.gd" id="7_ggqqx"]
+[ext_resource type="Script" uid="uid://fq0oosq08fsj" path="res://scenes/puzzles/progress_label.gd" id="7_ggqqx"]
 [ext_resource type="Script" path="res://scenes/puzzles/progress_bar_progress.gd" id="8_trdwd"]
 
 [node name="ReflexPuzzleH" type="Node3D" unique_id=1184633532]
