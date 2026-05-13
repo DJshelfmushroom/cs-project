@@ -40,6 +40,7 @@ public partial class Utils : Node
 		{
 			return caller.GetTree().CurrentScene;
 		}
+		return caller.GetTree().CurrentScene;
 	}
 
 	public static Vector2 InvertVec2(Vector2 vec)

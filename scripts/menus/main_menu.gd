@@ -2,7 +2,7 @@ class_name main_menu
 extends Node3D
 
 func _ready() -> void:
-	load_settings(self)
+	#load_settings(self)
 	$Control/CustomCursor.set_mouse_cursor(SaveManager.arrow, SaveManager.hand, SaveManager.color)
 	SaveManager.save()
 	if (SaveManager.level >= 5):
