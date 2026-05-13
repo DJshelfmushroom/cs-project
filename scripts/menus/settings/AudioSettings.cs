@@ -91,7 +91,7 @@ public partial class AudioSettings : VideoSettings
 	}
 	private void WriteSettings()
 	{
-		Utils.Logger.Log("Writing audio Settings", this);
+		// Utils.Logger.Log("Writing audio Settings", this);
 		SaveSetting("Music", (int)NowPlaying);
 	}
 

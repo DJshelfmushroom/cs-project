@@ -27,8 +27,8 @@ static func load_settings(caller:Node) -> void:
 		var scene = ResourceLoader.load_threaded_get(script.resource_path)
 		var instantiated = scene.instantiate()
 		instantiated.visible = false
-		caller.add_child.call_deferred(instantiated)
-		caller.remove_child.call_deferred(instantiated)
+		caller.add_child(instantiated)
+		caller.remove_child(instantiated)
 		instantiated.queue_free()
 	
 

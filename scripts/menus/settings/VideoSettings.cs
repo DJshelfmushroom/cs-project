@@ -48,7 +48,7 @@ public partial class VideoSettings : Control //TODO: add ui options
 
 	public override void _Ready()
 	{
-		LoadSettings();
+		// LoadSettings();
 		foreach (var (controlNodePath, feature) in Features)
 		{
 			var controlNode = GetNode(controlNodePath);
@@ -200,8 +200,11 @@ public partial class VideoSettings : Control //TODO: add ui options
 		//Log($"Changing res: width? {width != null}", this);
 		// Window window = caller.GetWindow();
 		// Window window = Utils.GetNodeFromStatic().GetWindow();
-		Window window = GetWindow();
+		Window window = Utils.GetSceneTree().Root;
 		Log(window.CurrentScreen.ToString(), "VideoSettings", LogType.Debug);
+		// Log(GetTree().ToString(), this);
+		// Log(GetTree().GetRoot().Name, this);
+		
 		if (width is null or < 0)
 		{
 			if (height is null or < 0)
@@ -233,7 +236,7 @@ public partial class VideoSettings : Control //TODO: add ui options
 		_fullscreenMode = mode;
 		//Log($"fullscreen: {mode.ToString()}", "VideoSettings", LogType.Debug);
 		// Window window = Utils.GetNodeFromStatic().GetWindow();
-		Window window = GetWindow();
+		Window window = Utils.GetSceneTree().Root;
 		switch (mode)
 		{
 			case FullscreenOptions.Windowed:
@@ -266,8 +269,8 @@ public partial class VideoSettings : Control //TODO: add ui options
 
 	private void WriteSettings()
 	{
-		Log("Writing Settings", this);
-		SaveSetting("Resolution", (Vector2)GetWindow().Size);
+		Log("Writing Settings", "VideoSettings");
+		SaveSetting("Resolution", (Vector2)Utils.GetSceneTree().Root.Size);
 		SaveSetting(nameof(ControlFeatures.Fullscreen), (int)_fullscreenMode);
 		SaveSetting(nameof(ControlFeatures.FrameCap), Engine.MaxFps);
 		SaveSetting(nameof(ControlFeatures.VSync), (int)WindowGetVsyncMode());
@@ -284,7 +287,7 @@ public partial class VideoSettings : Control //TODO: add ui options
 
 	public virtual void LoadDefaults()
 	{ 
-		Log("Loading default settings", this);
+		// Log("Loading default settings", this);
 		var res = ScreenGetUsableRect((int)ScreenPrimary).Size;
 		SetResolution(res.X, res.Y);
 		SetFullscreen(FullscreenOptions.Fullscreen);

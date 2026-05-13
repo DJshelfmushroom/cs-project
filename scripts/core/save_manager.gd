@@ -54,8 +54,9 @@ static func write_setting(setting_name:StringName, value:Variant) -> bool:
 	return file != null;
 
 static func read_setting(setting_name:StringName, ignore_upper:bool = false) -> String: #string
-	if !FileAccess.file_exists(settings_path):
-		settings_defaults()
+	settings_defaults()
+	#if !FileAccess.file_exists(settings_path):
+		#settings_defaults()
 	var file_text = FileAccess.get_file_as_string(settings_path);
 	var index;
 	if ignore_upper:
@@ -73,18 +74,23 @@ static func settings_defaults():
 	var settings_dir = DirAccess.open(settings_dir_path)
 	var settings_files = settings_dir.get_files()
 	var settings_scripts : Array[Script]
+	#print(0)
 	for file in settings_files:
 		if !file.contains("Settings") or !file.contains(".cs") or file.contains(".uid"):
 			continue
 		var to_path = load(settings_dir_path + "/" + file)
 		settings_scripts.append(to_path)
+	#print(1)
 	for script in settings_scripts:
+		#print(2)
 		#Utils.GetSceneTree().current_scene.add_child()
 		@warning_ignore("standalone_expression")
-		script.new().LoadDefaults
 		var node = Control.new()
-		Utils.GetSceneTree().current_scene.add_child(node)
+		var scene:Node = Utils.GetSceneTree().current_scene.get_children()[0]
+		print(str(scene))
+		scene.add_child(node)
 		node.set_script(script)
+		script.new().LoadDefaults()
 		#script.call("LoadDefaults")
 		
 

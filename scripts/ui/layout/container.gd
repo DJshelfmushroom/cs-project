@@ -46,6 +46,7 @@ func _ready() -> void:
 	margin_y += BUTTON_HEIGHT/2.0
 	SCREEN_HEIGHT = get_viewport_rect().size.y
 	abs_max_height = SCREEN_HEIGHT - margin_y
+	print(str(children[4].name))
 	for i in range(len(children)):
 		var child : Button = children[i]
 		child.position.x = get_viewport_rect().get_center().x
