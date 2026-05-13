@@ -188,8 +188,8 @@ offset_top = 8.0
 offset_right = 740.0
 offset_bottom = 89.0
 theme_override_font_sizes/font_size = 38
-text = "Unlock the two interchanged 
-mouse cursors"
+text = "Input the Konami Code into the 
+Reflex Puzzle"
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="mouse_entered" from="Achievement Buttons/ReachedLevel5Button" to="." method="_on_reached_level_5_button_mouse_entered"]
@@ -204,3 +204,5 @@ mouse cursors"
 [connection signal="mouse_exited" from="Achievement Buttons/DynamicDuo" to="." method="_on_dynamic_duo_mouse_exited"]
 [connection signal="mouse_entered" from="Achievement Buttons/3OfAKind" to="." method="_on_of_a_kind_mouse_entered"]
 [connection signal="mouse_exited" from="Achievement Buttons/3OfAKind" to="." method="_on_of_a_kind_mouse_exited"]
+[connection signal="mouse_entered" from="Achievement Buttons/ItsAMe" to="." method="_on_its_a_me_mouse_entered"]
+[connection signal="mouse_exited" from="Achievement Buttons/ItsAMe" to="." method="_on_its_a_me_mouse_exited"]

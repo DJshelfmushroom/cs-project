@@ -51,6 +51,7 @@ var broken = false
 var weight = SaveManager.level * 2 + 5
 
 var time
+var addedxp
 var timeleft = 0
 var once = false
 var current_weight = 0
@@ -251,8 +252,10 @@ func _on_back_button_up() -> void:
 				SaveManager.pack1owned += 2
 			else:
 				SaveManager.pack1owned += 1
-			SaveManager.totalxp += current_weight * 2 * (1 + timeleft / (weight * 3)) + 5 * (3 - finalstrikes)
+			SaveManager.addedxp = current_weight * 2 * (1 + timeleft / (weight * 3)) + 5 * (3 - finalstrikes)
+			SaveManager.totalxp += SaveManager.addedxp
 		else:
-			SaveManager.totalxp += current_weight / 2
+			SaveManager.addedxp = current_weight / 2
+			SaveManager.totalxp += SaveManager.addedxp
 		SaveManager.save()
 	get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")

@@ -8,8 +8,8 @@ func _ready() -> void:
 			achievement.add_theme_color_override("font_color", "green")
 		achievementlistnum += 1
 	if !Achievements.check_achievement_completed(8):
-		$ItsAMe.text = "Secret Achievement"
-		$ItsAMeText.text = "???"
+		$"Achievement Buttons/ItsAMe".text = "Secret Achievement"
+		$"Achievement Buttons/ItsAMe/ItsAMeText".text = "???"
 
 
 func _on_back_button_pressed() -> void:
@@ -43,3 +43,7 @@ func _on_of_a_kind_mouse_entered() -> void:
 	$"Achievement Buttons/3OfAKind/3OfAKindText".show()
 func _on_of_a_kind_mouse_exited() -> void:
 	$"Achievement Buttons/3OfAKind/3OfAKindText".hide()
+func _on_its_a_me_mouse_entered() -> void:
+	$"Achievement Buttons/ItsAMe/ItsAMeText".show()
+func _on_its_a_me_mouse_exited() -> void:
+	$"Achievement Buttons/ItsAMe/ItsAMeText".hide()

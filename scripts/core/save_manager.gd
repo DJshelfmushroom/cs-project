@@ -19,6 +19,7 @@ var practice: bool = false
 var practice_puzzle_index: int = 0
 
 var practice_array: Array = []
+var addedxp
 
 func _ready() -> void:
 	load_data()
@@ -128,6 +129,9 @@ func load_mouse_info(file):
 	elif (color == "hand"):
 		arrow = load("res://assets/cursor/Hand_RedWire_Cursor.png")
 		hand = load("res://assets/cursor/Hand_RedWire_Hand.png")
+	elif (color == "secret"):
+		arrow = load("res://assets/cursor/Secret_RedWire_Cursor.png")
+		hand = load("res://assets/cursor/Secret_RedWire_Hand.png")
 	else:
 		pass
 

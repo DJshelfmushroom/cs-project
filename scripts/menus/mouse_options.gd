@@ -27,6 +27,9 @@ var inverse_hand = preload("res://assets/cursor/Inverse_RedWire_Hand.png")
 var hand_arrow = preload("res://assets/cursor/Hand_RedWire_Cursor.png")
 var hand_hand = preload("res://assets/cursor/Hand_RedWire_Hand.png")
 
+var secret_arrow = preload("res://assets/cursor/Secret_RedWire_Cursor.png")
+var secret_hand = preload("res://assets/cursor/Secret_RedWire_Hand.png")
+
 var mouse_cursor = null
 var x_factor = 85
 var y_factor = 120
@@ -55,6 +58,8 @@ func prepare_buttons():
 		set_inverse_to_base()
 	if (SaveManager.practice_array.size() < 15):
 		set_hand_to_base()
+	if (!Achievements.check_achievement_completed(8)):
+		set_secret_to_base()
 
 func place_set():
 	if (check_mouse_cursor() == "red"):
@@ -84,6 +89,9 @@ func place_set():
 	elif (check_mouse_cursor() == "hand"):
 		$Set.position = Vector2($Hand_Mouse.position.x + x_factor, $Hand_Mouse.position.y + y_factor)
 		$Set.show()
+	elif (check_mouse_cursor() == "secret"):
+		$Set.position = Vector2($Secret_Mouse.position.x + x_factor, $Secret_Mouse.position.y + y_factor)
+		$Set.show()
 	else:
 		$Set.hide()
 	
@@ -109,6 +117,9 @@ func set_inverse_to_base():
 func set_hand_to_base():
 	$Hand_Mouse.text = "Secret Cursor"
 	$Hand_Mouse.disabled = true
+func set_secret_to_base():
+	$Secret_Mouse.text = "Secret Cursor"
+	$Secret_Mouse.disabled = true
 
 func _on_red_mouse_pressed() -> void:
 	SaveManager.arrow = red_arrow
@@ -188,6 +199,15 @@ func _on_hand_mouse_pressed() -> void:
 	SaveManager.color = "hand"
 	
 	$CustomCursor.set_mouse_cursor(hand_arrow, hand_hand, "hand")
+	place_set()
+	SaveManager.save()
+
+func _on_secret_mouse_pressed() -> void:
+	SaveManager.arrow = secret_arrow
+	SaveManager.hand  = secret_hand
+	SaveManager.color = "secret"
+	
+	$CustomCursor.set_mouse_cursor(secret_arrow, secret_hand, "secret")
 	place_set()
 	SaveManager.save()
 

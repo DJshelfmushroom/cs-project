@@ -29,7 +29,7 @@
 [ext_resource type="Script" uid="uid://4pskjntns5sr" path="res://bomb/Explosion.cs" id="19_osgfx"]
 [ext_resource type="Texture2D" uid="uid://bsmsqywoaj4wo" path="res://glass.png" id="23_d16ca"]
 [ext_resource type="Texture2D" uid="uid://cnu8l7hiepbgb" path="res://backdrop.jpg" id="23_okahj"]
-[ext_resource type="Shader" path="res://sky_panorama.gdshader" id="24_ddge8"]
+[ext_resource type="Shader" uid="uid://4pradrmwh4mg" path="res://sky_panorama.gdshader" id="24_ddge8"]
 [ext_resource type="Texture2D" uid="uid://sblqjn0wgcao" path="res://burnt_warehouse_4k.exr" id="29_d16ca"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f726v"]

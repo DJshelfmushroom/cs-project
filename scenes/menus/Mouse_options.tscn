@@ -113,6 +113,16 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Hand Cursor"
 
+[node name="Secret_Mouse" type="Button" parent="." unique_id=301748347]
+layout_mode = 0
+offset_left = 1286.0
+offset_top = 650.0
+offset_right = 1586.0
+offset_bottom = 750.0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 40
+text = "Code Cursor"
+
 [node name="Set" type="Label" parent="." unique_id=1803000527]
 visible = false
 layout_mode = 0
@@ -144,4 +154,5 @@ text = "Back"
 [connection signal="pressed" from="Inverted_Mouse" to="." method="_on_inverted_mouse_pressed"]
 [connection signal="pressed" from="Inverse_Mouse" to="." method="_on_inverse_mouse_pressed"]
 [connection signal="pressed" from="Hand_Mouse" to="." method="_on_hand_mouse_pressed"]
+[connection signal="pressed" from="Secret_Mouse" to="." method="_on_secret_mouse_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

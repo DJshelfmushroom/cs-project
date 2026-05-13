@@ -26,6 +26,7 @@ var egg_list = []
 var basket_filled = false
 var key_list = []
 var code_confirmed = false
+var once = false
 
 func set_start_button():
 	$StartButton.set_text("START")
@@ -177,7 +178,15 @@ func _process(delta: float):
 				win()	
 	if code_confirmed == true:
 		Achievements.completed_achievement("It's a me")
-			
+		if once == false:
+			SaveManager.arrow = load("res://assets/cursor/Secret_RedWire_Cursor.png")
+			SaveManager.hand  = load("res://assets/cursor/Secret_RedWire_Hand.png")
+			SaveManager.color = "secret"
+
+			$CustomCursor.set_mouse_cursor(SaveManager.arrow, SaveManager.hand, "secret")
+			once = true
+			SaveManager.save()
+
 func _process_instruction(key):
 	processinstruction = key
 
