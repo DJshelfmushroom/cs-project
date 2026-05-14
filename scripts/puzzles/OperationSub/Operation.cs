@@ -33,6 +33,7 @@ public partial class Operation : Node3D
 	[Export] public Color Middle_Segment = Colors.Aquamarine;
 	[Export] public Color Last_Segment = Colors.Red;
 	[Export] public Color Success_Color = Colors.Green;
+	[Export] public Color Completed_Color = Colors.Gray;
 	[Export] public Color Failure_Color = Colors.Red;
 
 	[ExportSubgroup("Advanced")]
@@ -222,6 +223,7 @@ public partial class Operation : Node3D
 		//TODO: add color changing animation, sound effect?
 		completed = true;
 		SetColors(Success_Color);
+		GetTree().CreateTimer(.5).Timeout += () => {SetColors(Completed_Color);};
 	}
 
 	private Array<Color> SetColors(Color color)
@@ -256,6 +258,8 @@ public partial class Operation : Node3D
 		{
 			Utils.GetBombNode(this).Call("Strike");
 			SetColors(Failure_Color);
+			GetTree().CreateTimer(.67).Timeout += () => {SetColors(Colors.Transparent);};
+			GetTree().CreateTimer(1.33).Timeout += () => {SetColors(Failure_Color);};
 			// TODO: revert to default seg color (individual) on null call to SetColors()
 			GetTree().CreateTimer(2.0).Timeout += () => {SetColors(Colors.Transparent);};
 		}

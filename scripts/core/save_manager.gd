@@ -55,9 +55,9 @@ static func write_setting(setting_name:StringName, value:Variant) -> bool:
 	return file != null;
 
 static func read_setting(setting_name:StringName, ignore_upper:bool = false) -> String: #string
-	settings_defaults()
-	#if !FileAccess.file_exists(settings_path):
-		#settings_defaults()
+	#settings_defaults()
+	if !FileAccess.file_exists(settings_path):
+		settings_defaults()
 	var file_text = FileAccess.get_file_as_string(settings_path);
 	var index;
 	if ignore_upper:
@@ -88,7 +88,7 @@ static func settings_defaults():
 		@warning_ignore("standalone_expression")
 		var node = Control.new()
 		var scene:Node = Utils.GetSceneTree().current_scene.get_children()[0]
-		print(str(scene))
+		#print(str(scene))
 		scene.add_child(node)
 		node.set_script(script)
 		script.new().LoadDefaults()
