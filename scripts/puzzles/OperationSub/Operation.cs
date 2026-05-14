@@ -32,6 +32,8 @@ public partial class Operation : Node3D
 	[Export] public Color First_Segment = Colors.YellowGreen;
 	[Export] public Color Middle_Segment = Colors.Aquamarine;
 	[Export] public Color Last_Segment = Colors.Red;
+	[Export] public Color Success_Color = Colors.Green;
+	[Export] public Color Failure_Color = Colors.Red;
 
 	[ExportSubgroup("Advanced")]
 	[Export] public float Point_Spacing_Range_Min = 50;
@@ -179,6 +181,7 @@ public partial class Operation : Node3D
 			var material = new StandardMaterial3D();
 			material.CullMode = BaseMaterial3D.CullModeEnum.Disabled;
 			material.AlbedoColor = operationArea2D.color;
+			area3D.SetColor(operationArea2D.color);
 			material.RenderPriority = 1;
 			if (operationArea2D.GetSection() == OperationArea2D.Section.Middle)
 			{
@@ -218,7 +221,7 @@ public partial class Operation : Node3D
 		//Log("Success", this, color: LogColors.GREEN);
 		//TODO: add color changing animation, sound effect?
 		completed = true;
-		
+		SetColors(Success_Color);
 	}
 
 	private Array<Color> SetColors(Color color)
@@ -231,7 +234,14 @@ public partial class Operation : Node3D
 				if (kid is MeshInstance3D meshInstance)
 				{
 					var material = meshInstance.GetActiveMaterial(0) as StandardMaterial3D;
-					material.AlbedoColor = color;
+					if (color.Equals(Colors.Transparent)) 
+					{
+						material.AlbedoColor = ((OperationArea3D)child).GetColor();
+					} 
+					else 
+					{
+						material.AlbedoColor = color;
+					}
 					meshInstance.MaterialOverride = material;
 				}
 			}
@@ -245,6 +255,9 @@ public partial class Operation : Node3D
 		if (!completed) 
 		{
 			Utils.GetBombNode(this).Call("Strike");
+			SetColors(Failure_Color);
+			// TODO: revert to default seg color (individual) on null call to SetColors()
+			GetTree().CreateTimer(2.0).Timeout += () => {SetColors(Colors.Transparent);};
 		}
 	}
 }
