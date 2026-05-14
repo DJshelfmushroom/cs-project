@@ -300,7 +300,7 @@ func flash_colors(keyShown, keyClicked):
 	else:
 		label.modulate = Color.RED
 		score -= 1
-		$"../../..".strikes += 1
+		#$"../../..".strikes += 1
 	#print(score)
 	
 func hideLabels():

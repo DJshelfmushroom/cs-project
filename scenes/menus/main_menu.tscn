@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://deitcqaq6r0c6" path="res://scenes/menus/custom_cursor.tscn" id="4_8r73w"]
 [ext_resource type="Script" uid="uid://c7iwdg7snkt5n" path="res://scripts/menus/lvl_label.gd" id="4_imvie"]
 [ext_resource type="Script" uid="uid://d3hm7i2w7dbg" path="res://scripts/menus/xp_label.gd" id="5_ng0o5"]
+[ext_resource type="Script" uid="uid://d2w031rqcie5v" path="res://scenes/menus/added_xp_label.gd" id="6_bh4e2"]
 [ext_resource type="Script" uid="uid://ctopr804dfmky" path="res://scripts/menus/xp_bar_progress.gd" id="6_ng0o5"]
 [ext_resource type="Script" uid="uid://c8qm8vqgnop4n" path="res://scenes/menus/xpbutton.gd" id="7_bre17"]
 [ext_resource type="FontFile" uid="uid://d3y7shqhxu6sv" path="res://assets/fonts/Urban Shadow Sans Serif.otf" id="8_50h1w"]
@@ -167,6 +168,16 @@ theme_override_colors/font_color = Color(0.39215687, 0.78431374, 1, 1)
 theme_override_font_sizes/font_size = 40
 text = "0/0 XP"
 script = ExtResource("5_ng0o5")
+
+[node name="AddedXPLabel" type="Label" parent="Control" unique_id=1765039795]
+layout_mode = 0
+offset_left = 395.0
+offset_top = 970.0
+offset_right = 499.0
+offset_bottom = 1018.0
+theme_override_colors/font_color = Color(0.39215687, 0.78431374, 1, 1)
+theme_override_font_sizes/font_size = 40
+script = ExtResource("6_bh4e2")
 
 [node name="XpBarBackGround" type="ColorRect" parent="Control" unique_id=1730986927]
 layout_mode = 0
