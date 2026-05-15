@@ -20,6 +20,7 @@ var practice_puzzle_index: int = 0
 
 var practice_array: Array = []
 var addedxp
+var firstTime = false
 
 func _ready() -> void:
 	load_data()
@@ -33,8 +34,10 @@ func save():
 	save_mouse_info(file)
 	completedAchievements = file.store_var(Achievements.completedAchievements)
 	file.store_var(practice_array)
+	file.store_var(firstTime)
 	file.close();
-	
+
+
 
 func save_mouse_info(file):
 	file.store_var(color)
@@ -145,6 +148,8 @@ func load_data():
 		load_mouse_info(file)
 		Achievements.load_achievements(file.get_var())
 		practice_array = file.get_var()
+		firstTime = false
+		#firstTime = file.get_var(firstTime)
 	else:
 		pack1owned = 0
 		level = 0
@@ -154,6 +159,7 @@ func load_data():
 		color = "red"
 		completedAchievements = []
 		practice_array = []
+		firstTime = true
 
 func _input(_event):
 	if (Utils.GetDebug()):

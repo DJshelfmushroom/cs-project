@@ -152,7 +152,7 @@ offset_left = 90.0
 offset_top = 900.0
 offset_right = 368.0
 offset_bottom = 971.0
-theme_override_colors/font_color = Color(0.39215687, 0.78431374, 1, 1)
+theme_override_colors/font_color = Color(0.392, 0.784, 1, 1)
 theme_override_font_sizes/font_size = 70
 text = "LVL 0"
 vertical_alignment = 1
@@ -231,6 +231,18 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 80
 text = "0"
 script = ExtResource("9_bh4e2")
+
+[node name="TutorialSpeech" type="Label" parent="Control" unique_id=776403863]
+visible = false
+layout_mode = 0
+offset_left = 1356.0
+offset_top = 585.0
+offset_right = 1641.0
+offset_bottom = 675.0
+theme_override_colors/font_color = Color(0.392, 0.784, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Text"
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1126621304]
 handle_input_locally = false
