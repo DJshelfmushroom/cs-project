@@ -6,7 +6,10 @@
 [node name="Operation3D" type="Node3D" unique_id=469409953]
 script = ExtResource("2_c1owo")
 Size = Vector2(500, 450)
-Line_Width = 10.0
+Line_Width = 20.0
+Point_Spacing_Range_Min = 100.0
+Point_Spacing_Range_Max = 200.0
+Segment_Count = 10
 metadata/id = 14
 
 [node name="Screen3D" parent="." unique_id=1984545930 instance=ExtResource("1_c1owo")]

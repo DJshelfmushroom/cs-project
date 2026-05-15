@@ -1,5 +1,4 @@
-class_name main_menu
-extends Node3D
+class_name main_menu extends Node3D
 
 func _ready() -> void:
 	#load_settings(self)

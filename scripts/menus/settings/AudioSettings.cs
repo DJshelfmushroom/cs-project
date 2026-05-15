@@ -21,6 +21,7 @@ public partial class AudioSettings : VideoSettings
 	
 	public override void _Ready()
 	{
+		// base._Ready(); // Can we discuss how to make this work?
 		LoadSettings();
 		foreach (var (controlNodePath, feature) in Features)
 		{
@@ -36,11 +37,16 @@ public partial class AudioSettings : VideoSettings
 			case ControlFeatures.BackButton:
 				if (controlNode is Godot.Button button)
 				{
-					button.Pressed += () => GetTree().ChangeSceneToFile("res://scenes/menus/Settings.tscn");
+					// button.Pressed += () => GetTree().ChangeSceneToFile("res://scenes/menus/Settings.tscn");
+					button.Pressed += () => // Feel free to change this back. I personally prefer an apply button (for consistency's sake).
+					{
+						SceneManager.ReturnToScene(this);
+						WriteSettings();
+					};
 				}
 				break;
 			case ControlFeatures.MusicSelect:
-				if (controlNode is Godot.OptionButton musicSelectButton)
+				if (controlNode is OptionButton musicSelectButton)
 				{
 					musicSelectButton.ItemSelected += (index) => ChangeMusic(GetMusicForIndex(musicSelectButton, index));
 					SelectCurrentMusic(musicSelectButton);

@@ -48,7 +48,7 @@ public partial class VideoSettings : Control //TODO: add ui options
 
 	public override void _Ready()
 	{
-		// LoadSettings();
+		LoadSettings();
 		foreach (var (controlNodePath, feature) in Features)
 		{
 			var controlNode = GetNode(controlNodePath);

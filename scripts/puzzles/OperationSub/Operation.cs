@@ -21,33 +21,32 @@ namespace csproject.scripts.puzzles;
 
 public partial class Operation : Node3D
 {
-	[ExportGroup("Puzzle Settings")] 
+	[ExportCategory("Puzzle Settings")] 
+	
+	[ExportGroup("Visual Configuration")]
 	[Export] public Vector2 Center = new (0, 0);
 	[Export] public Vector2 Size = new (500,500);
 	[Export] public OperationPath2D.StartPoint startPoint = OperationPath2D.StartPoint.Bottom_Left;
-	[Export] public float Line_Width = 5f;
 	[Export] public float Depth = 10f;
-
-	[ExportSubgroup("Segment Colors")] 
+	[ExportSubgroup("Colors")]
 	[Export] public Color First_Segment = Colors.YellowGreen;
 	[Export] public Color Middle_Segment = Colors.Aquamarine;
 	[Export] public Color Last_Segment = Colors.Red;
 	[Export] public Color Success_Color = Colors.Green;
 	[Export] public Color Completed_Color = Colors.Gray;
 	[Export] public Color Failure_Color = Colors.Red;
-
-	[ExportSubgroup("Advanced")]
-	[Export] public float Point_Spacing_Range_Min = 50;
-	[Export] public float Point_Spacing_Range_Max = 100;
+	[ExportGroup("Balancing")]
+	[Export] public float Line_Width = 5f;
+	[Export] public float Point_Spacing_Range_Middle = 50;
+	[Export] public float Point_Spacing_Range_Variance = 50;
 	[Export] public ushort Segment_Count = 20;
+	[ExportGroup("Advanced")]
 	[Export] public uint Attempt_Threshold = 50;
 	[Export] public float Space_Buffer = 3f;
-	
-	[ExportSubgroup("Don't Change")]
+	[ExportGroup("Don't Change")]
 	[Export]
 	public int id { get; set; } = 14; // to reference in GDScript
-	[Export]
-	public bool completed { get; set; } = false;
+	[Export] public bool completed { get; set; } = false;
 	
 	// private OperationPath2D _operation;
 	public override void _Ready()
@@ -73,7 +72,7 @@ public partial class Operation : Node3D
 			Center,
 			Size, 
 			Segment_Count,
-			new (Point_Spacing_Range_Min, Point_Spacing_Range_Max),
+			new (Point_Spacing_Range_Middle, Point_Spacing_Range_Variance),
 			this,
 			Line_Width,
 			startPoint,
@@ -324,14 +323,15 @@ public class OperationPath2D(
 		var points = new List<Vector2> { (GetStartPoint() - center) };
 		
 		Random random = new Random();
-		int rBottom = (int) pointSpaceRange.X;
-		int rRange = Math.Abs((int)pointSpaceRange.Y - (int)pointSpaceRange.X);
+		// int rBottom = (int) pointSpaceRange.X;
+		// int rRange = Math.Abs((int)pointSpaceRange.Y - (int)pointSpaceRange.X);
 		var prevDir = new Vector2(0, 0);
 		int attempts = 0;
 		int i = 1;
 		while (i < pointCount) 
 		{
-			int pointDist = (int)(rRange * random.NextSingle() + rBottom);
+			// int pointDist = (int)(rRange * random.NextSingle() + rBottom);
+			int pointDist = (int)(pointSpaceRange.X * random.NextSingle() + pointSpaceRange.Y - pointSpaceRange.X / 2);
 			Vector2 dir;
 
 			// curve_roll:

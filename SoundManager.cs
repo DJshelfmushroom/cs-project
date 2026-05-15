@@ -4,7 +4,7 @@ using Godot.Collections;
 
 namespace csproject;
 
-public partial class SoundManager : Node
+public partial class SoundManager : Node // Ideally this is moved into the core folder
 {
 	public enum Music
 	{
