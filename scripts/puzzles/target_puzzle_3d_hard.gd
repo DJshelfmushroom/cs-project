@@ -8,6 +8,8 @@ var points = 0
 func _ready() -> void:
 	$Screen3D.set_size(2,1.6)
 	$Screen3D.position = Vector3(-0.5,-0.5, 0.001)
+	$TargetButton3D.set_color(Color.PURPLE)
+	$TargetButton3D2.set_color(Color.PURPLE)
 
 func _process(_delta: float) -> void:
 	if points >= 17:

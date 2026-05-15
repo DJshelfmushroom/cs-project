@@ -5,11 +5,21 @@ preload("res://scenes/puzzles/reflex_puzzle_3d.tscn"), preload("res://scenes/puz
 preload("res://scenes/puzzles/disable_puzzle_3d.tscn"), preload("res://scenes/puzzles/colors_puzzle_3d.tscn"), preload("res://scenes/puzzles/switches_puzzle_3d.tscn"),
 preload("res://scenes/puzzles/yes_no_puzzle_3d.tscn"), preload("res://scenes/puzzles/target_puzzle_3d.tscn"), preload("res://scenes/puzzles/track_puzzle_3d.tscn"), 
 preload("res://scenes/puzzles/shift_puzzle_3d_easy.tscn"), preload("res://scenes/puzzles/Operation3D.tscn"), preload("res://scenes/puzzles/color_theory_puzzle.tscn")]
+var hard_puzzles = [preload("res://scenes/puzzles/Hard Puzzles/puzzle_one_3d_hard.tscn"),preload("res://scenes/puzzles/Hard Puzzles/puzzle_two_3d_hard.tscn"),
+preload("res://scenes/puzzles/Hard Puzzles/simon_puzzle_3d_hard.tscn"), preload("res://scenes/puzzles/reflex_puzzle_3d.tscn"), 
+preload("res://scenes/puzzles/Hard Puzzles/numerle_puzzle_3d_hard.tscn"), preload("res://scenes/puzzles/Hard Puzzles/segment_puzzle_3dh.tscn"),
+preload("res://scenes/puzzles/disable_puzzle_3d.tscn"), preload("res://scenes/puzzles/Hard Puzzles/colors_puzzle_3d_hard.tscn"), 
+preload("res://scenes/puzzles/switches_puzzle_3d.tscn"), preload("res://scenes/puzzles/yes_no_puzzle_3d.tscn"), preload("res://scenes/puzzles/Hard Puzzles/target_puzzle_3d_hard.tscn"),
+preload("res://scenes/puzzles/track_puzzle_3d.tscn"), preload("res://scenes/puzzles/Hard Puzzles/shift_puzzle_3d.tscn"), preload("res://scenes/puzzles/Operation3D.tscn"),
+preload("res://scenes/puzzles/color_theory_puzzle.tscn")]
 
 
 var puzzle_scales = [0.45,0.4,0.5,0.5,0.4,0.35,0.2,0.6,0.08,0.17,0.2,0.2,0.25,0.00075, 0.6]
-var puzzle_weights = [1,5,5,4,1,2,1,3,2,4,3,3,6,6,2] #Value of how hard/time-consuming each puzzle is, will eventually be used to determine what puzzles you get
+var hard_puzzle_scales = [0.45,0.27,0.35,0.5,0.5,0.35,0.2,0.6,0.08,0.17,0.2,0.2,0.25,0.00075,0.6]
+var puzzle_weights = [1,5,5,4,1,2,1,3,2,4,3,3,6,8,2] #Value of how hard/time-consuming each puzzle is, will eventually be used to determine what puzzles you get
+var hard_puzzle_weights = [9,7,6,4,8,6,1,6,2,4,5,3,9,8,2]
 var weights_left = puzzle_weights.duplicate()
+var hard_weights_left = hard_puzzle_weights.duplicate()
 
 var possible_positions = [
 	Vector3(0.5,0.25,0.5),Vector3(0.5,0.25,-0.5),Vector3(0.5,-0.25,0.5),Vector3(0.5,-0.25,-0.5),
@@ -49,6 +59,8 @@ var broken = false
 
 
 var weight = SaveManager.level * 2 + 5
+
+var numhardpuzzles = SaveManager.level / 5
 
 var time
 var addedxp
@@ -91,68 +103,146 @@ func _ready() -> void:
 
 	while current_weight < weight && current_puzzles.size() < 20: 
 		var cont = false
+		
+		var skip = true
+		for w in hard_puzzle_weights:
+			if w < weight - current_weight:
+				skip = false
+			
+		if skip:
+			numhardpuzzles = 0
+		
+		if numhardpuzzles > 0:
+			for w in hard_weights_left:
+				if w <= weight - current_weight:
+					cont = true
+					break
 
-		for w in weights_left:
-			if w <= weight - current_weight:
-				cont = true
+			if !cont:
 				break
 
-		if !cont:
-			break
+			var valid_indices = []
+			for i in range(hard_puzzles.size()):
+				if hard_puzzle_weights[i] <= weight - current_weight:
+					var matchh = false
+					for k in current_puzzles:
+						if k.id == i + 1:
+							matchh = true
+							break
+					if !matchh:
+						valid_indices.append(i)
 
-		var valid_indices = []
-		for i in range(puzzles.size()):
-			if puzzle_weights[i] <= weight - current_weight:
-				var matchh = false
-				for k in current_puzzles:
-					if k.id == i + 1:
-						matchh = true
-						break
-				if !matchh:
-					valid_indices.append(i)
+			if valid_indices.is_empty():
+				break
 
-		if valid_indices.is_empty():
-			break
+			var p = valid_indices.pick_random()
 
-		var p = valid_indices.pick_random()
+			var rand
+			var unique = false
+			while !unique:
+				unique = true
+				rand = randi_range(0,possible_positions.size() - 1)
 
-		var rand
-		var unique = false
-		while !unique:
-			unique = true
-			rand = randi_range(0,possible_positions.size() - 1)
+				for puzzle in current_puzzles:
+					if puzzle.position == possible_positions[rand]:
+						unique = false
 
-			for puzzle in current_puzzles:
-				if puzzle.position == possible_positions[rand]:
+				if rand < 4 and unique:
+					puzzles_on_front += 1
+				if puzzles_on_front < 3 and rand > 3:
 					unique = false
 
-			if rand < 4 and unique:
-				puzzles_on_front += 1
-			if puzzles_on_front < 3 and rand > 3:
-				unique = false
 
-		var puzzle_inst = puzzles[p].instantiate()
-		puzzle_inst.position = possible_positions[rand]
-		puzzle_inst.scale = Vector3(puzzle_scales[p],puzzle_scales[p],puzzle_scales[p])
+			hard_weights_left.erase(hard_puzzle_weights[p])
+			current_weight += hard_puzzle_weights[p]
 
-		if rand < 4:
-			puzzle_inst.rotation = rotations[0]
-		elif rand < 8:
-			puzzle_inst.rotation = rotations[1]
-		elif rand < 12:
-			puzzle_inst.rotation = rotations[2]
-		elif rand < 16:
-			puzzle_inst.rotation = rotations[3]
-		elif rand < 18:
-			puzzle_inst.rotation = rotations[4]
+			var puzzle_inst = hard_puzzles[p].instantiate()
+			puzzle_inst.position = possible_positions[rand]
+			puzzle_inst.scale = Vector3(hard_puzzle_scales[p],hard_puzzle_scales[p],hard_puzzle_scales[p])
+
+			if rand < 4:
+				puzzle_inst.rotation = rotations[0]
+			elif rand < 8:
+				puzzle_inst.rotation = rotations[1]
+			elif rand < 12:
+				puzzle_inst.rotation = rotations[2]
+			elif rand < 16:
+				puzzle_inst.rotation = rotations[3]
+			elif rand < 18:
+				puzzle_inst.rotation = rotations[4]
+			else:
+				puzzle_inst.rotation = rotations[5]
+				
+			$bomb_instance/Games.add_child(puzzle_inst)
+			current_puzzles.append(puzzle_inst)
+			
+			if puzzle_inst.id != 4 && puzzle_inst.id != 7 && puzzle_inst.id != 9 && puzzle_inst.id != 10 && puzzle_inst.id != 12 && puzzle_inst.id != 14 && puzzle_inst.id != 15:
+				numhardpuzzles -= 1
+			
 		else:
-			puzzle_inst.rotation = rotations[5]
 
-		$bomb_instance/Games.add_child(puzzle_inst)
-		current_puzzles.append(puzzle_inst)
+			for w in weights_left:
+				if w <= weight - current_weight:
+					cont = true
+					break
 
-		weights_left.erase(puzzle_weights[p])
-		current_weight += puzzle_weights[p]
+			if !cont:
+				break
+
+			var valid_indices = []
+			for i in range(puzzles.size()):
+				if puzzle_weights[i] <= weight - current_weight:
+					var matchh = false
+					for k in current_puzzles:
+						if k.id == i + 1:
+							matchh = true
+							break
+					if !matchh:
+						valid_indices.append(i)
+
+			if valid_indices.is_empty():
+				break
+
+			var p = valid_indices.pick_random()
+
+			var rand
+			var unique = false
+			while !unique:
+				unique = true
+				rand = randi_range(0,possible_positions.size() - 1)
+
+				for puzzle in current_puzzles:
+					if puzzle.position == possible_positions[rand]:
+						unique = false
+
+				if rand < 4 and unique:
+					puzzles_on_front += 1
+				if puzzles_on_front < 3 and rand > 3:
+					unique = false
+
+
+			weights_left.erase(puzzle_weights[p])
+			current_weight += puzzle_weights[p]
+
+			var puzzle_inst = puzzles[p].instantiate()
+			puzzle_inst.position = possible_positions[rand]
+			puzzle_inst.scale = Vector3(puzzle_scales[p],puzzle_scales[p],puzzle_scales[p])
+
+			if rand < 4:
+				puzzle_inst.rotation = rotations[0]
+			elif rand < 8:
+				puzzle_inst.rotation = rotations[1]
+			elif rand < 12:
+				puzzle_inst.rotation = rotations[2]
+			elif rand < 16:
+				puzzle_inst.rotation = rotations[3]
+			elif rand < 18:
+				puzzle_inst.rotation = rotations[4]
+			else:
+				puzzle_inst.rotation = rotations[5]
+				
+			$bomb_instance/Games.add_child(puzzle_inst)
+			current_puzzles.append(puzzle_inst)
 
 	strikes = 0
 	time = weight * 3 + 5

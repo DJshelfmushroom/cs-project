@@ -9,7 +9,7 @@
 script = ExtResource("1_y3xsi")
 
 [node name="BlankLabel1" type="Label3D" parent="." unique_id=892019210]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.45688263, 0.22106175, 0.002)
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.45688263, 0.121123776, 0.002)
 pixel_size = 0.0005
 text = "|
 "
@@ -17,7 +17,7 @@ font = ExtResource("2_pr8nl")
 font_size = 350
 
 [node name="BlankLabel2" type="Label3D" parent="." unique_id=678064183]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.30260673, 0.22106175, 0.002)
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.30260673, 0.121123776, 0.002)
 pixel_size = 0.0005
 text = "|
 "
@@ -25,7 +25,7 @@ font = ExtResource("2_pr8nl")
 font_size = 350
 
 [node name="BlankLabel3" type="Label3D" parent="." unique_id=2012084421]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.092691384, 0.22106175, 0.002)
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.092691384, 0.121123776, 0.002)
 pixel_size = 0.0005
 text = "|
 "
@@ -33,7 +33,7 @@ font = ExtResource("2_pr8nl")
 font_size = 350
 
 [node name="BlankLabel4" type="Label3D" parent="." unique_id=1874374287]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.06355958, 0.22106175, 0.002)
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.06355958, 0.121123776, 0.002)
 pixel_size = 0.0005
 text = "|
 "
@@ -41,7 +41,7 @@ font = ExtResource("2_pr8nl")
 font_size = 350
 
 [node name="BlankLabel5" type="Label3D" parent="." unique_id=1433128510]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.26489252, 0.22106175, 0.002)
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.26489252, 0.121123776, 0.002)
 pixel_size = 0.0005
 text = "|
 "
@@ -49,7 +49,7 @@ font = ExtResource("2_pr8nl")
 font_size = 350
 
 [node name="BlankLabel6" type="Label3D" parent="." unique_id=582030822]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.4203922, 0.22106175, 0.002)
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.4203922, 0.121123776, 0.002)
 pixel_size = 0.0005
 text = "|
 "
@@ -57,7 +57,7 @@ font = ExtResource("2_pr8nl")
 font_size = 350
 
 [node name="BlankLabel7" type="Label3D" parent="." unique_id=1479415967]
-transform = Transform3D(-4.371139e-08, -2.1, 0, 1, -9.1793915e-08, 0, 0, 0, 1, -0.39593312, 0.19, 0.002)
+transform = Transform3D(-4.371139e-08, -2.1, 0, 1, -9.1793915e-08, 0, 0, 0, 1, -0.39593312, 0.09006202, 0.002)
 pixel_size = 0.0005
 text = "|
 "
@@ -65,7 +65,7 @@ font = ExtResource("2_pr8nl")
 font_size = 350
 
 [node name="BlankLabel8" type="Label3D" parent="." unique_id=450197469]
-transform = Transform3D(-4.371139e-08, -2.1, 0, 1, -9.1793915e-08, 0, 0, 0, 1, -0.030471183, 0.19, 0.002)
+transform = Transform3D(-4.371139e-08, -2.1, 0, 1, -9.1793915e-08, 0, 0, 0, 1, -0.030471183, 0.09006202, 0.002)
 pixel_size = 0.0005
 text = "|
 "
@@ -73,7 +73,7 @@ font = ExtResource("2_pr8nl")
 font_size = 350
 
 [node name="BlankLabel9" type="Label3D" parent="." unique_id=1965096365]
-transform = Transform3D(-4.371139e-08, -2.1, 0, 1, -9.1793915e-08, 0, 0, 0, 1, 0.32695484, 0.19, 0.002)
+transform = Transform3D(-4.371139e-08, -2.1, 0, 1, -9.1793915e-08, 0, 0, 0, 1, 0.32695484, 0.09006202, 0.002)
 pixel_size = 0.0005
 text = "|
 "
@@ -81,54 +81,49 @@ font = ExtResource("2_pr8nl")
 font_size = 350
 
 [node name="Label1" type="Label3D" parent="." unique_id=1003071172]
-transform = Transform3D(1, -5.6158456e-10, 5.820766e-11, -9.4843244e-11, 0.99999994, 2.910383e-11, 5.820766e-11, 0, 1, -0.43809155, 0.34606174, 0.002)
+transform = Transform3D(1, -5.6158456e-10, 5.820766e-11, -9.4843244e-11, 0.99999994, 2.910383e-11, 5.820766e-11, 0, 1, -0.43809155, 0.24612376, 0.002)
 pixel_size = 0.0005
 text = "1"
 font = ExtResource("2_pr8nl")
 font_size = 600
 
 [node name="Label2" type="Label3D" parent="." unique_id=1468412992]
-transform = Transform3D(0.9999741, -0.007178477, 0.0005830279, 0.0071783047, 0.9999742, 0.00029695133, -0.00058514526, -0.00029275706, 0.99999976, -0.28709155, 0.34606174, 0.002)
+transform = Transform3D(0.9999741, -0.007178477, 0.0005830279, 0.0071783047, 0.9999742, 0.00029695133, -0.00058514526, -0.00029275706, 0.99999976, -0.28709155, 0.24612376, 0.002)
 pixel_size = 0.0005
 text = "2"
 font = ExtResource("2_pr8nl")
 font_size = 600
 
 [node name="Label3" type="Label3D" parent="." unique_id=1236304337]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07709156, 0.34606174, 0.002)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07709156, 0.24612376, 0.002)
 pixel_size = 0.0005
 text = "3"
 font = ExtResource("2_pr8nl")
 font_size = 600
 
 [node name="Label4" type="Label3D" parent="." unique_id=2096138664]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07290844, 0.34606174, 0.002)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07290844, 0.24612376, 0.002)
 pixel_size = 0.0005
 text = "4"
 font = ExtResource("2_pr8nl")
 font_size = 600
 
 [node name="Label5" type="Label3D" parent="." unique_id=1988887447]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28290844, 0.34606174, 0.002)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28290844, 0.24612376, 0.002)
 pixel_size = 0.0005
 text = "5"
 font = ExtResource("2_pr8nl")
 font_size = 600
 
 [node name="Label6" type="Label3D" parent="." unique_id=36117806]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43405733, 0.34606177, 0.0020572802)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43405733, 0.24612379, 0.0020572802)
 pixel_size = 0.0005
 text = "6"
 font = ExtResource("2_pr8nl")
 font_size = 600
 
 [node name="Numpad10" parent="." unique_id=2025359694 instance=ExtResource("3_y3xsi")]
-transform = Transform3D(0.78, 0, 0, 0, 0.78, 0, 0, 0, 0.78, 0, 0.03, 0)
+transform = Transform3D(0.78, 0, 0, 0, 0.78, 0, 0, 0, 0.78, 0, -0.069937974, 0)
 
 [node name="Screen3D" parent="." unique_id=926955742 instance=ExtResource("4_fobn1")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, -0.010784805)
-
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1455680222]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.9826963)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D" unique_id=1379356551]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -0.099937975, -0.010784805)

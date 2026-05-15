@@ -24,7 +24,7 @@ func _ready() -> void:
 	for x in range(3):
 		bigblanks.append(get_node("BlankLabel" + str(x+7)))
 	$Screen3D.set_size(4.4,1.4)
-	$Screen3D.position = Vector3(-0.122,0.2,0.001)
+	$Screen3D.position = Vector3(-0.122,0.1,0.001)
 	blanks[0].modulate = Color.ORANGE
 	for x in range(6):
 		labels[x].text = ""
@@ -37,7 +37,7 @@ func _ready() -> void:
 
 func _on_button_pressed(num : int):
 	
-	if !completed: #and !$"../../..".failed:
+	if !completed and !$"../../..".failed:
 		for b in blanks:
 			b.modulate = Color.WHITE
 		if num != 10:
