@@ -10,7 +10,11 @@ public partial class SoundManager : Node // Ideally this is moved into the core 
 	{
 		ThroatSing,
 		Techno,
-		None
+		None,
+		Ambient,
+		Piano,
+		Sine,
+		Cambodian
 	}
 
 	public static Music NowPlaying;
@@ -56,16 +60,33 @@ public partial class SoundManager : Node // Ideally this is moved into the core 
 		switch (music)
 		{
 			case Music.ThroatSing:
-				MusicPlayer.Stream = GD.Load<AudioStream>("res://throatsing.wav");
+				MusicPlayer.Stream = GD.Load<AudioStream>("res://music/throatsing.wav");
 				MusicPlayer.Play();
 				break;
 			case Music.Techno:
-				MusicPlayer.Stream = GD.Load<AudioStream>("res://techno.mp3");
+				MusicPlayer.Stream = GD.Load<AudioStream>("res://music/techno.mp3");
 				MusicPlayer.Play();
 				break;
 			case Music.None:
 				MusicPlayer.Stop();
 				break;
+			case Music.Ambient:
+				MusicPlayer.Stream = GD.Load<AudioStream>("res://music/ambient.wav");
+				MusicPlayer.Play();
+				break;
+			case Music.Piano:
+				MusicPlayer.Stream = GD.Load<AudioStream>("res://music/piano.wav");
+				MusicPlayer.Play();
+				break;
+			case Music.Sine:
+				MusicPlayer.Stream = GD.Load<AudioStream>("res://music/sine.mp3");
+				MusicPlayer.Play();
+				break;
+			case Music.Cambodian:
+				MusicPlayer.Stream = GD.Load<AudioStream>("res://music/cambodian.wav");
+				MusicPlayer.Play();
+				break;
+			
 		}
 		NowPlaying = music;
 		Utils.Logger.Log($"Now Playing: {NowPlaying}", "SoundManager");
