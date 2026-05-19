@@ -67,7 +67,6 @@ public partial class VideoSettings : Control //TODO: add ui options
 
 		// Log($"Writing: {value}", this);
 		saveManager.Callv("write_setting", [setting, value]);
-		
 	}
 	
 	protected T ReadSetting<[MustBeVariant] T> (StringName setting)
@@ -294,10 +293,5 @@ public partial class VideoSettings : Control //TODO: add ui options
 		SetFrameCap(0);
 		SetVSync(VSyncMode.Enabled);
 		CallDeferred(nameof(WriteSettings));
-	}
-
-	public static void Test()
-	{
-		Log("test", "VideoSettings");
 	}
 }
