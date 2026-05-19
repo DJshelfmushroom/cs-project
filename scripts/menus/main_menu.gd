@@ -2,7 +2,7 @@ class_name main_menu extends Node3D
 
 func _ready() -> void:
 	#load_settings(self)
-	$Control/CustomCursor.set_mouse_cursor(SaveManager.arrow, SaveManager.hand, SaveManager.color)
+	$Control/CustomCursor.set_mouse_cursor(SaveManager.arrow, SaveManager.hand, load("res://assets/cursor/RedWire_Dot.png"), SaveManager.color)
 	SaveManager.save()
 	if SaveManager.firstTime == true:
 		run_tutorial()
@@ -19,14 +19,23 @@ func tutorial_speech_flash(seconds):
 	$Control/TutorialSpeech.hide()
 	return
 
-func disable_buttons():
-	$Control/PlayButton.disabled = true
-	$Control/TutorialsButton.disabled = true
-	$Control/PacksButton.disabled = true
-	$Control/PracticeButton.disabled = true
-	$Control/MouseOptionsButton.disabled = true
-	$Control/AchievementsButton.disabled = true
-	$Control/SettingsButton.disabled = true
+func disable_buttons(string):
+	if string == "yes":
+		$Control/PlayButton.disabled = true
+		$Control/TutorialsButton.disabled = true
+		$Control/PacksButton.disabled = true
+		$Control/PracticeButton.disabled = true
+		$Control/MouseOptionsButton.disabled = true
+		$Control/AchievementsButton.disabled = true
+		$Control/SettingsButton.disabled = true
+	elif string == "no":
+		$Control/PlayButton.disabled = false
+		$Control/TutorialsButton.disabled = false
+		$Control/PacksButton.disabled = false
+		$Control/PracticeButton.disabled = false
+		$Control/MouseOptionsButton.disabled = false
+		$Control/AchievementsButton.disabled = false
+		$Control/SettingsButton.disabled = false
 	
 func create_speech(text:String, position_x:float, position_y:float, font_size:int): #, flash_duration):
 	$Control/TutorialSpeech.add_theme_font_size_override("font_size", font_size)
@@ -36,21 +45,22 @@ func create_speech(text:String, position_x:float, position_y:float, font_size:in
 
 func run_tutorial():
 	print("running tutorial")
-	disable_buttons()
-	#await create_speech("Welcome to RedWire. This quick tutorial will 
-	#provide you with an overview of the main menu", 650, 600, 40)
-	#await create_speech("In this game, you will complete puzzles to diffuse a bomb before 
-	#it explodes. To start a round, you'll press the play button", 600, 610, 40)
-	#await create_speech("However, you can't solve the puzzles without knowing how they work. 
-	#If you want to learn how to complete a puzzle, click the instructions button", 600, 1000, 30)
-	#await create_speech("Instructions will only take you so far though. To practice a 
-	#puzzle without the threat of a timer, go to the practice menu", 365, 700, 30)
+	disable_buttons("yes")
+	await create_speech("Welcome to RedWire. This quick tutorial will 
+	provide you with an overview of the main menu", 650, 600, 40)
+	await create_speech("In this game, you will complete puzzles to diffuse a bomb before 
+	it explodes. To start a round, you'll press the play button", 600, 610, 40)
+	await create_speech("However, you can't solve the puzzles without knowing how they work. 
+	If you want to learn how to complete a puzzle, click the instructions button", 600, 1000, 30)
+	await create_speech("Instructions will only take you so far though. To practice a 
+	puzzle without the threat of a timer, go to the practice menu", 365, 700, 30)
 	await create_speech("To view your settings, unlocked 
 	cursors, or achivements, click on 
 	these buttons", 1250, 585, 40)
-	
-	
+	await create_speech("That's all for now. Have fun playing!", 650, 600, 40)
+	disable_buttons("no")
 	SaveManager.firstTime = false
+	Achievements.completed_achievement("Complete Tutorial")
 
 static func load_settings(caller:Node) -> void:
 	var settings_path = "res://scenes/menus/SettingsSub/"

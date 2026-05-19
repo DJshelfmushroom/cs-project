@@ -48,7 +48,7 @@ public partial class OperationArea3D(OperationArea2D.Section section) : Area3D
 			if (mouseEvent.IsActionPressed("ui_mouse_left_button") && _intersections > 0)
 			{
 				Strike();
-				Utils.SetCursor(Utils.CursorState.Hand);
+				Utils.SetCursor(Utils.CursorState.Dot);
 			}
 			else
 			{
@@ -91,7 +91,7 @@ public partial class OperationArea3D(OperationArea2D.Section section) : Area3D
 		else if (section.Equals(First))
 		{
 			// Log("3", _operation);
-			Utils.SetCursor(Utils.CursorState.Hand);
+			Utils.SetCursor(Utils.CursorState.Dot);
 			_playing = true;
 		}
 	}

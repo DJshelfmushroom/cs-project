@@ -21,7 +21,7 @@ var practice_hard: bool = false
 
 var practice_array: Array = []
 var addedxp
-var firstTime = false
+var firstTime = true
 
 func _ready() -> void:
 	load_data()
@@ -149,8 +149,7 @@ func load_data():
 		load_mouse_info(file)
 		Achievements.load_achievements(file.get_var())
 		practice_array = file.get_var()
-		firstTime = false
-		#firstTime = file.get_var(firstTime)
+		firstTime = file.get_var(firstTime)
 	else:
 		pack1owned = 0
 		level = 0

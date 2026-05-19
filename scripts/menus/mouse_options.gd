@@ -30,6 +30,8 @@ var hand_hand = preload("res://assets/cursor/Hand_RedWire_Hand.png")
 var secret_arrow = preload("res://assets/cursor/Secret_RedWire_Cursor.png")
 var secret_hand = preload("res://assets/cursor/Secret_RedWire_Hand.png")
 
+var dot = preload("res://assets/cursor/RedWire_Dot.png")
+
 var mouse_cursor = null
 var x_factor = 85
 var y_factor = 120
@@ -126,7 +128,7 @@ func _on_red_mouse_pressed() -> void:
 	SaveManager.hand  = red_hand
 	SaveManager.color = "red"
 	
-	$CustomCursor.set_mouse_cursor(red_arrow, red_hand, "red")
+	$CustomCursor.set_mouse_cursor(red_arrow, red_hand, dot, "red")
 	place_set()
 	SaveManager.save()
 	
@@ -135,7 +137,7 @@ func _on_green_mouse_pressed() -> void:
 	SaveManager.hand  = green_hand
 	SaveManager.color = "green"
 	
-	$CustomCursor.set_mouse_cursor(green_arrow, green_hand, "green")
+	$CustomCursor.set_mouse_cursor(green_arrow, green_hand, dot, "green")
 	place_set()
 	SaveManager.save()
 
@@ -144,7 +146,7 @@ func _on_black_mouse_pressed() -> void:
 	SaveManager.hand  = black_hand
 	SaveManager.color = "black"
 	
-	$CustomCursor.set_mouse_cursor(black_arrow, black_hand, "black")
+	$CustomCursor.set_mouse_cursor(black_arrow, black_hand, dot, "black")
 	place_set()
 	SaveManager.save()
 
@@ -153,7 +155,7 @@ func _on_silver_mouse_pressed() -> void:
 	SaveManager.hand  = silver_hand
 	SaveManager.color = "silver"
 	
-	$CustomCursor.set_mouse_cursor(silver_arrow, silver_hand, "silver")
+	$CustomCursor.set_mouse_cursor(silver_arrow, silver_hand, dot, "silver")
 	place_set()
 	SaveManager.save()
 
@@ -162,7 +164,7 @@ func _on_quick_mouse_pressed() -> void:
 	SaveManager.hand  = quick_hand
 	SaveManager.color = "quick"
 	
-	$CustomCursor.set_mouse_cursor(quick_arrow, quick_hand, "quick")
+	$CustomCursor.set_mouse_cursor(quick_arrow, quick_hand, dot, "quick")
 	place_set()
 	SaveManager.save()
 
@@ -171,7 +173,7 @@ func _on_glitched_mouse_pressed() -> void:
 	SaveManager.hand  = glitched_hand
 	SaveManager.color = "glitched"
 	
-	$CustomCursor.set_mouse_cursor(glitched_arrow, glitched_hand, "glitched")
+	$CustomCursor.set_mouse_cursor(glitched_arrow, glitched_hand, dot, "glitched")
 	place_set()
 	SaveManager.save()
 	
@@ -180,7 +182,7 @@ func _on_inverted_mouse_pressed() -> void:
 	SaveManager.hand  = inverted_hand
 	SaveManager.color = "inverted"
 	
-	$CustomCursor.set_mouse_cursor(inverted_arrow, inverted_hand, "inverted")
+	$CustomCursor.set_mouse_cursor(inverted_arrow, inverted_hand, dot, "inverted")
 	place_set()
 	SaveManager.save()
 	
@@ -189,7 +191,7 @@ func _on_inverse_mouse_pressed() -> void:
 	SaveManager.hand  = inverse_hand
 	SaveManager.color = "inverse"
 	
-	$CustomCursor.set_mouse_cursor(inverse_arrow, inverse_hand, "inverse")
+	$CustomCursor.set_mouse_cursor(inverse_arrow, inverse_hand, dot, "inverse")
 	place_set()
 	SaveManager.save()
 
@@ -198,7 +200,7 @@ func _on_hand_mouse_pressed() -> void:
 	SaveManager.hand  = hand_hand
 	SaveManager.color = "hand"
 	
-	$CustomCursor.set_mouse_cursor(hand_arrow, hand_hand, "hand")
+	$CustomCursor.set_mouse_cursor(hand_arrow, hand_hand, dot, "hand")
 	place_set()
 	SaveManager.save()
 
@@ -207,7 +209,7 @@ func _on_secret_mouse_pressed() -> void:
 	SaveManager.hand  = secret_hand
 	SaveManager.color = "secret"
 	
-	$CustomCursor.set_mouse_cursor(secret_arrow, secret_hand, "secret")
+	$CustomCursor.set_mouse_cursor(secret_arrow, secret_hand, dot, "secret")
 	place_set()
 	SaveManager.save()
 

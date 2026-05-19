@@ -178,7 +178,8 @@ public partial class Utils : Node
 	public enum CursorState
 	{
 		Arrow,
-		Hand
+		Hand,
+		Dot
 	}
 	
 	/// <summary>
@@ -195,6 +196,9 @@ public partial class Utils : Node
 				break;
 			case CursorState.Hand:
 				Input.SetDefaultCursorShape(Input.CursorShape.PointingHand);
+				break;
+			case CursorState.Dot:
+				Input.SetDefaultCursorShape(Input.CursorShape.Move);
 				break;
 			default:
 				Logger.Log("Please use a valid CursorState!", "Utils.SetCursor call", Logger.LogType.Error);

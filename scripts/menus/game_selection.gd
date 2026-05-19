@@ -5,6 +5,7 @@ preload("res://scenes/puzzles/reflex_puzzle_3d.tscn"), preload("res://scenes/puz
 preload("res://scenes/puzzles/disable_puzzle_3d.tscn"), preload("res://scenes/puzzles/colors_puzzle_3d.tscn"), preload("res://scenes/puzzles/switches_puzzle_3d.tscn"),
 preload("res://scenes/puzzles/yes_no_puzzle_3d.tscn"), preload("res://scenes/puzzles/target_puzzle_3d.tscn"), preload("res://scenes/puzzles/track_puzzle_3d.tscn"), 
 preload("res://scenes/puzzles/shift_puzzle_3d_easy.tscn"), preload("res://scenes/puzzles/Operation3D.tscn"), preload("res://scenes/puzzles/color_theory_puzzle.tscn")]
+
 var hard_puzzles = [preload("res://scenes/puzzles/Hard Puzzles/puzzle_one_3d_hard.tscn"),preload("res://scenes/puzzles/Hard Puzzles/puzzle_two_3d_hard.tscn"),
 preload("res://scenes/puzzles/Hard Puzzles/simon_puzzle_3d_hard.tscn"), preload("res://scenes/puzzles/reflex_puzzle_3d.tscn"), 
 preload("res://scenes/puzzles/Hard Puzzles/numerle_puzzle_3d_hard.tscn"), preload("res://scenes/puzzles/Hard Puzzles/segment_puzzle_3dh.tscn"),

@@ -18,7 +18,10 @@ func _on_back_button_pressed() -> void:
 
 
 
-
+func _on_complete_tutorial_button_mouse_entered() -> void:
+	$"Achievement Buttons/CompleteTutorialButton/CompleteTutorialText".show()
+func _on_complete_tutorial_button_mouse_exited() -> void:
+	$"Achievement Buttons/CompleteTutorialButton/CompleteTutorialText".hide()
 func _on_reached_level_5_button_mouse_entered() -> void:
 	$"Achievement Buttons/ReachedLevel5Button/PuzzlerText".show()
 func _on_reached_level_5_button_mouse_exited() -> void:

@@ -14,6 +14,9 @@
 [ext_resource type="Script" uid="uid://cu88knsorvjyj" path="res://scenes/menus/xpbutton3.gd" id="9_bh4e2"]
 [ext_resource type="Material" uid="uid://bsn18sj4p0ebm" path="res://bomb/Button/flakingPaint.tres" id="9_euy4r"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bh4e2"]
+bg_color = Color(0, 0, 0, 0.39215687)
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_bre17"]
 viewport_path = NodePath("SubViewport")
 
@@ -237,11 +240,12 @@ visible = false
 layout_mode = 0
 offset_left = 1356.0
 offset_top = 585.0
-offset_right = 1641.0
-offset_bottom = 675.0
+offset_right = 1424.0
+offset_bottom = 625.0
 theme_override_colors/font_color = Color(0.392, 0.784, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_bh4e2")
 text = "Text"
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1126621304]

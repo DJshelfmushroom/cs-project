@@ -9,8 +9,8 @@ func _process(delta: float) -> void:
 	if SaveManager.addedxp == null || SaveManager.addedxp == 0:
 		pass
 	else:
+		text = "+" + str(int(SaveManager.addedxp))
 		show()
-		text = "+" + str(SaveManager.addedxp)
 		await get_tree().create_timer(0.6).timeout
 		if position.x > 355:
 			position.x -= 1 * (delta * 60)

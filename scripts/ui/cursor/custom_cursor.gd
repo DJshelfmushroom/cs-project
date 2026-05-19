@@ -3,17 +3,20 @@ extends Node2D
 # Load the custom images for the mouse cursor.
 var this_arrow = null
 var this_hand = null
+var this_dot = null
 var cursor_color = "red"
 
 var pressed = false
 
 
-func set_mouse_cursor(arrow, hand, color):
+func set_mouse_cursor(arrow, hand, dot, color):
 	this_arrow = arrow
 	this_hand = hand
+	this_dot = dot
 	cursor_color = color
 	Input.set_custom_mouse_cursor(this_arrow, Input.CURSOR_ARROW, Vector2(10,2))
 	Input.set_custom_mouse_cursor(this_hand, Input.CURSOR_POINTING_HAND, Vector2(10,2))
+	Input.set_custom_mouse_cursor(this_dot, Input.CURSOR_MOVE, Vector2(10,2))
 	
 	fix_mouse()
 	#Utils.LogGD("Mouse cursor changed", self) # if this is unwelcome you can change it
@@ -56,5 +59,7 @@ func get_mouse_arrow():
 	return this_arrow
 func get_mouse_hand():
 	return this_hand
+func get_mouse_dot():
+	return this_dot
 func get_mouse_color():
 	return cursor_color
