@@ -6,7 +6,9 @@
 [node name="Operation3D Hard" type="Node3D" unique_id=469409953]
 script = ExtResource("1_c81tm")
 Size = Vector2(500, 450)
-Segment_Count = 60
+Line_Width = 7.0
+Point_Spacing_Range_Variance = 25.0
+Segment_Count = 25
 Attempt_Threshold = 100
 metadata/id = 14
 

@@ -26,15 +26,14 @@ func  _on_timer_timeout():
 		$TargetButton3D.position = Vector3(0, 0, 0.002)
 		$TargetButton3D2.position = Vector3(0, 0, 0.002)
 		$"../../..".strikes += 1
-		var color = $TargetButton3D.get_color()
 		$TargetButton3D.set_color(Color.RED)
 		$TargetButton3D.disabled = true
 		$TargetButton3D2.set_color(Color.RED)
 		$TargetButton3D2.disabled = true
 		await get_tree().create_timer(1.0).timeout
-		$TargetButton3D.set_color(Color(color))
+		$TargetButton3D.set_color(Color.PURPLE)
 		$TargetButton3D.disabled = false
-		$TargetButton3D2.set_color(Color(color))
+		$TargetButton3D2.set_color(Color.PURPLE)
 		$TargetButton3D2.disabled = false
 
 func _on_but_pressed(_num : int):

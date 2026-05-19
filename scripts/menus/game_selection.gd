@@ -10,14 +10,14 @@ preload("res://scenes/puzzles/Hard Puzzles/simon_puzzle_3d_hard.tscn"), preload(
 preload("res://scenes/puzzles/Hard Puzzles/numerle_puzzle_3d_hard.tscn"), preload("res://scenes/puzzles/Hard Puzzles/segment_puzzle_3dh.tscn"),
 preload("res://scenes/puzzles/disable_puzzle_3d.tscn"), preload("res://scenes/puzzles/Hard Puzzles/colors_puzzle_3d_hard.tscn"), 
 preload("res://scenes/puzzles/switches_puzzle_3d.tscn"), preload("res://scenes/puzzles/yes_no_puzzle_3d.tscn"), preload("res://scenes/puzzles/Hard Puzzles/target_puzzle_3d_hard.tscn"),
-preload("res://scenes/puzzles/track_puzzle_3d.tscn"), preload("res://scenes/puzzles/Hard Puzzles/shift_puzzle_3d.tscn"), preload("res://scenes/puzzles/Operation3D.tscn"),
+preload("res://scenes/puzzles/track_puzzle_3d.tscn"), preload("res://scenes/puzzles/Hard Puzzles/shift_puzzle_3d.tscn"), preload("res://scenes/puzzles/Hard Puzzles/Operation3D HARD.tscn"),
 preload("res://scenes/puzzles/color_theory_puzzle.tscn")]
 
 
 var puzzle_scales = [0.45,0.4,0.5,0.5,0.4,0.35,0.2,0.6,0.08,0.17,0.2,0.2,0.25,0.00075, 0.6]
 var hard_puzzle_scales = [0.45,0.27,0.35,0.5,0.5,0.35,0.2,0.6,0.08,0.17,0.2,0.2,0.25,0.00075,0.6]
-var puzzle_weights = [1,5,5,4,1,2,1,3,2,4,3,3,6,8,2] #Value of how hard/time-consuming each puzzle is, will eventually be used to determine what puzzles you get
-var hard_puzzle_weights = [9,7,6,4,8,6,1,6,2,4,5,3,9,8,2]
+var puzzle_weights = [1,5,4,4,2,1,2,2,2,4,2,2,6,4,2] #Value of how hard/time-consuming each puzzle is, will eventually be used to determine what puzzles you get
+var hard_puzzle_weights = [9,9,6,4,8,6,1,4,2,4,5,3,9,8,2]
 var weights_left = puzzle_weights.duplicate()
 var hard_weights_left = hard_puzzle_weights.duplicate()
 
@@ -176,7 +176,7 @@ func _ready() -> void:
 			$bomb_instance/Games.add_child(puzzle_inst)
 			current_puzzles.append(puzzle_inst)
 			
-			if puzzle_inst.id != 4 && puzzle_inst.id != 7 && puzzle_inst.id != 9 && puzzle_inst.id != 10 && puzzle_inst.id != 12 && puzzle_inst.id != 14 && puzzle_inst.id != 15:
+			if puzzle_inst.id != 4 && puzzle_inst.id != 7 && puzzle_inst.id != 9 && puzzle_inst.id != 10 && puzzle_inst.id != 12 && puzzle_inst.id != 15:
 				numhardpuzzles -= 1
 			
 		else:
