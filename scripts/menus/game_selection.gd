@@ -48,8 +48,8 @@ var disable_first = false
 # BS Animation vars
 var current_puzzles = []
 var completed_puzzles = 0
-var animation_countdown = 0
-var animation_duration = 240
+var animation_countdown = 0.0
+var animation_duration = 240.0
 var shader_mat : ShaderMaterial
 var default_xy : Vector2
 var default_rot : float
@@ -91,7 +91,7 @@ func _ready() -> void:
 		SaveManager.practice = false
 		is_practice = true
 		var p = SaveManager.practice_puzzle_index
-		var puzzle: Node3D = puzzles[p].instantiate()
+		var puzzle: Node3D = hard_puzzles[p].instantiate() if SaveManager.practice_hard else puzzles[p].instantiate()
 		puzzle.position = possible_positions[0]  # front-face slot
 		puzzle.scale = Vector3(puzzle_scales[p], puzzle_scales[p], puzzle_scales[p])
 		puzzle.rotation = rotations[0]
@@ -251,7 +251,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	# loop through all puzzles, count completed
 	var local_puzzles_completed = 0 # yes I hate this name too
-	default_xy += Vector2(0.00001, 0) if animation_countdown == 0 else Vector2(0, 0)
+	default_xy += Vector2(0.00001, 0) if animation_countdown <= 0.0 else Vector2(0, 0)
 	var env : WorldEnvironment = $"WorldEnvironment"
 	env.environment.sky_rotation = $"bomb_instance".GetBombRotation()
 	shader_mat.set_shader_parameter("xy_offset", default_xy)
@@ -263,13 +263,13 @@ func _process(_delta: float) -> void:
 		var cancel := current_puzzles.any(func(p): return p.id == 7 && !p.completed)
 		# fire puzzle completed logic
 		completed_puzzles = local_puzzles_completed
-		animation_countdown = 0 if cancel else animation_duration
-	if animation_countdown > 0:
+		animation_countdown = 0.0 if cancel else animation_duration
+	if animation_countdown > 0.01:
 		#var current_offset:Vector2 = shader_mat.get_shader_parameter("xy_offset")
 		var current_angle:float = shader_mat.get_shader_parameter("RotationAngle")
 		#shader_mat.set_shader_parameter("xy_offset", Vector2(current_offset.x, current_offset.y + (1.0/animation_duration)))
-		shader_mat.set_shader_parameter("RotationAngle", current_angle + (2*PI)/animation_duration)
-		animation_countdown -= 1
+		shader_mat.set_shader_parameter("RotationAngle", current_angle + (((2*PI)/animation_duration)*_delta*144))
+		animation_countdown -= 1 * _delta * 144
 	#else:
 		#shader_mat.set_shader_parameter("xy_offset", default_xy)
 		#shader_mat.set_shader_parameter("RotationAngle", default_rot)

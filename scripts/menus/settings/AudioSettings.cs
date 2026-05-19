@@ -90,7 +90,7 @@ public partial class AudioSettings : VideoSettings
 		SoundManager.PlayMusic(music);
 		Utils.Logger.Log($"Music is {NowPlaying}", this);
 		Log($"Player says playing: {MusicPlayer.Playing}", this);
-		WriteSettings();
+		// WriteSettings();
 	}
 	public override void _Process(double delta)
 	{
@@ -104,6 +104,7 @@ public partial class AudioSettings : VideoSettings
 	public override void LoadSettings()
 	{
 		var savedMusic = ReadSetting<int>("Music");
+		Log($"Read Music: {(Music)savedMusic}", this);
 		ChangeMusic(Enum.IsDefined(typeof(Music), savedMusic) ? (Music)savedMusic : Music.None);
 	}
 

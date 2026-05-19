@@ -19,7 +19,7 @@ public partial class Bomb : Node3D
 	public override void _Ready()
 	{
 		Node3D gamesNode = GetNode<Node3D>("./Games");
-		InstanceUtils.MakeInstances(this, _plugScene);
+		// InstanceUtils.MakeInstances(this, _plugScene);
 		var ray = new RayCast3D();
 		ray.Enabled = true;
 		AddChild(ray);

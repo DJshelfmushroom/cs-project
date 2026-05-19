@@ -17,6 +17,7 @@ var deleted = false
 
 var practice: bool = false
 var practice_puzzle_index: int = 0
+var practice_hard: bool = false
 
 var practice_array: Array = []
 var addedxp

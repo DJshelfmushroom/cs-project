@@ -49,6 +49,15 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 30
 text = "BACK"
 
+[node name="HardModeCheck" type="CheckBox" parent="." unique_id=1924285727]
+layout_mode = 0
+offset_left = 1124.0
+offset_top = 696.0
+offset_right = 1234.0
+offset_bottom = 765.0
+scale = Vector2(1.5, 1.5)
+text = "Hard mode"
+
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="PuzzleButton" to="PuzzleButton" method="_on_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
