@@ -203,7 +203,16 @@ public partial class VideoSettings : Control //TODO: add ui options
 		Log(window.CurrentScreen.ToString(), "VideoSettings", LogType.Debug);
 		// Log(GetTree().ToString(), this);
 		// Log(GetTree().GetRoot().Name, this);
-		
+
+		try
+		{
+			window = GetWindow();
+		}
+		catch (Exception e)
+		{
+			Log(e.ToString(), "VideoSettings", LogType.Error);
+		}
+
 		if (width is null or < 0)
 		{
 			if (height is null or < 0)
