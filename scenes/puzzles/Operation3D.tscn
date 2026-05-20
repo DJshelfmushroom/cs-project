@@ -7,7 +7,6 @@
 script = ExtResource("2_c1owo")
 Size = Vector2(500, 450)
 Line_Width = 10.0
-Point_Spacing_Range_Variance = 25.0
 Segment_Count = 15
 metadata/id = 14
 
