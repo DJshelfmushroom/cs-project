@@ -90,11 +90,21 @@ public abstract partial class SettingsBase<TEnum>: Control where TEnum: struct, 
 		}
 	}
 
-	protected void ConfigureFeature(TEnum feature, Node controlNode)
+	protected void ConfigureFeature(TEnum featureEnumVal, Node controlNode)
 	{
+		Feature feature = features.Get(featureEnumVal);
 		switch (controlNode)
 		{
 			case TextEdit text:
+				break;
+			case LineEdit lineEdit:
+				lineEdit.TextSubmitted += text => 
+				{
+					if (StrToVar.VariantType == feature.GetValueType())
+					{
+						feature.SetValue(StrToVar(text));
+					}
+				};
 				break;
 			case OptionButton options:
 				break;
