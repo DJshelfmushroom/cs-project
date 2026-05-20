@@ -1,75 +1,79 @@
+#nullable enable
 using System;
 using System.Collections.Generic;
 using static csproject.scripts.core.Utils;
 using csproject.scripts.core;
 using Godot;
-using Microsoft.VisualBasic;
-using System.Runtime.InteropServices.Marshalling;
 
 namespace csproject.scripts.menus.settings.Base;
 
 
-public abstract partial class SettingsBase<TEnum>: Control where TEnum: struct, Enum 
+public abstract partial class SettingsBase<[MustBeVariant]TEnum>: Control where TEnum: struct, Enum 
 {
-	public abstract TEnum FeatureEnum { get; }
-#pragma warning disable GD0102
-	[Export] public Dictionary<NodePath, TEnum> FeatureNodes;
-#pragma warning restore GD0102
+	public abstract TEnum featureEnum { get; }
+// #pragma warning disable GD0102
+// #pragma warning disable GD0302
+	public Godot.Collections.Dictionary<NodePath, TEnum> FeatureNodes;
+// #pragma warning restore GD0302
+// #pragma warning restore GD0102
 
-	protected static StringName ClassName;
-	protected const char delimiter = '.';
+	internal static StringName ClassName;
+	protected const char Delimiter = '.';
 	
 	// public Dictionary<TEnum, Variant> FeatureValues;
-	public Dictionary<TEnum, Feature> features;
+	public Dictionary<TEnum, Feature> Features = new ();
 
-	public struct Feature
+	public struct Feature(TEnum enumValue, Variant defaultValue, Action onSetValue, Type? optionsEnum)
 	{
-		public Feature(TEnum enumValue, Variant defaultValue, Action onSetValue)
+		// this.className = className; 
+		public Feature(TEnum name, Action onPress) : this(name, "back", onPress, null)
 		{
-			this.enumValue = enumValue;
-			this.defaultValue = defaultValue;
-			value = defaultValue;
-			// this.className = className; 
-			this.onSetValue = onSetValue;
 		}
+
+		public Feature(TEnum enumValue, Variant defaultValue, Action onSetValue) : this(enumValue, defaultValue, onSetValue,
+			null)
+		{
+		}
+
 		// private readonly StringName className;
-		public readonly TEnum enumValue;
-        public readonly String GetName() => enumValue.ToString();
-        public override string ToString() => GetName();
+		public readonly TEnum EnumValue = enumValue;
+		public Type? OptionsEnum = optionsEnum;
+		public readonly String GetName() => EnumValue.ToString();
+		public override string ToString() => GetName();
 		public readonly Type GetValueType() => defaultValue.VariantType.GetType(); 
-        private Variant value;
+		public readonly Variant.Type GetVariantType() => defaultValue.VariantType;
+		private Variant _value = defaultValue;
 
-        public readonly Variant GetValue()
-        {
-            return value;
-        }
+		public readonly Variant GetValue()
+		{
+			return _value;
+		}
 
-        public void SetValue(Variant value)
-        {
-            this.value = value;
+		public void SetValue(Variant set)
+		{
+			this._value = set;
 			onSetValue.Invoke();
-        }
+		}
 
-        public readonly Variant defaultValue { get; }
-		private Action onSetValue;
+		public readonly Variant defaultValue { get; } = defaultValue;
 
-		private readonly StringName GetMemName() => ClassName + delimiter + GetName();
+		private readonly StringName GetMemName() => ClassName + Delimiter + GetName();
 
 		public void SaveToMemory()
 		{
 			Script saveManager = GetSaveManager();
-			if (value.VariantType.ToString().Contains("Vector"))
+			if (_value.VariantType.ToString().Contains("Vector"))
 			{
-				value = value.VariantType + " " + value;
+				_value = _value.VariantType + " " + _value;
 			}
-			saveManager.Callv("write_setting", [GetMemName(), GD.VarToStr(value)]);
+			saveManager.Callv("write_setting", [GetMemName(), GD.VarToStr(_value)]);
 		}
 
 		public void LoadFromMemory()
 		{
 			Script saveManager = GetSaveManager();
 			string settingOut = saveManager.Callv("read_setting", [GetMemName(), false]).ToString();
-			value = GD.StrToVar(settingOut);
+			_value = GD.StrToVar(settingOut);
 		}
 	}
 	
@@ -92,29 +96,78 @@ public abstract partial class SettingsBase<TEnum>: Control where TEnum: struct, 
 
 	protected void ConfigureFeature(TEnum featureEnumVal, Node controlNode)
 	{
-		Feature feature = features.Get(featureEnumVal);
+		Feature feature = Features[featureEnumVal];
 		switch (controlNode)
 		{
-			case TextEdit text:
+			case TextEdit textEdit:
+				textEdit.TextChanged += () =>
+				{
+					string text = textEdit.Text;
+					// feature.SetValue(GD.StrToVar(text.Text));
+					Type featureValueType = feature.GetValueType();
+					var fullName = GD.StrToVar(text).VariantType.GetType().FullName;
+					if (fullName != null && fullName.Equals(featureValueType.FullName))
+					{
+						feature.SetValue(GD.StrToVar(text));
+					}
+				};
 				break;
 			case LineEdit lineEdit:
-				lineEdit.TextSubmitted += text => 
+				lineEdit.TextSubmitted += text =>
 				{
-					if (StrToVar.VariantType == feature.GetValueType())
+					Type featureValueType = feature.GetValueType();
+					var fullName = GD.StrToVar(text).VariantType.GetType().FullName;
+					if (fullName != null && fullName.Equals(featureValueType.FullName))
 					{
-						feature.SetValue(StrToVar(text));
+						feature.SetValue(GD.StrToVar(text));
 					}
 				};
 				break;
 			case OptionButton options:
+				// options.Toggled += on =>
+				// {
+				// 	feature.SetValue(on);
+				// };
+				if (feature.OptionsEnum == null)
+				{
+					throw new ArgumentNullException();
+					break;
+				}
+
+				Log($"type of optionsEnum: {feature.OptionsEnum.FullName}");
+				foreach (var item in Enum.GetNames(feature.OptionsEnum))
+				{
+					options.AddItem(item.ToString());
+				}
+
+				options.ItemSelected += index =>
+				{
+					feature.SetValue(index);
+				};
 				break;
 			case CheckBox checkBox:
+				checkBox.Toggled += on =>
+				{
+					feature.SetValue(on);
+				};
 				break;
 			case CheckButton checkButton:
+				checkButton.Toggled += on =>
+				{
+					feature.SetValue(on);
+				};
 				break;
-			case Slider:
+			case Slider slider:
+				slider.DragEnded += changed =>
+				{
+					feature.SetValue(slider.Value);
+				};
 				break;
 			case Godot.Button button:
+				button.Pressed += () =>
+				{
+					feature.SetValue(true); // this is probably to be handled by the feature
+				};
 				break;
 			
 		}
@@ -127,7 +180,7 @@ public abstract partial class SettingsBase<TEnum>: Control where TEnum: struct, 
 
 	public void WriteSettings()
 	{
-		foreach (Feature feature in features.Values)
+		foreach (Feature feature in Features.Values)
 		{
 			feature.SaveToMemory();
 		}
@@ -136,7 +189,7 @@ public abstract partial class SettingsBase<TEnum>: Control where TEnum: struct, 
 	public void LoadSettings()
 	{
 		// Log("LoadSettings not implemented", Utils.Logger.LogType.Error);
-		foreach (var feature in features.Values)
+		foreach (var feature in Features.Values)
 		{
 			feature.LoadFromMemory();
 		}
@@ -145,7 +198,7 @@ public abstract partial class SettingsBase<TEnum>: Control where TEnum: struct, 
 	public void LoadDefaults()
 	{
 		// Log("LoadDefaults not implemented", Utils.Logger.LogType.Error);
-		foreach (var feature in features.Values)
+		foreach (var feature in Features.Values)
 		{
 			feature.SetValue(feature.defaultValue);
 			feature.SaveToMemory();

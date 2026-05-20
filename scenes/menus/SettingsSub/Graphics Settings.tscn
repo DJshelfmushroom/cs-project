@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://ibqpqqbvpvpa"]
 
+[ext_resource type="Script" uid="uid://bbl1dwparli0q" path="res://scripts/menus/settings/GraphicsSettings.cs" id="1_mxb8a"]
+
 [node name="GraphicsSettings" type="Control" unique_id=1919912259]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +9,42 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_mxb8a")
+FeatureNode = Dictionary[NodePath, int]({
+NodePath("3DAA"): 0,
+NodePath("SSAA"): 1,
+NodePath("Back"): 3,
+NodePath("Apply"): 4
+})
+
+[node name="SSAA" type="OptionButton" parent="." unique_id=785368994]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 92.0
+offset_right = 509.0
+offset_bottom = 163.0
+
+[node name="3DAA" type="OptionButton" parent="." unique_id=630226612]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 107.0
+offset_right = 315.0
+offset_bottom = 178.0
+
+[node name="Back" type="Button" parent="." unique_id=14790851]
+layout_mode = 0
+offset_left = 330.0
+offset_top = 208.0
+offset_right = 367.0
+offset_bottom = 232.0
+text = "Back
+"
+
+[node name="Apply" type="Button" parent="." unique_id=1797034423]
+layout_mode = 0
+offset_left = 231.0
+offset_top = 215.0
+offset_right = 273.0
+offset_bottom = 239.0
+text = "Apply
+"
