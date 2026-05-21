@@ -136,6 +136,9 @@ func load_mouse_info(file):
 	elif (color == "secret"):
 		arrow = load("res://assets/cursor/Secret_RedWire_Cursor.png")
 		hand = load("res://assets/cursor/Secret_RedWire_Hand.png")
+	elif (color == "invisible"):
+		arrow = load("res://assets/cursor/RedWire_Invisible.png")
+		hand = load("res://assets/cursor/RedWire_Invisible.png")
 	else:
 		pass
 

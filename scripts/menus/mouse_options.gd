@@ -32,6 +32,8 @@ var secret_hand = preload("res://assets/cursor/Secret_RedWire_Hand.png")
 
 var dot = preload("res://assets/cursor/RedWire_Dot.png")
 
+var invisible = preload("res://assets/cursor/RedWire_Invisible.png")
+
 var mouse_cursor = null
 var x_factor = 85
 var y_factor = 120
@@ -93,6 +95,9 @@ func place_set():
 		$Set.show()
 	elif (check_mouse_cursor() == "secret"):
 		$Set.position = Vector2($Secret_Mouse.position.x + x_factor, $Secret_Mouse.position.y + y_factor)
+		$Set.show()
+	elif (check_mouse_cursor() == "invisible"):
+		$Set.position = Vector2($Invisible_Mouse.position.x + x_factor, $Invisible_Mouse.position.y + y_factor)
 		$Set.show()
 	else:
 		$Set.hide()
@@ -210,6 +215,15 @@ func _on_secret_mouse_pressed() -> void:
 	SaveManager.color = "secret"
 	
 	$CustomCursor.set_mouse_cursor(secret_arrow, secret_hand, dot, "secret")
+	place_set()
+	SaveManager.save()
+
+func _on_invisible_mouse_pressed() -> void:
+	SaveManager.arrow = invisible
+	SaveManager.hand  = invisible
+	SaveManager.color = "invisible"
+	
+	$CustomCursor.set_mouse_cursor(invisible, invisible, dot, "invisible")
 	place_set()
 	SaveManager.save()
 
