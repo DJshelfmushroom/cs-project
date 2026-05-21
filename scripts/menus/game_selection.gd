@@ -17,8 +17,8 @@ preload("res://scenes/puzzles/color_theory_puzzle.tscn")]
 
 var puzzle_scales = [0.45,0.4,0.5,0.5,0.4,0.35,0.2,0.6,0.08,0.17,0.2,0.2,0.25,0.00075, 0.6]
 var hard_puzzle_scales = [0.45,0.27,0.35,0.5,0.5,0.35,0.2,0.6,0.08,0.17,0.2,0.2,0.25,0.00075,0.6]
-var puzzle_weights = [1,5,4,4,2,1,2,2,2,4,2,2,6,4,2] #Value of how hard/time-consuming each puzzle is, will eventually be used to determine what puzzles you get
-var hard_puzzle_weights = [9,9,6,4,8,6,1,4,2,4,5,3,9,8,2]
+var puzzle_weights = [1,5,4,4,2,1,2,2,2,3,2,2,10,4,2] #Value of how hard/time-consuming each puzzle is, will eventually be used to determine what puzzles you get
+var hard_puzzle_weights = [6,15,6,4,14,3,1,4,2,3,3,2,11,8,2]
 var weights_left = puzzle_weights.duplicate()
 var hard_weights_left = hard_puzzle_weights.duplicate()
 
@@ -59,7 +59,7 @@ var default_rot : float
 var broken = false
 
 
-var weight = SaveManager.level * 2 + 5
+var weight = SaveManager.level * 4 + 5
 
 var numhardpuzzles = floor(SaveManager.level / 5.0) # WHY IS IT GIVING WARNINGS
 

@@ -14,7 +14,7 @@ func _process(_delta: float) -> void:
 			completed = true
 			$TextEdit3D.visible = false
 			$Disabled.visible = true
-	elif $TextEdit3D.text.contains("\u200B"):
+	elif $TextEdit3D.text.contains("\u200B") && !completed && !$"../../..".failed:
 		$DisableFailed.visible = true
 		$TextEdit3D.visible = false
 		$"../../..".strikes += 1

@@ -91,7 +91,8 @@ func _on_button_pressed(num : int):
 					for x in range(6):
 						for y in range(6):
 							if labels[y].text == str(answer2[x]):
-								blanks[y].modulate = floor(colors[x / 2.0])
+								@warning_ignore("integer_division")
+								blanks[y].modulate = colors[x / 2]
 					for z in range(0,6,2):
 						var bigblanks_index = bigblanks[floor(z/2.0)]
 						if labels[z].text == str(answer2[z]) && labels[z+1].text == str(answer2[z+1]):
