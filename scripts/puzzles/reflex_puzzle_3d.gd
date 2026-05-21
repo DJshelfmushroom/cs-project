@@ -91,7 +91,7 @@ func prepare_timer():
 		timer.wait_time = 16
 	timer.one_shot = true
 	
-func _process(delta: float):
+func _process(_delta: float):
 	#if (completed && practice):
 	#	$RedWireButton.visible = true
 		
@@ -108,7 +108,7 @@ func _process(delta: float):
 		if processinstruction == keys.up:
 			
 			if (label_on_screen(label) == true):
-				label.position.y += 0.015 * delta * 150
+				label.position.y += 0.015 * _delta * 150
 			else:
 				processinstruction = null
 				awaitingInputs = false
@@ -117,7 +117,7 @@ func _process(delta: float):
 		elif processinstruction == keys.down:
 			
 			if (label_on_screen(label) == true):
-				label.position.y -= 0.015 * delta * 150
+				label.position.y -= 0.015 * _delta * 150
 			else:
 				processinstruction = null
 				awaitingInputs = false
@@ -126,8 +126,9 @@ func _process(delta: float):
 		elif processinstruction == keys.left:
 			
 			if (label_on_screen(label) == true):
-				label.position.x -= 0.02 * delta * 150
+				label.position.x -= 0.02 * _delta * 150
 			else:
+				
 				processinstruction = null
 				awaitingInputs = false
 				_startGame()			
@@ -135,7 +136,7 @@ func _process(delta: float):
 		elif processinstruction == keys.right:
 			
 			if (label_on_screen(label) == true):
-				label.position.x += 0.02 * delta * 150
+				label.position.x += 0.02 * _delta * 150
 			else:
 				processinstruction = null
 				awaitingInputs = false

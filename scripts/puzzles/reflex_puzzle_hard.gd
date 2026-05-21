@@ -53,7 +53,7 @@ func _process(_delta: float):
 		if processinstruction == keys.up:
 			
 			if (label_on_screen(label) == true):
-				label.position.y += 0.015
+				label.position.y += 0.015 * _delta * 60
 			else:
 				processinstruction = null
 				awaitingInputs = false
@@ -62,7 +62,7 @@ func _process(_delta: float):
 		elif processinstruction == keys.down:
 			
 			if (label_on_screen(label) == true):
-				label.position.y -= 0.015
+				label.position.y -= 0.015 * _delta * 60
 			else:
 				processinstruction = null
 				awaitingInputs = false
@@ -71,7 +71,7 @@ func _process(_delta: float):
 		elif processinstruction == keys.left:
 			
 			if (label_on_screen(label) == true):
-				label.position.x -= 0.02
+				label.position.x -= 0.02 * _delta * 60
 			else:
 				processinstruction = null
 				awaitingInputs = false
@@ -80,7 +80,7 @@ func _process(_delta: float):
 		elif processinstruction == keys.right:
 			
 			if (label_on_screen(label) == true):
-				label.position.x += 0.02
+				label.position.x += 0.02 * _delta * 60
 			else:
 				processinstruction = null
 				awaitingInputs = false

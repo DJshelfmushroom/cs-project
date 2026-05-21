@@ -12,11 +12,13 @@ grow_vertical = 2
 script = ExtResource("1_yk77b")
 Features = Dictionary[NodePath, int]({
 NodePath("BackButton"): 0,
-NodePath("MusicSelect"): 1
+NodePath("MusicSelect"): 1,
+NodePath("HSlider"): 2
 })
 Features = Dictionary[NodePath, int]({
 NodePath("BackButton"): 0,
-NodePath("MusicSelect"): 1
+NodePath("MusicSelect"): 1,
+NodePath("HSlider"): 2
 })
 
 [node name="BackButton" type="Button" parent="." unique_id=1478075451]
@@ -49,10 +51,33 @@ popup/item_5/id = 6
 popup/item_6/text = "None"
 popup/item_6/id = 2
 
-[node name="Label" type="Label" parent="." unique_id=483485592]
+[node name="Label" type="Label" parent="MusicSelect" unique_id=483485592]
 layout_mode = 0
-offset_left = 107.0
-offset_top = 68.0
-offset_right = 288.0
-offset_bottom = 84.0
+offset_left = 3.0
+offset_top = -18.0
+offset_right = 184.0
+offset_bottom = -2.0
 text = "Music"
+
+[node name="HSlider" type="HSlider" parent="." unique_id=843358626]
+layout_mode = 0
+offset_left = 119.0
+offset_top = 191.0
+offset_right = 296.0
+offset_bottom = 226.0
+max_value = 1.0
+step = 0.001
+
+[node name="Label" type="Label" parent="HSlider" unique_id=222856531]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -14.0
+offset_right = 39.0
+offset_bottom = 2.0
+text = "Master Volume:"
+
+[node name="Value" type="Label" parent="HSlider" unique_id=1799777358]
+layout_mode = 0
+offset_left = 182.0
+offset_right = 222.0
+offset_bottom = 16.0

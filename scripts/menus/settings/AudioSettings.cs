@@ -15,9 +15,12 @@ public partial class AudioSettings : VideoSettings
 	private enum ControlFeatures
 	{
 		BackButton,
-		MusicSelect
+		MusicSelect,
+		VolumeSlider,
 	}
 
+	private float Volume;
+	private bool loading = false;
 	
 	public override void _Ready()
 	{
@@ -50,6 +53,13 @@ public partial class AudioSettings : VideoSettings
 				{
 					musicSelectButton.ItemSelected += (index) => ChangeMusic(GetMusicForIndex(musicSelectButton, index));
 					SelectCurrentMusic(musicSelectButton);
+				}
+				break;
+			case ControlFeatures.VolumeSlider:
+				if (controlNode is HSlider slider)
+				{
+					slider.ValueChanged += (volume) => ChangeVolume((float)volume);
+					slider.Value = Volume;
 				}
 				break;
 		}
@@ -92,6 +102,13 @@ public partial class AudioSettings : VideoSettings
 		Log($"Player says playing: {MusicPlayer.Playing}", this);
 		// WriteSettings();
 	}
+
+	private void ChangeVolume(float volume)
+	{
+		Utils.Logger.Log($"Changing volume to {volume}, DB: {Mathf.LinearToDb(volume)}", this);
+		AudioServer.SetBusVolumeDb(0, Mathf.LinearToDb(volume));
+		Volume = volume;
+	}
 	public override void _Process(double delta)
 	{
 	}
@@ -99,18 +116,24 @@ public partial class AudioSettings : VideoSettings
 	{
 		// Utils.Logger.Log("Writing audio Settings", this);
 		SaveSetting("Music", (int)NowPlaying);
+		SaveSetting("Volume", Volume);
 	}
 
 	public override void LoadSettings()
 	{
+		if (loading) return;
+		loading = true;
 		var savedMusic = ReadSetting<int>("Music");
-		Log($"Read Music: {(Music)savedMusic}", this);
 		ChangeMusic(Enum.IsDefined(typeof(Music), savedMusic) ? (Music)savedMusic : Music.None);
+		var savedVolume = ReadSetting<int>("Volume");
+		ChangeVolume(savedVolume);
+		loading = false;
 	}
 
 	public override void LoadDefaults()
 	{
 		NowPlaying = Music.ThroatSing;
+		ChangeVolume(1f);
 		CallDeferred(nameof(WriteSettings));
 	}
 
