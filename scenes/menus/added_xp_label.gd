@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 		show()
 		await get_tree().create_timer(0.6).timeout
 		if position.x > 355:
-			position.x -= 1 * (delta * 60)
+			position.x -= 1 * (delta * 150)
 			
 			#if get_tree() != null:
 				#await get_tree().process_frame # TODO PLEASE FIX THIS
