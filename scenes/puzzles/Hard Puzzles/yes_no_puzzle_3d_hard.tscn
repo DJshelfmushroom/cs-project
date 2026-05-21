@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://b7jaj4hwc5vq4"]
+
+[ext_resource type="Script" uid="uid://qvfjf8doprlk" path="res://scripts/puzzles/yes_no_puzzle_3d_hard.gd" id="1_cqnji"]
+[ext_resource type="PackedScene" uid="uid://bplihb267mgq3" path="res://scenes/components/switch_3d.tscn" id="2_0fcfp"]
+[ext_resource type="FontFile" uid="uid://0my668ilbos5" path="res://assets/fonts/DS-DIGI.TTF" id="3_r3lhn"]
+[ext_resource type="PackedScene" uid="uid://caapg5wn513l5" path="res://scenes/components/button_3d.tscn" id="4_fd5hw"]
+[ext_resource type="PackedScene" uid="uid://cbcrfgck1oggo" path="res://scenes/components/screen_3d.tscn" id="5_b8b3s"]
+
+[node name="YesNoPuzzle3D" type="Node3D" unique_id=271774940]
+script = ExtResource("1_cqnji")
+
+[node name="Switch3D" parent="." unique_id=1520643565 instance=ExtResource("2_0fcfp")]
+transform = Transform3D(1, 0, 0, 0, -3.059797e-08, -0.98, 0, 0.7, -4.283716e-08, -0.6, -0.468, -0.026)
+
+[node name="Label3D" type="Label3D" parent="." unique_id=2102141745]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0.002)
+pixel_size = 0.0005
+modulate = Color(0.98039216, 0.39215687, 0, 1)
+text = "A + Z > B + D"
+font = ExtResource("3_r3lhn")
+font_size = 1000
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1921648019]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0.002)
+
+[node name="Label3D1" type="Label3D" parent="Node3D" unique_id=278991008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 1.553, 0)
+pixel_size = 0.0005
+text = "_"
+font = ExtResource("3_r3lhn")
+font_size = 1000
+outline_size = 0
+
+[node name="Label3D2" type="Label3D" parent="Node3D" unique_id=1919264725]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.553, 0)
+pixel_size = 0.0005
+text = "_"
+font = ExtResource("3_r3lhn")
+font_size = 1000
+outline_size = 0
+
+[node name="Label3D3" type="Label3D" parent="Node3D" unique_id=1481563853]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 1.553, 0)
+pixel_size = 0.0005
+text = "_"
+font = ExtResource("3_r3lhn")
+font_size = 1000
+outline_size = 0
+
+[node name="Button3D" parent="." unique_id=960169264 instance=ExtResource("4_fd5hw")]
+transform = Transform3D(2.5, 0, 0, 0, 4, 0, 0, 0, 4, 0.46, -0.468, -0.009)
+skeleton = NodePath("../Switch3D")
+
+[node name="Screen3D" parent="." unique_id=236409183 instance=ExtResource("5_b8b3s")]

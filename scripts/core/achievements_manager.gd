@@ -1,6 +1,6 @@
 extends Node
 
-var allAchievements = ["Complete Tutorial", "test2", "Reached Level 5", "Beat game with fourth left", "Beat game with third left", "Don't disable the puzzle", "Dynamic Duo", "Complete the Triumvirate", "It's a me"]
+var allAchievements = ["Complete Tutorial", "Beat a round", "Reached Level 5", "Beat game with fourth left", "Beat game with third left", "Don't disable the puzzle", "Dynamic Duo", "Complete the Triumvirate", "It's a me"]
 var completedAchievements = []
 
 

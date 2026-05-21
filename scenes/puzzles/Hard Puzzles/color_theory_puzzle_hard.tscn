@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c3n8cf8ap8c50"]
+
+[ext_resource type="Script" uid="uid://c54f6ttjgepom" path="res://scripts/puzzles/color_theory_puzzle_hard.gd" id="1_p8pjh"]
+[ext_resource type="PackedScene" uid="uid://c33jnblchqp25" path="res://scenes/components/simon_button_3d.tscn" id="2_2r31v"]
+
+[node name="Color Theory Puzzle Hard" type="Node3D" unique_id=801326223]
+script = ExtResource("1_p8pjh")
+
+[node name="Button3D" parent="." unique_id=9648353 instance=ExtResource("2_2r31v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18, 0, 0.012)
+skeleton = NodePath("")
+
+[node name="Button3D2" parent="." unique_id=1825426446 instance=ExtResource("2_2r31v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18, 0, 0.012)
+skeleton = NodePath("")

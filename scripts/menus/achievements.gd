@@ -17,7 +17,10 @@ func _on_back_button_pressed() -> void:
 
 
 
-
+func _on_beat_a_round_button_mouse_entered() -> void:
+	$"Achievement Buttons/BeatARoundButton/BeatARoundText".show()
+func _on_beat_a_round_button_mouse_exited() -> void:
+	$"Achievement Buttons/BeatARoundButton/BeatARoundText".hide()
 func _on_complete_tutorial_button_mouse_entered() -> void:
 	$"Achievement Buttons/CompleteTutorialButton/CompleteTutorialText".show()
 func _on_complete_tutorial_button_mouse_exited() -> void:

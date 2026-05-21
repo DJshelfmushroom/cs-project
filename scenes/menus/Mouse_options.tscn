@@ -65,9 +65,9 @@ text = "Silver Cursor"
 
 [node name="Quick_Mouse" type="Button" parent="." unique_id=1658754592]
 layout_mode = 0
-offset_left = 786.0
+offset_left = 286.0
 offset_top = 825.0
-offset_right = 1086.0
+offset_right = 586.0
 offset_bottom = 925.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
@@ -126,9 +126,9 @@ text = "Code Cursor"
 [node name="Invisible_Mouse" type="Button" parent="." unique_id=478533710]
 layout_mode = 0
 offset_left = 1286.0
-offset_top = 826.0
+offset_top = 825.0
 offset_right = 1586.0
-offset_bottom = 926.0
+offset_bottom = 925.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
 text = "Invisible Cursor"

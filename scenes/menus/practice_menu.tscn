@@ -52,10 +52,11 @@ text = "BACK"
 [node name="HardModeCheck" type="CheckBox" parent="." unique_id=1924285727]
 layout_mode = 0
 offset_left = 1124.0
-offset_top = 696.0
+offset_top = 725.0
 offset_right = 1234.0
-offset_bottom = 765.0
+offset_bottom = 749.0
 scale = Vector2(1.5, 1.5)
+mouse_default_cursor_shape = 2
 text = "Hard mode"
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
