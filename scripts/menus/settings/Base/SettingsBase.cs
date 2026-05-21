@@ -52,9 +52,7 @@ public abstract partial class SettingsBase<[MustBeVariant]TEnum>: Control where 
 
 		public void SetValue(Variant set)
 		{
-			// Utils.Logger.Log($"Setting Feature Value: {set}", GetMemName());
-			this._value = set;
-			// Utils.Logger.Log($"Post set Value: {_value}", GetMemName());
+			_value = set;
 			onSetValue.Invoke(_value);
 			SaveToMemory();
 		}
@@ -167,13 +165,21 @@ public abstract partial class SettingsBase<[MustBeVariant]TEnum>: Control where 
 					feature.SetValue(on);
 				};
 				break;
+			// case HSlider hSlider: 
+			// 	hSlider.
+			// 	break;
 			case Slider slider:
-				slider.DragEnded += changed =>
+				slider.ValueChanged += value =>
 				{
-					if (!changed) return;
 					feature.SetValue(slider.Value);
 				};
+				// slider.DragEnded += changed =>
+				// {
+				// 	if (!changed) return;
+				// 	feature.SetValue(slider.Value);
+				// };
 				break;
+			
 			case Godot.Button button:
 				button.Pressed += () =>
 				{

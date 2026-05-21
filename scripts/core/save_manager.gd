@@ -167,14 +167,17 @@ func load_data():
 func _input(_event):
 	if (Utils.GetDebug()):
 		if (Input.is_key_pressed(Key.KEY_SHIFT) && Input.is_key_pressed(Key.KEY_D) && Input.is_key_pressed(Key.KEY_C)):
-			if (deleted == false):
-				if FileAccess.file_exists(save_path):
-					var dir = DirAccess.open("user://")
-					dir.remove("save_data.save")
-					dir.remove(settings_path)
-					deleted = true
+			delete_save_data()
+
+func delete_save_data():
+	if (deleted == false):
+			if FileAccess.file_exists(save_path):
+				var dir = DirAccess.open("user://")
+				dir.remove("save_data.save")
+				dir.remove(settings_path)
+				deleted = true
 			Utils.LogGD("Deleting save data", self)
-				
+
 	#if (Input.is_key_pressed(Key.KEY_SHIFT) && Input.is_key_pressed(Key.KEY_D) && Input.is_key_pressed(Key.KEY_C)):
 	#	print("check")
 

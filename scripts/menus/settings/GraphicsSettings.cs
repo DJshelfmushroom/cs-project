@@ -32,6 +32,7 @@ public partial class GraphicsSettings : Base.SettingsBase<FeatureEnum>
 	enum AntiAliasing : ushort
 	{
 		Disabled,
+		// ReSharper disable twice UnusedMember.Local
 		MSAA_2X,
 		MSAA_4X,
 		MSAA_8X,

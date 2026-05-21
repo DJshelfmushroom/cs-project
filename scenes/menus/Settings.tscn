@@ -15,10 +15,10 @@ script = ExtResource("1_dpcdt")
 margin_y = 100.0
 button_values = Dictionary[StringName, PackedScene]({
 &"About": ExtResource("7_cc6f7"),
-&"Advanced Graphics Settings": ExtResource("4_pm5e4"),
 &"Audio Settings": ExtResource("6_twlt4"),
 &"Back to Menu": ExtResource("2_ep3y0"),
 &"Game Settings": ExtResource("5_lgbdl"),
+&"Graphics Settings": ExtResource("4_pm5e4"),
 &"Video Settings": ExtResource("3_1yi0m")
 })
-button_order = Array[int]([4, 2, 5, 1, 0, 3])
+button_order = Array[int]([3, 5, 1, 4, 0, 2])
