@@ -91,14 +91,15 @@ func _on_button_pressed(num : int):
 					for x in range(6):
 						for y in range(6):
 							if labels[y].text == str(answer2[x]):
-								blanks[y].modulate = colors[x / 2]
+								blanks[y].modulate = floor(colors[x / 2.0])
 					for z in range(0,6,2):
+						var bigblanks_index = bigblanks[floor(z/2.0)]
 						if labels[z].text == str(answer2[z]) && labels[z+1].text == str(answer2[z+1]):
-							bigblanks[z / 2].modulate = Color.GREEN
+							bigblanks_index.modulate = Color.GREEN
 						elif labels[z].text == str(answer2[z+1]) && labels[z+1].text == str(answer2[z]):
-							bigblanks[z / 2].modulate = Color.YELLOW
+							bigblanks_index.modulate = Color.YELLOW
 						else:
-							bigblanks[z / 2].modulate = Color.WHITE
+							bigblanks_index.modulate = Color.WHITE
 				var phase2_completed = true
 				for z in range(6):
 					if labels[z].text != str(answer2[z]):

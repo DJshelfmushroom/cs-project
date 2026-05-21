@@ -11,25 +11,26 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mxb8a")
 FeatureNode = Dictionary[NodePath, int]({
-NodePath("3DAA"): 0,
 NodePath("SSAA"): 1,
-NodePath("Back"): 3,
-NodePath("Apply"): 4
+NodePath("Back"): 4,
+NodePath("MSAA"): 0,
+NodePath("TAA"): 2,
+NodePath("Anisotropic Filtering"): 3
 })
 
 [node name="SSAA" type="OptionButton" parent="." unique_id=785368994]
 layout_mode = 0
-offset_left = 370.0
-offset_top = 92.0
-offset_right = 509.0
-offset_bottom = 163.0
+offset_left = 401.0
+offset_top = 108.0
+offset_right = 540.0
+offset_bottom = 179.0
 
-[node name="3DAA" type="OptionButton" parent="." unique_id=630226612]
+[node name="MSAA" type="OptionButton" parent="." unique_id=630226612]
 layout_mode = 0
-offset_left = 176.0
-offset_top = 107.0
-offset_right = 315.0
-offset_bottom = 178.0
+offset_left = 235.0
+offset_top = 128.0
+offset_right = 374.0
+offset_bottom = 199.0
 
 [node name="Back" type="Button" parent="." unique_id=14790851]
 layout_mode = 0
@@ -40,11 +41,15 @@ offset_bottom = 232.0
 text = "Back
 "
 
-[node name="Apply" type="Button" parent="." unique_id=1797034423]
+[node name="TAA" type="CheckButton" parent="." unique_id=32698523]
 layout_mode = 0
-offset_left = 231.0
-offset_top = 215.0
-offset_right = 273.0
-offset_bottom = 239.0
-text = "Apply
-"
+offset_left = 182.0
+offset_top = 77.0
+offset_right = 251.0
+offset_bottom = 101.0
+text = "TAA"
+
+[node name="Anisotropic Filtering" type="OptionButton" parent="." unique_id=361473981]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 20.0

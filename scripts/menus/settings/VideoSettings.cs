@@ -200,7 +200,7 @@ public partial class VideoSettings : Control //TODO: add ui options
 		// Window window = caller.GetWindow();
 		// Window window = Utils.GetNodeFromStatic().GetWindow();
 		Window window = Utils.GetSceneTree().Root;
-		Log(window.CurrentScreen.ToString(), "VideoSettings", LogType.Debug);
+		// Log(window.CurrentScreen.ToString(), "VideoSettings", LogType.Debug);
 		// Log(GetTree().ToString(), this);
 		// Log(GetTree().GetRoot().Name, this);
 
@@ -210,9 +210,12 @@ public partial class VideoSettings : Control //TODO: add ui options
 		}
 		catch (Exception e)
 		{
-			Log(e.ToString(), "VideoSettings", LogType.Error);
+			Log(e.ToString(), "VideoSettings", LogType.Error, LogColors.RED);
+			window = Utils.GetSceneTree().Root;
 		}
-
+		
+		Log($"Window: {window}", "VideoSettings", LogType.Debug, LogColors.GREEN);
+		if (window == null) return;
 		if (width is null or < 0)
 		{
 			if (height is null or < 0)

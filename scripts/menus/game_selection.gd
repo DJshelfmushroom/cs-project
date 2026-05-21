@@ -61,7 +61,7 @@ var broken = false
 
 var weight = SaveManager.level * 2 + 5
 
-var numhardpuzzles = SaveManager.level / 5
+var numhardpuzzles = floor(SaveManager.level / 5.0) # WHY IS IT GIVING WARNINGS
 
 var time
 var addedxp

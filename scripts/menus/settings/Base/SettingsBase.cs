@@ -23,14 +23,14 @@ public abstract partial class SettingsBase<[MustBeVariant]TEnum>: Control where 
 	// public Dictionary<TEnum, Variant> FeatureValues;
 	public Dictionary<TEnum, Feature> Features = new ();
 
-	public struct Feature(TEnum enumValue, Variant defaultValue, Action onSetValue, Type? optionsEnum)
+	public struct Feature(TEnum enumValue, Variant defaultValue, Action<Variant> onSetValue, Type? optionsEnum)
 	{
 		// this.className = className; 
-		public Feature(TEnum name, Action onPress) : this(name, "back", onPress, null)
+		public Feature(TEnum name, Action<Variant> onPress) : this(name, "back", onPress, null)
 		{
 		}
 
-		public Feature(TEnum enumValue, Variant defaultValue, Action onSetValue) : this(enumValue, defaultValue, onSetValue,
+		public Feature(TEnum enumValue, Variant defaultValue, Action<Variant> onSetValue) : this(enumValue, defaultValue, onSetValue,
 			null)
 		{
 		}
@@ -43,6 +43,7 @@ public abstract partial class SettingsBase<[MustBeVariant]TEnum>: Control where 
 		public readonly Type GetValueType() => defaultValue.VariantType.GetType(); 
 		public readonly Variant.Type GetVariantType() => defaultValue.VariantType;
 		private Variant _value = defaultValue;
+		public string description { set; get; } //TODO show description when hovering over a button
 
 		public readonly Variant GetValue()
 		{
@@ -51,22 +52,23 @@ public abstract partial class SettingsBase<[MustBeVariant]TEnum>: Control where 
 
 		public void SetValue(Variant set)
 		{
+			// Utils.Logger.Log($"Setting Feature Value: {set}", GetMemName());
 			this._value = set;
-			onSetValue.Invoke();
+			// Utils.Logger.Log($"Post set Value: {_value}", GetMemName());
+			onSetValue.Invoke(_value);
+			SaveToMemory();
 		}
 
-		public readonly Variant defaultValue { get; } = defaultValue;
+		public Variant defaultValue { get; } = defaultValue;
 
 		private readonly StringName GetMemName() => ClassName + Delimiter + GetName();
 
 		public void SaveToMemory()
 		{
 			Script saveManager = GetSaveManager();
-			if (_value.VariantType.ToString().Contains("Vector"))
-			{
-				_value = _value.VariantType + " " + _value;
-			}
-			saveManager.Callv("write_setting", [GetMemName(), GD.VarToStr(_value)]);
+			String write = GD.VarToStr(GetValue());
+			Utils.Logger.Log($"Setting to write: {GetMemName()}, value: {GetValue()}", "Settings/Feature");
+			saveManager.Callv("write_setting", [GetMemName(), write]);
 		}
 
 		public void LoadFromMemory()
@@ -74,6 +76,7 @@ public abstract partial class SettingsBase<[MustBeVariant]TEnum>: Control where 
 			Script saveManager = GetSaveManager();
 			string settingOut = saveManager.Callv("read_setting", [GetMemName(), false]).ToString();
 			_value = GD.StrToVar(settingOut);
+			// Utils.Logger.Log($"Load from memory VarType: {_value.VariantType}", "Settings/Feature");
 		}
 	}
 	
@@ -84,7 +87,7 @@ public abstract partial class SettingsBase<[MustBeVariant]TEnum>: Control where 
 
 	public override void _Ready()
 	{
-		ClassName = this.GetType().Name;
+		ClassName = GetType().Name;
 		SetupFeatures();
 		LoadSettings();
 		foreach (var (controlNodePath, feature) in FeatureNodes)
@@ -97,9 +100,11 @@ public abstract partial class SettingsBase<[MustBeVariant]TEnum>: Control where 
 	protected void ConfigureFeature(TEnum featureEnumVal, Node controlNode)
 	{
 		Feature feature = Features[featureEnumVal];
+		feature.LoadFromMemory();
 		switch (controlNode)
 		{
 			case TextEdit textEdit:
+				textEdit.Text = feature.GetValue().AsString();
 				textEdit.TextChanged += () =>
 				{
 					string text = textEdit.Text;
@@ -113,6 +118,7 @@ public abstract partial class SettingsBase<[MustBeVariant]TEnum>: Control where 
 				};
 				break;
 			case LineEdit lineEdit:
+				lineEdit.Text = feature.GetValue().AsString();
 				lineEdit.TextSubmitted += text =>
 				{
 					Type featureValueType = feature.GetValueType();
@@ -131,27 +137,31 @@ public abstract partial class SettingsBase<[MustBeVariant]TEnum>: Control where 
 				if (feature.OptionsEnum == null)
 				{
 					throw new ArgumentNullException();
-					break;
+					// break;
 				}
 
-				Log($"type of optionsEnum: {feature.OptionsEnum.FullName}");
+				// Log($"type of optionsEnum: {feature.OptionsEnum.FullName}");
 				foreach (var item in Enum.GetNames(feature.OptionsEnum))
 				{
-					options.AddItem(item.ToString());
+					if (item.Equals("Max")) continue;
+					options.AddItem(item);
 				}
 
+				options.Selected = feature.GetValue().AsInt16();
 				options.ItemSelected += index =>
 				{
 					feature.SetValue(index);
 				};
 				break;
 			case CheckBox checkBox:
+				checkBox.SetToggleMode(feature.GetValue().AsBool());
 				checkBox.Toggled += on =>
 				{
 					feature.SetValue(on);
 				};
 				break;
 			case CheckButton checkButton:
+				checkButton.SetToggleMode(feature.GetValue().AsBool());
 				checkButton.Toggled += on =>
 				{
 					feature.SetValue(on);
@@ -160,17 +170,19 @@ public abstract partial class SettingsBase<[MustBeVariant]TEnum>: Control where 
 			case Slider slider:
 				slider.DragEnded += changed =>
 				{
+					if (!changed) return;
 					feature.SetValue(slider.Value);
 				};
 				break;
 			case Godot.Button button:
 				button.Pressed += () =>
 				{
-					feature.SetValue(true); // this is probably to be handled by the feature
+					feature.SetValue(true); // this is to be handled by the feature
 				};
 				break;
-			
 		}
+
+		Features[featureEnumVal] = feature;
 	}
 
 	protected virtual void SetupFeatures()
@@ -178,12 +190,13 @@ public abstract partial class SettingsBase<[MustBeVariant]TEnum>: Control where 
 		// set up all the feature (struct)s and add them to the dict
 	}
 
-	public void WriteSettings()
+	public void WriteSettings(Variant ignored)
 	{
-		foreach (Feature feature in Features.Values)
-		{
-			feature.SaveToMemory();
-		}
+		// foreach (Feature feature in Features.Values)
+		// {
+		// 	feature.SaveToMemory();
+		// }
+		Log("placeholder function", Utils.Logger.LogType.Warning);
 	}
 
 	public void LoadSettings()
