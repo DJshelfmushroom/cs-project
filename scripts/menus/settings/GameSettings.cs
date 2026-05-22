@@ -67,7 +67,7 @@ public partial class GameSettings : SettingsBase<FeaturesEnum>
 	private void ResetSettings(Variant ignored)
 	{
 		Script mainMenu = GD.Load<Script>("res://scripts/menus/main_menu.gd");
-		mainMenu.Load
+		//mainMenu.Load
 	}
 
 	private void Back(Variant ignored)
