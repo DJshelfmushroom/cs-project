@@ -171,19 +171,6 @@ public partial class Bomb : Node3D
 		}
 
 		Transform = transform;
-
-		var camera = GetNode<Camera3D>("../Camera3D");
-		Aabb localAabb = GetMergedLocalAabb();
-
-		Vector3 dir = (camera.GlobalPosition - GlobalPosition).Normalized();
-		Vector3 localDir = GlobalTransform.Basis.Inverse() * dir;
-
-		float exitDist = RayAabbExitDistance(localAabb, Vector3.Zero, localDir);
-		float minDist = exitDist + camera.Near * 3f;
-
-		float currentDist = (camera.GlobalPosition - GlobalPosition).Length();
-		if (currentDist < minDist)
-			camera.GlobalPosition = GlobalPosition + dir * minDist;
 	}
 
 	public float GetMinCameraDistance(Vector3 worldDir)
