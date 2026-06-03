@@ -2,6 +2,10 @@ class_name main_menu extends Node3D
 
 func _ready() -> void:
 	#load_settings(self)
+	
+	print("Happy end of the year guys")
+	
+	
 	$Control/CustomCursor.set_mouse_cursor(SaveManager.arrow, SaveManager.hand, load("res://assets/cursor/RedWire_Dot.png"), SaveManager.color)
 	SaveManager.save()
 	if SaveManager.firstTime == true:
